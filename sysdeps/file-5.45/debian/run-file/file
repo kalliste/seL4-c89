@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+REGULAR_FILE=/usr/bin/file
+BUILT_FILE="$CURDIR/debian/tmp/usr/bin/file"
+
+if [ -x "$BUILT_FILE" ] ; then
+    echo "Running just-built file, args: $@" >&2
+
+    export LD_LIBRARY_PATH="$CURDIR/debian/tmp/usr/lib/$DEB_HOST_MULTIARCH"
+    exec "$BUILT_FILE" \
+        -m "$CURDIR/debian/tmp/usr/share/file/magic.mgc" \
+        "$@"
+else
+    exec "$REGULAR_FILE" "$@"
+fi

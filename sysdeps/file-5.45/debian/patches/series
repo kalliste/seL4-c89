@@ -1,0 +1,14 @@
+# reverted upstream commits
+
+# cherry-picked commits. Keep in upstream's chronological order
+1690555105.FILE5_45-1-g218fdf81.deal-with-32-bit-time-t.patch
+1706463645.FILE5_45-79-ged96f0ee.recognize-unified-diff-output-joerg-jenderek.patch
+
+# patches that should go upstream
+upstream.disable.att3b.patch
+
+# local modifications
+local.support-local-definitions-in-etc-magic.patch
+local.don-t-include-libs-in-build.patch
+local.extra-magic.patch
+local.manpage-seccomp-is-disabled.patch
