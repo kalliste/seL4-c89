@@ -98,17 +98,17 @@ static inline void maskInterrupt(bool_t disable, irq_t irq)
         }
         return;
     case INTERRUPT_CORE_GPU:
-    // Not maskable
+    /* Not maskable */
     case INTERRUPT_CORE_PMU:
-    // Not currently handled
+    /* Not currently handled */
     case INTERRUPT_CORE_AXI:
-        // Not currently handled
+        /* Not currently handled */
         return;
     default:
         break;
     }
     if (irq < BASIC_IRQ_OFFSET) {
-        // Other invalid irq
+        /* Other invalid irq */
         return;
     }
 

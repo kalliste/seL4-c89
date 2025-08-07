@@ -109,7 +109,7 @@ BOOT_CODE bool_t fpsimd_HWCapTest(void)
             printf("Error: seL4 doesn't support FPU subarchitectures that support asynchronous exceptions\n");
             return false;
         } else {
-            // if we aren't using the fpu then we have detected an fpu that we cannot use, but that is fine
+            /* if we aren't using the fpu then we have detected an fpu that we cannot use, but that is fine */
             return true;
         }
     }
@@ -127,7 +127,7 @@ BOOT_CODE bool_t fpsimd_HWCapTest(void)
             printf("Error: seL4 doesn't support this VFP subarchitecture\n");
             return false;
         } else {
-            // if we aren't using the fpu then we have detected an fpu that we cannot use, but that is fine
+            /* if we aren't using the fpu then we have detected an fpu that we cannot use, but that is fine */
             return true;
         }
     }

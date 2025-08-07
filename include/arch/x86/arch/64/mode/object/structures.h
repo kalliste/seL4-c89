@@ -15,7 +15,7 @@
 #define GDT_NULL    0
 #define GDT_CS_0    1
 #define GDT_DS_0    2
-#define GDT_TSS     3 //TSS is two slots in x86-64
+#define GDT_TSS     3 /*TSS is two slots in x86-64 */
 #define GDT_CS_3    5
 #define GDT_DS_3    6
 #define GDT_FS      7

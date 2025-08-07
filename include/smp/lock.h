@@ -31,8 +31,8 @@ typedef struct clh_req {
 
 /* Our node (called "Process" in the paper) */
 typedef struct clh_node {
-    clh_req_t *watch; // Used by predecessor to grant the lock to us.
-    clh_req_t *myreq; // Used to grant the lock to our successor.
+    clh_req_t *watch; /* Used by predecessor to grant the lock to us. */
+    clh_req_t *myreq; /* Used to grant the lock to our successor. */
     /* This is the software blocking IPI flag */
     word_t ipi;
 } ALIGN(L1_CACHE_LINE_SIZE) clh_node_t;

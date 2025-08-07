@@ -170,19 +170,19 @@ CONST int __clzdi2(uint64_t x);
 CONST int __ctzsi2(uint32_t x);
 CONST int __ctzdi2(uint64_t x);
 
-// Used for compile-time constants, so should always use the builtin.
+/* Used for compile-time constants, so should always use the builtin. */
 #define CTZL(x) __builtin_ctzl(x)
 
-// Count leading zeros.
-// The CONFIG_CLZ_NO_BUILTIN macro may be used to expose the library function
-// to the C parser for verification.
+/* Count leading zeros. */
+/* The CONFIG_CLZ_NO_BUILTIN macro may be used to expose the library function */
+/* to the C parser for verification. */
 #ifndef CONFIG_CLZ_NO_BUILTIN
-// If we use a compiler builtin, we cannot verify it, so we use the following
-// annotations to hide the function body from the proofs, and axiomatise its
-// behaviour.
-// On the other hand, if we use our own implementation instead of the builtin,
-// then we want to expose that implementation to the proofs, and therefore hide
-// these annotations.
+/* If we use a compiler builtin, we cannot verify it, so we use the following */
+/* annotations to hide the function body from the proofs, and axiomatise its */
+/* behaviour. */
+/* On the other hand, if we use our own implementation instead of the builtin, */
+/* then we want to expose that implementation to the proofs, and therefore hide */
+/* these annotations. */
 /** MODIFIES: */
 /** DONT_TRANSLATE */
 /** FNSPEC clzl_spec:
@@ -207,7 +207,7 @@ CONST clzl(unsigned long x)
 }
 
 #ifndef CONFIG_CLZ_NO_BUILTIN
-// See comments on clzl.
+/* See comments on clzl. */
 /** MODIFIES: */
 /** DONT_TRANSLATE */
 /** FNSPEC clzll_spec:
@@ -227,9 +227,9 @@ CONST clzll(unsigned long long x)
 #endif
 }
 
-// Count trailing zeros.
+/* Count trailing zeros. */
 #ifndef CONFIG_CTZ_NO_BUILTIN
-// See comments on clzl.
+/* See comments on clzl. */
 /** MODIFIES: */
 /** DONT_TRANSLATE */
 /** FNSPEC ctzl_spec:
@@ -243,33 +243,33 @@ static inline long
 CONST ctzl(unsigned long x)
 {
 #ifdef CONFIG_CTZ_NO_BUILTIN
-// If there is a builtin CLZ, but no builtin CTZ, then CTZ will be implemented
-// using the builtin CLZ, rather than the long-form implementation.
-// This is typically the fastest way to calculate ctzl on such platforms.
+/* If there is a builtin CLZ, but no builtin CTZ, then CTZ will be implemented */
+/* using the builtin CLZ, rather than the long-form implementation. */
+/* This is typically the fastest way to calculate ctzl on such platforms. */
 #ifdef CONFIG_CLZ_NO_BUILTIN
-    // Here, there are no builtins we can use, so call the library function.
+    /* Here, there are no builtins we can use, so call the library function. */
 #if CONFIG_WORD_SIZE == 32
     return __ctzsi2(x);
 #else
     return __ctzdi2(x);
 #endif
 #else
-    // Here, we have __builtin_clzl, but no __builtin_ctzl.
+    /* Here, we have __builtin_clzl, but no __builtin_ctzl. */
     if (unlikely(x == 0)) {
         return 8 * sizeof(unsigned long);
     }
-    // -x = ~x + 1, so (x & -x) isolates the least significant 1-bit of x,
-    // allowing ctzl to be calculated from clzl and the word size.
+    /* -x = ~x + 1, so (x & -x) isolates the least significant 1-bit of x, */
+    /* allowing ctzl to be calculated from clzl and the word size. */
     return 8 * sizeof(unsigned long) - 1 - __builtin_clzl(x & -x);
 #endif
 #else
-    // Here, we have __builtin_ctzl.
+    /* Here, we have __builtin_ctzl. */
     return __builtin_ctzl(x);
 #endif
 }
 
 #ifndef CONFIG_CTZ_NO_BUILTIN
-// See comments on clzl.
+/* See comments on clzl. */
 /** MODIFIES: */
 /** DONT_TRANSLATE */
 /** FNSPEC ctzll_spec:
@@ -283,14 +283,14 @@ static inline long long
 CONST ctzll(unsigned long long x)
 {
 #ifdef CONFIG_CTZ_NO_BUILTIN
-// See comments on ctzl.
+/* See comments on ctzl. */
 #ifdef CONFIG_CLZ_NO_BUILTIN
     return __ctzdi2(x);
 #else
     if (unlikely(x == 0)) {
         return 8 * sizeof(unsigned long long);
     }
-    // See comments on ctzl.
+    /* See comments on ctzl. */
     return 8 * sizeof(unsigned long long) - 1 - __builtin_clzll(x & -x);
 #endif
 #else
@@ -305,9 +305,9 @@ static inline long
 CONST popcountl(unsigned long mask)
 {
 #ifndef __POPCNT__
-    unsigned int count; // c accumulates the total bits set in v
+    unsigned int count; /* c accumulates the total bits set in v */
     for (count = 0; mask; count++) {
-        mask &= mask - 1; // clear the least significant bit set
+        mask &= mask - 1; /* clear the least significant bit set */
     }
 
     return count;

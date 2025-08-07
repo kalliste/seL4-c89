@@ -819,9 +819,9 @@ static exception_t performX86PageInvocationUnmap(cap_t cap, cte_t *ctSlot)
 {
     assert(cap_frame_cap_get_capFMappedASID(cap));
     assert(cap_frame_cap_get_capFMapType(cap) == X86_MappingVSpace);
-    // We have this `if` for something we just asserted to be true for simplicity of verification
-    // This has no performance implications as when this function is inlined this `if` will be
-    // inside an identical `if` and will therefore be elided
+    /* We have this `if` for something we just asserted to be true for simplicity of verification */
+    /* This has no performance implications as when this function is inlined this `if` will be */
+    /* inside an identical `if` and will therefore be elided */
     if (cap_frame_cap_get_capFMappedASID(cap)) {
         unmapPage(
             cap_frame_cap_get_capFSize(cap),

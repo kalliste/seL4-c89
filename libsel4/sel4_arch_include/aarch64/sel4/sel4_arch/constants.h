@@ -101,7 +101,7 @@ typedef enum {
     /* general registers x0 to x30 have been saved by traps.S */
     seL4_VCPUReg_SP_EL1,
     seL4_VCPUReg_ELR_EL1,
-    seL4_VCPUReg_SPSR_EL1, // 32-bit
+    seL4_VCPUReg_SPSR_EL1, /* 32-bit */
     seL4_VCPURegSaveRange_end = seL4_VCPUReg_SPSR_EL1, /* end vcpu save/restore reg range */
 
     /* generic timer registers, to be completed */

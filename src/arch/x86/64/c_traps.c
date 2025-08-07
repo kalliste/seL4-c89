@@ -43,60 +43,60 @@ static void NORETURN restore_vmx(tcb_t *cur_thread, vcpu_t *vcpu)
 #endif /* CONFIG_X86_64_VTX_64BIT_GUESTS */
     /* attempt to do a vmlaunch/vmresume */
     asm volatile(
-        // Arguments are getting stored in general purpose registers that need to be used.
-        // Copy them to unused general purpose registers
+        /* Arguments are getting stored in general purpose registers that need to be used. */
+        /* Copy them to unused general purpose registers */
         "movq %[launched], %%rbx\n"
 #ifdef CONFIG_X86_64_VTX_64BIT_GUESTS
         "movq %[host_msr], %%r8\n"
         "movq %[guest_msr], %%r9\n"
         "movq %[reg], %%r10\n"
 
-        // Save host's GS, Shadow GS, and FS
+        /* Save host's GS, Shadow GS, and FS */
         "mov $0xC0000101, %%ecx\n"
         "rdmsr\n"
         "shl $0x20,%%rdx\n"
         "or %%rdx, %%rax\n"
-        "mov %%rax, %%r11\n" // R11 has GS
+        "mov %%rax, %%r11\n" /* R11 has GS */
         "swapgs\n"
         "rdmsr\n"
         "shl $0x20,%%rdx\n"
         "or %%rdx,%%rax\n"
-        "mov %%rax, %%r12\n" // R12 has Shadow GS
+        "mov %%rax, %%r12\n" /* R12 has Shadow GS */
         "mov $0xC0000100, %%ecx\n"
         "rdmsr\n"
         "shl $0x20,%%rdx\n"
         "or %%rdx, %%rax\n"
-        "mov %%rax, %%r13\n" // R13 has FS
-        "movq %%r8, %%rsp\n" // host_gs
+        "mov %%rax, %%r13\n" /* R13 has FS */
+        "movq %%r8, %%rsp\n" /* host_gs */
         "pushq %%r13\n"
         "pushq %%r12\n"
         "pushq %%r11\n"
 
-        // Restore guest's GS and Shadow GS
+        /* Restore guest's GS and Shadow GS */
         "mov $0xC0000101, %%ecx\n"
         "swapgs\n"
-        "movq %%r9, %%rsp\n" // guest_gs
-        "popq %%rax\n"       // GS
+        "movq %%r9, %%rsp\n" /* guest_gs */
+        "popq %%rax\n"       /* GS */
         "mov %%rax,%%rdx\n"
         "shr $0x20,%%rdx\n"
         "wrmsr\n"
         "swapgs\n"
-        "popq %%rax\n"       // Shadow GS
+        "popq %%rax\n"       /* Shadow GS */
         "mov %%rax,%%rdx\n"
         "shr $0x20,%%rdx\n"
         "wrmsr\n"
         "swapgs\n"
         "mov $0xC0000100, %%ecx\n"
-        "popq %%rax\n"       // FS
+        "popq %%rax\n"       /* FS */
         "mov %%rax,%%rdx\n"
         "shr $0x20,%%rdx\n"
         "wrmsr\n"
-        "movq %%r10, %%rsp\n" // reg
+        "movq %%r10, %%rsp\n" /* reg */
 #else /* not CONFIG_X86_64_VTX_64BIT_GUESTS */
-        // Set our stack pointer to the top of the tcb so we can efficiently pop
+        /* Set our stack pointer to the top of the tcb so we can efficiently pop */
         "movq %[reg], %%rsp\n"
 #endif /* CONFIG_X86_64_VTX_64BIT_GUESTS */
-        "cmpq $0x1, (%%rbx)\n" // is the VM launched already?
+        "cmpq $0x1, (%%rbx)\n" /* is the VM launched already? */
         "jne launch\n"
         "popq %%rax\n"
         "popq %%rbx\n"
@@ -119,7 +119,7 @@ static void NORETURN restore_vmx(tcb_t *cur_thread, vcpu_t *vcpu)
         "swapgs\n"
 #endif
 #endif /* CONFIG_X86_64_VTX_64BIT_GUESTS */
-        "vmresume\n" // yes, do the vmresume
+        "vmresume\n" /* yes, do the vmresume */
         "jmp done\n"
 
         "launch:\n"
@@ -144,33 +144,33 @@ static void NORETURN restore_vmx(tcb_t *cur_thread, vcpu_t *vcpu)
         "swapgs\n"
 #endif
 #endif /* CONFIG_X86_64_VTX_64BIT_GUESTS */
-        "vmlaunch\n" // no, do the vmlaunch
+        "vmlaunch\n" /* no, do the vmlaunch */
 
         "done:\n"
         "setb %%al\n"
         "sete %%bl\n"
         "movzx %%al, %%rdi\n"
         "movzx %%bl, %%rsi\n"
-        // if we get here we failed
+        /* if we get here we failed */
 
 #ifdef CONFIG_X86_64_VTX_64BIT_GUESTS
-        // Restore host's GS, Shadow GS, and FS
-        "sub $0xA8, %%rsp\n" // 15 * 8 (regs) + 3 * 8 (guest_msr) + 3 * 8 (host_msr)
+        /* Restore host's GS, Shadow GS, and FS */
+        "sub $0xA8, %%rsp\n" /* 15 * 8 (regs) + 3 * 8 (guest_msr) + 3 * 8 (host_msr) */
         "mov $0xC0000101, %%ecx\n"
         "pop %%rax\n"
         "movq %%rax, %%rdx\n"
         "shr $0x20, %%rdx\n"
-        "wrmsr\n" // GS
+        "wrmsr\n" /* GS */
         "swapgs\n"
         "pop %%rax\n"
         "movq %%rax, %%rdx\n"
         "shr $0x20, %%rdx\n"
-        "wrmsr\n" // Shadow GS
+        "wrmsr\n" /* Shadow GS */
         "mov $0xC0000100, %%ecx\n"
         "pop %%rax\n"
         "movq %%rax, %%rdx\n"
         "shr $0x20, %%rdx\n"
-        "wrmsr\n" // FS
+        "wrmsr\n" /* FS */
 
 #else /* not CONFIG_X86_64_VTX_64BIT_GUESTS */
 #ifdef ENABLE_SMP_SUPPORT
@@ -197,8 +197,8 @@ static void NORETURN restore_vmx(tcb_t *cur_thread, vcpu_t *vcpu)
         , [stack_offset]"i"(OFFSETOF(nodeInfo_t, stackTop))
 #endif
 #endif /* CONFIG_X86_64_VTX_64BIT_GUESTS */
-        // Clobber memory so the compiler is forced to complete all stores
-        // before running this assembler
+        /* Clobber memory so the compiler is forced to complete all stores */
+        /* before running this assembler */
         : "memory"
     );
     UNREACHABLE();
@@ -256,9 +256,9 @@ void VISIBLE NORETURN restore_user_context(void)
         x86_disable_ibrs();
     }
 
-    // Check if we are returning from a syscall/sysenter or from an interrupt
-    // There is a special case where if we would be returning from a sysenter,
-    // but are current singlestepping, do a full return like an interrupt
+    /* Check if we are returning from a syscall/sysenter or from an interrupt */
+    /* There is a special case where if we would be returning from a sysenter, */
+    /* but are current singlestepping, do a full return like an interrupt */
     if (likely(cur_thread->tcbArch.tcbContext.registers[Error] == -1) &&
         (!config_set(CONFIG_SYSENTER) || !config_set(CONFIG_HARDWARE_DEBUG_API)
          || ((cur_thread->tcbArch.tcbContext.registers[FLAGS] & FLAGS_TF) == 0))) {
@@ -284,7 +284,7 @@ void VISIBLE NORETURN restore_user_context(void)
             register word_t user_cr3_r11 asm("r11") = user_cr3;
 #endif
             asm volatile(
-                // Set our stack pointer to the top of the tcb so we can efficiently pop
+                /* Set our stack pointer to the top of the tcb so we can efficiently pop */
                 "movq %0, %%rsp\n"
                 "popq %%rdi\n"
                 "popq %%rsi\n"
@@ -294,23 +294,23 @@ void VISIBLE NORETURN restore_user_context(void)
                 "popq %%r12\n"
                 "popq %%r13\n"
                 "popq %%r14\n"
-                // skip RDX
+                /* skip RDX */
                 "addq $8, %%rsp\n"
                 "popq %%r10\n"
                 "popq %%r8\n"
                 "popq %%r9\n"
                 "popq %%r15\n"
-                //restore RFLAGS
+                /*restore RFLAGS */
                 "popfq\n"
-                // reset interrupt bit
+                /* reset interrupt bit */
                 "orq %[IF], -8(%%rsp)\n"
-                // Restore NextIP
+                /* Restore NextIP */
                 "popq %%rdx\n"
-                // Skip ERROR
+                /* Skip ERROR */
                 "addq $8, %%rsp\n"
-                // Restore RSP
+                /* Restore RSP */
                 "popq %%rcx\n"
-                // Skip FaultIP
+                /* Skip FaultIP */
                 "addq $8, %%rsp\n"
 #if defined(ENABLE_SMP_SUPPORT) && defined(CONFIG_KERNEL_SKIM_WINDOW)
                 "popq %%rsp\n"
@@ -323,8 +323,8 @@ void VISIBLE NORETURN restore_user_context(void)
                 "movq %%rsp, %%cr3\n"
 #endif /* CONFIG_KERNEL_SKIM_WINDOW */
 #endif /* defined(ENABLE_SMP_SUPPORT) && defined(CONFIG_KERNEL_SKIM_WINDOW) */
-                // More register but we can ignore and are done restoring
-                // enable interrupt disabled by sysenter
+                /* More register but we can ignore and are done restoring */
+                /* enable interrupt disabled by sysenter */
                 "sti\n"
                 SYSEXITQ "\n"
                 :
@@ -333,13 +333,13 @@ void VISIBLE NORETURN restore_user_context(void)
                 "r"(user_cr3_r11),
 #endif
                 [IF] "i"(FLAGS_IF)
-                // Clobber memory so the compiler is forced to complete all stores
-                // before running this assembler
+                /* Clobber memory so the compiler is forced to complete all stores */
+                /* before running this assembler */
                 : "memory"
             );
         } else {
             asm volatile(
-                // Set our stack pointer to the top of the tcb so we can efficiently pop
+                /* Set our stack pointer to the top of the tcb so we can efficiently pop */
                 "movq %0, %%rsp\n"
                 "popq %%rdi\n"
                 "popq %%rsi\n"
@@ -354,9 +354,9 @@ void VISIBLE NORETURN restore_user_context(void)
                 "popq %%r8\n"
                 "popq %%r9\n"
                 "popq %%r15\n"
-                //restore RFLAGS
+                /*restore RFLAGS */
                 "popq %%r11\n"
-                // Restore NextIP
+                /* Restore NextIP */
 #if defined(ENABLE_SMP_SUPPORT) && defined(CONFIG_KERNEL_SKIM_WINDOW)
                 "popq %%rsp\n"
                 "movq %%rcx, %%cr3\n"
@@ -368,18 +368,18 @@ void VISIBLE NORETURN restore_user_context(void)
                 "movq %%rsp, %%cr3\n"
 #endif /* CONFIG_KERNEL_SKIM_WINDOW */
 #endif /* defined(ENABLE_SMP_SUPPORT) && defined(CONFIG_KERNEL_SKIM_WINDOW) */
-                // clear RSP to not leak information to the user
+                /* clear RSP to not leak information to the user */
                 "xor %%rsp, %%rsp\n"
-                // More register but we can ignore and are done restoring
-                // enable interrupt disabled by sysenter
+                /* More register but we can ignore and are done restoring */
+                /* enable interrupt disabled by sysenter */
                 "sysretq\n"
                 :
                 : "r"(&cur_thread->tcbArch.tcbContext.registers[RDI])
 #if defined(ENABLE_SMP_SUPPORT) && defined(CONFIG_KERNEL_SKIM_WINDOW)
                 , "c"(user_cr3)
 #endif
-                // Clobber memory so the compiler is forced to complete all stores
-                // before running this assembler
+                /* Clobber memory so the compiler is forced to complete all stores */
+                /* before running this assembler */
                 : "memory"
             );
         }
@@ -395,7 +395,7 @@ void VISIBLE NORETURN restore_user_context(void)
         irqstack[4] = getRegister(cur_thread, RSP);
         irqstack[5] = getRegister(cur_thread, SS);
         asm volatile(
-            // Set our stack pointer to the top of the tcb so we can efficiently pop
+            /* Set our stack pointer to the top of the tcb so we can efficiently pop */
             "movq %0, %%rsp\n"
             "popq %%rdi\n"
             "popq %%rsi\n"
@@ -423,8 +423,8 @@ void VISIBLE NORETURN restore_user_context(void)
 #endif /* defined(ENABLE_SMP_SUPPORT) && defined(CONFIG_KERNEL_SKIM_WINDOW) */
 
 #ifdef ENABLE_SMP_SUPPORT
-            // Swapping gs twice here is worth it as it allows us to efficiently
-            // set the user gs base previously
+            /* Swapping gs twice here is worth it as it allows us to efficiently */
+            /* set the user gs base previously */
             "swapgs\n"
 #ifdef CONFIG_KERNEL_SKIM_WINDOW
             /* now we stash rcx in the scratch space that we can access once we've
@@ -439,7 +439,7 @@ void VISIBLE NORETURN restore_user_context(void)
             "movq %%gs:%c[scratch_offset], %%rcx\n"
 #endif /* CONFIG_KERNEL_SKIM_WINDOW */
             "addq $8, %%rsp\n"
-            // Switch to the user GS value
+            /* Switch to the user GS value */
             "swapgs\n"
 #else /* !ENABLE_SMP_SUPPORT */
 #ifdef CONFIG_KERNEL_SKIM_WINDOW
@@ -455,8 +455,8 @@ void VISIBLE NORETURN restore_user_context(void)
             , "c"(user_cr3)
             , [scratch_offset] "i"(nodeSkimScratchOffset)
 #endif
-            // Clobber memory so the compiler is forced to complete all stores
-            // before running this assembler
+            /* Clobber memory so the compiler is forced to complete all stores */
+            /* before running this assembler */
             : "memory"
         );
     }

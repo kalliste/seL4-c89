@@ -17,7 +17,7 @@
 /** NDEBUG is defined do nothing */
 #define seL4_DebugAssert(expr) ((void)(0))
 
-#else // NDEBUG is not defined
+#else /* NDEBUG is not defined */
 
 #include <sel4/assert.h>
 
@@ -26,5 +26,5 @@
  */
 #define seL4_DebugAssert(expr) seL4_Assert(expr)
 
-#endif // NDEBUG
+#endif /* NDEBUG */
 

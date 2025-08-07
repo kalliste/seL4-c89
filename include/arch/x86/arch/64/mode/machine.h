@@ -49,8 +49,8 @@ static inline cr3_t getCurrentCR3(void)
 static inline cr3_t getCurrentUserCR3(void)
 {
 #ifdef CONFIG_KERNEL_SKIM_WINDOW
-    // Construct a cr3_t from the state word, dropping any command information
-    // if needed
+    /* Construct a cr3_t from the state word, dropping any command information */
+    /* if needed */
     word_t cr3_word = MODE_NODE_STATE(x64KSCurrentUserCR3);
     cr3_t cr3_ret;
     if (config_set(CONFIG_SUPPORT_PCID)) {
@@ -95,9 +95,9 @@ static inline void setCurrentCR3(cr3_t cr3, word_t preserve_translation)
 static inline void setCurrentUserCR3(cr3_t cr3)
 {
 #ifdef CONFIG_KERNEL_SKIM_WINDOW
-    // To make the restore stubs more efficient we will set the preserve_translation
-    // command in the state. If we look at the cr3 later on we need to remember to
-    // remove that bit
+    /* To make the restore stubs more efficient we will set the preserve_translation */
+    /* command in the state. If we look at the cr3 later on we need to remember to */
+    /* remove that bit */
     word_t cr3_word = cr3.words[0];
     if (config_set(CONFIG_SUPPORT_PCID)) {
         cr3_word |= BIT(63);

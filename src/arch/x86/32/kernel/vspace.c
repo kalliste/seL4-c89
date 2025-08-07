@@ -341,7 +341,7 @@ BOOT_CODE void *map_temp_boot_page(void *entry, uint32_t large_pages)
     unsigned int virt_pg_start = PPTR_BASE - (large_pages << LARGE_PAGE_BITS);
 
     for (i = 0; i < large_pages; i++) {
-        unsigned int pg_offset = i << LARGE_PAGE_BITS; // num pages since start * page size
+        unsigned int pg_offset = i << LARGE_PAGE_BITS; /* num pages since start * page size */
 
         *(get_boot_pd() + virt_pd_start + i) = pde_pde_large_new(
                                                    phys_pg_start + pg_offset, /* physical address */
@@ -359,7 +359,7 @@ BOOT_CODE void *map_temp_boot_page(void *entry, uint32_t large_pages)
         invalidateLocalTranslationSingle(virt_pg_start + pg_offset);
     }
 
-    // assign replacement virtual addresses page
+    /* assign replacement virtual addresses page */
     offset_in_page = (unsigned int)(entry) & MASK(LARGE_PAGE_BITS);
     replacement_vaddr = (void *)(virt_pg_start + offset_in_page);
 

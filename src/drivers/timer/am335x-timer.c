@@ -42,7 +42,7 @@ static BOOT_CODE void disableWatchdog(void)
 {
     uint32_t wdt = WDT1_PPTR;
 
-    // am335x ref man, sec 20.4.3.8
+    /* am335x ref man, sec 20.4.3.8 */
     *WDT_REG(wdt, WDT_REG_WSPR) = 0xaaaa;
     while ((*WDT_REG(wdt, WDT_REG_WWPS) & WDT_WWPS_PEND_WSPR)) {
         continue;

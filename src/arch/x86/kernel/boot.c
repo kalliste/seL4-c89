@@ -72,9 +72,9 @@ BOOT_CODE static bool_t arch_init_freemem(p_region_t ui_p_reg,
                                           mem_p_regs_t *mem_p_regs,
                                           word_t extra_bi_size_bits)
 {
-    // Extend the reserved region down to include the base of the kernel image.
-    // KERNEL_ELF_PADDR_BASE is the lowest physical load address used
-    // in the x86 linker script.
+    /* Extend the reserved region down to include the base of the kernel image. */
+    /* KERNEL_ELF_PADDR_BASE is the lowest physical load address used */
+    /* in the x86 linker script. */
     ui_p_reg.start = KERNEL_ELF_PADDR_BASE;
     reserved[0] = paddr_to_pptr_reg(ui_p_reg);
     return init_freemem(mem_p_regs->count, mem_p_regs->list, MAX_RESERVED,
@@ -136,7 +136,7 @@ BOOT_CODE bool_t init_sys_state(
     word_t mb_mmap_size = sizeof(seL4_X86_BootInfo_mmap_t);
     extra_bi_size += mb_mmap_size;
 
-    // room for tsc frequency
+    /* room for tsc frequency */
     extra_bi_size += sizeof(seL4_BootInfoHeader) + 4;
     word_t extra_bi_size_bits = calculate_extra_bi_size_bits(extra_bi_size);
 
