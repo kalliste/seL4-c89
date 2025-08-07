@@ -125,6 +125,29 @@ Build Instructions
 
 See the seL4 website for [build instructions][6].
 
+### Development build for this fork
+
+For work on this fork we configure and build the kernel with the
+`configs/X64_verified.cmake` preset.  The following steps have been
+tested to produce a `kernel.elf` on a 64‑bit host:
+
+1. Ensure the `file` and `xmllint` utilities are available in `PATH`.
+2. Create a virtual environment and install the required Python modules:
+
+   ```sh
+   pip install pyyaml jinja2 ply lxml
+   ```
+
+3. Configure and build the kernel:
+
+   ```sh
+   cmake -B build -S . -C configs/X64_verified.cmake
+   cmake --build build
+   ```
+
+This produces the kernel image `build/kernel.elf` when the build
+completes successfully.
+
 Status
 ------
 
