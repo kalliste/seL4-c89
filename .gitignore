@@ -33,3 +33,6 @@ manual/generated_markdown
 
 # Emacs backups
 *~
+
+# Local Python virtual environment
+.venv/
