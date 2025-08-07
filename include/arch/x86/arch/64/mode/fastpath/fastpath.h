@@ -174,23 +174,23 @@ static inline void NORETURN FORCE_INLINE fastpath_restore(word_t badge, word_t m
             "popq %%r12\n"
             "popq %%r13\n"
             "popq %%r14\n"
-            // Skip RDX, we need to put NextIP into it
+            /* Skip RDX, we need to put NextIP into it */
             "addq $8, %%rsp\n"
             "popq %%r10\n"
             "popq %%r8\n"
             "popq %%r9\n"
             "popq %%r15\n"
-            // restore RFLAGS
+            /* restore RFLAGS */
             "popfq\n"
-            // reset interrupt bit
+            /* reset interrupt bit */
             "orq %[IF], -8(%%rsp)\n"
-            // Restore NextIP
+            /* Restore NextIP */
             "popq %%rdx\n"
-            // skip Error
+            /* skip Error */
             "addq $8, %%rsp\n"
-            // restore RSP
+            /* restore RSP */
             "popq %%rcx\n"
-            // Skip FaultIP
+            /* Skip FaultIP */
             "addq $8, %%rsp\n"
 #if defined(ENABLE_SMP_SUPPORT) && defined(CONFIG_KERNEL_SKIM_WINDOW)
             "popq %%rsp\n"
@@ -217,7 +217,7 @@ static inline void NORETURN FORCE_INLINE fastpath_restore(word_t badge, word_t m
         );
     } else {
         asm volatile(
-            // Set our stack pointer to the top of the tcb so we can efficiently pop
+            /* Set our stack pointer to the top of the tcb so we can efficiently pop */
             "movq %0, %%rsp\n"
             "popq %%rax\n"
             "popq %%rbx\n"
@@ -230,9 +230,9 @@ static inline void NORETURN FORCE_INLINE fastpath_restore(word_t badge, word_t m
             "popq %%r8\n"
             "popq %%r9\n"
             "popq %%r15\n"
-            //restore RFLAGS
+            /*restore RFLAGS */
             "popq %%r11\n"
-            // Restore NextIP
+            /* Restore NextIP */
 #if defined(ENABLE_SMP_SUPPORT) && defined(CONFIG_KERNEL_SKIM_WINDOW)
             "popq %%rsp\n"
             "movq %%rcx, %%cr3\n"
@@ -244,10 +244,10 @@ static inline void NORETURN FORCE_INLINE fastpath_restore(word_t badge, word_t m
             "movq %%rsp, %%cr3\n"
 #endif /* CONFIG_KERNEL_SKIM_WINDOW */
 #endif /* defined(ENABLE_SMP_SUPPORT) && defined(CONFIG_KERNEL_SKIM_WINDOW) */
-            // clear RSP to not leak information to the user
+            /* clear RSP to not leak information to the user */
             "xor %%rsp, %%rsp\n"
-            // More register but we can ignore and are done restoring
-            // enable interrupt disabled by sysenter
+            /* More register but we can ignore and are done restoring */
+            /* enable interrupt disabled by sysenter */
             "sysretq\n"
             :
             : "r"(&cur_thread->tcbArch.tcbContext.registers[RAX]),

@@ -245,27 +245,27 @@ static bool_t vtx_check_fixed_values(word_t cr0, word_t cr4)
 static bool_t BOOT_CODE init_vtx_fixed_values(bool_t useTrueMsrs)
 {
     uint32_t pin_control_mask =
-        BIT(0) |    //Extern interrupt exiting
-        BIT(3) |    //NMI exiting
-        BIT(5);     //virtual NMIs
+        BIT(0) |    /*Extern interrupt exiting */
+        BIT(3) |    /*NMI exiting */
+        BIT(5);     /*virtual NMIs */
     uint32_t primary_control_mask =
-        BIT(25) |   //Use I/O bitmaps
-        BIT(28) |   //Use MSR bitmaps
-        BIT(31);    //Activate secondary controls
+        BIT(25) |   /*Use I/O bitmaps */
+        BIT(28) |   /*Use MSR bitmaps */
+        BIT(31);    /*Activate secondary controls */
     uint32_t secondary_control_mask =
-        BIT(1);     //Enable EPT
+        BIT(1);     /*Enable EPT */
     uint32_t exit_control_mask =
-        BIT(2)  |   //Save debug controls
-        BIT(18) |   //Save guest IA32_PAT on exit
-        BIT(19) |   //Load host IA32_PAT
-        BIT(20) |   //Save guest IA32_EFER on exit
-        BIT(21);    //Load host IA32_EFER
+        BIT(2)  |   /*Save debug controls */
+        BIT(18) |   /*Save guest IA32_PAT on exit */
+        BIT(19) |   /*Load host IA32_PAT */
+        BIT(20) |   /*Save guest IA32_EFER on exit */
+        BIT(21);    /*Load host IA32_EFER */
 #ifdef CONFIG_ARCH_X86_64
 #ifdef CONFIG_X86_64_VTX_64BIT_GUESTS
     uint32_t entry_control_mask = 0;
-    entry_control_mask |= BIT(9); //Guest address-space size
+    entry_control_mask |= BIT(9); /*Guest address-space size */
 #endif
-    exit_control_mask |= BIT(9); //Host address-space size
+    exit_control_mask |= BIT(9); /*Host address-space size */
 #endif /* CONFIG_ARCH_X86_64 */
     /* Read out the fixed high and low bits from the MSRs */
     uint32_t pinbased_ctls;
@@ -454,9 +454,9 @@ void vcpu_init(vcpu_t *vcpu)
 
     vmwrite(VMX_HOST_PAT, x86_rdmsr(IA32_PAT_MSR));
     vmwrite(VMX_HOST_EFER, x86_rdmsr(IA32_EFER_MSR));
-    // By default we will disable performance counters when we come out
-    // of a VM. When performance counters are supported this host state
-    // needs to be updated on VM entry
+    /* By default we will disable performance counters when we come out */
+    /* of a VM. When performance counters are supported this host state */
+    /* needs to be updated on VM entry */
     if (vmx_feature_load_perf_global_ctrl) {
         vmwrite(VMX_HOST_PERF_GLOBAL_CTRL, 0);
     }

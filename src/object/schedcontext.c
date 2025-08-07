@@ -256,9 +256,9 @@ static exception_t decodeSchedContext_YieldTo(sched_context_t *sc, bool_t call)
         return EXCEPTION_SYSCALL_ERROR;
     }
 
-    // This should not be possible as the currently running thread
-    // should never have a non-null yieldTo, however verifying this
-    // invariant is being left to future work.
+    /* This should not be possible as the currently running thread */
+    /* should never have a non-null yieldTo, however verifying this */
+    /* invariant is being left to future work. */
     assert(NODE_STATE(ksCurThread)->tcbYieldTo == NULL);
     if (NODE_STATE(ksCurThread)->tcbYieldTo != NULL) {
         userError("SchedContext_YieldTo: cannot seL4_SchedContext_YieldTo to more than on SC at a time");
@@ -329,11 +329,11 @@ void schedContext_bindTCB(sched_context_t *sc, tcb_t *tcb)
     if (isSchedulable(tcb)) {
         SCHED_ENQUEUE(tcb);
         rescheduleRequired();
-        // TODO -- at some stage we should take this call out of any TCB invocations that
-        // alter capabilities, so that we can do a direct switch. The preference here is to
-        // remove seL4_SetSchedParams from using ThreadControl. It's currently out of scope for
-        // verification work, so the work around is to use rescheduleRequired()
-        //possibleSwitchTo(tcb);
+        /* TODO -- at some stage we should take this call out of any TCB invocations that */
+        /* alter capabilities, so that we can do a direct switch. The preference here is to */
+        /* remove seL4_SetSchedParams from using ThreadControl. It's currently out of scope for */
+        /* verification work, so the work around is to use rescheduleRequired() */
+        /*possibleSwitchTo(tcb); */
     }
 }
 

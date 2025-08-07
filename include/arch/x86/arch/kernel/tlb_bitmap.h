@@ -40,7 +40,7 @@ static inline word_t tlb_bitmap_get(vspace_root_t *root)
 
     for (int i = 0; i < TLBBITMAP_ROOT_ENTRIES; i++) {
         word_t entry = root[TLBBITMAP_ROOT_INDEX + i].words[0];
-        // skip present bit
+        /* skip present bit */
         entry >>= 1;
 
         int shift = i * TLBBITMAP_ENTRIES_PER_ROOT;

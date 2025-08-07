@@ -152,7 +152,7 @@ static void arm64_cap_pt_print_slots(pte_t *pdSlot, vptr_t vptr)
         pte_t *ptSlot = pt + i;
 
         if (pte_4k_page_ptr_get_present(ptSlot)) {
-            // print pte entries
+            /* print pte entries */
             printf("0x%lx: frame_%p_%04lu", i, ptSlot, i);
             cap_frame_print_attrs_pt(ptSlot);
         }

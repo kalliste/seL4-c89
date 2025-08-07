@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <config.h> // for arch/api/syscall.h
+#include <config.h> /* for arch/api/syscall.h */
 #include <machine.h>
 #include <api/failures.h>
 #include <model/statedata.h>

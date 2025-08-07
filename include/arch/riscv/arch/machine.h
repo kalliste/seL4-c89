@@ -299,4 +299,4 @@ static inline exception_t Arch_setTLSRegister(word_t tls_base)
     return EXCEPTION_NONE;
 }
 
-#endif // __ASSEMBLER__
+#endif /* __ASSEMBLER__ */

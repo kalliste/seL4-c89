@@ -43,7 +43,7 @@ static void NORETURN restore_vmx(tcb_t *cur_thread, vcpu_t *vcpu)
     if (vcpu->launched) {
     /* attempt to do a vmresume */
     asm volatile(
-        // Set our stack pointer to the top of the tcb so we can efficiently pop
+        /* Set our stack pointer to the top of the tcb so we can efficiently pop */
         "movl %0, %%esp\n"
         "popl %%eax\n"
         "popl %%ebx\n"
@@ -52,9 +52,9 @@ static void NORETURN restore_vmx(tcb_t *cur_thread, vcpu_t *vcpu)
         "popl %%esi\n"
         "popl %%edi\n"
         "popl %%ebp\n"
-        // Now do the vmresume
+        /* Now do the vmresume */
         "vmresume\n"
-        // if we get here we failed
+        /* if we get here we failed */
 #ifdef ENABLE_SMP_SUPPORT
         "movl (%%esp), %%esp\n"
 #else
@@ -64,14 +64,14 @@ static void NORETURN restore_vmx(tcb_t *cur_thread, vcpu_t *vcpu)
         :
         : "r"(&vcpu->gp_registers[VCPU_EAX]),
         "i"(BIT(CONFIG_KERNEL_STACK_BITS) - sizeof(word_t))
-        // Clobber memory so the compiler is forced to complete all stores
-        // before running this assembler
+        /* Clobber memory so the compiler is forced to complete all stores */
+        /* before running this assembler */
         : "memory"
     );
     } else {
         /* attempt to do a vmlaunch */
         asm volatile(
-            // Set our stack pointer to the top of the tcb so we can efficiently pop
+            /* Set our stack pointer to the top of the tcb so we can efficiently pop */
             "movl %0, %%esp\n"
             "popl %%eax\n"
             "popl %%ebx\n"
@@ -80,9 +80,9 @@ static void NORETURN restore_vmx(tcb_t *cur_thread, vcpu_t *vcpu)
             "popl %%esi\n"
             "popl %%edi\n"
             "popl %%ebp\n"
-            // Now do the vmresume
+            /* Now do the vmresume */
             "vmlaunch\n"
-            // if we get here we failed
+            /* if we get here we failed */
 #ifdef ENABLE_SMP_SUPPORT
             "movl (%%esp), %%esp\n"
 #else
@@ -92,8 +92,8 @@ static void NORETURN restore_vmx(tcb_t *cur_thread, vcpu_t *vcpu)
             :
             : "r"(&vcpu->gp_registers[VCPU_EAX]),
             "i"(BIT(CONFIG_KERNEL_STACK_BITS) - sizeof(word_t))
-            // Clobber memory so the compiler is forced to complete all stores
-            // before running this assembler
+            /* Clobber memory so the compiler is forced to complete all stores */
+            /* before running this assembler */
             : "memory"
         );
     }
@@ -151,25 +151,25 @@ void NORETURN VISIBLE restore_user_context(void)
     if (likely(cur_thread->tcbArch.tcbContext.registers[Error] == -1)) {
         cur_thread->tcbArch.tcbContext.registers[FLAGS] &= ~FLAGS_IF;
         asm volatile(
-            // Set our stack pointer to the top of the tcb so we can efficiently pop
+            /* Set our stack pointer to the top of the tcb so we can efficiently pop */
             "movl %0, %%esp\n"
-            // restore syscall number
+            /* restore syscall number */
             "popl %%eax\n"
-            // cap/badge register
+            /* cap/badge register */
             "popl %%ebx\n"
-            // skip ecx and edx, these will contain esp and NextIP due to sysenter/sysexit convention
+            /* skip ecx and edx, these will contain esp and NextIP due to sysenter/sysexit convention */
             "addl $8, %%esp\n"
-            // message info register
+            /* message info register */
             "popl %%esi\n"
-            // message register
+            /* message register */
             "popl %%edi\n"
-            // message register
+            /* message register */
             "popl %%ebp\n"
-            // skip FaultIP and Error (these are fake registers)
+            /* skip FaultIP and Error (these are fake registers) */
             "addl $8, %%esp\n"
-            // restore NextIP
+            /* restore NextIP */
             "popl %%edx\n"
-            // skip cs
+            /* skip cs */
             "addl $4,  %%esp\n"
             "movl 4(%%esp), %%ecx\n"
             "popfl\n"
@@ -179,13 +179,13 @@ void NORETURN VISIBLE restore_user_context(void)
             :
             : "r"(&cur_thread->tcbArch.tcbContext.registers[EAX]),
             [IFMASK]"i"(FLAGS_IF)
-            // Clobber memory so the compiler is forced to complete all stores
-            // before running this assembler
+            /* Clobber memory so the compiler is forced to complete all stores */
+            /* before running this assembler */
             : "memory"
         );
     } else {
         asm volatile(
-            // Set our stack pointer to the top of the tcb so we can efficiently pop
+            /* Set our stack pointer to the top of the tcb so we can efficiently pop */
             "movl %0, %%esp\n"
             "popl %%eax\n"
             "popl %%ebx\n"
@@ -194,13 +194,13 @@ void NORETURN VISIBLE restore_user_context(void)
             "popl %%esi\n"
             "popl %%edi\n"
             "popl %%ebp\n"
-            // skip FaultIP and Error
+            /* skip FaultIP and Error */
             "addl $8, %%esp\n"
             "iret\n"
             :
             : "r"(&cur_thread->tcbArch.tcbContext.registers[EAX])
-            // Clobber memory so the compiler is forced to complete all stores
-            // before running this assembler
+            /* Clobber memory so the compiler is forced to complete all stores */
+            /* before running this assembler */
             : "memory"
         );
     }

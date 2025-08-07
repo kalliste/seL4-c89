@@ -225,8 +225,8 @@ static inline void ackInterrupt(irq_t irq)
 void resetTimer(void)
 {
     uint64_t target;
-    // repeatedly try and set the timer in a loop as otherwise there is a race and we
-    // may set a timeout in the past, resulting in it never getting triggered
+    /* repeatedly try and set the timer in a loop as otherwise there is a race and we */
+    /* may set a timeout in the past, resulting in it never getting triggered */
     do {
         target = riscv_read_time() + RESET_CYCLES;
         sbi_set_timer(target);
