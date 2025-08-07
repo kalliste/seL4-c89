@@ -91,6 +91,23 @@ Repository Overview
 - `libsel4`: C bindings for the seL4 ABI
 - `manual`: LaTeX sources of the seL4 reference manual
 
+Python Environment
+------------------
+
+The seL4 build uses several Python modules. A helper script is provided to
+create a virtual environment and install these dependencies:
+
+```
+./tools/venv.sh
+```
+
+Invoking the script with a command runs that command inside the environment,
+for example:
+
+```
+./tools/venv.sh python --version
+```
+
 Build Instructions
 ------------------
 
