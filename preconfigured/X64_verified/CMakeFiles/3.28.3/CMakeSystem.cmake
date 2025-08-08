@@ -3,7 +3,7 @@ set(CMAKE_HOST_SYSTEM_NAME "Linux")
 set(CMAKE_HOST_SYSTEM_VERSION "6.12.13")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")
 
-include("/workspace/seL4-c89/build/gcc.cmake")
+include("/workspace/seL4-c89/preconfigured/X64_verified/gcc.cmake")
 
 set(CMAKE_SYSTEM "Generic")
 set(CMAKE_SYSTEM_NAME "Generic")
