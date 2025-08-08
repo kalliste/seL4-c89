@@ -1,17 +1,5 @@
-./CMakeCache.txt
-./CMakeFiles/3.28.3/CMakeASMCompiler.cmake
-./CMakeFiles/3.28.3/CMakeCCompiler.cmake
-./CMakeFiles/3.28.3/CMakeDetermineCompilerABI_C.bin
-./CMakeFiles/3.28.3/CMakeSystem.cmake
-./CMakeFiles/3.28.3/CompilerIdC/a.out
-./CMakeFiles/CMakeConfigureLog.yaml
-./CMakeFiles/CMakeDirectoryInformation.cmake
-./CMakeFiles/CMakeRuleHashes.txt
-./CMakeFiles/Makefile.cmake
-./CMakeFiles/Makefile2
 ./CMakeFiles/Progress/1
 ./CMakeFiles/Progress/count.txt
-./CMakeFiles/TargetDirectories.txt
 ./CMakeFiles/circular_includes.dir/DependInfo.cmake
 ./CMakeFiles/circular_includes.dir/build.make
 ./CMakeFiles/circular_includes.dir/cmake_clean.cmake
