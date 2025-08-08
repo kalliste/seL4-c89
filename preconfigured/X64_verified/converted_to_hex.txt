@@ -1,2 +1,6 @@
 CMakeFiles/3.28.3/CMakeDetermineCompilerABI_C.bin -> CMakeFiles/3.28.3/CMakeDetermineCompilerABI_C.bin.hex
 CMakeFiles/3.28.3/CompilerIdC/a.out -> CMakeFiles/3.28.3/CompilerIdC/a.out.hex
+CMakeFiles/kernel_config_headers.dir/progress.make -> CMakeFiles/kernel_config_headers.dir/progress.make.hex
+CMakeFiles/kernel_config_target.dir/progress.make -> CMakeFiles/kernel_config_target.dir/progress.make.hex
+CMakeFiles/kernel_headers.dir/progress.make -> CMakeFiles/kernel_headers.dir/progress.make.hex
+CMakeFiles/single-project.dir/progress.make -> CMakeFiles/single-project.dir/progress.make.hex
