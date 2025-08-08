@@ -1,2 +1,0 @@
-/usr/bin/ccache /usr/bin/ar qc libsel4.a CMakeFiles/sel4.dir/src/sel4_bootinfo.c.obj
-/usr/bin/ccache /usr/bin/ranlib libsel4.a

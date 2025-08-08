@@ -39,11 +39,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/workspace/seL4-c89/build/libsel4/cmake_install.cmake")
+  include("/workspace/seL4-c89/preconfigured/X64_verified/libsel4/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/workspace/seL4-c89/build/kernel.elf")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/workspace/seL4-c89/preconfigured/X64_verified/kernel.elf")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/kernel.elf" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/kernel.elf")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -59,12 +59,12 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/"
     "/workspace/seL4-c89/libsel4/sel4_plat_include/pc99/"
     "/workspace/seL4-c89/libsel4/mode_include/64/"
-    "/workspace/seL4-c89/build/libsel4/include/"
-    "/workspace/seL4-c89/build/libsel4/arch_include/x86/"
-    "/workspace/seL4-c89/build/libsel4/sel4_arch_include/x86_64/"
-    "/workspace/seL4-c89/build/gen_config/"
-    "/workspace/seL4-c89/build/libsel4/gen_config/"
-    "/workspace/seL4-c89/build/libsel4/autoconf/"
+    "/workspace/seL4-c89/preconfigured/X64_verified/libsel4/include/"
+    "/workspace/seL4-c89/preconfigured/X64_verified/libsel4/arch_include/x86/"
+    "/workspace/seL4-c89/preconfigured/X64_verified/libsel4/sel4_arch_include/x86_64/"
+    "/workspace/seL4-c89/preconfigured/X64_verified/gen_config/"
+    "/workspace/seL4-c89/preconfigured/X64_verified/libsel4/gen_config/"
+    "/workspace/seL4-c89/preconfigured/X64_verified/libsel4/autoconf/"
     FILES_MATCHING REGEX "/[^/]*\\.h$" REGEX "/[^/]*\\.pbf$" REGEX "/api\\/syscall\\.xml$" REGEX "/api\\/syscall\\.xsd$" REGEX "/object\\-api[^/]*\\.xml$" REGEX "/gen\\_config\\.json$")
 endif()
 
@@ -80,5 +80,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/workspace/seL4-c89/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/workspace/seL4-c89/preconfigured/X64_verified/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
