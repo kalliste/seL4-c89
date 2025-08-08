@@ -70,13 +70,40 @@ for c in "${COMMANDS[@]}"; do
 done
 
 # Pre-create directories referenced by commands
-TOKENS=$(printf "%s\n" "${EXPANDED_COMMANDS[@]}" | tr ' ' '\n')
-DIRS=$(echo "$TOKENS" | grep '/' | tr -d '"' | tr -d '>' | sed -e "s/'//g" -e 's/^--[^=]*=//' -e 's/^-I//' -e 's/^-o//' -e 's/^-MF//' -e 's/^-MT//' | xargs -n1 dirname | sort -u)
-for d in $DIRS; do
-    case "$d" in
-        /*) mkdir -p "$d" ;;
-        *) mkdir -p "$BUILD_DIR/$d" ;;
-    esac
+DIRS=(
+  CMakeFiles/kernel.elf.dir
+  CMakeFiles/kernel.elf.dir/src/arch/x86
+  CMakeFiles/kernel.elf.dir/src/arch/x86/64
+  CMakeFiles/kernel_all_pp_prune_wrapper_temp_lib.dir
+  CMakeFiles/kernel_bf_gen_target_111_pbf_temp_lib.dir
+  CMakeFiles/kernel_bf_gen_target_11_pbf_temp_lib.dir
+  CMakeFiles/kernel_bf_gen_target_1_pbf_temp_lib.dir
+  CMakeFiles/kernel_i_wrapper_temp_lib.dir
+  CMakeFiles/linker_ld_wrapper_temp_lib.dir
+  arch_include/x86/sel4/arch
+  gen_config/kernel
+  gen_headers/api
+  gen_headers/arch/api
+  generated
+  generated/arch/object
+  generated/plat_mode/machine
+  generated/sel4
+  generated_prune/arch/object
+  generated_prune/plat_mode/machine
+  generated_prune/sel4
+  include/interfaces
+  include/sel4
+  libsel4
+  libsel4/CMakeFiles/libsel4_sel4_arch_types_gen_pbf_temp_lib.dir
+  libsel4/CMakeFiles/libsel4_shared_types_gen_pbf_temp_lib.dir
+  libsel4/include/sel4
+  libsel4/sel4_arch_include/x86_64/sel4/sel4_arch
+  sel4_arch_include/x86_64/sel4/sel4_arch
+)
+
+mkdir -p "$BUILD_DIR"
+for d in "${DIRS[@]}"; do
+    mkdir -p "$BUILD_DIR/$d"
 done
 
 # Execute the expanded commands
