@@ -4,6 +4,14 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 BUILD_DIR="$ROOT_DIR/preconfigured/X64_verified"
 
+VENV_DIR="$ROOT_DIR/.venv"
+if [ ! -f "$VENV_DIR/bin/activate" ]; then
+    python3 -m venv "$VENV_DIR"
+fi
+"$VENV_DIR/bin/pip" install jinja2 >/dev/null
+# shellcheck disable=SC1091
+source "$VENV_DIR/bin/activate"
+
 COMMANDS=(
   'cd "$ROOT_DIR"/preconfigured/X64_verified && /usr/bin/cmake -E touch "$ROOT_DIR"/preconfigured/X64_verified/generated_prune/plat_mode/machine/hardware_gen.h "$ROOT_DIR"/preconfigured/X64_verified/generated_prune/arch/object/structures_gen.h "$ROOT_DIR"/preconfigured/X64_verified/generated_prune/sel4/shared_types_gen.h'
   'cd "$ROOT_DIR"/preconfigured/X64_verified/libsel4 && /usr/bin/cmake -E copy "$ROOT_DIR"/libsel4/mode_include/64/sel4/shared_types.bf "$ROOT_DIR"/preconfigured/X64_verified/libsel4/libsel4_shared_types_gen_pbf_temp.c'
