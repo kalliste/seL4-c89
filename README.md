@@ -55,29 +55,49 @@ See the seL4 website for [build instructions][6].
 
 ### Development build for this fork
 
-For work on this fork we configure and build the kernel with the
-`pristine/configs/X64_verified.cmake` preset.  The following steps have been
-tested to produce a `kernel.elf` on a 64‑bit host:
+Our builds always target the `X64_verified` configuration and use Ninja
+instead of GNU Make for both the pristine and preconfigured trees.  The
+procedure below has been verified to produce `kernel.elf` from the
+pristine sources on a 64‑bit host.
 
-1. Ensure the `file` and `xmllint` utilities are available in `PATH`.
-2. Create a virtual environment and install the required Python modules:
+1. Install the build tools and supporting utilities so that `cmake`,
+   `ninja`, `gcc`, and `xmllint` (from the `libxml2-utils` package) are
+   available on `PATH`.
+2. Install the Python dependencies used by the seL4 build system.  The
+   [`./preconfigured/tools/venv.sh`](./preconfigured/tools/venv.sh)
+   helper can create a virtual environment, or the modules can be
+   installed directly, e.g.
 
    ```sh
-   pip install pyyaml jinja2 ply lxml
+   pip install --user pyyaml jinja2 ply lxml
    ```
 
-3. Configure and build the kernel from the pristine sources:
+3. Configure the pristine tree with the upstream preset and generate a
+   Ninja build directory:
 
    ```sh
-   cmake -B build -S pristine -C pristine/configs/X64_verified.cmake
-   cmake --build build
+   cmake -G Ninja -S pristine -B build/pristine-X64_verified \
+     -C pristine/configs/X64_verified.cmake
    ```
 
-   The repository also includes `preconfigured/replay_preconfigured_build.sh` for reproducing the
-   cached `X64_verified` build without invoking CMake manually.
+4. Build the kernel image with Ninja:
 
-This produces the kernel image `build/kernel.elf` when the build
-completes successfully.
+   ```sh
+   ninja -C build/pristine-X64_verified
+   ```
+
+   A successful build leaves the ELF image in
+   `build/pristine-X64_verified/kernel.elf`.
+
+To rebuild the cached preconfigured tree with the same settings, invoke
+
+```sh
+ninja -C preconfigured/X64_verified
+```
+
+The [`preconfigured/replay_preconfigured_build.sh`](./preconfigured/replay_preconfigured_build.sh)
+script is also available for replaying the captured build commands when
+needed.
 
 License
 -------
