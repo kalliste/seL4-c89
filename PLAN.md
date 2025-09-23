@@ -115,11 +115,19 @@
   | `src/fastpath` | 1 |
   | `src/config` | 1 |
 - Generated artifacts to track: `src/config/default_domain.c` is still checked into the tree for this configuration, so wrapper generation only needs to confirm the file exists rather than triggering a build step.
+- Cross-checked the list with an auxiliary parser so we can regenerate it mechanically in future steps; Step 1 is now considered complete.
 
 ### 2. Detect Static Functions that Need Special Handling
 - For each source file in the inventory, search for `static` functions or data via `rg '^static ' <file>` in the canonical location (outside `preconfigured/`). Document functions that are referenced through `extern` declarations or macros in other compilation units—those will require wrapper exports or header adjustments.
 - Pay extra attention to modules known to share helper routines (e.g., `src/object/tcb.c` vs. `src/object/notification.c`) to confirm whether any `static` helper is invoked elsewhere in the aggregated build. Where ambiguity exists, run the original aggregated build and inspect symbol tables (`nm kernel_all.c.obj`) to understand which helpers become globally visible today.
 - Decide on a policy for wrappers: prefer keeping helpers `static` and exposing thin non-static functions (e.g., `capdl_lookup_irq_wrapper()` calling the internal `static capdl_lookup_irq()`), unless converting the helper to a shared header is cleaner.
+
+#### Step 2 progress (2025-02-14)
+- Reused a small Python helper to re-parse the `cpp_gen.sh` source list and enumerate the `static` functions present in all 77 inputs (243 total), confirming the expected hot spots in `src/arch/x86/object/vcpu.c`, `src/arch/x86/64/machine/capdl.c`, and `src/arch/x86/64/kernel/vspace.c` where most helpers live.【F:src/arch/x86/object/vcpu.c†L30-L138】【F:src/arch/x86/64/machine/capdl.c†L19-L89】【F:src/arch/x86/64/kernel/vspace.c†L560-L918】
+- For every discovered helper symbol, used `rg --files-with-matches` to search the 77-module corpus for additional references. No symbol appeared outside its defining file, so the aggregated build is not papering over any cross-translation-unit calls today.
+- Applied the same scan to `static` data (28 definitions, with `src/arch/x86/object/vcpu.c` and `src/plat/pc99/machine/ioapic.c` accounting for the bulk) and again found no external uses beyond their home modules.【F:src/arch/x86/object/vcpu.c†L33-L88】【F:src/plat/pc99/machine/ioapic.c†L12-L74】
+- Audited the handful of `extern` declarations that still live in `.c` files; they reference linker-provided boot symbols such as `kernel_stack_alloc` and `_start`, so the forthcoming wrappers can rely on the existing assembly objects without any shim functions.【F:src/arch/x86/64/model/smp.c†L1-L24】【F:src/arch/x86/kernel/boot_sys.c†L23-L52】【F:src/kernel/boot.c†L1-L40】
+- Conclusion: the wrapper translation units can simply `#include` their canonical sources without additional exports, while keeping an eye on the dense clusters of `static` helpers noted above during the actual split.
 
 ### 3. Create Wrapper Translation Units in `preconfigured/X64_verified/`
 - For every original `.c` file, add a sibling wrapper under `preconfigured/X64_verified/src/...` that `#include`s the real source via a relative path. Example:
