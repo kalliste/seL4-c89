@@ -5,9 +5,9 @@
 - The diff is very large (for example `sysdeps/` alone contributes more than 1,500 paths), so any restructuring must be broken down into small, reviewable commits.
 
 ## Reorganization goals
-- Restore an untouched copy of the original source tree so it lives under a new `pristine/` directory.
-- Keep all build products, generated headers, helper scripts, and other convenience changes in `preconfigured/`.
-- Ensure the repository root only contains shared metadata (licenses, top-level READMEs, planning documents, etc.) plus the two primary directories (`pristine/` and `preconfigured/`).
+- Restore an untouched copy of the original source tree so it lives under a new `pristine/` directory, and do not duplicate those sources anywhere else in the repository root.
+- Keep all build products, generated headers, helper scripts, and other convenience changes in `preconfigured/`, with any files required to build the preconfigured view copied into that directory rather than referencing paths outside it.
+- Ensure the repository root only contains shared metadata (licenses, top-level READMEs, planning documents, etc.) plus the two primary directories (`pristine/` and `preconfigured/`), keeping the root otherwise empty of standalone source files.
 - Make every adjustment in commits that are small enough for ChatGPT Codex limits (aim for well under ~200 files per commit and avoid huge blobs whenever possible).
 
 ## Step-by-step plan (commit-sized tasks)
@@ -104,6 +104,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ### Next actions
 - Continue auditing the repository root for generated artifacts or helper scripts that should join the `preconfigured/` tree as other directories are cleaned up.
 - Keep cross-checking documentation whenever helpers move so instructions stay aligned with the new locations.
+- Double-check that every script or build file under `preconfigured/` pulls dependencies from within that directory, adding copies of any remaining external inputs so the tree is fully self-contained.
 
 ## Step 7 Progress: Clean and reconcile duplicates
 - Removed the lone `tools/venv.sh` script from the repository root so the remaining `tools/` tree matches the pristine snapshot.
@@ -112,3 +113,4 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ### Next actions
 - Prepare to carve the modified `include/`, `libsel4/`, and `src/` directories into the `preconfigured/` tree so the root copies can revert to their pristine counterparts.
 - Audit other root-level documentation for assumptions about path locations as additional helpers migrate.
+- Verify that the repository root remains limited to metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there.
