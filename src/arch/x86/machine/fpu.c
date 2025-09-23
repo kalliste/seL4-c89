@@ -5,11 +5,10 @@
  */
 
 #include <model/statedata.h>
-#include <arch/model/statedata.h>
-#include <arch/machine.h>
 #include <arch/machine/fpu.h>
 #include <arch/machine/cpu_registers.h>
 #include <arch/object/structures.h>
+#include <arch/machine/fpu.h>
 
 /*
  * Setup the FPU register state for a new thread.

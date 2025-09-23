@@ -8,7 +8,6 @@
 #include <api/syscall.h>
 #include <machine/io.h>
 #include <kernel/boot.h>
-#include <kernel/thread.h>
 #include <model/statedata.h>
 #include <arch/kernel/vspace.h>
 #include <arch/kernel/boot.h>
@@ -17,7 +16,6 @@
 #include <mode/kernel/tlb.h>
 #include <arch/kernel/tlb_bitmap.h>
 #include <object/structures.h>
-#include <object/objecttype.h>
 
 /* When using the SKIM window to isolate the kernel from the user we also need to
  * not use global mappings as having global mappings and entries in the TLB is
@@ -332,9 +330,9 @@ BOOT_CODE void init_tss(tss_t *tss)
 BOOT_CODE void init_syscall_msrs(void)
 {
     x86_wrmsr(IA32_LSTAR_MSR, (uint64_t)&handle_fastsyscall);
-    /* mask bit 9 in the kernel (which is the interrupt enable bit) */
-    /* also mask bit 8, which is the Trap Flag, to prevent the kernel */
-    /* from single stepping */
+    // mask bit 9 in the kernel (which is the interrupt enable bit)
+    // also mask bit 8, which is the Trap Flag, to prevent the kernel
+    // from single stepping
     x86_wrmsr(IA32_FMASK_MSR, FLAGS_TF | FLAGS_IF);
     x86_wrmsr(IA32_STAR_MSR, ((uint64_t)SEL_CS_0 << 32) | ((uint64_t)SEL_CS_3 << 48));
 }
@@ -1248,7 +1246,7 @@ static exception_t decodeX64PageDirectoryInvocation(
     return performX64PageDirectoryInvocationMap(cap, cte, pdpte, pdptSlot.pdptSlot, vspace);
 }
 
-void unmapPDPT(asid_t asid, vptr_t vaddr, pdpte_t *pdpt)
+static void unmapPDPT(asid_t asid, vptr_t vaddr, pdpte_t *pdpt)
 {
     findVSpaceForASID_ret_t find_ret;
     pml4e_t *pml4Slot;

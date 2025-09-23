@@ -48,10 +48,10 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ### Top-level change summary
 | Path / File | Total paths | Modified | Added | Deleted | Notes |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `preconfigured/` | 2,234 | 0 | 2,234 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, relocated tooling, the copied header tree, and the relocated `libsel4/` sources used by the preconfigured view. |
+| `preconfigured/` | 2,315 | 0 | 2,315 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, relocated tooling, the copied header tree, the relocated `libsel4/` sources used by the preconfigured view, and the new `src/` mirror for the X64 preconfigured build. |
 | `pristine/` | 900 | 0 | 900 | 0 | Mirrors the upstream configs, sources, non-DTS tools, and baseline root metadata including `.github` and `.reuse`. |
 | `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
-| `src/` | 44 | 44 | 0 | 0 | Root sources remain modified; compare against `pristine/src/` in later cleanup steps. |
+| `src/` | 14 | 14 | 0 | 0 | Root x86 sources reset to the pristine snapshot; remaining diffs cover other architectures and platform helpers that still need migration. |
 | `include/` | 0 | 0 | 0 | 0 | Root headers now match the pristine snapshot; customized copies sit under `preconfigured/include/`. |
 | `pipdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/pipdeps/`; counted under the `preconfigured/` row. |
 | `libsel4/` | 0 | 0 | 0 | 0 | Root library now matches the pristine snapshot; the customized copy lives under `preconfigured/libsel4/`. |
@@ -103,22 +103,24 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Relocated the virtual-environment bootstrap script into `preconfigured/tools/` and taught it how to find the repository root and `tools/python-deps` helper after the move.
 - Copied the customized `libsel4/` hierarchy into `preconfigured/libsel4/`, bringing 197 tailored library files and generators alongside the rest of the preconfigured snapshot.
 - Updated `preconfigured/replay_preconfigured_build.sh` so it now consumes headers from `preconfigured/include/` and `preconfigured/libsel4/`, keeping the helper self-contained after the root directories are restored.
+- Seeded a new `preconfigured/src/` subtree with the 77 kernel C sources and four x86 assembly files that the replay helper compiles so the preconfigured build no longer depends on the root `src/` tree.
+- Updated every generated wrapper translation unit and the replay script to include from `preconfigured/src/`, aligning the helper inputs with the new location.
 
 ### Next actions
 - Continue auditing the repository root for generated artifacts or helper scripts that should join the `preconfigured/` tree as other directories are cleaned up.
 - Keep cross-checking documentation whenever helpers move so instructions stay aligned with the new locations.
 - Double-check that every script or build file under `preconfigured/` pulls dependencies from within that directory, adding copies of any remaining external inputs so the tree is fully self-contained.
-- Track the remaining absolute references in the recorded Ninja files under `preconfigured/X64_verified/`; they still cite the repository-root `libsel4/` paths and will need rewriting once the kernel sources migrate.
+- Track the remaining absolute references in the recorded Ninja files under `preconfigured/X64_verified/`; they still cite the repository-root `src/` and `libsel4/` paths and will need rewriting once the kernel sources migrate.
 
 ## Step 7 Progress: Clean and reconcile duplicates
 - Removed the lone `tools/venv.sh` script from the repository root so the remaining `tools/` tree matches the pristine snapshot.
 - Updated the top-level README to reference the relocated helper, preventing confusion while the two-tree layout solidifies.
 - Copied the existing `include/` hierarchy into `preconfigured/include/` and reset the root `include/` directory to the pristine commit so the customized headers now live exclusively under the preconfigured tree.
 - Reset the root `libsel4/` directory to the pristine commit, leaving the tailored library exclusively under `preconfigured/libsel4/` for the preconfigured build.
+- Copied the customized x86 kernel sources into `preconfigured/src/` and reset their root counterparts to the pristine commit, trimming the outstanding root `src/` delta from 44 paths to 14 that cover other architectures and platforms.
 
 ### Next actions
-- Repeat the copy-and-restore workflow for the modified `src/` tree so every customized source gains a
-  preconfigured counterpart and the `pristine/` folder mirrors the pristine checkout.
+- Continue the copy-and-restore workflow for the remaining non-x86 `src/` subtrees (ARM, RISC-V, platform drivers) so every customized source gains a preconfigured counterpart and the `pristine/` folder mirrors the pristine checkout.
 - Audit other root-level documentation for assumptions about path locations as additional helpers migrate.
 - Verify that the repository root remains limited to essential metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there.
 - Call out in the top-level README and related docs that all pristine sources live exclusively under `pristine/` so contributors do not expect duplicates in the root tree.

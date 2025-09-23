@@ -6,9 +6,6 @@
 
 #include <kernel/boot.h>
 #include <model/statedata.h>
-#include <kernel/cspace.h>
-#include <kernel/thread.h>
-#include <api/syscall.h>
 #include <arch/object/interrupt.h>
 #include <arch/api/invocation.h>
 #include <linker.h>

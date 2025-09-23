@@ -5,7 +5,6 @@
  */
 
 #include <assert.h>
-#include <object/structures.h>
 #include <arch/machine/registerset.h>
 #include <machine/fpu.h>
 #include <arch/object/structures.h>

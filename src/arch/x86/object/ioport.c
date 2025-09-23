@@ -5,7 +5,6 @@
  */
 
 #include <kernel/thread.h>
-#include <kernel/cspace.h>
 #include <api/failures.h>
 #include <api/syscall.h>
 #include <machine/io.h>
@@ -24,10 +23,10 @@ static inline void apply_pattern(word_t_may_alias *w, word_t pattern, bool_t set
 
 static inline word_t make_pattern(int start, int end)
 {
-    /* number of bits we want to have set */
+    // number of bits we want to have set
     int num_bits = end - start;
-    /* shift down to cut off the bits we don't want, then shift up to put the */
-    /* bits into position */
+    // shift down to cut off the bits we don't want, then shift up to put the
+    // bits into position
     return (~(word_t)0) >> (CONFIG_WORD_SIZE - num_bits) << start;
 }
 
@@ -62,26 +61,26 @@ static bool_t isIOPortRangeFree(uint16_t first_port, uint16_t last_port)
     int low_index = first_port & MASK(wordRadix);
     int high_index = last_port & MASK(wordRadix);
 
-    /* check if we are operating on a partial word */
+    // check if we are operating on a partial word
     if (low_word == high_word) {
         if ((x86KSAllocatedIOPorts[low_word] & make_pattern(low_index, high_index + 1)) != 0) {
             return false;
         }
         return true;
     }
-    /* check the starting word */
+    // check the starting word
     if ((x86KSAllocatedIOPorts[low_word] & make_pattern(low_index, CONFIG_WORD_SIZE)) != 0) {
         return false;
     }
     low_word++;
-    /* check the rest of the whole words */
+    // check the rest of the whole words
     while (low_word < high_word) {
         if (x86KSAllocatedIOPorts[low_word] != 0) {
             return false;
         }
         low_word++;
     }
-    /* check any trailing bits */
+    // check any trailing bits
     if ((x86KSAllocatedIOPorts[low_word] & make_pattern(0, high_index + 1)) != 0) {
         return false;
     }
@@ -294,7 +293,7 @@ exception_t decodeX86PortInvocation(
 
 void setIOPortMask(void *ioport_bitmap, uint16_t low, uint16_t high, bool_t set)
 {
-    /*get an aliasing pointer */
+    //get an aliasing pointer
     word_t_may_alias *bitmap = ioport_bitmap;
 
     int low_word = low >> wordRadix;
@@ -302,20 +301,20 @@ void setIOPortMask(void *ioport_bitmap, uint16_t low, uint16_t high, bool_t set)
     int low_index = low & MASK(wordRadix);
     int high_index = high & MASK(wordRadix);
 
-    /* see if we are just manipulating bits inside a single word. handling this */
-    /* specially makes reasoning easier */
+    // see if we are just manipulating bits inside a single word. handling this
+    // specially makes reasoning easier
     if (low_word == high_word) {
         apply_pattern(bitmap + low_word, make_pattern(low_index, high_index + 1), set);
     } else {
-        /* operate on the potentially partial first word */
+        // operate on the potentially partial first word
         apply_pattern(bitmap + low_word, make_pattern(low_index, CONFIG_WORD_SIZE), set);
         low_word++;
-        /* iterate over the whole words */
+        // iterate over the whole words
         while (low_word < high_word) {
             apply_pattern(bitmap + low_word, ~(word_t)0, set);
             low_word++;
         }
-        /* apply to any remaining bits */
+        // apply to any remaining bits
         apply_pattern(bitmap + low_word, make_pattern(0, high_index + 1), set);
     }
 }

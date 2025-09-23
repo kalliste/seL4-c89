@@ -8,13 +8,9 @@
 #include <machine/io.h>
 #include <arch/kernel/apic.h>
 #include <arch/model/statedata.h>
-#include <kernel/boot.h>
 #include <linker.h>
 #include <plat/machine/pic.h>
 #include <plat/machine/ioapic.h>
-#include <plat/machine/pit.h>
-#include <arch/machine/timer.h>
-#include <plat/machine/hardware.h>
 #include <plat/machine.h>
 
 #include <plat/machine/intel-vtd.h>
