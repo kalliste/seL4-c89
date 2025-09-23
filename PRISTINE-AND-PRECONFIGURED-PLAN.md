@@ -51,7 +51,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | `preconfigured/` | 2,333 | 0 | 2,333 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, relocated tooling, the copied header tree, the relocated `libsel4/` sources used by the preconfigured view, and the expanded `src/` mirror with all customized kernel sources (ARM, RISC-V, and x86 variants). Copied the generator helpers and the supporting `tools/hardware/` package into `preconfigured/tools/` so cached builds no longer depend on the root `tools/` directory. |
 | `pristine/` | 932 | 0 | 932 | 0 | Mirrors the upstream configs, sources, non-DTS tools, baseline root metadata including `.github` and `.reuse`, the LaTeX manual, and the relocated toolchain helper files. |
 | `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
-| `src/` | 0 | 0 | 0 | 0 | Root kernel sources now match the pristine snapshot across every architecture; all tailored files live exclusively under `preconfigured/src/`. |
+| `src/` | 112 | 0 | 0 | 112 | Removed the shared kernel core, ARM, and RISC-V sources from the repository root so those files now live exclusively under `pristine/src/` and `preconfigured/src/`; remaining work covers the x86, driver, fastpath, object, and platform trees. |
 | `include/` | 308 | 0 | 0 | 308 | Root headers removed from the repository root after confirming the baseline tree lives under `pristine/include/` and the tailored copies reside in `preconfigured/include/`. |
 | `pipdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/pipdeps/`; counted under the `preconfigured/` row. |
 | `libsel4/` | 197 | 0 | 0 | 197 | Root library removed from the repository root; the untouched headers and generators live in `pristine/libsel4/` while the tailored copies remain under `preconfigured/libsel4/`. |
@@ -130,9 +130,11 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Reworked the top-level README so the layout overview, manual links, and build instructions reference the new `pristine/` and `preconfigured/` locations instead of the retired root trees.
 - Removed the root `include/` directory now that the untouched headers live under `pristine/include/` and the customized copies live under `preconfigured/include/`, further shrinking the repository root toward the planned metadata-only shell.
 - Deleted the root `libsel4/` directory after confirming every pristine header and generator now resides under `pristine/libsel4/` and the customized build continues to consume the copies in `preconfigured/libsel4/`.
+- Excised the common kernel sources (`src/api`, `src/kernel`, `src/machine`, `src/model`, `src/smp`), supporting benchmarks/configuration helpers, and the ARM and RISC-V architecture trees from the repository root after verifying their pristine and preconfigured counterparts are in place, leaving only the x86, driver, fastpath, object, and platform directories to retire in follow-up commits.
 
 ### Next actions
 - Audit other root-level documentation for assumptions about path locations as additional helpers migrate.
 - Verify that the repository root remains limited to essential metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there (notably the remaining `src/` and `tools/` snapshots).
 - Call out in the top-level README and related docs that all pristine sources live exclusively under `pristine/` so contributors do not expect duplicates in the root tree.
 - Audit any remaining recorded build artifacts (for example, additional architecture snapshots) to confirm they also reference the localized `preconfigured/` copies before final cleanup.
+- Remove the remaining root `src/arch/x86/`, `src/drivers/`, `src/fastpath/`, `src/object/`, and `src/plat/` trees—together with any straggling helper files—in manageable batches that keep each diff under the 35,000-line limit.
