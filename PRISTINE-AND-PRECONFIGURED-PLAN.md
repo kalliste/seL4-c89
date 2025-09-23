@@ -49,7 +49,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | Path / File | Total paths | Modified | Added | Deleted | Notes |
 | --- | ---: | ---: | ---: | ---: | --- |
 | `preconfigured/` | 2,333 | 0 | 2,333 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, relocated tooling, the copied header tree, the relocated `libsel4/` sources used by the preconfigured view, and the expanded `src/` mirror with all customized kernel sources (ARM, RISC-V, and x86 variants). Copied the generator helpers and the supporting `tools/hardware/` package into `preconfigured/tools/` so cached builds no longer depend on the root `tools/` directory. |
-| `pristine/` | 932 | 0 | 932 | 0 | Mirrors the upstream configs, sources, non-DTS tools, baseline root metadata including `.github` and `.reuse`, the LaTeX manual, and the relocated toolchain helper files. |
+| `pristine/` | 994 | 0 | 994 | 0 | Mirrors the upstream configs, sources, non-DTS tools, baseline root metadata including `.github`, `.reuse`, the LaTeX manual, the replicated release notes/licensing docs, and the relocated toolchain helper files. |
 | `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
 | `src/` | 312 | 0 | 0 | 312 | Removed the entire kernel source tree from the repository root after relocating every architecture, driver, fastpath, object, and platform directory into `pristine/src/` and `preconfigured/src/`, leaving no kernel sources at the top level. |
 | `include/` | 308 | 0 | 0 | 308 | Root headers removed from the repository root after confirming the baseline tree lives under `pristine/include/` and the tailored copies reside in `preconfigured/include/`. |
@@ -90,9 +90,10 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Renamed the local guidance document to `pristine/README.pristine.md` and expanded it to describe the growing coverage of the pristine snapshot.
 - Updated the change summary counts and notes to record the new pristine totals and cross-links.
 - Captured the upstream `.github` workflows and `.reuse/` licensing metadata inside `pristine/` so future root cleanup can defer to those pristine copies.
+- Mirrored the upstream release notes, contributor guides, and licensing metadata (`CAVEATS.md`, `CHANGES.md`, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `CONTRIBUTORS.md`, `LICENSE.md`, `LICENSES/`, and `SECURITY.md`) into `pristine/` so every baseline top-level document now lives next to the clean source snapshot.
 
 ### Next actions
-- Continue migrating additional root metadata (e.g. release notes and manual updates) into `pristine/`.
+- Spot-check for any remaining top-level metadata that still needs pristine mirrors and track new root documents as they appear.
 - Start moving preconfigured-only helpers into the `preconfigured/` tree once we have pristine references for each script.
 
 ## Step 6 Progress: Corral preconfigured assets
