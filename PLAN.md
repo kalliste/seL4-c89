@@ -18,6 +18,104 @@
 - Group the files by their top-level directory (`src/api`, `src/arch/x86`, `src/plat`, etc.) to help drive the mirrored directory creation under `preconfigured/X64_verified/`.
 - While scanning, note modules that already provide generated outputs (`default_domain.c`, etc.) so we can double-check that they exist at build time.
 
+#### Step 1 progress (2025-02-14)
+- Extracted all 77 inputs that `cpp_gen.sh` concatenates today. The sequence below preserves the original command order so we can recreate it when wiring wrapper objects:
+
+  1. `src/api/faults.c`
+  2. `src/api/syscall.c`
+  3. `src/arch/x86/64/c_traps.c`
+  4. `src/arch/x86/64/kernel/elf.c`
+  5. `src/arch/x86/64/kernel/thread.c`
+  6. `src/arch/x86/64/kernel/vspace.c`
+  7. `src/arch/x86/64/machine/capdl.c`
+  8. `src/arch/x86/64/machine/registerset.c`
+  9. `src/arch/x86/64/model/smp.c`
+  10. `src/arch/x86/64/model/statedata.c`
+  11. `src/arch/x86/64/object/objecttype.c`
+  12. `src/arch/x86/64/smp/ipi.c`
+  13. `src/arch/x86/api/faults.c`
+  14. `src/arch/x86/benchmark/benchmark.c`
+  15. `src/arch/x86/c_traps.c`
+  16. `src/arch/x86/idle.c`
+  17. `src/arch/x86/kernel/apic.c`
+  18. `src/arch/x86/kernel/boot.c`
+  19. `src/arch/x86/kernel/boot_sys.c`
+  20. `src/arch/x86/kernel/cmdline.c`
+  21. `src/arch/x86/kernel/ept.c`
+  22. `src/arch/x86/kernel/smp_sys.c`
+  23. `src/arch/x86/kernel/thread.c`
+  24. `src/arch/x86/kernel/vspace.c`
+  25. `src/arch/x86/kernel/x2apic.c`
+  26. `src/arch/x86/kernel/xapic.c`
+  27. `src/arch/x86/machine/breakpoint.c`
+  28. `src/arch/x86/machine/capdl.c`
+  29. `src/arch/x86/machine/cpu_identification.c`
+  30. `src/arch/x86/machine/fpu.c`
+  31. `src/arch/x86/machine/hardware.c`
+  32. `src/arch/x86/machine/registerset.c`
+  33. `src/arch/x86/model/statedata.c`
+  34. `src/arch/x86/object/interrupt.c`
+  35. `src/arch/x86/object/ioport.c`
+  36. `src/arch/x86/object/iospace.c`
+  37. `src/arch/x86/object/objecttype.c`
+  38. `src/arch/x86/object/tcb.c`
+  39. `src/arch/x86/object/vcpu.c`
+  40. `src/arch/x86/smp/ipi.c`
+  41. `src/assert.c`
+  42. `src/benchmark/benchmark.c`
+  43. `src/benchmark/benchmark_track.c`
+  44. `src/benchmark/benchmark_utilisation.c`
+  45. `src/fastpath/fastpath.c`
+  46. `src/inlines.c`
+  47. `src/kernel/boot.c`
+  48. `src/kernel/cspace.c`
+  49. `src/kernel/faulthandler.c`
+  50. `src/kernel/stack.c`
+  51. `src/kernel/thread.c`
+  52. `src/machine/capdl.c`
+  53. `src/machine/fpu.c`
+  54. `src/machine/io.c`
+  55. `src/machine/registerset.c`
+  56. `src/model/preemption.c`
+  57. `src/model/smp.c`
+  58. `src/model/statedata.c`
+  59. `src/object/cnode.c`
+  60. `src/object/endpoint.c`
+  61. `src/object/interrupt.c`
+  62. `src/object/notification.c`
+  63. `src/object/objecttype.c`
+  64. `src/object/tcb.c`
+  65. `src/object/untyped.c`
+  66. `src/plat/pc99/machine/acpi.c`
+  67. `src/plat/pc99/machine/hardware.c`
+  68. `src/plat/pc99/machine/intel-vtd.c`
+  69. `src/plat/pc99/machine/io.c`
+  70. `src/plat/pc99/machine/ioapic.c`
+  71. `src/plat/pc99/machine/pic.c`
+  72. `src/plat/pc99/machine/pit.c`
+  73. `src/smp/ipi.c`
+  74. `src/smp/lock.c`
+  75. `src/string.c`
+  76. `src/util.c`
+  77. `src/config/default_domain.c`
+- Directory breakdown (helps us mirror the tree later):
+
+  | Group | Files |
+  | --- | --- |
+  | `src/arch/x86` | 38 |
+  | `src (root)` | 4 (`assert.c`, `inlines.c`, `string.c`, `util.c`) |
+  | `src/kernel` | 5 |
+  | `src/object` | 7 |
+  | `src/plat/pc99` | 7 |
+  | `src/machine` | 4 |
+  | `src/model` | 3 |
+  | `src/benchmark` | 3 |
+  | `src/api` | 2 |
+  | `src/smp` | 2 |
+  | `src/fastpath` | 1 |
+  | `src/config` | 1 |
+- Generated artifacts to track: `src/config/default_domain.c` is still checked into the tree for this configuration, so wrapper generation only needs to confirm the file exists rather than triggering a build step.
+
 ### 2. Detect Static Functions that Need Special Handling
 - For each source file in the inventory, search for `static` functions or data via `rg '^static ' <file>` in the canonical location (outside `preconfigured/`). Document functions that are referenced through `extern` declarations or macros in other compilation units—those will require wrapper exports or header adjustments.
 - Pay extra attention to modules known to share helper routines (e.g., `src/object/tcb.c` vs. `src/object/notification.c`) to confirm whether any `static` helper is invoked elsewhere in the aggregated build. Where ambiguity exists, run the original aggregated build and inspect symbol tables (`nm kernel_all.c.obj`) to understand which helpers become globally visible today.
