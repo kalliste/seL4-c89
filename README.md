@@ -93,9 +93,34 @@ To rebuild the cached preconfigured tree with the same settings, invoke
 ninja -C preconfigured/X64_verified
 ```
 
+### Replaying the cached preconfigured build
+
 The [`preconfigured/replay_preconfigured_build.sh`](./preconfigured/replay_preconfigured_build.sh)
-script is also available for replaying the captured build commands when
-needed.
+script replays the captured commands for the checked-in
+`preconfigured/X64_verified` build tree.  It requires the same host tools as
+the Ninja workflow above (`cmake`, `ninja`, `gcc`, `xmllint`) together with
+`python3` on `PATH`.
+
+1. From the repository root, execute the replay script:
+
+   ```sh
+   ./preconfigured/replay_preconfigured_build.sh
+   ```
+
+   The script populates the cached build directory with all generated sources
+   and object files before linking the final image.
+
+2. Confirm that the kernel image was produced:
+
+   ```sh
+   ls preconfigured/X64_verified/kernel.elf
+   ```
+
+   A successful run leaves the ELF image at
+   `preconfigured/X64_verified/kernel.elf`.
+
+The replay script is idempotent; re-running it simply refreshes the cached
+outputs with the same commands that produced the original log.
 
 License
 -------
