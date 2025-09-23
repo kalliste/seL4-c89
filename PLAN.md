@@ -141,7 +141,7 @@
 - If a module already lives under `preconfigured/X64_verified/` (e.g., generated sources), skip duplication and just reference the generated file directly.
 
 #### Step 3 progress (2025-09-23)
-- Added `tools/generate_kernel_wrappers.py`, which scrapes the `tools/cpp_gen.sh` invocation from `preconfigured/replay_preconfigured_build.sh` and emits `_wrapper.c` files that mirror the `src/` tree under `preconfigured/X64_verified/src/`.
+- Added `preconfigured/tools/generate_kernel_wrappers.py`, which scrapes the `tools/cpp_gen.sh` invocation from `preconfigured/replay_preconfigured_build.sh` and emits `_wrapper.c` files that mirror the `src/` tree under `preconfigured/X64_verified/src/`.
 - Generated 77 wrappers via the helper; each file just `#include`s its canonical source with a relative path, so static helpers stay scoped to their home translation units.
 - Spot-checked deeply nested modules (`arch/x86/64/kernel/vspace`, `config/default_domain`) to confirm the relative include paths resolve correctly and no existing generated sources were duplicated.
 - The generator is idempotent, so we can rerun it after upstream list changes; with the wrappers in place we're ready to swap the build over in Step 4.
@@ -154,13 +154,13 @@
 
 #### Step 4 progress (2025-09-24)
 - Declared a `KERNEL_SOURCES` array in `preconfigured/replay_preconfigured_build.sh` that preserves the original 77-item ordering from the `cpp_gen.sh` invocation, letting both the wrapper generator and the build script share a single source of truth.
-- Replaced the `cpp_gen.sh` pipeline with an explicit call to `tools/generate_kernel_wrappers.py`, followed by a Bash loop that compiles each `_wrapper.c` translation unit into its own object (creating subdirectories on demand) while collecting the resulting object paths for linking.
+- Replaced the `cpp_gen.sh` pipeline with an explicit call to `preconfigured/tools/generate_kernel_wrappers.py`, followed by a Bash loop that compiles each `_wrapper.c` translation unit into its own object (creating subdirectories on demand) while collecting the resulting object paths for linking.
 - Updated the final link step to consume the accumulated wrapper objects instead of the legacy `kernel_all.c.obj`, keeping the existing assembler objects at the front of the link line to preserve behaviour.
-- Tweaked `tools/generate_kernel_wrappers.py` to parse the new array format so future wrapper regeneration keeps working without the deleted pipeline.
+- Tweaked `preconfigured/tools/generate_kernel_wrappers.py` to parse the new array format so future wrapper regeneration keeps working without the deleted pipeline.
 - Next up: audit ancillary references to the removed monolithic file (e.g., `kernel_all_copy.c` consumers) and prepare the script to surface the expanded object list to later steps in the build.
 
 #### Step 4 progress (2025-09-25)
-- Taught `tools/generate_kernel_wrappers.py` to emit `preconfigured/X64_verified/kernel_all_copy.c` as a simple include-aggregator so `kernel_all_copy.c` stays in sync with the wrapper inventory without reintroducing monolithic compilation.【F:tools/generate_kernel_wrappers.py†L1-L108】【F:preconfigured/X64_verified/kernel_all_copy.c†L1-L77】
+- Taught `preconfigured/tools/generate_kernel_wrappers.py` to emit `preconfigured/X64_verified/kernel_all_copy.c` as a simple include-aggregator so `kernel_all_copy.c` stays in sync with the wrapper inventory without reintroducing monolithic compilation.【F:preconfigured/tools/generate_kernel_wrappers.py†L1-L108】【F:preconfigured/X64_verified/kernel_all_copy.c†L1-L77】
 - Audited ancillary `kernel_all.c` references in `preconfigured/replay_preconfigured_build.sh` and replaced the implicit object collection with an explicit `kernel_wrapper_objects.list` manifest that records every wrapper object for later consumers.【F:preconfigured/replay_preconfigured_build.sh†L114-L144】
 - Verified the generator now succeeds (missing `os` import bug fixed) and captured the manifest/aggregator adjustments as prep for sharing the object list with downstream tooling.【36f76b†L1-L3】
 - Trial build via `preconfigured/replay_preconfigured_build.sh` now trips on `kpptr_to_paddr` missing from `mode/machine.h`; this header-order issue will need attention when we tackle Step 5 validation.【2722b5†L1-L10】

@@ -48,14 +48,14 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ### Top-level change summary
 | Path / File | Total paths | Modified | Added | Deleted | Notes |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `preconfigured/` | 1,726 | 0 | 1,726 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, and helper logs/scripts. |
+| `preconfigured/` | 1,728 | 0 | 1,728 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, and relocated tooling. |
 | `pristine/` | 900 | 0 | 900 | 0 | Mirrors the upstream configs, sources, non-DTS tools, and baseline root metadata including `.github` and `.reuse`. |
 | `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
 | `src/` | 44 | 44 | 0 | 0 | Root sources remain modified; compare against `pristine/src/` in later cleanup steps. |
 | `include/` | 43 | 43 | 0 | 0 | Root headers remain modified; pristine copies now live under `pristine/include/`. |
 | `pipdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/pipdeps/`; counted under the `preconfigured/` row. |
 | `libsel4/` | 4 | 4 | 0 | 0 | Root library files remain modified; compare with `pristine/libsel4/` during reconciliation. |
-| `tools/` | 3 | 0 | 3 | 0 | Small set of helper scripts newly added for the preconfigured layout; upstream copy now mirrored in `pristine/tools/`. |
+| `tools/` | 1 | 0 | 1 | 0 | Only the virtual environment helper remains at the root; preconfigured-specific scripts have moved under `preconfigured/tools/`. |
 | `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; baseline version archived under `pristine/.gitignore`. |
 | `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling. |
 | `PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch. |
@@ -97,7 +97,9 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Moved the generated `pipdeps/` and `sysdeps/` hierarchies underneath `preconfigured/` so dependency snapshots stay out of the repository root.
 - Relocated `preconfigured_build.log` and the replay helper script into `preconfigured/`, updating tooling and documentation to reference their new homes.
 - Refreshed the progress table so the consolidated counts in `preconfigured/` reflect the relocated assets.
+- Introduced a `preconfigured/tools/` directory that now hosts the wrapper generator and build logging helpers, clearing the preconfigured-specific scripts out of the root `tools/` tree.
+- Hardened the logging helper so it resolves the repository root automatically, allowing it to run from any working directory without manual path juggling.
 
 ### Next actions
 - Continue auditing the repository root for generated artifacts or helper scripts that should join the `preconfigured/` tree.
-- Decide whether to group logs and helper scripts into subdirectories within `preconfigured/` before moving additional tooling there.
+- Decide whether to relocate the remaining virtual-environment helper or keep it at the root alongside other shared tooling.
