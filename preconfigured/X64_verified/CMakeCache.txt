@@ -15,13 +15,13 @@
 ########################
 
 //Path to a file.
-BF_GEN_PATH:FILEPATH=/workspace/seL4-c89/tools/bitfield_gen.py
+BF_GEN_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/tools/bitfield_gen.py
 
 //Path to a program.
 CCACHE:FILEPATH=/usr/bin/ccache
 
 //Path to a file.
-CIRCULAR_INCLUDES:FILEPATH=/workspace/seL4-c89/tools/circular_includes.py
+CIRCULAR_INCLUDES:FILEPATH=/workspace/seL4-c89/preconfigured/tools/circular_includes.py
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
@@ -219,10 +219,10 @@ CMAKE_TOOLCHAIN_FILE:FILEPATH=/workspace/seL4-c89/preconfigured/X64_verified/gcc
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Path to a file.
-CONFIG_GEN_PATH:FILEPATH=/workspace/seL4-c89/tools/config_gen.py
+CONFIG_GEN_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/tools/config_gen.py
 
 //Path to a file.
-CPP_GEN_PATH:FILEPATH=/workspace/seL4-c89/tools/cpp_gen.sh
+CPP_GEN_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/tools/cpp_gen.sh
 
 CSPEC_DIR:PATH=.
 
@@ -230,19 +230,19 @@ CSPEC_DIR:PATH=.
 FORCE_COLORED_OUTPUT:BOOL=OFF
 
 //Path to a file.
-HARDWARE_GEN_PATH:FILEPATH=/workspace/seL4-c89/tools/hardware_gen.py
+HARDWARE_GEN_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/tools/hardware_gen.py
 
 //Path to a file.
-INVOCATION_ID_GEN_PATH:FILEPATH=/workspace/seL4-c89/tools/invocation_header_gen.py
+INVOCATION_ID_GEN_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/tools/invocation_header_gen.py
 
 //Path to a file.
-INVOCATION_JSON_GEN_PATH:FILEPATH=/workspace/seL4-c89/tools/invocation_json_gen.py
+INVOCATION_JSON_GEN_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/tools/invocation_json_gen.py
 
 //Path to a file.
-KERNEL_FLAGS_PATH:FILEPATH=/workspace/seL4-c89/tools/flags.cmake
+KERNEL_FLAGS_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/tools/flags.cmake
 
 //Path to a file.
-KERNEL_HELPERS_PATH:FILEPATH=/workspace/seL4-c89/tools/helpers.cmake
+KERNEL_HELPERS_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/tools/helpers.cmake
 
 //Architecture to use when building the kernel
 KernelArch:STRING=x86
@@ -299,7 +299,7 @@ KernelDebugDisablePrefetchers:BOOL=OFF
 
 //A C file providing the symbols ksDomSchedule and ksDomScheduleLength
 //         to be linked with the kernel as a scheduling configuration.
-KernelDomainSchedule:FILEPATH=/workspace/seL4-c89/src/config/default_domain.c
+KernelDomainSchedule:FILEPATH=/workspace/seL4-c89/preconfigured/src/config/default_domain.c
 
 //Choose the method that FPU state is stored in. This     directly
 // affects the method used to save and restore it.     FXSAVE ->
@@ -534,16 +534,16 @@ SKIP_MODIFIES:BOOL=ON
 SORRY_BITFIELD_PROOFS:BOOL=OFF
 
 //Path to a file.
-SYSCALL_ID_GEN_PATH:FILEPATH=/workspace/seL4-c89/tools/syscall_header_gen.py
+SYSCALL_ID_GEN_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/tools/syscall_header_gen.py
 
 //Path to a file.
-SYSCALL_STUB_GEN_PATH:FILEPATH=/workspace/seL4-c89/libsel4/tools/syscall_stub_gen.py
+SYSCALL_STUB_GEN_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/libsel4/tools/syscall_stub_gen.py
 
 //Path to a file.
 UMM_TYPES:FILEPATH=UMM_TYPES-NOTFOUND
 
 //Path to a file.
-XMLLINT_PATH:FILEPATH=/workspace/seL4-c89/tools/xmllint.sh
+XMLLINT_PATH:FILEPATH=/workspace/seL4-c89/preconfigured/tools/xmllint.sh
 
 //Value Computed by CMake
 libsel4_BINARY_DIR:STATIC=/workspace/seL4-c89/preconfigured/X64_verified/libsel4
@@ -552,7 +552,7 @@ libsel4_BINARY_DIR:STATIC=/workspace/seL4-c89/preconfigured/X64_verified/libsel4
 libsel4_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-libsel4_SOURCE_DIR:STATIC=/workspace/seL4-c89/libsel4
+libsel4_SOURCE_DIR:STATIC=/workspace/seL4-c89/preconfigured/libsel4
 
 //Value Computed by CMake
 seL4_BINARY_DIR:STATIC=/workspace/seL4-c89/preconfigured/X64_verified

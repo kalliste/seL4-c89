@@ -1,4 +1,4 @@
-#line 1 "/workspace/seL4-c89/src/api/faults.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/api/faults.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -260,7 +260,7 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
                                  seL4_Fault_get_seL4_FaultType(sender->tcbFault));
     }
 }
-#line 1 "/workspace/seL4-c89/src/api/syscall.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -896,7 +896,7 @@ exception_t handleSyscall(syscall_t syscall)
 
     return EXCEPTION_NONE;
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -1381,7 +1381,7 @@ void VISIBLE NORETURN c_x64_handle_interrupt(int irq, int syscall)
     c_handle_interrupt(irq, syscall);
     UNREACHABLE();
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/64/kernel/elf.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/elf.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -1447,7 +1447,7 @@ BOOT_CODE void elf_load(Elf64_Header_t *elf, seL4_Word offset)
         memset((void *)dst, 0, phdr[i].p_memsz - len);
     }
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/64/kernel/thread.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/thread.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -1521,7 +1521,7 @@ void Mode_postModifyRegisters(tcb_t *tptr)
         setRegister(tptr, Error, 0);
     }
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -3205,7 +3205,7 @@ exception_t benchmark_arch_map_logBuffer(word_t frame_cptr)
     return EXCEPTION_NONE;
 }
 #endif /* CONFIG_KERNEL_LOG_BUFFER */
-#line 1 "/workspace/seL4-c89/src/arch/x86/64/machine/capdl.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/machine/capdl.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -3710,7 +3710,7 @@ void debug_capDL(void)
 }
 
 #endif /* CONFIG_DEBUG_BUILD */
-#line 1 "/workspace/seL4-c89/src/arch/x86/64/machine/registerset.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/machine/registerset.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -3785,7 +3785,7 @@ word_t getNBSendRecvDest(void)
     return getRegister(NODE_STATE(ksCurThread), nbsendRecvDest);
 }
 #endif
-#line 1 "/workspace/seL4-c89/src/arch/x86/64/model/smp.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/model/smp.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -3811,7 +3811,7 @@ BOOT_CODE void mode_init_tls(cpu_id_t cpu_index)
 }
 
 #endif /* ENABLE_SMP_SUPPORT */
-#line 1 "/workspace/seL4-c89/src/arch/x86/64/model/statedata.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/model/statedata.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -3843,7 +3843,7 @@ UP_STATE_DEFINE(cr3_t, x64KSCurrentCR3);
 #endif
 
 word_t x64KSIRQStack[CONFIG_MAX_NUM_NODES][IRQ_STACK_SIZE + 2] ALIGN(64) VISIBLE SKIM_BSS;
-#line 1 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -4184,7 +4184,7 @@ exception_t Mode_decodeInvocation(
         return EXCEPTION_SYSCALL_ERROR;
     }
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/64/smp/ipi.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/smp/ipi.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -4214,7 +4214,7 @@ void Mode_handleRemoteCall(IpiModeRemoteCall_t call, word_t arg0, word_t arg1, w
 }
 
 #endif /* ENABLE_SMP_SUPPORT */
-#line 1 "/workspace/seL4-c89/src/arch/x86/api/faults.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/api/faults.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -4307,7 +4307,7 @@ word_t handleKernelException(
     halt();
     UNREACHABLE();
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/benchmark/benchmark.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/benchmark/benchmark.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4327,7 +4327,7 @@ seL4_Word ksLogIndex = 0;
 seL4_Word ksLogIndexFinalized = 0;
 
 #endif /* CONFIG_MAX_NUM_TRACE_POINTS > 0 */
-#line 1 "/workspace/seL4-c89/src/arch/x86/c_traps.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4547,7 +4547,7 @@ void VISIBLE NORETURN c_handle_vmexit(void)
     UNREACHABLE();
 }
 #endif
-#line 1 "/workspace/seL4-c89/src/arch/x86/idle.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/idle.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -4589,7 +4589,7 @@ void VISIBLE halt(void)
     idle_thread();
     UNREACHABLE();
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4767,7 +4767,7 @@ void apic_ack_active_interrupt(void)
 {
     apic_write_reg(APIC_EOI, 0);
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5201,7 +5201,7 @@ BOOT_CODE bool_t init_cpu(
 
     return true;
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5938,7 +5938,7 @@ BOOT_CODE VISIBLE void boot_sys(
     activateThread();
 }
 
-#line 1 "/workspace/seL4-c89/src/arch/x86/kernel/cmdline.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/cmdline.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -6105,7 +6105,7 @@ void cmdline_parse(const char *cmdline, cmdline_opt_t *cmdline_opt)
     cmdline_opt->disable_iommu = parse_bool(cmdline, cmdline_str_disable_iommu);
     printf("Boot config: disable_iommu = %s\n", cmdline_opt->disable_iommu ? "true" : "false");
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/kernel/ept.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/ept.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -7132,7 +7132,7 @@ void unmapEPTPage(vm_page_size_t page_size, asid_t asid, vptr_t vptr, void *pptr
 }
 
 #endif /* CONFIG_VTX */
-#line 1 "/workspace/seL4-c89/src/arch/x86/kernel/smp_sys.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/smp_sys.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -7282,7 +7282,7 @@ VISIBLE void boot_node(void)
 }
 
 #endif /* ENABLE_SMP_SUPPORT */
-#line 1 "/workspace/seL4-c89/src/arch/x86/kernel/thread.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/thread.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -7296,7 +7296,7 @@ void Arch_postModifyRegisters(tcb_t *tptr)
 {
     Mode_postModifyRegisters(tptr);
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/kernel/vspace.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/vspace.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -8708,7 +8708,7 @@ exception_t decodeX86MMUInvocation(
         return decodeX86ModeMMUInvocation(invLabel, length, cptr, cte, cap, call, buffer);
     }
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/kernel/x2apic.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/x2apic.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -8853,7 +8853,7 @@ void apic_send_ipi_cluster(irq_t vector, word_t mda)
     );
 }
 #endif /* CONFIG_X2APIC */
-#line 1 "/workspace/seL4-c89/src/arch/x86/kernel/xapic.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/xapic.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -9021,7 +9021,7 @@ void apic_send_ipi_cluster(irq_t vector, word_t mda)
     );
 }
 #endif /* CONFIG_XAPIC */
-#line 1 "/workspace/seL4-c89/src/arch/x86/machine/breakpoint.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/breakpoint.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -9700,7 +9700,7 @@ void Arch_initBreakpointContext(user_breakpoint_state_t *uds)
 }
 
 #endif
-#line 1 "/workspace/seL4-c89/src/arch/x86/machine/capdl.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/capdl.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -9741,7 +9741,7 @@ void x86_obj_iopt_print_attrs(cap_t iopt_cap)
 #endif
 
 #endif /* defind(CONFIG_DEBUG_BUILD) && defined(CONFIG_PRINTING) */
-#line 1 "/workspace/seL4-c89/src/arch/x86/machine/cpu_identification.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/cpu_identification.c"
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
@@ -9908,7 +9908,7 @@ bool_t x86_cpuid_initialize(void)
         return false;
     }
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/machine/fpu.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/fpu.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -9998,7 +9998,7 @@ BOOT_CODE bool_t Arch_initFpu(void)
     }
     return true;
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/machine/hardware.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/hardware.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -10180,7 +10180,7 @@ BOOT_CODE bool_t init_ibrs(void)
     }
     return true;
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/machine/registerset.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/registerset.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -10224,7 +10224,7 @@ word_t sanitiseRegister(register_t reg, word_t v, bool_t archInfo)
     }
     return v;
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/model/statedata.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/model/statedata.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -10300,7 +10300,7 @@ word_t x86KSAllocatedIOPorts[NUM_IO_PORTS / CONFIG_WORD_SIZE];
 uint32_t x86KStscMhz;
 uint32_t x86KSapicRatio;
 #endif
-#line 1 "/workspace/seL4-c89/src/arch/x86/object/interrupt.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/interrupt.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -10489,7 +10489,7 @@ exception_t Arch_decodeIRQControlInvocation(word_t invLabel, word_t length, cte_
         fail("IRQControl: Illegal operation");
     }
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/object/ioport.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/ioport.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -10810,7 +10810,7 @@ void setIOPortMask(void *ioport_bitmap, uint16_t low, uint16_t high, bool_t set)
         apply_pattern(bitmap + low_word, make_pattern(0, high_index + 1), set);
     }
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/object/iospace.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/iospace.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -11318,7 +11318,7 @@ exception_t decodeX86IOSpaceInvocation(word_t invLabel, cap_t cap)
 }
 
 #endif /* CONFIG_IOMMU */
-#line 1 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -11875,7 +11875,7 @@ void Arch_postCapDeletion(cap_t cap)
         freeIOPortRange(first_port, last_port);
     }
 }
-#line 1 "/workspace/seL4-c89/src/arch/x86/object/tcb.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/tcb.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -11958,7 +11958,7 @@ exception_t decodeSetEPTRoot(cap_t cap)
     return performSetEPTRoot(TCB_PTR(cap_thread_cap_get_capTCBPtr(cap)), dc_ret.cap, rootSlot);
 }
 #endif
-#line 1 "/workspace/seL4-c89/src/arch/x86/object/vcpu.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/vcpu.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -13551,7 +13551,7 @@ void invept(ept_pml4e_t *ept_pml4)
 }
 
 #endif
-#line 1 "/workspace/seL4-c89/src/arch/x86/smp/ipi.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/smp/ipi.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -13666,7 +13666,7 @@ void ipi_send_mask(irq_t ipi, word_t mask, bool_t isBlocking)
 #endif /* CONFIG_USE_LOGICAL_IDS */
 }
 #endif /* ENABLE_SMP_SUPPORT */
-#line 1 "/workspace/seL4-c89/src/assert.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/assert.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -13710,7 +13710,7 @@ void _assert_fail(
 }
 
 #endif
-#line 1 "/workspace/seL4-c89/src/benchmark/benchmark.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/benchmark/benchmark.c"
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
@@ -13867,7 +13867,7 @@ exception_t handle_SysBenchmarkResetAllThreadsUtilisation(void)
 #endif /* CONFIG_DEBUG_BUILD */
 #endif /* CONFIG_BENCHMARK_TRACK_UTILISATION */
 #endif /* CONFIG_ENABLE_BENCHMARKS */
-#line 1 "/workspace/seL4-c89/src/benchmark/benchmark_track.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/benchmark/benchmark_track.c"
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
@@ -13902,7 +13902,7 @@ void benchmark_track_exit(void)
     }
 }
 #endif /* CONFIG_BENCHMARK_TRACK_KERNEL_ENTRIES */
-#line 1 "/workspace/seL4-c89/src/benchmark/benchmark_utilisation.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/benchmark/benchmark_utilisation.c"
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
@@ -13981,7 +13981,7 @@ void benchmark_track_reset_utilisation(tcb_t *tcb)
     tcb->benchmark.schedule_start_time = 0;
 }
 #endif /* CONFIG_BENCHMARK_TRACK_UTILISATION */
-#line 1 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -14881,7 +14881,7 @@ void NORETURN fastpath_vm_fault(vm_fault_type_t type)
     fastpath_restore(badge, msgInfo, NODE_STATE(ksCurThread));
 }
 #endif
-#line 1 "/workspace/seL4-c89/src/inlines.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/inlines.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -14898,7 +14898,7 @@ syscall_error_t current_syscall_error;
 debug_syscall_error_t current_debug_error;
 #endif
 
-#line 1 "/workspace/seL4-c89/src/kernel/boot.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -15980,7 +15980,7 @@ BOOT_CODE bool_t init_freemem(word_t n_available, const p_region_t *available,
            "objects, need size/alignment of 2^%"SEL4_PRIu_word"\n", max);
     return false;
 }
-#line 1 "/workspace/seL4-c89/src/kernel/cspace.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/kernel/cspace.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -16174,7 +16174,7 @@ resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap, cptr_t capptr, word_t
         }
     }
 }
-#line 1 "/workspace/seL4-c89/src/kernel/faulthandler.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/kernel/faulthandler.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -16347,7 +16347,7 @@ void handleDoubleFault(tcb_t *tptr, seL4_Fault_t ex1)
 
     setThreadState(tptr, ThreadState_Inactive);
 }
-#line 1 "/workspace/seL4-c89/src/kernel/stack.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/kernel/stack.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -16358,7 +16358,7 @@ void handleDoubleFault(tcb_t *tptr, seL4_Fault_t ex1)
 
 VISIBLE ALIGN(KERNEL_STACK_ALIGNMENT)
 char kernel_stack_alloc[CONFIG_MAX_NUM_NODES][BIT(CONFIG_KERNEL_STACK_BITS)];
-#line 1 "/workspace/seL4-c89/src/kernel/thread.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -17111,7 +17111,7 @@ void awaken(void)
     }
 }
 #endif
-#line 1 "/workspace/seL4-c89/src/machine/capdl.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/machine/capdl.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -17630,7 +17630,7 @@ void print_object(cap_t cap)
 #endif /* CONFIG_PRINTING */
 
 #endif /* CONFIG_DEBUG_BUILD */
-#line 1 "/workspace/seL4-c89/src/machine/fpu.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/machine/fpu.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -17681,7 +17681,7 @@ void fpuRelease(tcb_t *thread)
     }
 }
 #endif /* CONFIG_HAVE_FPU */
-#line 1 "/workspace/seL4-c89/src/machine/io.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/machine/io.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -18338,7 +18338,7 @@ int impl_ksnvprintf(char *str, word_t size, const char *format, va_list ap)
 }
 
 #endif /* CONFIG_PRINTING */
-#line 1 "/workspace/seL4-c89/src/machine/registerset.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/machine/registerset.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -18354,7 +18354,7 @@ const register_t fault_messages[][MAX_MSG_SIZE] = {
     [MessageID_TimeoutReply] = TIMEOUT_REPLY_MESSAGE,
 #endif
 };
-#line 1 "/workspace/seL4-c89/src/model/preemption.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/model/preemption.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -18399,7 +18399,7 @@ exception_t preemptionPoint(void)
     return EXCEPTION_NONE;
 }
 
-#line 1 "/workspace/seL4-c89/src/model/smp.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/model/smp.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -18433,7 +18433,7 @@ void migrateTCB(tcb_t *tcb, word_t new_core)
 }
 
 #endif /* ENABLE_SMP_SUPPORT */
-#line 1 "/workspace/seL4-c89/src/model/statedata.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/model/statedata.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -18544,7 +18544,7 @@ kernel_entry_t ksKernelEntry;
 #ifdef CONFIG_KERNEL_LOG_BUFFER
 paddr_t ksUserLogBuffer;
 #endif /* CONFIG_KERNEL_LOG_BUFFER */
-#line 1 "/workspace/seL4-c89/src/object/cnode.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/object/cnode.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -19479,7 +19479,7 @@ cap_transfer_t PURE loadCapTransfer(word_t *buffer)
     const int offset = seL4_MsgMaxLength + seL4_MsgMaxExtraCaps + 2;
     return capTransferFromWords(buffer + offset);
 }
-#line 1 "/workspace/seL4-c89/src/object/endpoint.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -19977,7 +19977,7 @@ void reorderEP(endpoint_t *epptr, tcb_t *thread)
     ep_ptr_set_queue(epptr, queue);
 }
 #endif
-#line 1 "/workspace/seL4-c89/src/object/interrupt.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/object/interrupt.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -20275,7 +20275,7 @@ void setIRQState(irq_state_t irqState, irq_t irq)
 #endif
     maskInterrupt(irqState == IRQInactive, irq);
 }
-#line 1 "/workspace/seL4-c89/src/object/notification.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -20642,7 +20642,7 @@ void reorderNTFN(notification_t *ntfnPtr, tcb_t *thread)
     ntfn_ptr_set_queue(ntfnPtr, queue);
 }
 #endif
-#line 1 "/workspace/seL4-c89/src/object/objecttype.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -21670,7 +21670,7 @@ bool_t CONST isCapRevocable(cap_t derivedCap, cap_t srcCap)
         return false;
     }
 }
-#line 1 "/workspace/seL4-c89/src/object/tcb.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -23836,7 +23836,7 @@ word_t setMRs_syscall_error(tcb_t *thread, word_t *receiveIPCBuffer)
         fail("Invalid syscall error");
     }
 }
-#line 1 "/workspace/seL4-c89/src/object/untyped.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/object/untyped.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -24142,7 +24142,7 @@ exception_t invokeUntyped_Retype(cte_t *srcSlot,
 
     return EXCEPTION_NONE;
 }
-#line 1 "/workspace/seL4-c89/src/plat/pc99/machine/acpi.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/acpi.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -24687,7 +24687,7 @@ BOOT_CODE void acpi_dmar_scan(
     rmrr_list->num = rmrr_count;
     printf("ACPI: %d IOMMUs detected\n", *num_drhu);
 }
-#line 1 "/workspace/seL4-c89/src/plat/pc99/machine/hardware.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/hardware.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -24823,7 +24823,7 @@ BOOT_CODE uint32_t tsc_init(void)
     /* finally, return mhz */
     return tsc_khz / 1000u;
 }
-#line 1 "/workspace/seL4-c89/src/plat/pc99/machine/intel-vtd.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/intel-vtd.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -25361,7 +25361,7 @@ BOOT_CODE bool_t vtd_init(cpu_id_t  cpu_id, acpi_rmrr_list_t *rmrr_list)
 }
 
 #endif /* CONFIG_IOMMU */
-#line 1 "/workspace/seL4-c89/src/plat/pc99/machine/io.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/io.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -25420,7 +25420,7 @@ unsigned char kernel_getDebugChar(void)
     return in8(x86KSdebugPort);
 }
 #endif /* CONFIG_DEBUG_BUILD */
-#line 1 "/workspace/seL4-c89/src/plat/pc99/machine/ioapic.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/ioapic.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -25620,7 +25620,7 @@ void ioapic_map_pin_to_vector(word_t ioapic, word_t pin, word_t level,
     ioredtbl_state[index] |= ioapic_read(ioapic, IOAPIC_WINDOW) & ~MASK(16);
     ioapic_write(ioapic, IOAPIC_WINDOW, ioredtbl_state[index]);
 }
-#line 1 "/workspace/seL4-c89/src/plat/pc99/machine/pic.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/pic.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -25726,7 +25726,7 @@ void pic_ack_active_irq(void)
         out8(PIC1_BASE, 0x20);
     }
 }
-#line 1 "/workspace/seL4-c89/src/plat/pc99/machine/pit.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/pit.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -25770,7 +25770,7 @@ BOOT_CODE void pit_wait_wraparound(void)
         count |= (in8(PIT_CH0) << 8);
     }
 }
-#line 1 "/workspace/seL4-c89/src/smp/ipi.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/smp/ipi.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -25989,7 +25989,7 @@ exception_t handle_SysDebugSendIPI(void)
 #endif /* CONFIG_DEBUG_BUILD */
 
 #endif /* ENABLE_SMP_SUPPORT */
-#line 1 "/workspace/seL4-c89/src/smp/lock.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/smp/lock.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -26019,7 +26019,7 @@ BOOT_CODE void clh_lock_init(void)
 }
 
 #endif /* ENABLE_SMP_SUPPORT */
-#line 1 "/workspace/seL4-c89/src/string.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/string.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -26062,7 +26062,7 @@ word_t strlcat(char *dest, const char *src, word_t size)
     }
     return len;
 }
-#line 1 "/workspace/seL4-c89/src/util.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/util.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -26515,7 +26515,7 @@ CONST int __ctzdi2(uint64_t x)
     return ctz64(x);
 }
 #endif
-#line 1 "/workspace/seL4-c89/src/config/default_domain.c"
+#line 1 "/workspace/seL4-c89/preconfigured/src/config/default_domain.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *

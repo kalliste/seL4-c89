@@ -2,14 +2,14 @@
 # 0 "<built-in>"
 # 0 "<command-line>"
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/kernel_all_pp_prune_wrapper_temp.c"
-# 1 "/workspace/seL4-c89/src/api/faults.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/api/faults.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-# 1 "/workspace/seL4-c89/include/config.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/config.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -18,7 +18,7 @@
 
        
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/config.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/config.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -166,12 +166,12 @@
 /* disabled: CONFIG_CLZ_NO_BUILTIN */
 /* disabled: CONFIG_CTZ_NO_BUILTIN */
 # 5 "/workspace/seL4-c89/preconfigured/X64_verified/autoconf/autoconf.h" 2
-# 12 "/workspace/seL4-c89/libsel4/include/sel4/config.h" 2
-# 10 "/workspace/seL4-c89/include/config.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/config.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/config.h" 2
 
 /* Set ENABLE_SMP_SUPPORT for kernel source files */
-# 8 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/types.h" 1
+# 8 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/types.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -180,7 +180,7 @@
 
        
 
-# 1 "/workspace/seL4-c89/include/basic_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/basic_types.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -189,7 +189,7 @@
 
        
 
-# 1 "/workspace/seL4-c89/include/stdint.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/stdint.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -198,7 +198,7 @@
 
        
 
-# 1 "/workspace/seL4-c89/include/64/mode/stdint.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/64/mode/stdint.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -206,7 +206,7 @@
  */
 
        
-# 10 "/workspace/seL4-c89/include/stdint.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/stdint.h" 2
 
 typedef unsigned char uint8_t;
 typedef unsigned short uint16_t;
@@ -225,8 +225,8 @@ typedef signed long long int64_t;
 
 typedef uint64_t uintmax_t;
 typedef int64_t intmax_t;
-# 10 "/workspace/seL4-c89/include/basic_types.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/types.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/include/basic_types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/types.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -236,7 +236,7 @@ typedef int64_t intmax_t;
        
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/types.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -245,7 +245,7 @@ typedef int64_t intmax_t;
 
        
 
-# 1 "/workspace/seL4-c89/include/assert.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/assert.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -255,7 +255,7 @@ typedef int64_t intmax_t;
        
 
 
-# 1 "/workspace/seL4-c89/include/util.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/util.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -263,13 +263,13 @@ typedef int64_t intmax_t;
  */
 
        
-# 28 "/workspace/seL4-c89/include/util.h"
+# 28 "/workspace/seL4-c89/preconfigured/include/util.h"
 /* There is no difference between using 'ul' or 'lu' as suffix for numbers to
  * enforce a specific type besides the default 'int'. Just when it comes to the
  * printf() format specifiers, '%lu' is the only form that is supported. Thus
  * 'ul' is the preferred suffix to avoid confusion.
  */
-# 48 "/workspace/seL4-c89/include/util.h"
+# 48 "/workspace/seL4-c89/preconfigured/include/util.h"
 /* Time constants are defined to use the 'unsigned long long'. Rationale is,
  * that the C rules define the calculation result is determined by largest type
  * involved. Enforcing the largest possible type C provides avoids pitfalls with
@@ -286,7 +286,7 @@ typedef int64_t intmax_t;
  * uint64_t type definitions nor including the header with the uint64_t
  * definitions here is currently a feasible option.
  */
-# 93 "/workspace/seL4-c89/include/util.h"
+# 93 "/workspace/seL4-c89/preconfigured/include/util.h"
 /** MODIFIES: */
 void __builtin_unreachable(void);
 
@@ -439,7 +439,7 @@ __attribute__((__const__)) clzll(unsigned long long x)
 static inline long
 __attribute__((__const__)) ctzl(unsigned long x)
 {
-# 266 "/workspace/seL4-c89/include/util.h"
+# 266 "/workspace/seL4-c89/preconfigured/include/util.h"
     /* Here, we have __builtin_ctzl. */
     return __builtin_ctzl(x);
 
@@ -459,7 +459,7 @@ __attribute__((__const__)) ctzl(unsigned long x)
 static inline long long
 __attribute__((__const__)) ctzll(unsigned long long x)
 {
-# 297 "/workspace/seL4-c89/include/util.h"
+# 297 "/workspace/seL4-c89/preconfigured/include/util.h"
     return __builtin_ctzll(x);
 
 }
@@ -470,7 +470,7 @@ int __builtin_popcountl(unsigned long x);
 static inline long
 __attribute__((__const__)) popcountl(unsigned long mask)
 {
-# 315 "/workspace/seL4-c89/include/util.h"
+# 315 "/workspace/seL4-c89/preconfigured/include/util.h"
     return __builtin_popcountl(mask);
 
 }
@@ -478,8 +478,8 @@ __attribute__((__const__)) popcountl(unsigned long mask)
 
 
 /* Can be used to insert padding to the next L1 cache line boundary */
-# 11 "/workspace/seL4-c89/include/assert.h" 2
-# 45 "/workspace/seL4-c89/include/assert.h"
+# 11 "/workspace/seL4-c89/preconfigured/include/assert.h" 2
+# 45 "/workspace/seL4-c89/preconfigured/include/assert.h"
 /* Create an assert that triggers a compile error if the condition fails. We do
  * not include sel4/macros.h that provides SEL4_COMPILE_ASSERT() for two
  * reasons:
@@ -497,10 +497,10 @@ __attribute__((__const__)) popcountl(unsigned long mask)
  * unverified_compile_assert() exists, because some compile asserts contain
  * expressions that the C parser cannot handle, too.
  */
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/types.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/types.h" 2
 
 typedef int __assert_failed_long_is_64bits[(sizeof(unsigned long) == 8) ? 1 : -1] __attribute__((unused));
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/types.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/types.h" 2
 
 
 typedef unsigned long word_t;
@@ -519,7 +519,7 @@ typedef word_t node_id_t;
 typedef word_t dom_t;
 
 typedef uint64_t timestamp_t;
-# 11 "/workspace/seL4-c89/include/basic_types.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/basic_types.h" 2
 
 /* arch/types.h is supposed to define word_t and _seL4_word_fmt */
 
@@ -533,7 +533,7 @@ typedef uint64_t timestamp_t;
  * always be from the strings behind all macros then - and not the macro names
  * that are passed as parameters.
  */
-# 35 "/workspace/seL4-c89/include/basic_types.h"
+# 35 "/workspace/seL4-c89/preconfigured/include/basic_types.h"
 /* The C parser from the verification toolchain requires declaring word_t
  * constants without casting integer values to word_t. Since the printf() format
  * specifiers are aligned with the C integer type suffixes, _seL4_word_fmt can
@@ -588,8 +588,8 @@ typedef cptr_t seL4_CPtr;
 typedef node_id_t seL4_NodeId;
 typedef paddr_t seL4_PAddr;
 typedef dom_t seL4_Domain;
-# 10 "/workspace/seL4-c89/include/types.h" 2
-# 1 "/workspace/seL4-c89/include/compound_types.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/include/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/compound_types.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -599,7 +599,7 @@ typedef dom_t seL4_Domain;
        
 
 
-# 1 "/workspace/seL4-c89/include/api/types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/api/types.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -612,8 +612,8 @@ typedef dom_t seL4_Domain;
 
 
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/generated_prune/sel4/shared_types_gen.h" 1
-# 13 "/workspace/seL4-c89/include/api/types.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/api/types.h" 1
+# 13 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/api/types.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -622,7 +622,7 @@ typedef dom_t seL4_Domain;
 
        
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/objecttype.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/objecttype.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -647,8 +647,8 @@ __attribute__((deprecated("use seL4_NotificationObject"))) static const seL4_Obj
     seL4_NotificationObject;
 
 typedef seL4_Word api_object_t;
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/api/types.h" 2
-# 1 "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/objecttype.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/objecttype.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -669,8 +669,8 @@ typedef enum _mode_object {
 } seL4_seL4ArchObjectType;
 
 /* allow seL4_X86_PDPTObject and seL4_IA32_PDPTObject to be used interchangeable */
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/api/types.h" 2
-# 1 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/objecttype.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/objecttype.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -686,20 +686,20 @@ typedef enum _object {
     seL4_X86_LargePageObject,
     seL4_X86_PageTableObject,
     seL4_X86_PageDirectoryObject,
-# 26 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/objecttype.h"
+# 26 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/objecttype.h"
     seL4_ObjectTypeCount
 } seL4_ArchObjectType;
 typedef seL4_Word object_t;
-# 12 "/workspace/seL4-c89/include/arch/x86/arch/api/types.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/api/types.h" 2
 
 enum asidConstants {
     asidInvalid = 0
 };
 
 typedef word_t asid_t;
-# 14 "/workspace/seL4-c89/include/api/types.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/macros.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/macros.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -707,17 +707,17 @@ typedef word_t asid_t;
  */
 
        
-# 45 "/workspace/seL4-c89/libsel4/include/sel4/macros.h"
+# 45 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/macros.h"
 /* _Static_assert() is a c11 feature. Since the kernel is currently compiled
  * with c99, we have to emulate it. */
-# 59 "/workspace/seL4-c89/libsel4/include/sel4/macros.h"
+# 59 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/macros.h"
 /*
  * Some compilers attempt to pack enums into the smallest possible type.
  * For ABI compatibility with the kernel, we need to ensure they remain
  * the same size as a 'long'.
  */
-# 16 "/workspace/seL4-c89/include/api/types.h" 2
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/constants.h" 1
+# 16 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/constants.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -725,7 +725,7 @@ typedef word_t asid_t;
  */
 
        
-# 44 "/workspace/seL4-c89/libsel4/include/sel4/constants.h"
+# 44 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/constants.h"
 enum priorityConstants {
     seL4_InvalidPrio = -1,
     seL4_MinPrio = 0,
@@ -765,8 +765,8 @@ typedef enum {
                         | seL4_TCBFlag_fpuDisabled
 
 } seL4_TCBFlag;
-# 17 "/workspace/seL4-c89/include/api/types.h" 2
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/shared_types.h" 1
+# 17 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -798,8 +798,8 @@ typedef enum {
     seL4_CapFault_GuardMismatch_BitsFound,
     _enum_pad_seL4_CapFault_Msg = ((1ULL << ((sizeof(long)*8) - 1)) - 1),
 } seL4_CapFault_Msg;
-# 18 "/workspace/seL4-c89/include/api/types.h" 2
-# 1 "/workspace/seL4-c89/include/machine/io.h" 1
+# 18 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/io.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -807,7 +807,7 @@ typedef enum {
  */
 
        
-# 110 "/workspace/seL4-c89/include/machine/io.h"
+# 110 "/workspace/seL4-c89/preconfigured/include/machine/io.h"
 /* The verification runs on the output of the preprocessing stage of a release
  * build configuration, CONFIG_PRINTING is not enabled there. We remove all
  * calls to printf() completely from the code base, because neither printf() nor
@@ -825,7 +825,7 @@ typedef enum {
  *   #define puts(...)               ((void)(0))
  *   #define snprintf(...)           ((void)(0))
  */
-# 19 "/workspace/seL4-c89/include/api/types.h" 2
+# 19 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
 
 /* seL4_CapRights_t defined in mode/api/shared_types.bf */
 
@@ -908,8 +908,8 @@ static inline word_t __attribute__((__const__)) wordFromMessageInfo(seL4_Message
 {
     return mi.words[0];
 }
-# 11 "/workspace/seL4-c89/include/compound_types.h" 2
-# 1 "/workspace/seL4-c89/include/object/structures.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/compound_types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -922,10 +922,10 @@ static inline word_t __attribute__((__const__)) wordFromMessageInfo(seL4_Message
 
 
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/generated_prune/arch/object/structures_gen.h" 1
-# 13 "/workspace/seL4-c89/include/object/structures.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 2
 
 
-# 1 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/constants.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/constants.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -948,8 +948,8 @@ static inline word_t __attribute__((__const__)) wordFromMessageInfo(seL4_Message
 
 
 /* Legacy definitions */
-# 16 "/workspace/seL4-c89/include/object/structures.h" 2
-# 1 "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h" 1
+# 16 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -957,9 +957,9 @@ static inline word_t __attribute__((__const__)) wordFromMessageInfo(seL4_Message
  */
 
        
-# 21 "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h"
+# 21 "/workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h"
 /* for x86-64, the large page size is 2 MiB and huge page size is 1 GiB */
-# 63 "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h"
+# 63 "/workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h"
 /* Untyped size limits */
 
 
@@ -1014,13 +1014,13 @@ typedef enum {
     seL4_UserException_Length,
     _enum_pad_seL4_UserException_Msg = ((1ULL << ((sizeof(long)*8) - 1)) - 1)
 } seL4_UserException_Msg;
-# 153 "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h"
+# 153 "/workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h"
 /* IPC buffer is 1024 bytes, giving size bits of 10 */
 
 
 /* First address in the virtual address space that is not accessible to user level */
-# 17 "/workspace/seL4-c89/include/object/structures.h" 2
-# 1 "/workspace/seL4-c89/include/benchmark/benchmark_utilisation_.h" 1
+# 17 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_utilisation_.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -1028,7 +1028,7 @@ typedef enum {
  */
 
        
-# 18 "/workspace/seL4-c89/include/object/structures.h" 2
+# 18 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 2
 
 enum irq_state {
     IRQInactive = 0,
@@ -1065,7 +1065,7 @@ enum notification_state {
     NtfnState_Active = 2
 };
 typedef word_t notification_state_t;
-# 68 "/workspace/seL4-c89/include/object/structures.h"
+# 68 "/workspace/seL4-c89/preconfigured/include/object/structures.h"
 /* We would like the actual 'tcb' region (the portion that contains the tcb_t) of the tcb */
 /* to be as large as possible, but it still needs to be aligned. As the TCB object contains */
 /* two sub objects the largest we can make either sub object whilst preserving size alignment */
@@ -1095,7 +1095,7 @@ typedef word_t notification_state_t;
 
 
 /* Generate a cte_t pointer from a tcb_t pointer */
-# 112 "/workspace/seL4-c89/include/object/structures.h"
+# 112 "/workspace/seL4-c89/preconfigured/include/object/structures.h"
 static inline cap_t __attribute__((__const__)) Zombie_new(word_t number, word_t type, word_t ptr)
 {
     word_t mask;
@@ -1170,7 +1170,7 @@ enum tcb_cnode_index {
 
     /* VSpace root */
     tcbVTable = 1,
-# 197 "/workspace/seL4-c89/include/object/structures.h"
+# 197 "/workspace/seL4-c89/preconfigured/include/object/structures.h"
     /* Reply cap slot */
     tcbReply = 2,
 
@@ -1184,7 +1184,7 @@ enum tcb_cnode_index {
 };
 typedef word_t tcb_cnode_index_t;
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -1200,8 +1200,8 @@ typedef word_t tcb_cnode_index_t;
 
 
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/generated_prune/arch/object/structures_gen.h" 1
-# 16 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/hardware.h" 1
+# 16 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/hardware.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -1213,7 +1213,7 @@ typedef word_t tcb_cnode_index_t;
 
 
 
-# 1 "/workspace/seL4-c89/include/linker.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/linker.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -1223,7 +1223,7 @@ typedef word_t tcb_cnode_index_t;
        
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/linker.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/linker.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -1241,7 +1241,7 @@ typedef word_t tcb_cnode_index_t;
 
 
 /* bss data that is linked to physical addresses */
-# 11 "/workspace/seL4-c89/include/linker.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/linker.h" 2
 
 /* code that is only used during kernel bootstrapping */
 
@@ -1263,8 +1263,8 @@ typedef word_t tcb_cnode_index_t;
 
 
 /* bss data that is permitted to be used in the restricted SKIM address space */
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/machine/hardware.h" 2
-# 21 "/workspace/seL4-c89/include/arch/x86/arch/machine/hardware.h"
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/hardware.h" 2
+# 21 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/hardware.h"
 enum vm_fault_type {
     X86DataFault = 0,
     X86InstructionFault = 1
@@ -1369,8 +1369,8 @@ static inline void arch_clean_invalidate_caches(void)
 
 /* Initialize Indirect Branch Restricted Speculation into the mode specified by the build configuration */
 bool_t init_ibrs(void);
-# 17 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/registerset.h" 1
+# 17 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/registerset.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -1384,7 +1384,7 @@ bool_t init_ibrs(void);
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine/registerset.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine/registerset.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -1471,14 +1471,14 @@ enum messageSizes {
 
 
 };
-# 140 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine/registerset.h"
+# 140 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine/registerset.h"
 extern const register_t msgRegisters[];
 extern const register_t frameRegisters[];
 extern const register_t gpRegisters[];
-# 15 "/workspace/seL4-c89/include/arch/x86/arch/machine/registerset.h" 2
+# 15 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/registerset.h" 2
 
 /* Minimum hardware-enforced alignment needed for FPU state. */
-# 56 "/workspace/seL4-c89/include/arch/x86/arch/machine/registerset.h"
+# 56 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/registerset.h"
 /* X86 FPU context. */
 struct user_fpu_state {
     uint8_t state[576];
@@ -1505,7 +1505,7 @@ word_t Mode_sanitiseRegister(register_t reg, word_t v);
 
 /* Ensure FPU state is aligned within user context. */
 
-# 18 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h" 2
+# 18 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h" 2
 
 
 enum tcb_arch_cnode_index {
@@ -1526,9 +1526,9 @@ typedef struct arch_tcb {
 
 
 } arch_tcb_t;
-# 61 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 61 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
 typedef int __assert_failed_vtd_pt_size_sane[(9 + 3 == 12) ? 1 : -1] __attribute__((unused));
-# 120 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 120 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
 struct rdmsr_safe_result {
     uint64_t value;
     bool_t success;
@@ -1549,7 +1549,7 @@ enum vm_rights {
 };
 typedef word_t vm_rights_t;
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/object/structures.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/object/structures.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -1564,7 +1564,7 @@ typedef word_t vm_rights_t;
  * sysexit user code = cs + 16, user data = cs + 24, so we need to arrange
  * user CS and DS as 5 and 6.
  * */
-# 25 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/object/structures.h"
+# 25 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/object/structures.h"
 typedef int __assert_failed_gdt_idt_ptr_packed[(sizeof(gdt_idt_ptr_t) == sizeof(uint16_t) * 5) ? 1 : -1] __attribute__((unused));
 
 
@@ -1575,9 +1575,9 @@ typedef int __assert_failed_unsigned_int_size_32[(sizeof(unsigned int) == 4) ? 1
 
 
 typedef int __assert_failed_uint64_t_size_64[(sizeof(uint64_t) == 8) ? 1 : -1] __attribute__((unused));
-# 59 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/object/structures.h"
+# 59 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/object/structures.h"
 typedef pml4e_t vspace_root_t;
-# 94 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/object/structures.h"
+# 94 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/object/structures.h"
 /* there are 1^12 hardware PCID; now we match the software ASID
  * to the available PCID. Since each ASID pool is 4K in size,
  * it contains 512 vroots.
@@ -1588,7 +1588,7 @@ struct asid_pool {
 };
 
 typedef struct asid_pool asid_pool_t;
-# 114 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/object/structures.h"
+# 114 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/object/structures.h"
 static inline asid_t __attribute__((__pure__)) cap_get_capMappedASID(cap_t cap)
 {
     cap_tag_t ctag;
@@ -1670,7 +1670,7 @@ static inline void *__attribute__((__const__)) cap_get_modeCapPtr(cap_t cap)
         return ((void *)0);
     }
 }
-# 141 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h" 2
+# 141 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h" 2
 
 static inline word_t __attribute__((__const__)) cap_get_archCapSizeBits(cap_t cap)
 {
@@ -1690,13 +1690,13 @@ static inline word_t __attribute__((__const__)) cap_get_archCapSizeBits(cap_t ca
 
     case cap_io_port_cap:
         return 0;
-# 168 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 168 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     case cap_asid_control_cap:
         return 0;
 
     case cap_asid_pool_cap:
         return 12;
-# 188 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 188 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     default:
         return cap_get_modeCapSizeBits(cap);
     }
@@ -1721,13 +1721,13 @@ static inline bool_t __attribute__((__const__)) cap_get_archCapIsPhysical(cap_t 
 
     case cap_io_port_cap:
         return false;
-# 221 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 221 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     case cap_asid_control_cap:
         return false;
 
     case cap_asid_pool_cap:
         return true;
-# 241 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 241 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     default:
         return cap_get_modeCapIsPhysical(cap);
     }
@@ -1752,13 +1752,13 @@ static inline void *__attribute__((__const__)) cap_get_archCapPtr(cap_t cap)
 
     case cap_io_port_cap:
         return ((void *)0);
-# 274 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 274 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     case cap_asid_control_cap:
         return ((void *)0);
 
     case cap_asid_pool_cap:
         return ((asid_pool_t*)cap_asid_pool_cap_get_capASIDPool(cap));
-# 294 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 294 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     default:
         return cap_get_modeCapPtr(cap);
     }
@@ -1774,7 +1774,7 @@ static inline bool_t __attribute__((__const__)) Arch_isCapRevocable(cap_t derive
         return false;
     }
 }
-# 211 "/workspace/seL4-c89/include/object/structures.h" 2
+# 211 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 2
 
 struct user_data {
     word_t words[(1ul << (12)) / sizeof(word_t)];
@@ -1838,7 +1838,7 @@ struct tcb {
 
     /* Priority, 1 byte (padded to 1 word) */
     prio_t tcbPriority;
-# 283 "/workspace/seL4-c89/include/object/structures.h"
+# 283 "/workspace/seL4-c89/preconfigured/include/object/structures.h"
     /* Timeslice remaining, 1 word */
     word_t tcbTimeSlice;
 
@@ -1867,7 +1867,7 @@ struct tcb {
 
 };
 typedef struct tcb tcb_t;
-# 403 "/workspace/seL4-c89/include/object/structures.h"
+# 403 "/workspace/seL4-c89/preconfigured/include/object/structures.h"
 /* Ensure object sizes are sane */
 typedef int __assert_failed_cte_size_sane[(sizeof(cte_t) == (1ul << (5))) ? 1 : -1] __attribute__((unused));
 typedef int __assert_failed_tcb_cte_size_sane[((4 + 5) <= (11 - 1)) ? 1 : -1] __attribute__((unused));
@@ -1894,7 +1894,7 @@ isArchCap(cap_t cap)
 {
     return (cap_get_capType(cap) % 2);
 }
-# 12 "/workspace/seL4-c89/include/compound_types.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/compound_types.h" 2
 
 
 struct pde_range {
@@ -1915,9 +1915,9 @@ struct extra_caps {
     cte_ptr_t excaprefs[((1ul<<(seL4_MsgExtraCapBits))-1)];
 };
 typedef struct extra_caps extra_caps_t;
-# 11 "/workspace/seL4-c89/include/types.h" 2
-# 9 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/api/faults.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/types.h" 2
+# 9 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/api/faults.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -1934,8 +1934,8 @@ word_t Arch_setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffe
 
 bool_t handleFaultReply(tcb_t *receiver, tcb_t *sender);
 bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType);
-# 10 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/api/syscall.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/api/syscall.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -1945,7 +1945,7 @@ bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType);
        
 
 
-# 1 "/workspace/seL4-c89/include/machine.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/machine.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -1954,7 +1954,7 @@ bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType);
 
        
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -1963,7 +1963,7 @@ bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType);
 
        
 
-# 1 "/workspace/seL4-c89/include/machine/interrupt.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/interrupt.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -2099,7 +2099,7 @@ static inline void handleReservedIRQ(irq_t irq);
 
 
 static inline void deactivateInterrupt(irq_t irq) {}
-# 10 "/workspace/seL4-c89/include/plat/pc99/plat/machine.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine.h" 2
 
 
 
@@ -2164,8 +2164,8 @@ typedef enum _platform_irq_t {
 
 
 /* The text mode framebuffer exists part way into the video ram region */
-# 10 "/workspace/seL4-c89/include/machine.h" 2
-# 1 "/workspace/seL4-c89/include/machine/registerset.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/include/machine.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/registerset.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -2203,8 +2203,8 @@ static inline word_t __attribute__((__pure__)) getRegister(tcb_t *thread, regist
 {
     return thread->tcbArch.tcbContext.registers[reg];
 }
-# 11 "/workspace/seL4-c89/include/machine.h" 2
-# 1 "/workspace/seL4-c89/include/hardware.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/machine.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/hardware.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -2258,7 +2258,7 @@ extern char ki_end[1];
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/hardware.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/hardware.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -2268,7 +2268,7 @@ extern char ki_end[1];
        
 
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -2375,10 +2375,10 @@ extern char ki_end[1];
 /* The kernel log buffer is a large page mapped into the second index
  * of the page directory that is only otherwise used for the kernel
  * device page table. */
-# 115 "/workspace/seL4-c89/include/plat/pc99/plat/64/plat_mode/machine/hardware.h"
+# 115 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/64/plat_mode/machine/hardware.h"
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/generated_prune/plat_mode/machine/hardware_gen.h" 1
-# 116 "/workspace/seL4-c89/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/tlb_bitmap_defs.h" 1
+# 116 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/tlb_bitmap_defs.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -2386,12 +2386,12 @@ extern char ki_end[1];
  */
 
        
-# 117 "/workspace/seL4-c89/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 2
+# 117 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 2
 
 /* ensure the user top and tlb bitmap do not overlap if multicore */
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/hardware.h" 2
-# 55 "/workspace/seL4-c89/include/hardware.h" 2
-# 12 "/workspace/seL4-c89/include/machine.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/hardware.h" 2
+# 55 "/workspace/seL4-c89/preconfigured/include/hardware.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/machine.h" 2
 
 /* When translating a physical address into an address accessible to the
  * kernel via virtual addressing we always use the mapping of the memory
@@ -2439,7 +2439,7 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
 }
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -2450,7 +2450,7 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -2464,7 +2464,7 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
 
 
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/devices.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/devices.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -2472,8 +2472,8 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
  */
 
        
-# 15 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/vcpu.h" 1
+# 15 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/vcpu.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -2483,7 +2483,7 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
        
 
 
-# 1 "/workspace/seL4-c89/include/api/failures.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/api/failures.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -2493,7 +2493,7 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
        
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/errors.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/errors.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -2521,7 +2521,7 @@ typedef enum {
      */
     seL4_NumErrors
 } seL4_Error;
-# 11 "/workspace/seL4-c89/include/api/failures.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/api/failures.h" 2
 
 /* These datatypes differ markedly from haskell, due to the
  * different implementation of the various fault monads */
@@ -2549,12 +2549,12 @@ struct syscall_error {
     syscall_error_type_t type;
 };
 typedef struct syscall_error syscall_error_t;
-# 47 "/workspace/seL4-c89/include/api/failures.h"
+# 47 "/workspace/seL4-c89/preconfigured/include/api/failures.h"
 extern lookup_fault_t current_lookup_fault;
 extern seL4_Fault_t current_fault;
 extern syscall_error_t current_syscall_error;
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/object/vcpu.h" 2
-# 167 "/workspace/seL4-c89/include/arch/x86/arch/object/vcpu.h"
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/vcpu.h" 2
+# 167 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/vcpu.h"
 /* Exit reasons. */
 enum exit_reasons {
     EXCEPTION_OR_NMI = 0x00,
@@ -2619,8 +2619,8 @@ enum exit_reasons {
 
 
 typedef uint16_t vpid_t;
-# 16 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/iospace.h" 1
+# 16 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/iospace.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -2628,8 +2628,8 @@ typedef uint16_t vpid_t;
  */
 
        
-# 17 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/ioport.h" 1
+# 17 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/ioport.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -2654,10 +2654,10 @@ exception_t decodeX86PortControlInvocation(word_t invLabel, word_t length, cptr_
 
 /* used to clean up the final capability to an allocated I/O port range */
 void freeIOPortRange(uint16_t first_port, uint16_t last_port);
-# 18 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 2
+# 18 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 2
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/model/statedata.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/model/statedata.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -2669,7 +2669,7 @@ void freeIOPortRange(uint16_t first_port, uint16_t last_port);
 
 
 
-# 1 "/workspace/seL4-c89/include/model/statedata.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/model/statedata.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -2681,7 +2681,7 @@ void freeIOPortRange(uint16_t first_port, uint16_t last_port);
 
 
 
-# 1 "/workspace/seL4-c89/include/object/tcb.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object/tcb.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -2695,7 +2695,7 @@ void freeIOPortRange(uint16_t first_port, uint16_t last_port);
 
 
 
-# 1 "/workspace/seL4-c89/include/object/cnode.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object/cnode.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -2736,7 +2736,7 @@ cap_transfer_t __attribute__((__pure__)) loadCapTransfer(word_t *buffer);
 
 exception_t invokeCNodeSaveCaller(cte_t *destSlot);
 void setupReplyMaster(tcb_t *thread);
-# 15 "/workspace/seL4-c89/include/object/tcb.h" 2
+# 15 "/workspace/seL4-c89/preconfigured/include/object/tcb.h" 2
 
 
 
@@ -2820,7 +2820,7 @@ static inline void tcb_queue_insert(tcb_t *tcb, tcb_t *after)
     after->tcbSchedPrev = tcb;
     before->tcbSchedNext = tcb;
 }
-# 167 "/workspace/seL4-c89/include/object/tcb.h"
+# 167 "/workspace/seL4-c89/preconfigured/include/object/tcb.h"
 tcb_queue_t tcbEPAppend(tcb_t *tcb, tcb_queue_t queue);
 tcb_queue_t tcbEPDequeue(tcb_t *tcb, tcb_queue_t queue);
 
@@ -2852,7 +2852,7 @@ exception_t decodeSetSpace(cap_t cap, word_t length,
 exception_t decodeDomainInvocation(word_t invLabel, word_t length, word_t *buffer);
 exception_t decodeBindNotification(cap_t cap);
 exception_t decodeUnbindNotification(cap_t cap);
-# 218 "/workspace/seL4-c89/include/object/tcb.h"
+# 218 "/workspace/seL4-c89/preconfigured/include/object/tcb.h"
 enum thread_control_flag {
     thread_control_update_priority = 0x1,
     thread_control_update_ipc_buffer = 0x2,
@@ -2865,7 +2865,7 @@ typedef word_t thread_control_flag_t;
 
 exception_t invokeTCB_Suspend(tcb_t *thread);
 exception_t invokeTCB_Resume(tcb_t *thread);
-# 245 "/workspace/seL4-c89/include/object/tcb.h"
+# 245 "/workspace/seL4-c89/preconfigured/include/object/tcb.h"
 exception_t invokeTCB_ThreadControl(tcb_t *target, cte_t *slot, cptr_t faultep,
                                     prio_t mcp, prio_t priority, cap_t cRoot_newCap,
                                     cte_t *cRoot_srcSlot, cap_t vRoot_newCap,
@@ -2892,10 +2892,10 @@ word_t setMRs_syscall_error(tcb_t *thread, word_t *receiveIPCBuffer);
 word_t __attribute__((__const__)) Arch_decodeTransfer(word_t flags);
 exception_t __attribute__((__const__)) Arch_performTransfer(word_t arch, tcb_t *tcb_src,
                                        tcb_t *tcb_dest);
-# 13 "/workspace/seL4-c89/include/model/statedata.h" 2
-# 38 "/workspace/seL4-c89/include/model/statedata.h"
+# 13 "/workspace/seL4-c89/preconfigured/include/model/statedata.h" 2
+# 38 "/workspace/seL4-c89/preconfigured/include/model/statedata.h"
 /* UP states are declared as VISIBLE so that they are accessible in assembly */
-# 58 "/workspace/seL4-c89/include/model/statedata.h"
+# 58 "/workspace/seL4-c89/preconfigured/include/model/statedata.h"
 
 extern tcb_queue_t ksReadyQueues[(16 * 256)] __attribute__((externally_visible));
 extern word_t ksReadyQueuesL1Bitmap[16] __attribute__((externally_visible));
@@ -2903,10 +2903,10 @@ extern word_t ksReadyQueuesL2Bitmap[16][((256 + (1 << 6) - 1) / (1 << 6))] __att
 extern tcb_t *ksCurThread __attribute__((externally_visible));
 extern tcb_t *ksIdleThread __attribute__((externally_visible));
 extern tcb_t *ksSchedulerAction __attribute__((externally_visible));
-# 76 "/workspace/seL4-c89/include/model/statedata.h"
+# 76 "/workspace/seL4-c89/preconfigured/include/model/statedata.h"
 /* The thread using the FPU, or NULL if FPU state is invalid */
 extern tcb_t * ksCurFPUOwner __attribute__((externally_visible));
-# 92 "/workspace/seL4-c89/include/model/statedata.h"
+# 92 "/workspace/seL4-c89/preconfigured/include/model/statedata.h"
 ;
 
 extern word_t ksNumCPUs;
@@ -2931,7 +2931,7 @@ extern word_t ksDomainTime;
 
 
 extern char ksIdleThreadTCB[1][(1ul << (11))];
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/model/statedata.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/model/statedata.h" 2
 
 extern pml4e_t x64KSKernelPML4[(1ul << (9))] __attribute__((externally_visible));
 extern pdpte_t x64KSKernelPDPT[(1ul << (9))];
@@ -2970,7 +2970,7 @@ extern word_t x64KSCurrentUserCR3 __attribute__((externally_visible));
  for us here */
 
 extern word_t x64KSIRQStack[1][6 + 2] __attribute__((__aligned__(64))) __attribute__((externally_visible)) __attribute__((__section__(".skim.bss")));
-# 21 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 2
+# 21 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 2
 
 
 
@@ -3022,12 +3022,12 @@ extern x86_arch_global_state_t x86KSGlobalState[1] __attribute__((__aligned__(64
 extern asid_pool_t *x86KSASIDTable[];
 extern uint32_t x86KScacheLineSizeBits;
 extern user_fpu_state_t x86KSnullFpuState __attribute__((__aligned__(64)));
-# 88 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h"
+# 88 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h"
 extern x86_irq_state_t x86KSIRQState[];
 
 extern word_t x86KSAllocatedIOPorts[(1ul << (16)) / 64];
-# 12 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/cpu_registers.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/cpu_registers.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -3035,13 +3035,13 @@ extern word_t x86KSAllocatedIOPorts[(1ul << (16)) / 64];
  */
 
        
-# 29 "/workspace/seL4-c89/include/arch/x86/arch/machine/cpu_registers.h"
+# 29 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/cpu_registers.h"
 /* We use a dummy variable to synchronize reads and writes to the control registers.
  * this allows us to write inline asm blocks that do not have enforced memory
  * clobbers for ordering. */
 static unsigned long control_reg_order;
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine/cpu_registers.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine/cpu_registers.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -3092,7 +3092,7 @@ static inline void write_cr4(unsigned long val)
 {
     __asm__ volatile("movq %0, %%cr4" :: "r"(val), "m"(control_reg_order));
 }
-# 35 "/workspace/seL4-c89/include/arch/x86/arch/machine/cpu_registers.h" 2
+# 35 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/cpu_registers.h" 2
 
 static inline void xsetbv(uint32_t reg, uint64_t value)
 {
@@ -3103,8 +3103,8 @@ static inline void write_xcr0(uint64_t value)
 {
     xsetbv(0, value);
 }
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/model/smp.h" 1
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/smp.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -3117,7 +3117,7 @@ static inline void write_xcr0(uint64_t value)
 
 
 
-# 1 "/workspace/seL4-c89/include/model/smp.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/model/smp.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -3125,8 +3125,8 @@ static inline void write_xcr0(uint64_t value)
  */
 
        
-# 14 "/workspace/seL4-c89/include/arch/x86/arch/model/smp.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/model/smp.h" 1
+# 14 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/smp.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/model/smp.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -3134,9 +3134,9 @@ static inline void write_xcr0(uint64_t value)
  */
 
        
-# 15 "/workspace/seL4-c89/include/arch/x86/arch/model/smp.h" 2
-# 14 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine.h" 1
+# 15 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/smp.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -3148,7 +3148,7 @@ static inline void write_xcr0(uint64_t value)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/pat.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/pat.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -3156,11 +3156,11 @@ static inline void write_xcr0(uint64_t value)
  */
 
        
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/machine.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h" 2
 
 
 
-# 1 "/workspace/seL4-c89/include/object/interrupt.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object/interrupt.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -3172,7 +3172,7 @@ static inline void write_xcr0(uint64_t value)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/interrupt.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/interrupt.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -3190,7 +3190,7 @@ exception_t Arch_decodeIRQControlInvocation(word_t invLabel, word_t length,
                                             cte_t *srcSlot, word_t *buffer);
 void Arch_irqStateInit(void);
 exception_t Arch_checkIRQ(word_t irq_w);
-# 13 "/workspace/seL4-c89/include/object/interrupt.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/object/interrupt.h" 2
 
 
 exception_t decodeIRQControlInvocation(word_t invLabel, word_t length,
@@ -3205,17 +3205,17 @@ void deletedIRQHandler(irq_t irq);
 void handleInterrupt(irq_t irq);
 bool_t isIRQActive(irq_t irq);
 void setIRQState(irq_state_t irqState, irq_t irq);
-# 17 "/workspace/seL4-c89/include/arch/x86/arch/machine.h" 2
-# 53 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 17 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h" 2
+# 53 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
 /* These values taken from:
  *  * Intel manuals, Vol3, table 35-1.
  *  * https://software.intel.com/en-us/articles/intel-architecture-and-processor-identification-with-cpuid-model-and-family-numbers
  */
-# 84 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 84 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
 /* This article discloses prefetcher control on Intel processors; Nehalem, Westmere, Sandy Bridge,
    Ivy Bridge, Haswell, and Broadwell. It is currently undocumented in the regular intel manuals.
    https://software.intel.com/en-us/articles/disclosure-of-hw-prefetcher-control-on-some-intel-processors */
-# 99 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 99 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
 word_t __attribute__((__pure__)) getRestartPC(tcb_t *thread);
 void setNextPC(tcb_t *thread, word_t v);
 
@@ -3314,7 +3314,7 @@ static inline uint64_t x86_rdtsc(void)
                 );
     return ((uint64_t) hi) << 32llu | (uint64_t) lo;
 }
-# 205 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 205 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
 enum x86_vendor {
     X86_VENDOR_INTEL = 0,
     X86_VENDOR_AMD,
@@ -3358,7 +3358,7 @@ static inline void x86_write_fs_base_impl(word_t base);
 static inline word_t x86_read_fs_base_impl(void);
 static inline void x86_write_gs_base_impl(word_t base);
 static inline word_t x86_read_gs_base_impl(void);
-# 266 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 266 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
 /*
  * With fsgsbase, these registers can and are allowed to be changed from
  * user-space.
@@ -3386,7 +3386,7 @@ static inline word_t x86_read_gs_base(cpu_id_t cpu)
 {
     return x86_read_gs_base_impl();
 }
-# 328 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 328 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
 static inline void x86_load_fsgs_base(tcb_t *thread, cpu_id_t cpu)
 {
     /*
@@ -3432,7 +3432,7 @@ static inline exception_t Arch_setTLSRegister(word_t tls_base)
     if (sanitised != tls_base) {
         return EXCEPTION_SYSCALL_ERROR;
     }
-# 383 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 383 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
     x86_set_tls_segment_base(sanitised);
 
     return EXCEPTION_NONE;
@@ -4019,7 +4019,7 @@ void int_fd(void);
 void int_fe(void);
 /** MODIFIES: phantom_machine_state */
 void int_ff(void);
-# 15 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h" 2
+# 15 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h" 2
 
 /*
  * SYSEXIT  0F 35     ; Return to compatibility mode from fast system call.
@@ -4028,7 +4028,7 @@ void int_ff(void);
  * clang uses "sysexitq" and gcc uses "rex.w sysexit" to generate 0x48,0x0F,0x35
  * only at gcc 12 or later "sysexitq" works on both compilers.
  */
-# 32 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h"
+# 32 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h"
 static inline cr3_t makeCR3(paddr_t addr, word_t pcid)
 {
     return cr3_new(addr, wrap_config_set(1) ? pcid : 0);
@@ -4281,13 +4281,13 @@ static inline void x86_save_fsgs_base(tcb_t *thread, cpu_id_t cpu)
      * These should only be accessed inside the kernel, between the
      * entry and exit calls to swapgs if used.
      */
-# 293 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h"
+# 293 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h"
     word_t cur_fs_base = x86_read_fs_base(cpu);
     setRegister(thread, FS_BASE, cur_fs_base);
     word_t cur_gs_base = x86_read_gs_base(cpu);
     setRegister(thread, GS_BASE, cur_gs_base);
 }
-# 322 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h"
+# 322 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h"
 static inline void x86_write_gs_base_impl(word_t base)
 {
     __asm__ volatile("wrgsbase %0"::"r"(base));
@@ -4299,16 +4299,16 @@ static inline word_t x86_read_gs_base_impl(void)
     __asm__ volatile("rdgsbase %0":"=r"(base));
     return base;
 }
-# 348 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h"
+# 348 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h"
 static inline void x86_set_tls_segment_base(word_t tls_base)
 {
     x86_write_fs_base(tls_base, 0lu);
 }
-# 60 "/workspace/seL4-c89/include/machine.h" 2
-# 11 "/workspace/seL4-c89/include/api/syscall.h" 2
+# 60 "/workspace/seL4-c89/preconfigured/include/machine.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/api/syscall.h" 2
 
 
-# 1 "/workspace/seL4-c89/include/kernel/vspace.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/vspace.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4317,7 +4317,7 @@ static inline void x86_set_tls_segment_base(word_t tls_base)
        
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/vspace.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/vspace.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4325,7 +4325,7 @@ static inline void x86_set_tls_segment_base(word_t tls_base)
  */
 
        
-# 18 "/workspace/seL4-c89/include/arch/x86/arch/kernel/vspace.h"
+# 18 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/vspace.h"
 struct lookupPTSlot_ret {
     exception_t status;
     pte_t *ptSlot;
@@ -4444,8 +4444,8 @@ static inline bool_t checkVPAlignment(vm_page_size_t sz, word_t w)
 {
     return (!((w) & ((1ul << (pageBitsForSize(sz))) - 1ul)));
 }
-# 10 "/workspace/seL4-c89/include/kernel/vspace.h" 2
-# 14 "/workspace/seL4-c89/include/api/syscall.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/kernel/vspace.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/api/syscall.h" 2
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/gen_headers/arch/api/syscall.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
@@ -4475,15 +4475,15 @@ enum syscall {
 typedef word_t syscall_t;
 
 /* System call names */
-# 15 "/workspace/seL4-c89/include/api/syscall.h" 2
-# 1 "/workspace/seL4-c89/include/api/debug.h" 1
+# 15 "/workspace/seL4-c89/preconfigured/include/api/syscall.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/api/debug.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 16 "/workspace/seL4-c89/include/api/syscall.h" 2
-# 32 "/workspace/seL4-c89/include/api/syscall.h"
+# 16 "/workspace/seL4-c89/preconfigured/include/api/syscall.h" 2
+# 32 "/workspace/seL4-c89/preconfigured/include/api/syscall.h"
 exception_t handleSyscall(syscall_t syscall);
 exception_t handleInterruptEntry(void);
 exception_t handleUnknownSyscall(word_t w);
@@ -4501,8 +4501,8 @@ static inline word_t __attribute__((__pure__)) getSyscallArg(word_t i, word_t *i
 }
 
 extern extra_caps_t current_extra_caps;
-# 11 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/kernel/thread.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/thread.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4510,7 +4510,7 @@ extern extra_caps_t current_extra_caps;
  */
 
        
-# 19 "/workspace/seL4-c89/include/kernel/thread.h"
+# 19 "/workspace/seL4-c89/preconfigured/include/kernel/thread.h"
 static inline __attribute__((__const__)) word_t ready_queues_index(word_t dom, word_t prio)
 {
     if (numDomains > 1) {
@@ -4603,7 +4603,7 @@ static inline bool_t __attribute__((__pure__)) isStopped(const tcb_t *thread)
         return false;
     }
 }
-# 163 "/workspace/seL4-c89/include/kernel/thread.h"
+# 163 "/workspace/seL4-c89/preconfigured/include/kernel/thread.h"
 void Arch_switchToThread(tcb_t *tcb);
 void Arch_switchToIdleThread(void);
 void Arch_configureIdleThread(tcb_t *tcb);
@@ -4655,8 +4655,8 @@ static inline void updateRestartPC(tcb_t *tcb)
 {
     setRegister(tcb, FaultIP, getRegister(tcb, NextIP));
 }
-# 12 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/thread.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/thread.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4665,17 +4665,7 @@ static inline void updateRestartPC(tcb_t *tcb)
 
        
 
-# 1 "/workspace/seL4-c89/include/object.h" 1
-/*
- * Copyright 2014, General Dynamics C4 Systems
- *
- * SPDX-License-Identifier: GPL-2.0-only
- */
-
-       
-
-
-# 1 "/workspace/seL4-c89/include/object/objecttype.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4685,19 +4675,7 @@ static inline void updateRestartPC(tcb_t *tcb)
        
 
 
-
-
-
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/hardware.h" 1
-/*
- * Copyright 2014, General Dynamics C4 Systems
- *
- * SPDX-License-Identifier: GPL-2.0-only
- */
-
-       
-
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object/objecttype.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4710,9 +4688,16 @@ static inline void updateRestartPC(tcb_t *tcb)
 
 
 
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/hardware.h" 1
+/*
+ * Copyright 2014, General Dynamics C4 Systems
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
 
+       
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/apic.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4724,7 +4709,22 @@ static inline void updateRestartPC(tcb_t *tcb)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/xapic.h" 1
+
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/apic.h" 1
+/*
+ * Copyright 2014, General Dynamics C4 Systems
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
+       
+
+
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/xapic.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -4792,8 +4792,8 @@ static inline void apic_write_icr(word_t high, word_t low)
     apic_write_reg(APIC_ICR2, high);
     apic_write_reg(APIC_ICR1, low);
 }
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/kernel/apic.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/x2apic.h" 1
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/apic.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/x2apic.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -4806,7 +4806,7 @@ static inline void apic_write_icr(word_t high, word_t low)
 
 
 __attribute__((__section__(".boot.text"))) bool_t x2apic_is_enabled(void);
-# 14 "/workspace/seL4-c89/include/arch/x86/arch/kernel/apic.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/apic.h" 2
 
 __attribute__((__section__(".boot.text"))) bool_t apic_enable(void);
 __attribute__((__section__(".boot.text"))) void apic_send_init_ipi(cpu_id_t cpu_id);
@@ -4825,9 +4825,9 @@ bool_t apic_is_interrupt_pending(void);
 
 void apic_send_ipi_core(irq_t vector, cpu_id_t cpu_id);
 void apic_send_ipi_cluster(irq_t vector, word_t mda);
-# 16 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 2
+# 16 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 2
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/acpi.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/acpi.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4914,8 +4914,8 @@ void acpi_dmar_scan(
 bool_t acpi_fadt_scan(
     acpi_rsdp_t *acpi_rsdp
 );
-# 18 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 2
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/ioapic.h" 1
+# 18 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/ioapic.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4937,8 +4937,8 @@ exception_t ioapic_decode_map_pin_to_vector(word_t ioapic, word_t pin, word_t le
 /* The function maps a pin to an interrupt vector, does not perform
  * any checks, use ioapic_decode_map_pin_to_vector first */
 void ioapic_map_pin_to_vector(word_t ioapic, word_t pin, word_t level, word_t polarity, word_t vector);
-# 19 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 2
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/pic.h" 1
+# 19 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/pic.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4958,8 +4958,8 @@ void pic_disable(void);
 void pic_mask_irq(bool_t mask, irq_t irq);
 bool_t pic_is_irq_pending(void);
 void pic_ack_active_irq(void);
-# 20 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 2
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/intel-vtd.h" 1
+# 20 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/intel-vtd.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -4967,11 +4967,11 @@ void pic_ack_active_irq(void);
  */
 
        
-# 21 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 2
+# 21 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 2
 
 static inline void handleReservedIRQ(irq_t irq)
 {
-# 34 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h"
+# 34 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h"
 }
 
 static inline void receivePendingIRQ(void)
@@ -5086,15 +5086,15 @@ static inline void maskInterrupt(bool_t disable, irq_t irq)
          * shouldn't happen, but soldier on */
     }
 }
-# 10 "/workspace/seL4-c89/include/plat/pc99/plat/machine/hardware.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/hardware.h" 2
 
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/generated_prune/plat_mode/machine/hardware_gen.h" 1
-# 12 "/workspace/seL4-c89/include/plat/pc99/plat/machine/hardware.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/hardware.h" 2
 
 
 bool_t platAddDevices(void);
-# 14 "/workspace/seL4-c89/include/object/objecttype.h" 2
-# 1 "/workspace/seL4-c89/include/object/cap.h" 1
+# 14 "/workspace/seL4-c89/preconfigured/include/object/objecttype.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/object/cap.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -5116,8 +5116,8 @@ struct finaliseCap_ret {
     cap_t cleanupInfo;
 };
 typedef struct finaliseCap_ret finaliseCap_ret_t;
-# 15 "/workspace/seL4-c89/include/object/objecttype.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/objecttype.h" 1
+# 15 "/workspace/seL4-c89/preconfigured/include/object/objecttype.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/objecttype.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5172,7 +5172,7 @@ static inline __attribute__((__const__)) bool_t Arch_isMDBParentOf(cap_t cap_a, 
 {
     return true;
 }
-# 16 "/workspace/seL4-c89/include/object/objecttype.h" 2
+# 16 "/workspace/seL4-c89/preconfigured/include/object/objecttype.h" 2
 
 
 deriveCap_ret_t deriveCap(cte_t *slot, cap_t cap);
@@ -5186,7 +5186,7 @@ cap_t createObject(object_t t, void *regionBase, word_t, bool_t deviceMemory);
 void createNewObjects(object_t t, cte_t *parent,
                       cte_t *destCNode, word_t destOffset, word_t destLength,
                       void *regionBase, word_t userSize, bool_t deviceMemory);
-# 41 "/workspace/seL4-c89/include/object/objecttype.h"
+# 41 "/workspace/seL4-c89/preconfigured/include/object/objecttype.h"
 exception_t decodeInvocation(word_t invLabel, word_t length,
                              cptr_t capIndex, cte_t *slot, cap_t cap,
                              bool_t block, bool_t call, word_t *buffer);
@@ -5213,8 +5213,8 @@ word_t __attribute__((__const__)) cap_get_capSizeBits(cap_t cap);
 bool_t __attribute__((__const__)) cap_get_capIsPhysical(cap_t cap);
 void *__attribute__((__const__)) cap_get_capPtr(cap_t cap);
 bool_t __attribute__((__const__)) isCapRevocable(cap_t derivedCap, cap_t srcCap);
-# 11 "/workspace/seL4-c89/include/object.h" 2
-# 1 "/workspace/seL4-c89/include/object/notification.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/object.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/object/notification.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5234,15 +5234,15 @@ void completeSignal(notification_t *ntfnPtr, tcb_t *tcb);
 void unbindMaybeNotification(notification_t *ntfnPtr);
 void unbindNotification(tcb_t *tcb);
 void bindNotification(tcb_t *tcb, notification_t *ntfnPtr);
-# 39 "/workspace/seL4-c89/include/object/notification.h"
+# 39 "/workspace/seL4-c89/preconfigured/include/object/notification.h"
 static inline void ntfn_set_active(notification_t *ntfnPtr, word_t badge)
 {
     notification_ptr_set_state(ntfnPtr, NtfnState_Active);
     notification_ptr_set_ntfnMsgIdentifier(ntfnPtr, badge);
 }
-# 12 "/workspace/seL4-c89/include/object.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/object.h" 2
 
-# 1 "/workspace/seL4-c89/include/object/endpoint.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object/endpoint.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5269,7 +5269,7 @@ static inline void ep_ptr_set_queue(endpoint_t *epptr, tcb_queue_t queue)
     endpoint_ptr_set_epQueue_head(epptr, (word_t)queue.head);
     endpoint_ptr_set_epQueue_tail(epptr, (word_t)queue.end);
 }
-# 35 "/workspace/seL4-c89/include/object/endpoint.h"
+# 35 "/workspace/seL4-c89/preconfigured/include/object/endpoint.h"
 void sendIPC(bool_t blocking, bool_t do_call, word_t badge,
              bool_t canGrant, bool_t canGrantReply, tcb_t *thread,
              endpoint_t *epptr);
@@ -5280,11 +5280,11 @@ void cancelAllIPC(endpoint_t *epptr);
 void cancelBadgedSends(endpoint_t *epptr, word_t badge);
 void replyFromKernel_error(tcb_t *thread);
 void replyFromKernel_success_empty(tcb_t *thread);
-# 14 "/workspace/seL4-c89/include/object.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/object.h" 2
 
 
 
-# 1 "/workspace/seL4-c89/include/object/untyped.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object/untyped.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5292,7 +5292,7 @@ void replyFromKernel_success_empty(tcb_t *thread);
  */
 
        
-# 16 "/workspace/seL4-c89/include/object/untyped.h"
+# 16 "/workspace/seL4-c89/preconfigured/include/object/untyped.h"
 /* It is assumed that every untyped is within seL4_MinUntypedBits and seL4_MaxUntypedBits
  * (inclusive). This means that every untyped stored as seL4_MinUntypedBits
  * subtracted from its size before it is stored in capBlockSize, and
@@ -5314,8 +5314,8 @@ exception_t invokeUntyped_Retype(cte_t *srcSlot, bool_t reset,
                                  void *retypeBase, object_t newType, word_t userSize,
                                  cte_t *destCNode, word_t destOffset, word_t destLength,
                                  bool_t deviceMemory);
-# 18 "/workspace/seL4-c89/include/object.h" 2
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/kernel/thread.h" 2
+# 18 "/workspace/seL4-c89/preconfigured/include/object.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/thread.h" 2
 
 word_t sanitiseRegister(register_t reg, word_t v, bool_t archInfo);
 
@@ -5325,8 +5325,8 @@ static inline bool_t __attribute__((__const__)) Arch_getSanitiseRegisterInfo(tcb
 }
 
 void Mode_postModifyRegisters(tcb_t *tptr);
-# 13 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/machine/debug.h" 1
+# 13 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/debug.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -5334,7 +5334,7 @@ void Mode_postModifyRegisters(tcb_t *tptr);
  */
 
        
-# 14 "/workspace/seL4-c89/src/api/faults.c" 2
+# 14 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
 
 
 
@@ -5454,7 +5454,7 @@ bool_t handleFaultReply(tcb_t *receiver, tcb_t *sender)
     case seL4_Fault_UserException:
         copyMRsFaultReply(sender, receiver, MessageID_Exception, (((length)<(n_exceptionMessage))?(length):(n_exceptionMessage)));
         return (label == 0);
-# 186 "/workspace/seL4-c89/src/api/faults.c"
+# 186 "/workspace/seL4-c89/preconfigured/src/api/faults.c"
     default:
         return Arch_handleFaultReply(receiver, sender, seL4_Fault_get_seL4_FaultType(fault));
     }
@@ -5488,13 +5488,13 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
         return setMR(receiver, receiveIPCBuffer, n_exceptionMessage + 1u,
                      seL4_Fault_UserException_get_code(sender->tcbFault));
     }
-# 257 "/workspace/seL4-c89/src/api/faults.c"
+# 257 "/workspace/seL4-c89/preconfigured/src/api/faults.c"
     default:
         return Arch_setMRs_fault(sender, receiver, receiveIPCBuffer,
                                  seL4_Fault_get_seL4_FaultType(sender->tcbFault));
     }
 }
-# 1 "/workspace/seL4-c89/src/api/syscall.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5503,17 +5503,7 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
 
 
 
-# 1 "/workspace/seL4-c89/include/benchmark/benchmark.h" 1
-/*
- * Copyright 2014, General Dynamics C4 Systems
- *
- * SPDX-License-Identifier: GPL-2.0-only
- */
-
-       
-
-
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/benchmark.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5521,11 +5511,21 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
  */
 
        
-# 11 "/workspace/seL4-c89/include/benchmark/benchmark.h" 2
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/benchmark.h" 1
+/*
+ * Copyright 2014, General Dynamics C4 Systems
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
+       
+# 11 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark.h" 2
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/benchmark_tracepoints_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/benchmark_tracepoints_types.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -5533,10 +5533,10 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
  */
 
        
-# 15 "/workspace/seL4-c89/include/benchmark/benchmark.h" 2
-# 10 "/workspace/seL4-c89/src/api/syscall.c" 2
+# 15 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
 
-# 1 "/workspace/seL4-c89/include/benchmark/benchmark_track.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_track.h" 1
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
@@ -5547,7 +5547,7 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/benchmark_track_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/benchmark_track_types.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -5555,10 +5555,10 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
  */
 
        
-# 12 "/workspace/seL4-c89/include/benchmark/benchmark_track.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_track.h" 2
 
 
-# 1 "/workspace/seL4-c89/include/kernel/cspace.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/cspace.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5619,9 +5619,9 @@ lookupSlot_ret_t lookupPivotSlot(cap_t root, cptr_t capptr,
 resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap,
                                             cptr_t capptr,
                                             word_t n_bits);
-# 15 "/workspace/seL4-c89/include/benchmark/benchmark_track.h" 2
-# 12 "/workspace/seL4-c89/src/api/syscall.c" 2
-# 1 "/workspace/seL4-c89/include/benchmark/benchmark_utilisation.h" 1
+# 15 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_track.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_utilisation.h" 1
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
@@ -5632,7 +5632,7 @@ resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap,
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/benchmark_utilisation_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/benchmark_utilisation_types.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -5640,13 +5640,13 @@ resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap,
  */
 
        
-# 12 "/workspace/seL4-c89/include/benchmark/benchmark_utilisation.h" 2
-# 13 "/workspace/seL4-c89/src/api/syscall.c" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_utilisation.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
 
 
 
 
-# 1 "/workspace/seL4-c89/include/kernel/faulthandler.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/faulthandler.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5654,19 +5654,19 @@ resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap,
  */
 
        
-# 22 "/workspace/seL4-c89/include/kernel/faulthandler.h"
+# 22 "/workspace/seL4-c89/preconfigured/include/kernel/faulthandler.h"
 exception_t sendFaultIPC(tcb_t *tptr);
 void handleDoubleFault(tcb_t *tptr, seL4_Fault_t ex1);
 
 void handleFault(tcb_t *tptr);
-# 18 "/workspace/seL4-c89/src/api/syscall.c" 2
+# 18 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
 
 
 
 
 
 
-# 1 "/workspace/seL4-c89/include/string.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/string.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -5680,8 +5680,8 @@ void handleFault(tcb_t *tptr);
 word_t strnlen(const char *s, word_t maxlen);
 word_t strlcpy(char *dest, const char *src, word_t size);
 word_t strlcat(char *dest, const char *src, word_t size);
-# 25 "/workspace/seL4-c89/src/api/syscall.c" 2
-# 1 "/workspace/seL4-c89/include/kernel/traps.h" 1
+# 25 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/traps.h" 1
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
@@ -5692,7 +5692,7 @@ word_t strlcat(char *dest, const char *src, word_t size);
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/traps.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/traps.h" 1
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
@@ -5737,8 +5737,8 @@ __attribute__((externally_visible)) __attribute__((__noreturn__));
 
 void c_handle_vmexit(void)
 __attribute__((externally_visible)) __attribute__((__noreturn__));
-# 12 "/workspace/seL4-c89/include/kernel/traps.h" 2
-# 1 "/workspace/seL4-c89/include/smp/lock.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/include/kernel/traps.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/smp/lock.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -5752,7 +5752,7 @@ __attribute__((externally_visible)) __attribute__((__noreturn__));
 
 
 
-# 1 "/workspace/seL4-c89/include/smp/ipi.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/smp/ipi.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -5764,7 +5764,7 @@ __attribute__((externally_visible)) __attribute__((__noreturn__));
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/smp/ipi.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/smp/ipi.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -5772,9 +5772,9 @@ __attribute__((externally_visible)) __attribute__((__noreturn__));
  */
 
        
-# 13 "/workspace/seL4-c89/include/smp/ipi.h" 2
-# 15 "/workspace/seL4-c89/include/smp/lock.h" 2
-# 13 "/workspace/seL4-c89/include/kernel/traps.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/smp/ipi.h" 2
+# 15 "/workspace/seL4-c89/preconfigured/include/smp/lock.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/kernel/traps.h" 2
 
 /* This C function should be the first thing called from C after entry from
  * assembly. It provides a single place to do any entry work that is not
@@ -5793,18 +5793,18 @@ static inline void c_entry_hook(void)
  * in C before leaving the kernel */
 static inline void c_exit_hook(void)
 {
-# 44 "/workspace/seL4-c89/include/kernel/traps.h"
+# 44 "/workspace/seL4-c89/preconfigured/include/kernel/traps.h"
     arch_c_exit_hook();
 }
-# 26 "/workspace/seL4-c89/src/api/syscall.c" 2
-# 37 "/workspace/seL4-c89/src/api/syscall.c"
+# 26 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
+# 37 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
 /* The haskell function 'handleEvent' is split into 'handleXXX' variants
  * for each event causing a kernel entry */
 
 exception_t handleInterruptEntry(void)
 {
     irq_t irq;
-# 51 "/workspace/seL4-c89/src/api/syscall.c"
+# 51 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     irq = getActiveIRQ();
     if ((irq) != (irqInvalid)) {
         handleInterrupt(irq);
@@ -5829,9 +5829,9 @@ exception_t handleInterruptEntry(void)
 
 exception_t handleUnknownSyscall(word_t w)
 {
-# 210 "/workspace/seL4-c89/src/api/syscall.c"
+# 210 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     { { current_fault = seL4_Fault_UnknownSyscall_new(w); handleFault(ksCurThread); } }
-# 227 "/workspace/seL4-c89/src/api/syscall.c"
+# 227 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     schedule();
     activateThread();
 
@@ -5853,7 +5853,7 @@ exception_t handleUserLevelFault(word_t w_a, word_t w_b)
 exception_t handleVMFaultEvent(vm_fault_type_t vm_faultType)
 {
     { { exception_t status = handleVMFault(ksCurThread, vm_faultType); if (status != EXCEPTION_NONE) { handleFault(ksCurThread); } } }
-# 256 "/workspace/seL4-c89/src/api/syscall.c"
+# 256 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     schedule();
     activateThread();
 
@@ -5943,7 +5943,7 @@ static exception_t handleInvocation(bool_t isCall, bool_t isBlocking)
 
     return EXCEPTION_NONE;
 }
-# 369 "/workspace/seL4-c89/src/api/syscall.c"
+# 369 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
 static void handleReply(void)
 {
     cte_t *callerSlot;
@@ -6008,7 +6008,7 @@ static void handleRecv(bool_t isBlocking)
             handleFault(ksCurThread);
             break;
         }
-# 447 "/workspace/seL4-c89/src/api/syscall.c"
+# 447 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
         deleteCallerCap(ksCurThread);
         receiveIPC(ksCurThread, lu_ret.cap, isBlocking);
 
@@ -6037,10 +6037,10 @@ static void handleRecv(bool_t isBlocking)
         break;
     }
 }
-# 502 "/workspace/seL4-c89/src/api/syscall.c"
+# 502 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
 static void handleYield(void)
 {
-# 512 "/workspace/seL4-c89/src/api/syscall.c"
+# 512 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     tcbSchedDequeue(ksCurThread);
     tcbSchedAppend(ksCurThread);
     rescheduleRequired();
@@ -6052,13 +6052,13 @@ exception_t handleSyscall(syscall_t syscall)
     exception_t ret;
     irq_t irq;
     { { switch (syscall) { case SysSend: ret = handleInvocation(false, true); if (__builtin_expect(!!(ret != EXCEPTION_NONE), 0)) { ; irq = getActiveIRQ(); if ((irq) != (irqInvalid)) { handleInterrupt(irq); } } break; case SysNBSend: ret = handleInvocation(false, false); if (__builtin_expect(!!(ret != EXCEPTION_NONE), 0)) { ; irq = getActiveIRQ(); if ((irq) != (irqInvalid)) { handleInterrupt(irq); } } break; case SysCall: ret = handleInvocation(true, true); if (__builtin_expect(!!(ret != EXCEPTION_NONE), 0)) { ; irq = getActiveIRQ(); if ((irq) != (irqInvalid)) { handleInterrupt(irq); } } break; case SysRecv: handleRecv(true); break; case SysReply: handleReply(); break; case SysReplyRecv: handleReply(); handleRecv(true); break; case SysNBRecv: handleRecv(false); break; case SysYield: handleYield(); break; default: halt(); } } }
-# 631 "/workspace/seL4-c89/src/api/syscall.c"
+# 631 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     schedule();
     activateThread();
 
     return EXCEPTION_NONE;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -6067,7 +6067,7 @@ exception_t handleSyscall(syscall_t syscall)
 
 
 
-# 1 "/workspace/seL4-c89/include/machine/fpu.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/fpu.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -6079,7 +6079,7 @@ exception_t handleSyscall(syscall_t syscall)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/fpu.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/fpu.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -6087,7 +6087,7 @@ exception_t handleSyscall(syscall_t syscall)
  */
 
        
-# 18 "/workspace/seL4-c89/include/arch/x86/arch/machine/fpu.h"
+# 18 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/fpu.h"
 /* Initialise the FPU. */
 bool_t Arch_initFpu(void);
 
@@ -6176,7 +6176,7 @@ static inline void disableFpu(void)
 {
     write_cr0(read_cr0() | (1ul << (3)) /* Trap on any FPU usage, for lazy FPU. */);
 }
-# 13 "/workspace/seL4-c89/include/machine/fpu.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/machine/fpu.h" 2
 
 
 
@@ -6204,9 +6204,9 @@ static inline void __attribute__((always_inline)) lazyFPURestore(tcb_t *thread)
         switchLocalFpuOwner(thread);
     }
 }
-# 10 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c" 2
+# 10 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c" 2
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/debug.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/debug.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -6214,8 +6214,8 @@ static inline void __attribute__((always_inline)) lazyFPURestore(tcb_t *thread)
  */
 
        
-# 12 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c" 2
-# 1 "/workspace/seL4-c89/include/kernel/stack.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/stack.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -6226,7 +6226,7 @@ static inline void __attribute__((always_inline)) lazyFPURestore(tcb_t *thread)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/stack.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/stack.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -6234,7 +6234,7 @@ static inline void __attribute__((always_inline)) lazyFPURestore(tcb_t *thread)
  */
 
        
-# 12 "/workspace/seL4-c89/include/kernel/stack.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/kernel/stack.h" 2
 
 /* These are the stacks used in kernel, shared between architectures/modes.
  * CONFIG_KERNEL_STACK_BITS is defined in kernel/Kconfig. The physical/offset
@@ -6242,8 +6242,8 @@ static inline void __attribute__((always_inline)) lazyFPURestore(tcb_t *thread)
  * defined for each arch/mode in <mode/kernel/stack.h>
  */
 extern char kernel_stack_alloc[1][(1ul << (12))];
-# 13 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c" 2
-# 208 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
+# 13 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c" 2
+# 208 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
 void __attribute__((externally_visible)) __attribute__((__noreturn__)) restore_user_context(void)
 {
     c_exit_hook();
@@ -6270,7 +6270,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) restore_u
 
     tcb_t *cur_thread = ksCurThread;
     word_t *irqstack = x64KSIRQStack[0lu];
-# 255 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
+# 255 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
     if (wrap_config_set(0)) {
         x86_disable_ibrs();
     }
@@ -6439,7 +6439,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) restore_u
 
 
             "popq %%rcx\n"
-# 446 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
+# 446 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
             "movq (x64KSCurrentUserCR3), %%rsp\n"
             "movq %%rsp, %%cr3\n"
 
@@ -6479,14 +6479,14 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_x64_han
     c_handle_interrupt(irq, syscall);
     __builtin_unreachable();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/kernel/elf.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/elf.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/elf.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/elf.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -6496,7 +6496,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_x64_han
        
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/elf.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/elf.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -6535,13 +6535,13 @@ typedef struct Elf64_Phdr {
     uint64_t p_memsz;
     uint64_t p_align;
 } Elf64_Phdr_t, Elf_Phdr_t;
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/kernel/elf.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/elf.h" 2
 
 /* minimal ELF functionality for loading GRUB boot module */
 bool_t elf_checkFile(Elf_Header_t *elfFile);
 v_region_t elf_getMemoryBounds(Elf_Header_t *elfFile);
 void elf_load(Elf_Header_t *elfFile, seL4_Word offset);
-# 8 "/workspace/seL4-c89/src/arch/x86/64/kernel/elf.c" 2
+# 8 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/elf.c" 2
 
 
 __attribute__((__section__(".boot.text"))) bool_t elf_checkFile(Elf64_Header_t *elf)
@@ -6600,13 +6600,13 @@ __attribute__((__section__(".boot.text"))) void elf_load(Elf64_Header_t *elf, se
         memset((void *)dst, 0, phdr[i].p_memsz - len);
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/kernel/thread.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/thread.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 14 "/workspace/seL4-c89/src/arch/x86/64/kernel/thread.c"
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/thread.c"
 void Arch_switchToThread(tcb_t *tcb)
 {
     /* set PD */
@@ -6667,7 +6667,7 @@ void Mode_postModifyRegisters(tcb_t *tptr)
         setRegister(tptr, Error, 0);
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -6677,7 +6677,7 @@ void Mode_postModifyRegisters(tcb_t *tptr)
 
 
 
-# 1 "/workspace/seL4-c89/include/kernel/boot.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/boot.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -6688,7 +6688,7 @@ void Mode_postModifyRegisters(tcb_t *tptr)
 
 
 
-# 1 "/workspace/seL4-c89/include/bootinfo.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/bootinfo.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -6699,7 +6699,7 @@ void Mode_postModifyRegisters(tcb_t *tptr)
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/bootinfo_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/bootinfo_types.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -6822,11 +6822,11 @@ typedef struct seL4_BootInfoHeader {
 typedef int __assert_failed_invalid_seL4_BootInfoHeader[(sizeof(seL4_BootInfoHeader) == 2 * sizeof(seL4_Word)) ? 1 : -1] __attribute__((unused));
 
                                                          ;
-# 12 "/workspace/seL4-c89/include/bootinfo.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/bootinfo.h" 2
 
 /* declare object-specific macros to hide the casting */
-# 12 "/workspace/seL4-c89/include/kernel/boot.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/bootinfo.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/include/kernel/boot.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/bootinfo.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -6846,7 +6846,7 @@ typedef int __assert_failed_invalid_seL4_BootInfoHeader[(sizeof(seL4_BootInfoHea
  *      - apic (1)
  *      - the reserved MSI region (1)
  */
-# 13 "/workspace/seL4-c89/include/kernel/boot.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/kernel/boot.h" 2
 
 /*
  * Resolve naming differences between the abstract specifications
@@ -6974,10 +6974,10 @@ static inline __attribute__((__section__(".boot.text"))) pptr_t it_alloc_paging(
 
 /* return the amount of paging structures required to cover v_reg */
 word_t arch_get_n_paging(v_region_t it_veg);
-# 11 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c" 2
+# 11 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c" 2
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/boot.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/boot.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -6990,7 +6990,7 @@ word_t arch_get_n_paging(v_region_t it_veg);
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/bootinfo_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/bootinfo_types.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -7122,7 +7122,7 @@ typedef struct seL4_X86_BootInfo_mmap {
 } __attribute__((packed)) seL4_X86_BootInfo_mmap_t;
 
 typedef struct multiboot2_fb seL4_X86_BootInfo_fb_t;
-# 14 "/workspace/seL4-c89/include/arch/x86/arch/kernel/boot.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/boot.h" 2
 
 typedef struct mem_p_regs {
     word_t count;
@@ -7159,8 +7159,8 @@ bool_t init_cpu(
 
 bool_t add_allocated_p_region(p_region_t reg);
 void init_allocated_p_regions(void);
-# 14 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/boot_sys.h" 1
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/boot_sys.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -7169,7 +7169,7 @@ void init_allocated_p_regions(void);
 
        
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/multiboot.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/multiboot.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -7230,8 +7230,8 @@ typedef struct multiboot_info {
         uint16_t vbe_interface_len;
     } part2;
 } __attribute__((packed)) multiboot_info_t;
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/kernel/boot_sys.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/multiboot2.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/boot_sys.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/multiboot2.h" 1
 /*
  * Copyright 2017, Genode Labs GmbH
  *
@@ -7285,7 +7285,7 @@ enum multiboot2_tags {
     MULTIBOOT2_TAG_ACPI_1 = 14,
     MULTIBOOT2_TAG_ACPI_2 = 15,
 };
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/kernel/boot_sys.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/boot_sys.h" 2
 
 /* type definitions (directly corresponding to abstract specification) */
 typedef struct boot_state {
@@ -7315,7 +7315,7 @@ void boot_sys(
     unsigned long multiboot_magic,
     void *multiboot
 );
-# 15 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c" 2
+# 15 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c" 2
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/gen_headers/arch/api/invocation.h" 1
 
 /*
@@ -7464,8 +7464,8 @@ enum arch_invocation_label {
 # 88 "/workspace/seL4-c89/preconfigured/X64_verified/gen_headers/arch/api/invocation.h"
     nArchInvocationLabels
 };
-# 16 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/tlb.h" 1
+# 16 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/tlb.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -7475,7 +7475,7 @@ enum arch_invocation_label {
        
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/tlb.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/tlb.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -7484,7 +7484,7 @@ enum arch_invocation_label {
 
        
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/smp/ipi_inline.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/smp/ipi_inline.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -7492,7 +7492,7 @@ enum arch_invocation_label {
  */
 
        
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/kernel/tlb.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/tlb.h" 2
 
 static inline void invalidatePageStructureCacheASID(paddr_t root, asid_t asid, word_t mask)
 {
@@ -7517,8 +7517,8 @@ static inline void invalidateTranslationAll(word_t mask)
     invalidateLocalTranslationAll();
     ;
 }
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/smp/ipi.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/smp/ipi.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -7526,8 +7526,8 @@ static inline void invalidateTranslationAll(word_t mask)
  */
 
        
-# 12 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/tlb_bitmap.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/tlb_bitmap.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -7541,7 +7541,7 @@ static inline void invalidateTranslationAll(word_t mask)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/vspace.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/vspace.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -7605,8 +7605,8 @@ static inline __attribute__((__const__)) pml4e_t x86_make_empty_root_mapping(voi
                0 /* present          */
            );
 }
-# 15 "/workspace/seL4-c89/include/arch/x86/arch/kernel/tlb_bitmap.h" 2
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
+# 15 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/tlb_bitmap.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
 
 /*
  * This is a wrapper around invalidatePCID that can be used to invalidate
@@ -7634,7 +7634,7 @@ static inline void invalidateASID(vspace_root_t *vspace, asid_t asid, word_t mas
     invalidateLocalASID(vspace, asid);
     ;
 }
-# 17 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c" 2
+# 17 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c" 2
 
 
 
@@ -7753,7 +7753,7 @@ __attribute__((__section__(".boot.text"))) bool_t map_kernel_window(
                            1, /* read_write */
                            1 /* present */
                        );
-# 243 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c"
+# 243 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c"
     /* now map in the kernel devices */
     if (!map_kernel_window_devices(x64KSKernelPT, num_ioapic, ioapic_paddrs, num_drhu, drhu_list)) {
         return false;
@@ -9042,13 +9042,13 @@ exception_t decodeX86ModeMapPage(word_t label, vm_page_size_t page_size, cte_t *
     }
     halt();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/machine/capdl.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/machine/capdl.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/arch/x86/64/machine/registerset.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/machine/registerset.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -9116,13 +9116,13 @@ word_t Mode_sanitiseRegister(register_t reg, word_t v)
     }
     return v;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/model/smp.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/model/smp.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/arch/x86/64/model/statedata.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/model/statedata.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -9154,14 +9154,14 @@ word_t x64KSCurrentUserCR3;
 
 
 word_t x64KSIRQStack[1][6 + 2] __attribute__((__aligned__(64))) __attribute__((externally_visible)) __attribute__((__section__(".skim.bss")));
-# 1 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 17 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c"
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/ept.h" 1
+# 17 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/ept.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -9169,7 +9169,7 @@ word_t x64KSIRQStack[1][6 + 2] __attribute__((__aligned__(64))) __attribute__((e
  */
 
        
-# 18 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c" 2
+# 18 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c" 2
 
 
 
@@ -9257,7 +9257,7 @@ finaliseCap_ret_t Mode_finaliseCap(cap_t cap, bool_t final)
     case cap_frame_cap:
         if (cap_frame_cap_get_capFMappedASID(cap)) {
             switch (cap_frame_cap_get_capFMapType(cap)) {
-# 120 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c"
+# 120 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c"
             case X86_MappingVSpace:
                 unmapPage(
                     cap_frame_cap_get_capFSize(cap),
@@ -9433,7 +9433,7 @@ cap_t Mode_createObject(object_t t, void *regionBase, word_t userSize, bool_t de
                    (word_t)regionBase, /* capPML4BasePtr      */
                    0 /* capPML4IsMapped     */
                );
-# 307 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c"
+# 307 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c"
     default:
         /*
          * This is a conflation of the haskell error: "Arch.createNewCaps
@@ -9468,13 +9468,13 @@ exception_t Mode_decodeInvocation(
         return EXCEPTION_SYSCALL_ERROR;
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/smp/ipi.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/smp/ipi.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/arch/x86/api/faults.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/api/faults.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -9567,13 +9567,13 @@ word_t handleKernelException(
     halt();
     __builtin_unreachable();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/benchmark/benchmark.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/benchmark/benchmark.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/arch/x86/c_traps.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -9583,7 +9583,7 @@ word_t handleKernelException(
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/fastpath/fastpath.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/fastpath/fastpath.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -9592,7 +9592,7 @@ word_t handleKernelException(
 
        
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/fastpath/fastpath.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/fastpath/fastpath.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -9639,7 +9639,7 @@ static inline void __attribute__((always_inline)) switchToThread_fp(tcb_t *threa
        
         setCurrentUserCR3(next_cr3);
     }
-# 55 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/fastpath/fastpath.h"
+# 55 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/fastpath/fastpath.h"
     lazyFPURestore(thread);
 
     if (wrap_config_set(0)) {
@@ -9732,7 +9732,7 @@ static inline void __attribute__((__noreturn__)) __attribute__((always_inline)) 
         irqstack[4] = 0;
         irqstack[5] = 0;
     }
-# 159 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/fastpath/fastpath.h"
+# 159 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/fastpath/fastpath.h"
     if (wrap_config_set(0)) {
         x86_disable_ibrs();
     }
@@ -9838,7 +9838,7 @@ static inline void __attribute__((__noreturn__)) __attribute__((always_inline)) 
     }
     __builtin_unreachable();
 }
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/fastpath/fastpath.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/fastpath/fastpath.h" 2
 
 
 static inline int fastpath_reply_cap_check(cap_t cap)
@@ -9859,12 +9859,12 @@ __attribute__((__noreturn__));
 void fastpath_reply_recv(word_t cptr, word_t r_msgInfo)
 
 __attribute__((__noreturn__));
-# 11 "/workspace/seL4-c89/src/arch/x86/c_traps.c" 2
+# 11 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c" 2
 
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/vmenter.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/vmenter.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -9872,7 +9872,7 @@ __attribute__((__noreturn__));
  */
 
        
-# 53 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/vmenter.h"
+# 53 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/vmenter.h"
 /*
  * After performing a seL4_SysVMEnter the msgInfo register is set to indicate
  * whether a return back to this thread happened due to a fault in the associated
@@ -9894,7 +9894,7 @@ __attribute__((__noreturn__));
  * Constants describing the number of message registers returned by the
  * kernel for each of the return cases of VMEnter
  */
-# 16 "/workspace/seL4-c89/src/arch/x86/c_traps.c" 2
+# 16 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c" 2
 
 
 
@@ -9932,7 +9932,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_handle_
 
 
         handleVMFaultEvent(type);
-# 62 "/workspace/seL4-c89/src/arch/x86/c_traps.c"
+# 62 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c"
     } else if (irq < int_irq_min) {
 
 
@@ -9970,7 +9970,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_handle_
 
 void __attribute__((__noreturn__)) slowpath(syscall_t syscall)
 {
-# 117 "/workspace/seL4-c89/src/arch/x86/c_traps.c"
+# 117 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c"
     /* check for undefined syscall */
     if (__builtin_expect(!!(syscall < (-8) || syscall > (-1)), 0)) {
 
@@ -10037,7 +10037,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_handle_
     slowpath(syscall);
     __builtin_unreachable();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/idle.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/idle.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -10045,13 +10045,13 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_handle_
  */
 
 
-# 1 "/workspace/seL4-c89/include/api/debug.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/api/debug.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 9 "/workspace/seL4-c89/src/arch/x86/idle.c" 2
+# 9 "/workspace/seL4-c89/preconfigured/src/arch/x86/idle.c" 2
 
 /*
  * The idle thread does not have a dedicated stack and runs in
@@ -10085,7 +10085,7 @@ void __attribute__((externally_visible)) halt(void)
     idle_thread();
     __builtin_unreachable();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -10098,7 +10098,7 @@ void __attribute__((externally_visible)) halt(void)
 
 
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/pit.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/pit.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -10112,7 +10112,7 @@ void __attribute__((externally_visible)) halt(void)
 
 void pit_init(void);
 void pit_wait_wraparound(void);
-# 14 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c" 2
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c" 2
 
 
 
@@ -10152,7 +10152,7 @@ __attribute__((__section__(".boot.text"))) bool_t apic_init(bool_t mask_legacy_i
     if (!apic_enable()) {
         return false;
     }
-# 69 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c"
+# 69 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c"
     apic_khz = apic_measure_freq();
 
     apic_version.words[0] = apic_read_reg(APIC_VERSION);
@@ -10162,7 +10162,7 @@ __attribute__((__section__(".boot.text"))) bool_t apic_init(bool_t mask_legacy_i
         ((void)(0));
         return false;
     }
-# 86 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c"
+# 86 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c"
     /* check for correct number of LVT entries */
     num_lvt_entries = apic_version_get_max_lvt_entry(apic_version) + 1;
     if (num_lvt_entries < 3) {
@@ -10255,14 +10255,14 @@ void apic_ack_active_interrupt(void)
 {
     apic_write_reg(APIC_EOI, 0);
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 19 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/timer.h" 1
+# 19 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/timer.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -10270,7 +10270,7 @@ void apic_ack_active_interrupt(void)
  */
 
        
-# 75 "/workspace/seL4-c89/include/arch/x86/arch/machine/timer.h"
+# 75 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/timer.h"
 static inline void resetTimer(void)
 {
     /* nothing to do */
@@ -10279,7 +10279,7 @@ static inline void resetTimer(void)
 
 
 __attribute__((__section__(".boot.text"))) uint32_t tsc_init(void);
-# 20 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c" 2
+# 20 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c" 2
 
 
 
@@ -10298,7 +10298,7 @@ __attribute__((__section__(".boot.text"))) static void init_irqs(cap_t root_cnod
     for (i = 0; i <= maxIRQ; i++) {
         if (i == irq_timer) {
             setIRQState(IRQTimer, i);
-# 46 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
+# 46 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
         } else if (i == 2 && wrap_config_set(0)) {
             /* cascaded legacy PIC */
             setIRQState(IRQReserved, i);
@@ -10572,7 +10572,7 @@ __attribute__((__section__(".boot.text"))) bool_t init_sys_state(
         return false;
     }
     init_core_state(initial);
-# 332 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
+# 332 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
     ndks_boot.bi_frame->numIOPTLevels = -1;
 
 
@@ -10665,10 +10665,10 @@ __attribute__((__section__(".boot.text"))) bool_t init_cpu(
     if (wrap_config_set(0)) {
         enablePMCUser();
     }
-# 432 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
+# 432 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
     return true;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -10681,7 +10681,7 @@ __attribute__((__section__(".boot.text"))) bool_t init_cpu(
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/cmdline.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/cmdline.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -10701,10 +10701,10 @@ typedef struct cmdline_opt {
 } cmdline_opt_t;
 
 void cmdline_parse(const char *cmdline, cmdline_opt_t *cmdline_opt);
-# 14 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c" 2
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c" 2
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/smp_sys.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/smp_sys.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -10717,8 +10717,8 @@ void cmdline_parse(const char *cmdline, cmdline_opt_t *cmdline_opt);
  * startup IPI */
 
 /* Limit of memory region we can copy the AP to */
-# 17 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c" 2
-# 27 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c"
+# 17 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c" 2
+# 27 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c"
 /* addresses defined in linker script */
 /* need a fake array to get the pointer from the linker script */
 
@@ -11076,7 +11076,7 @@ static __attribute__((__section__(".boot.text"))) bool_t try_boot_sys(void)
                                                                                        ;
         }
     }
-# 394 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c"
+# 394 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c"
     ((void)(0))
 
 
@@ -11419,7 +11419,7 @@ __attribute__((__section__(".boot.text"))) __attribute__((externally_visible)) v
     schedule();
     activateThread();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/cmdline.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/cmdline.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -11432,7 +11432,7 @@ __attribute__((__section__(".boot.text"))) __attribute__((externally_visible)) v
 
 
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/io.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/io.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -11457,7 +11457,7 @@ uint8_t in8(uint16_t port);
 uint16_t in16(uint16_t port);
 /** MODIFIES: */
 uint32_t in32(uint16_t port);
-# 14 "/workspace/seL4-c89/src/arch/x86/kernel/cmdline.c" 2
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/cmdline.c" 2
 
 /* 'cmdline_val' is declared globally because of a C-subset restriction.
  * It is only used in cmdline_parse(), which therefore is non-reentrant.
@@ -11552,23 +11552,23 @@ static void __attribute__((unused)) parse_uint16_array(char *str, uint16_t *arra
 
 void cmdline_parse(const char *cmdline, cmdline_opt_t *cmdline_opt)
 {
-# 164 "/workspace/seL4-c89/src/arch/x86/kernel/cmdline.c"
+# 164 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/cmdline.c"
     cmdline_opt->disable_iommu = parse_bool(cmdline, cmdline_str_disable_iommu);
     ((void)(0));
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/ept.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/ept.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/smp_sys.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/smp_sys.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/thread.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/thread.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -11582,13 +11582,13 @@ void Arch_postModifyRegisters(tcb_t *tptr)
 {
     Mode_postModifyRegisters(tptr);
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/vspace.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/vspace.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 18 "/workspace/seL4-c89/src/arch/x86/kernel/vspace.c"
+# 18 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/vspace.c"
 static exception_t performPageGetAddress(void *vbase_ptr, bool_t call)
 {
     /* Get the physical address of this frame. */
@@ -12418,7 +12418,7 @@ static exception_t performX86FrameInvocationUnmap(cap_t cap, cte_t *cte)
         switch (cap_frame_cap_get_capFMapType(cap)) {
         case X86_MappingVSpace:
             return performX86PageInvocationUnmap(cap, cte);
-# 855 "/workspace/seL4-c89/src/arch/x86/kernel/vspace.c"
+# 855 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/vspace.c"
         case X86_MappingNone:
             halt();
             break;
@@ -12650,7 +12650,7 @@ exception_t decodeX86FrameInvocation(
         setThreadState(ksCurThread, ThreadState_Restart);
         return performX86FrameInvocationUnmap(cap, cte);
     }
-# 1098 "/workspace/seL4-c89/src/arch/x86/kernel/vspace.c"
+# 1098 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/vspace.c"
     case X86PageGetAddress: {
         /* Return it in the first message register. */
         ;
@@ -12965,7 +12965,7 @@ exception_t decodeX86MMUInvocation(
         return decodeX86ModeMMUInvocation(invLabel, length, cptr, cte, cap, call, buffer);
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/x2apic.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/x2apic.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -12987,13 +12987,13 @@ __attribute__((__section__(".boot.text"))) bool_t x2apic_is_enabled(void)
     }
     return false;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/xapic.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/xapic.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 28 "/workspace/seL4-c89/src/arch/x86/kernel/xapic.c"
+# 28 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/xapic.c"
 __attribute__((__section__(".boot.text"))) bool_t apic_enable(void)
 {
     apic_base_msr_t apic_base_msr;
@@ -13133,19 +13133,19 @@ void apic_send_ipi_cluster(irq_t vector, word_t mda)
         ).words[0]
     );
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/breakpoint.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/breakpoint.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/capdl.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/capdl.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/cpu_identification.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/cpu_identification.c"
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
@@ -13312,7 +13312,7 @@ bool_t x86_cpuid_initialize(void)
         return false;
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/fpu.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/fpu.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -13402,13 +13402,13 @@ __attribute__((__section__(".boot.text"))) bool_t Arch_initFpu(void)
     }
     return true;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/hardware.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/hardware.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 16 "/workspace/seL4-c89/src/arch/x86/machine/hardware.c"
+# 16 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/hardware.c"
 /* initialises MSRs required to setup sysenter and sysexit */
 __attribute__((__section__(".boot.text"))) void init_sysenter_msrs(void)
 {
@@ -13575,7 +13575,7 @@ __attribute__((__section__(".boot.text"))) bool_t init_ibrs(void)
     }
     return true;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/registerset.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/registerset.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -13619,13 +13619,13 @@ word_t sanitiseRegister(register_t reg, word_t v, bool_t archInfo)
     }
     return v;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/model/statedata.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/model/statedata.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 14 "/workspace/seL4-c89/src/arch/x86/model/statedata.c"
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/model/statedata.c"
 /* ==== read/write kernel state not preserved across kernel entries ==== */
 
 /* Interrupt currently being handled */
@@ -13659,13 +13659,13 @@ user_fpu_state_t x86KSnullFpuState __attribute__((__aligned__(64)));
 
 /* Number of IOMMUs (DMA Remapping Hardware Units) */
 uint32_t x86KSnumDrhu;
-# 67 "/workspace/seL4-c89/src/arch/x86/model/statedata.c"
+# 67 "/workspace/seL4-c89/preconfigured/src/arch/x86/model/statedata.c"
 /* State data tracking what IRQ source is related to each
  * CPU vector */
 x86_irq_state_t x86KSIRQState[maxIRQ + 1];
 
 word_t x86KSAllocatedIOPorts[(1ul << (16)) / 64];
-# 1 "/workspace/seL4-c89/src/arch/x86/object/interrupt.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/interrupt.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -13678,7 +13678,7 @@ word_t x86KSAllocatedIOPorts[(1ul << (16)) / 64];
 
 
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/pci.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/pci.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -13686,7 +13686,7 @@ word_t x86KSAllocatedIOPorts[(1ul << (16)) / 64];
  */
 
        
-# 14 "/workspace/seL4-c89/src/arch/x86/object/interrupt.c" 2
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/interrupt.c" 2
 
 void Arch_irqStateInit(void)
 {
@@ -13862,13 +13862,13 @@ exception_t Arch_decodeIRQControlInvocation(word_t invLabel, word_t length, cte_
         halt();
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/object/ioport.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/ioport.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 15 "/workspace/seL4-c89/src/arch/x86/object/ioport.c"
+# 15 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/ioport.c"
 static inline void apply_pattern(word_t_may_alias *w, word_t pattern, bool_t set)
 {
     if (set) {
@@ -14175,19 +14175,19 @@ void setIOPortMask(void *ioport_bitmap, uint16_t low, uint16_t high, bool_t set)
         apply_pattern(bitmap + low_word, make_pattern(0, high_index + 1), set);
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/object/iospace.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/iospace.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 23 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 23 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
 deriveCap_ret_t Arch_deriveCap(cte_t *slot, cap_t cap)
 {
     deriveCap_ret_t ret;
@@ -14230,7 +14230,7 @@ deriveCap_ret_t Arch_deriveCap(cte_t *slot, cap_t cap)
         ret.cap = cap;
         ret.status = EXCEPTION_NONE;
         return ret;
-# 136 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 136 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     default:
         return Mode_deriveCap(slot, cap);
     }
@@ -14239,7 +14239,7 @@ deriveCap_ret_t Arch_deriveCap(cte_t *slot, cap_t cap)
 cap_t __attribute__((__const__)) Arch_updateCapData(bool_t preserve, word_t data, cap_t cap)
 {
     /* Avoid a switch statement with just a 'default' case as the C parser does not like this */
-# 164 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 164 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     return cap;
 }
 
@@ -14304,7 +14304,7 @@ finaliseCap_ret_t Arch_finaliseCap(cap_t cap, bool_t final)
             return fc_ret;
         }
         break;
-# 283 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 283 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     default:
         return Mode_finaliseCap(cap, final);
     }
@@ -14370,7 +14370,7 @@ bool_t __attribute__((__const__)) Arch_sameRegionAs(cap_t cap_a, cap_t cap_b)
                     cap_io_port_cap_get_capIOPortLastPort(cap_b);
         }
         break;
-# 403 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 403 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     }
 
     return Mode_sameRegionAs(cap_a, cap_b);
@@ -14410,7 +14410,7 @@ word_t Arch_getObjectSize(word_t t)
         return 12;
     case 0xffffff:
         return 12;
-# 454 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 454 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     default:
         return Mode_getObjectSize(t);
     }
@@ -14418,7 +14418,7 @@ word_t Arch_getObjectSize(word_t t)
 
 cap_t Arch_createObject(object_t t, void *regionBase, word_t userSize, bool_t deviceMemory)
 {
-# 498 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 498 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
         return Mode_createObject(t, regionBase, userSize, deviceMemory);
 
 
@@ -14443,7 +14443,7 @@ exception_t Arch_decodeInvocation(
         return decodeX86PortControlInvocation(invLabel, length, cptr, slot, cap, buffer);
     case cap_io_port_cap:
         return decodeX86PortInvocation(invLabel, length, cptr, slot, cap, call, buffer);
-# 537 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 537 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     default:
         return Mode_decodeInvocation(invLabel, length, cptr, slot, cap, call, buffer);
     }
@@ -14464,7 +14464,7 @@ void Arch_postCapDeletion(cap_t cap)
         freeIOPortRange(first_port, last_port);
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/object/tcb.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/tcb.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -14475,7 +14475,7 @@ void Arch_postCapDeletion(cap_t cap)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/tcb.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/tcb.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -14483,7 +14483,7 @@ void Arch_postCapDeletion(cap_t cap)
  */
 
        
-# 12 "/workspace/seL4-c89/src/arch/x86/object/tcb.c" 2
+# 12 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/tcb.c" 2
 
 
 word_t __attribute__((__const__)) Arch_decodeTransfer(word_t flags)
@@ -14495,43 +14495,43 @@ exception_t __attribute__((__const__)) Arch_performTransfer(word_t arch, tcb_t *
 {
     return EXCEPTION_NONE;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/object/vcpu.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/vcpu.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/arch/x86/smp/ipi.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/smp/ipi.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/assert.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/assert.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/benchmark/benchmark.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/benchmark/benchmark.c"
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/benchmark/benchmark_track.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/benchmark/benchmark_track.c"
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/benchmark/benchmark_utilisation.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/benchmark/benchmark_utilisation.c"
 /*
  * Copyright 2016, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -14539,7 +14539,7 @@ exception_t __attribute__((__const__)) Arch_performTransfer(word_t arch, tcb_t *
  */
 
 
-# 1 "/workspace/seL4-c89/include/fastpath/fastpath.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/fastpath/fastpath.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -14547,7 +14547,7 @@ exception_t __attribute__((__const__)) Arch_performTransfer(word_t arch, tcb_t *
  */
 
        
-# 88 "/workspace/seL4-c89/include/fastpath/fastpath.h"
+# 88 "/workspace/seL4-c89/preconfigured/include/fastpath/fastpath.h"
 /* Fastpath cap lookup.  Returns a null_cap on failure. */
 static inline cap_t __attribute__((always_inline)) lookup_fp(cap_t cap, cptr_t cptr)
 {
@@ -14631,8 +14631,8 @@ static inline void endpoint_ptr_set_epQueue_head_np(endpoint_t *ep_ptr, word_t e
 {
     ep_ptr->words[1] = epQueue_head;
 }
-# 9 "/workspace/seL4-c89/src/fastpath/fastpath.c" 2
-# 19 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 9 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c" 2
+# 19 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
 void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
 {
     seL4_MessageInfo_t info;
@@ -14706,7 +14706,7 @@ void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
 
     /* borrow the stored_hw_asid for PCID */
     stored_hw_asid.words[0] = cap_pml4_cap_get_capPML4MappedASID_fp(newVTable);
-# 123 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 123 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     /* let gcc optimise this out for 1 domain */
     dom = maxDom ? ksCurDomain : 0;
     /* ensure only the idle thread or lower prio threads are present in the scheduler */
@@ -14732,7 +14732,7 @@ void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
     if (__builtin_expect(!!(dest->tcbDomain != ksCurDomain && 0 < maxDom), 0)) {
         slowpath(SysCall);
     }
-# 167 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 167 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     /*
      * --- POINT OF NO RETURN ---
      *
@@ -14756,7 +14756,7 @@ void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
     /* Unlink dest <-> reply, link src (cur thread) <-> reply */
     thread_state_ptr_set_tsType_np(&ksCurThread->tcbState,
                                    ThreadState_BlockedOnReply);
-# 208 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 208 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     /* Get sender reply slot */
     cte_t *replySlot = (((cte_t *)((word_t)(ksCurThread)&~((1ul << (11)) - 1ul)))+(tcbReply));
 
@@ -14783,7 +14783,7 @@ void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
 
     fastpath_restore(badge, msgInfo, ksCurThread);
 }
-# 242 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 242 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
 void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgInfo)
 
 {
@@ -14822,7 +14822,7 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
                                                              ) {
         slowpath(SysReplyRecv);
     }
-# 291 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 291 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     /* Check there is nothing waiting on the notification */
     if (__builtin_expect(!!(ksCurThread->tcbBoundNotification && notification_ptr_get_state(ksCurThread->tcbBoundNotification) == NtfnState_Active), 0)
                                                                                                                ) {
@@ -14836,7 +14836,7 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
     if (__builtin_expect(!!(endpoint_ptr_get_state(ep_ptr) == EPState_Send), 0)) {
         slowpath(SysReplyRecv);
     }
-# 319 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 319 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     /* Only reply if the reply cap is valid. */
     cte_t *callerSlot = (((cte_t *)((word_t)(ksCurThread)&~((1ul << (11)) - 1ul)))+(tcbCaller));
     cap_t callerCap = callerSlot->cap;
@@ -14888,18 +14888,18 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
 
 
     stored_hw_asid.words[0] = cap_pml4_cap_get_capPML4MappedASID(newVTable);
-# 400 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 400 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     /* Ensure the original caller can be scheduled directly. */
     dom = maxDom ? ksCurDomain : 0;
     if (__builtin_expect(!!(!isHighestPrio(dom, caller->tcbPriority)), 0)) {
         slowpath(SysReplyRecv);
     }
-# 413 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 413 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     /* Ensure the original caller is in the current domain and can be scheduled directly. */
     if (__builtin_expect(!!(caller->tcbDomain != ksCurDomain && 0 < maxDom), 0)) {
         slowpath(SysReplyRecv);
     }
-# 431 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 431 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     /*
      * --- POINT OF NO RETURN ---
      *
@@ -14951,14 +14951,14 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
                                              EPState_Recv);
 
     }
-# 500 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 500 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     /* Delete the reply cap. */
     mdb_node_ptr_mset_mdbNext_mdbRevocable_mdbFirstBadged(
         &((cte_t *)(mdb_node_get_mdbPrev(callerSlot->cteMDBNode)))->cteMDBNode,
         0, 1, 1);
     callerSlot->cap = cap_null_cap_new();
     callerSlot->cteMDBNode = mdb_node_new(0, false, false, 0);
-# 533 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 533 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
         /* There's no fault, so straight to the transfer. */
 
         /* Replies don't have a badge. */
@@ -14978,7 +14978,7 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
 
 
 }
-# 1 "/workspace/seL4-c89/src/inlines.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/inlines.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -14991,13 +14991,13 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
 lookup_fault_t current_lookup_fault;
 seL4_Fault_t current_fault;
 syscall_error_t current_syscall_error;
-# 1 "/workspace/seL4-c89/src/kernel/boot.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 20 "/workspace/seL4-c89/src/kernel/boot.c"
+# 20 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 /* (node-local) state accessed only during bootstrapping */
 __attribute__((__section__(".boot.bss"))) ndks_boot_t ndks_boot;
 
@@ -15424,7 +15424,7 @@ __attribute__((__section__(".boot.text"))) cap_t create_it_asid_pool(cap_t root_
 
     return ap_cap;
 }
-# 477 "/workspace/seL4-c89/src/kernel/boot.c"
+# 477 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 __attribute__((__section__(".boot.text"))) void create_idle_thread(void)
 {
     pptr_t pptr;
@@ -15439,7 +15439,7 @@ __attribute__((__section__(".boot.text"))) void create_idle_thread(void)
 
 
         ;
-# 500 "/workspace/seL4-c89/src/kernel/boot.c"
+# 500 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 }
 
 __attribute__((__section__(".boot.text"))) tcb_t *create_initial_thread(cap_t root_cnode_cap, cap_t it_pd_cap, vptr_t ui_v_entry, vptr_t bi_frame_vptr,
@@ -15508,18 +15508,18 @@ __attribute__((__section__(".boot.text"))) tcb_t *create_initial_thread(cap_t ro
     /* create initial thread's TCB cap */
     cap_t cap = cap_thread_cap_new(((word_t)(tcb)));
     write_slot((((slot_ptr_t)(((pptr_t)cap_get_capPtr(root_cnode_cap)))) + (seL4_CapInitThreadTCB)), cap);
-# 577 "/workspace/seL4-c89/src/kernel/boot.c"
+# 577 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
     return tcb;
 }
-# 600 "/workspace/seL4-c89/src/kernel/boot.c"
+# 600 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 __attribute__((__section__(".boot.text"))) void init_core_state(tcb_t *scheduler_action)
 {
 
     ksCurFPUOwner = ((void *)0);
-# 614 "/workspace/seL4-c89/src/kernel/boot.c"
+# 614 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
     ksSchedulerAction = scheduler_action;
     ksCurThread = ksIdleThread;
-# 624 "/workspace/seL4-c89/src/kernel/boot.c"
+# 624 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 }
 
 /**
@@ -15978,13 +15978,13 @@ __attribute__((__section__(".boot.text"))) bool_t init_freemem(word_t n_availabl
                                                                         ;
     return false;
 }
-# 1 "/workspace/seL4-c89/src/kernel/cspace.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/kernel/cspace.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 15 "/workspace/seL4-c89/src/kernel/cspace.c"
+# 15 "/workspace/seL4-c89/preconfigured/src/kernel/cspace.c"
 lookupCap_ret_t lookupCap(tcb_t *thread, cptr_t cPtr)
 {
     lookupSlot_raw_ret_t lu_ret;
@@ -16164,13 +16164,13 @@ resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap, cptr_t capptr, word_t
         }
     }
 }
-# 1 "/workspace/seL4-c89/src/kernel/faulthandler.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/kernel/faulthandler.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 54 "/workspace/seL4-c89/src/kernel/faulthandler.c"
+# 54 "/workspace/seL4-c89/preconfigured/src/kernel/faulthandler.c"
 void handleFault(tcb_t *tptr)
 {
     exception_t status;
@@ -16220,15 +16220,15 @@ exception_t sendFaultIPC(tcb_t *tptr)
         return EXCEPTION_FAULT;
     }
 }
-# 147 "/workspace/seL4-c89/src/kernel/faulthandler.c"
+# 147 "/workspace/seL4-c89/preconfigured/src/kernel/faulthandler.c"
 /* The second fault, ex2, is stored in the global current_fault */
 void handleDoubleFault(tcb_t *tptr, seL4_Fault_t ex1)
 
 {
-# 171 "/workspace/seL4-c89/src/kernel/faulthandler.c"
+# 171 "/workspace/seL4-c89/preconfigured/src/kernel/faulthandler.c"
     setThreadState(tptr, ThreadState_Inactive);
 }
-# 1 "/workspace/seL4-c89/src/kernel/stack.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/kernel/stack.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -16239,13 +16239,13 @@ void handleDoubleFault(tcb_t *tptr, seL4_Fault_t ex1)
 
 __attribute__((externally_visible)) __attribute__((__aligned__(16)))
 char kernel_stack_alloc[1][(1ul << (12))];
-# 1 "/workspace/seL4-c89/src/kernel/thread.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 25 "/workspace/seL4-c89/src/kernel/thread.c"
+# 25 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 static seL4_MessageInfo_t
 transferCaps(seL4_MessageInfo_t info,
              endpoint_t *endpoint, tcb_t *receiver,
@@ -16315,7 +16315,7 @@ void restart(tcb_t *target)
 {
     if (isStopped(target)) {
         cancelIPC(target);
-# 105 "/workspace/seL4-c89/src/kernel/thread.c"
+# 105 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
         setupReplyMaster(target);
         setThreadState(target, ThreadState_Restart);
         tcbSchedEnqueue(target);
@@ -16346,7 +16346,7 @@ void doIPCTransfer(tcb_t *sender, endpoint_t *endpoint, word_t badge,
 void doReplyTransfer(tcb_t *sender, tcb_t *receiver, cte_t *slot, bool_t grant)
 
 {
-# 152 "/workspace/seL4-c89/src/kernel/thread.c"
+# 152 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
    
                                       ;
 
@@ -16378,7 +16378,7 @@ void doReplyTransfer(tcb_t *sender, tcb_t *receiver, cte_t *slot, bool_t grant)
             setThreadState(receiver, ThreadState_Inactive);
         }
     }
-# 199 "/workspace/seL4-c89/src/kernel/thread.c"
+# 199 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 }
 
 void doNormalTransfer(tcb_t *sender, word_t *sendBuffer, endpoint_t *endpoint,
@@ -16520,7 +16520,7 @@ static void nextDomain(void)
     ksDomainTime = ksDomSchedule[ksDomScheduleIdx].length;
 
 }
-# 364 "/workspace/seL4-c89/src/kernel/thread.c"
+# 364 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 static void scheduleChooseNewThread(void)
 {
     if (ksDomainTime == 0) {
@@ -16578,7 +16578,7 @@ void schedule(void)
         }
     }
     ksSchedulerAction = ((tcb_t*)0);
-# 434 "/workspace/seL4-c89/src/kernel/thread.c"
+# 434 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 }
 
 void chooseThread(void)
@@ -16610,7 +16610,7 @@ void chooseThread(void)
 
 void switchToThread(tcb_t *thread)
 {
-# 475 "/workspace/seL4-c89/src/kernel/thread.c"
+# 475 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
     Arch_switchToThread(thread);
 
 
@@ -16646,7 +16646,7 @@ void setMCPriority(tcb_t *tptr, prio_t mcp)
 {
     tptr->tcbMCP = mcp;
 }
-# 540 "/workspace/seL4-c89/src/kernel/thread.c"
+# 540 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 void setPriority(tcb_t *tptr, prio_t prio)
 {
     tcbSchedDequeue(tptr);
@@ -16700,7 +16700,7 @@ void scheduleTCB(tcb_t *tptr)
         rescheduleRequired();
     }
 }
-# 676 "/workspace/seL4-c89/src/kernel/thread.c"
+# 676 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 void timerTick(void)
 {
     if (__builtin_expect(!!(thread_state_get_tsType(ksCurThread->tcbState) == ThreadState_Running), 1)
@@ -16744,19 +16744,19 @@ void rescheduleRequired(void)
     }
     ksSchedulerAction = ((tcb_t*) 1);
 }
-# 1 "/workspace/seL4-c89/src/machine/capdl.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/machine/capdl.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/machine/fpu.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/machine/fpu.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 14 "/workspace/seL4-c89/src/machine/fpu.c"
+# 14 "/workspace/seL4-c89/preconfigured/src/machine/fpu.c"
 /* Switch the owner of the FPU to the given thread on local core. */
 void switchLocalFpuOwner(tcb_t *new_owner)
 {
@@ -16793,7 +16793,7 @@ void fpuRelease(tcb_t *thread)
         switchFpuOwner(((void *)0), 0);
     }
 }
-# 1 "/workspace/seL4-c89/src/machine/io.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/machine/io.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -16805,7 +16805,7 @@ void fpuRelease(tcb_t *thread)
  *
  * SPDX-License-Identifier: MIT
  */
-# 1 "/workspace/seL4-c89/src/machine/registerset.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/machine/registerset.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -16821,7 +16821,7 @@ const register_t fault_messages[][(((n_syscallMessage)>(n_exceptionMessage))?(n_
 
 
 };
-# 1 "/workspace/seL4-c89/src/model/preemption.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/model/preemption.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -16829,7 +16829,7 @@ const register_t fault_messages[][(((n_syscallMessage)>(n_exceptionMessage))?(n_
  */
 
 
-# 1 "/workspace/seL4-c89/include/model/preemption.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/model/preemption.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -16841,7 +16841,7 @@ const register_t fault_messages[][(((n_syscallMessage)>(n_exceptionMessage))?(n_
 
 
 exception_t preemptionPoint(void);
-# 9 "/workspace/seL4-c89/src/model/preemption.c" 2
+# 9 "/workspace/seL4-c89/preconfigured/src/model/preemption.c" 2
 
 
 
@@ -16877,13 +16877,13 @@ exception_t preemptionPoint(void)
 
     return EXCEPTION_NONE;
 }
-# 1 "/workspace/seL4-c89/src/model/smp.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/model/smp.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/model/statedata.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/model/statedata.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -16891,14 +16891,14 @@ exception_t preemptionPoint(void)
  */
 
 
-# 1 "/workspace/seL4-c89/include/api/debug.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/api/debug.h" 1
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 9 "/workspace/seL4-c89/src/model/statedata.c" 2
-# 17 "/workspace/seL4-c89/src/model/statedata.c"
+# 9 "/workspace/seL4-c89/preconfigured/src/model/statedata.c" 2
+# 17 "/workspace/seL4-c89/preconfigured/src/model/statedata.c"
 /* Collective cpu states, including both pre core architecture dependant and independent data */
 ;
 
@@ -16929,7 +16929,7 @@ tcb_t * ksSchedulerAction;
 
 /* The thread using the FPU, or NULL if FPU state is invalid */
 tcb_t * ksCurFPUOwner;
-# 73 "/workspace/seL4-c89/src/model/statedata.c"
+# 73 "/workspace/seL4-c89/preconfigured/src/model/statedata.c"
 /* Units of work we have completed since the last time we checked for
  * pending interrupts */
 word_t ksWorkUnitsCompleted;
@@ -16955,13 +16955,13 @@ word_t ksDomScheduleIdx;
 
 /* Idle thread. */
 __attribute__((__section__("._idle_thread"))) char ksIdleThreadTCB[1][(1ul << (11))] __attribute__((__aligned__((1ul << (11)))));
-# 1 "/workspace/seL4-c89/src/object/cnode.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/cnode.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 25 "/workspace/seL4-c89/src/object/cnode.c"
+# 25 "/workspace/seL4-c89/preconfigured/src/object/cnode.c"
 struct finaliseSlot_ret {
     exception_t status;
     bool_t success;
@@ -17872,13 +17872,13 @@ cap_transfer_t __attribute__((__pure__)) loadCapTransfer(word_t *buffer)
     const int offset = seL4_MsgMaxLength + ((1ul<<(seL4_MsgExtraCapBits))-1) + 2;
     return capTransferFromWords(buffer + offset);
 }
-# 1 "/workspace/seL4-c89/src/object/endpoint.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 23 "/workspace/seL4-c89/src/object/endpoint.c"
+# 23 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
 void sendIPC(bool_t blocking, bool_t do_call, word_t badge,
              bool_t canGrant, bool_t canGrantReply, tcb_t *thread, endpoint_t *epptr)
 
@@ -17934,7 +17934,7 @@ void sendIPC(bool_t blocking, bool_t do_call, word_t badge,
 
         /* Do the transfer */
         doIPCTransfer(thread, epptr, badge, canGrant, dest);
-# 105 "/workspace/seL4-c89/src/object/endpoint.c"
+# 105 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
         bool_t replyCanGrant = thread_state_ptr_get_blockingIPCCanGrant(&dest->tcbState);;
 
         setThreadState(dest, ThreadState_Running);
@@ -17966,13 +17966,13 @@ void receiveIPC(tcb_t *thread, cap_t cap, bool_t isBlocking)
     ;
 
     epptr = ((endpoint_t *)(cap_endpoint_cap_get_capEPPtr(cap)));
-# 148 "/workspace/seL4-c89/src/object/endpoint.c"
+# 148 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
     /* Check for anything waiting in the notification */
     ntfnPtr = thread->tcbBoundNotification;
     if (ntfnPtr && notification_ptr_get_state(ntfnPtr) == NtfnState_Active) {
         completeSignal(ntfnPtr, thread);
     } else {
-# 163 "/workspace/seL4-c89/src/object/endpoint.c"
+# 163 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
         switch (endpoint_ptr_get_state(epptr)) {
         case EPState_Idle:
         case EPState_Recv: {
@@ -18041,7 +18041,7 @@ void receiveIPC(tcb_t *thread, cap_t cap, bool_t isBlocking)
                           canGrant, thread);
 
             do_call = thread_state_ptr_get_blockingIPCIsCall(&sender->tcbState);
-# 261 "/workspace/seL4-c89/src/object/endpoint.c"
+# 261 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
             if (do_call) {
                 if (canGrant || canGrantReply) {
                     setupCallerCap(sender, thread, cap_endpoint_cap_get_capCanGrant(cap));
@@ -18067,7 +18067,7 @@ void replyFromKernel_error(tcb_t *thread)
     ipcBuffer = lookupIPCBuffer(true, thread);
     setRegister(thread, badgeRegister, 0);
     len = setMRs_syscall_error(thread, ipcBuffer);
-# 295 "/workspace/seL4-c89/src/object/endpoint.c"
+# 295 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
     setRegister(thread, msgInfoRegister, wordFromMessageInfo(
                     seL4_MessageInfo_new(current_syscall_error.type, 0, 0, len)));
 }
@@ -18108,7 +18108,7 @@ void cancelIPC(tcb_t *tptr)
         if (!queue.head) {
             endpoint_ptr_set_state(epptr, EPState_Idle);
         }
-# 344 "/workspace/seL4-c89/src/object/endpoint.c"
+# 344 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
         setThreadState(tptr, ThreadState_Inactive);
         break;
     }
@@ -18141,7 +18141,7 @@ void cancelIPC(tcb_t *tptr)
     }
     }
 }
-# 400 "/workspace/seL4-c89/src/object/endpoint.c"
+# 400 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
 void cancelAllIPC(endpoint_t *epptr)
 {
     switch (endpoint_ptr_get_state(epptr)) {
@@ -18158,7 +18158,7 @@ void cancelAllIPC(endpoint_t *epptr)
 
         /* Set all blocked threads to restart */
         for (; thread; thread = thread->tcbEPNext) {
-# 425 "/workspace/seL4-c89/src/object/endpoint.c"
+# 425 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
             setThreadState(thread, ThreadState_Restart);
             tcbSchedEnqueue(thread);
 
@@ -18192,7 +18192,7 @@ void cancelBadgedSends(endpoint_t *epptr, word_t badge)
             word_t b = thread_state_ptr_get_blockingIPCBadge(
                            &thread->tcbState);
             next = thread->tcbEPNext;
-# 466 "/workspace/seL4-c89/src/object/endpoint.c"
+# 466 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
             if (b == badge) {
                 setThreadState(thread, ThreadState_Restart);
                 tcbSchedEnqueue(thread);
@@ -18215,14 +18215,14 @@ void cancelBadgedSends(endpoint_t *epptr, word_t badge)
         halt();
     }
 }
-# 1 "/workspace/seL4-c89/src/object/interrupt.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/interrupt.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 20 "/workspace/seL4-c89/src/object/interrupt.c"
-# 1 "/workspace/seL4-c89/include/machine/timer.h" 1
+# 20 "/workspace/seL4-c89/preconfigured/src/object/interrupt.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/timer.h" 1
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
@@ -18230,9 +18230,9 @@ void cancelBadgedSends(endpoint_t *epptr, word_t badge)
  */
 
        
-# 34 "/workspace/seL4-c89/include/machine/timer.h"
+# 34 "/workspace/seL4-c89/preconfigured/include/machine/timer.h"
 static inline void resetTimer(void);
-# 21 "/workspace/seL4-c89/src/object/interrupt.c" 2
+# 21 "/workspace/seL4-c89/preconfigured/src/object/interrupt.c" 2
 
 
 exception_t decodeIRQControlInvocation(word_t invLabel, word_t length,
@@ -18348,7 +18348,7 @@ exception_t decodeIRQHandlerInvocation(word_t invLabel, irq_t irq)
 
 void invokeIRQHandler_AckIRQ(irq_t irq)
 {
-# 159 "/workspace/seL4-c89/src/object/interrupt.c"
+# 159 "/workspace/seL4-c89/preconfigured/src/object/interrupt.c"
     if (wrap_config_set(0)) {
         deactivateInterrupt(irq);
     } else {
@@ -18488,13 +18488,13 @@ void setIRQState(irq_state_t irqState, irq_t irq)
 
     maskInterrupt(irqState == IRQInactive, irq);
 }
-# 1 "/workspace/seL4-c89/src/object/notification.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 19 "/workspace/seL4-c89/src/object/notification.c"
+# 19 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
 static inline tcb_queue_t __attribute__((__pure__)) ntfn_ptr_get_queue(notification_t *ntfnPtr)
 {
     tcb_queue_t ntfn_queue;
@@ -18510,7 +18510,7 @@ static inline void ntfn_ptr_set_queue(notification_t *ntfnPtr, tcb_queue_t ntfn_
     notification_ptr_set_ntfnQueue_head(ntfnPtr, (word_t)ntfn_queue.head);
     notification_ptr_set_ntfnQueue_tail(ntfnPtr, (word_t)ntfn_queue.end);
 }
-# 62 "/workspace/seL4-c89/src/object/notification.c"
+# 62 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
 void sendSignal(notification_t *ntfnPtr, word_t badge)
 {
     switch (notification_ptr_get_state(ntfnPtr)) {
@@ -18524,7 +18524,7 @@ void sendSignal(notification_t *ntfnPtr, word_t badge)
                 setThreadState(tcb, ThreadState_Running);
                 setRegister(tcb, badgeRegister, badge);
                 { { possibleSwitchTo(tcb); } }
-# 122 "/workspace/seL4-c89/src/object/notification.c"
+# 122 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
             } else {
                 /* In particular, this path is taken when a thread
                  * is waiting on a reply cap since BlockedOnReply
@@ -18562,7 +18562,7 @@ void sendSignal(notification_t *ntfnPtr, word_t badge)
         setThreadState(dest, ThreadState_Running);
         setRegister(dest, badgeRegister, badge);
         { { possibleSwitchTo(dest); } }
-# 175 "/workspace/seL4-c89/src/object/notification.c"
+# 175 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
         break;
     }
 
@@ -18619,7 +18619,7 @@ void receiveSignal(tcb_t *thread, cap_t cap, bool_t isBlocking)
             thread, badgeRegister,
             notification_ptr_get_ntfnMsgIdentifier(ntfnPtr));
         notification_ptr_set_state(ntfnPtr, NtfnState_Idle);
-# 239 "/workspace/seL4-c89/src/object/notification.c"
+# 239 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
         break;
     }
 }
@@ -18636,7 +18636,7 @@ void cancelAllSignals(notification_t *ntfnPtr)
         /* Set all waiting threads to Restart */
         for (; thread; thread = thread->tcbEPNext) {
             setThreadState(thread, ThreadState_Restart);
-# 269 "/workspace/seL4-c89/src/object/notification.c"
+# 269 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
             tcbSchedEnqueue(thread);
 
         }
@@ -18673,7 +18673,7 @@ void completeSignal(notification_t *ntfnPtr, tcb_t *tcb)
         badge = notification_ptr_get_ntfnMsgIdentifier(ntfnPtr);
         setRegister(tcb, badgeRegister, badge);
         notification_ptr_set_state(ntfnPtr, NtfnState_Idle);
-# 321 "/workspace/seL4-c89/src/object/notification.c"
+# 321 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
     } else {
         halt();
     }
@@ -18710,13 +18710,13 @@ void bindNotification(tcb_t *tcb, notification_t *ntfnPtr)
     notification_ptr_set_ntfnBoundTCB(ntfnPtr, (word_t)tcb);
     tcb->tcbBoundNotification = ntfnPtr;
 }
-# 1 "/workspace/seL4-c89/src/object/objecttype.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 33 "/workspace/seL4-c89/src/object/objecttype.c"
+# 33 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
 word_t getObjectSize(word_t t, word_t userObjSize)
 {
     if (t >= seL4_NonArchObjectTypeCount) {
@@ -18820,7 +18820,7 @@ finaliseCap_ret_t finaliseCap(cap_t cap, bool_t final, bool_t exposed)
         return fc_ret;
 
     case cap_reply_cap:
-# 156 "/workspace/seL4-c89/src/object/objecttype.c"
+# 156 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     case cap_null_cap:
     case cap_domain_cap:
         fc_ret.remainder = cap_null_cap_new();
@@ -18856,7 +18856,7 @@ finaliseCap_ret_t finaliseCap(cap_t cap, bool_t final, bool_t exposed)
            
             cte_ptr = (((cte_t *)((word_t)(tcb)&~((1ul << (11)) - 1ul)))+(tcbCTable));
             unbindNotification(tcb);
-# 200 "/workspace/seL4-c89/src/object/objecttype.c"
+# 200 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
             suspend(tcb);
 
 
@@ -18873,7 +18873,7 @@ finaliseCap_ret_t finaliseCap(cap_t cap, bool_t final, bool_t exposed)
         }
         break;
     }
-# 241 "/workspace/seL4-c89/src/object/objecttype.c"
+# 241 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     case cap_zombie_cap:
         fc_ret.remainder = cap;
         fc_ret.cleanupInfo = cap_null_cap_new();
@@ -18990,7 +18990,7 @@ bool_t __attribute__((__const__)) sameRegionAs(cap_t cap_a, cap_t cap_b)
                    (word_t)cap_irq_handler_cap_get_capIRQ(cap_b);
         }
         break;
-# 373 "/workspace/seL4-c89/src/object/objecttype.c"
+# 373 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     default:
         if (isArchCap(cap_a) &&
             isArchCap(cap_b)) {
@@ -19155,7 +19155,7 @@ cap_t createObject(object_t t, void *regionBase, word_t userSize, bool_t deviceM
 
         /* Initialize the new TCB to the current core */
         ;
-# 545 "/workspace/seL4-c89/src/object/objecttype.c"
+# 545 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
         return cap_thread_cap_new(((word_t)(tcb)));
     }
 
@@ -19185,7 +19185,7 @@ cap_t createObject(object_t t, void *regionBase, word_t userSize, bool_t deviceM
          * the destination slots.
          */
         return cap_untyped_cap_new(0, !!deviceMemory, userSize, ((word_t)(regionBase)));
-# 593 "/workspace/seL4-c89/src/object/objecttype.c"
+# 593 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     default:
         halt();
     }
@@ -19288,7 +19288,7 @@ exception_t decodeInvocation(word_t invLabel, word_t length,
                    ((notification_t *)(cap_notification_cap_get_capNtfnPtr(cap))),
                    cap_notification_cap_get_capNtfnBadge(cap));
     }
-# 704 "/workspace/seL4-c89/src/object/objecttype.c"
+# 704 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     case cap_reply_cap:
         if (__builtin_expect(!!(cap_reply_cap_get_capReplyMaster(cap)), 0)) {
            
@@ -19306,15 +19306,15 @@ exception_t decodeInvocation(word_t invLabel, word_t length,
 
 
     case cap_thread_cap:
-# 729 "/workspace/seL4-c89/src/object/objecttype.c"
+# 729 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
         return decodeTCBInvocation(invLabel, length, cap, slot, call, buffer);
 
     case cap_domain_cap:
-# 740 "/workspace/seL4-c89/src/object/objecttype.c"
+# 740 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
         return decodeDomainInvocation(invLabel, length, buffer);
 
     case cap_cnode_cap:
-# 751 "/workspace/seL4-c89/src/object/objecttype.c"
+# 751 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
         return decodeCNodeInvocation(invLabel, length, cap, buffer);
 
     case cap_untyped_cap:
@@ -19326,12 +19326,12 @@ exception_t decodeInvocation(word_t invLabel, word_t length,
     case cap_irq_handler_cap:
         return decodeIRQHandlerInvocation(invLabel,
                                           (cap_irq_handler_cap_get_capIRQ(cap)));
-# 783 "/workspace/seL4-c89/src/object/objecttype.c"
+# 783 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     default:
         halt();
     }
 }
-# 798 "/workspace/seL4-c89/src/object/objecttype.c"
+# 798 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
 exception_t performInvocation_Endpoint(endpoint_t *ep, word_t badge,
                                        bool_t canGrant, bool_t canGrantReply,
                                        bool_t block, bool_t call)
@@ -19348,7 +19348,7 @@ exception_t performInvocation_Notification(notification_t *ntfn, word_t badge)
 
     return EXCEPTION_NONE;
 }
-# 822 "/workspace/seL4-c89/src/object/objecttype.c"
+# 822 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
 exception_t performInvocation_Reply(tcb_t *thread, cte_t *slot, bool_t canGrant)
 {
     doReplyTransfer(ksCurThread, thread, slot, canGrant);
@@ -19555,13 +19555,13 @@ bool_t __attribute__((__const__)) isCapRevocable(cap_t derivedCap, cap_t srcCap)
         return false;
     }
 }
-# 1 "/workspace/seL4-c89/src/object/tcb.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 32 "/workspace/seL4-c89/src/object/tcb.c"
+# 32 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 static exception_t checkPrio(prio_t prio, tcb_t *auth)
 {
     prio_t mcp;
@@ -19728,7 +19728,7 @@ void tcbSchedDequeue(tcb_t *tcb)
         }
     }
 }
-# 238 "/workspace/seL4-c89/src/object/tcb.c"
+# 238 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 /* Add TCB to the end of an endpoint queue */
 tcb_queue_t tcbEPAppend(tcb_t *tcb, tcb_queue_t queue)
 {
@@ -19762,7 +19762,7 @@ tcb_queue_t tcbEPDequeue(tcb_t *tcb, tcb_queue_t queue)
 
     return queue;
 }
-# 338 "/workspace/seL4-c89/src/object/tcb.c"
+# 338 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 cptr_t __attribute__((__pure__)) getExtraCPtr(word_t *bufferPtr, word_t i)
 {
     return (cptr_t)bufferPtr[seL4_MsgMaxLength + 2 + i];
@@ -19862,7 +19862,7 @@ word_t copyMRs(tcb_t *sender, word_t *sendBuf, tcb_t *receiver,
 
     return i;
 }
-# 767 "/workspace/seL4-c89/src/object/tcb.c"
+# 767 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 static exception_t invokeSetTLSBase(tcb_t *thread, word_t tls_base)
 {
     setRegister(thread, TLS_BASE, tls_base);
@@ -19993,9 +19993,9 @@ exception_t decodeTCBInvocation(word_t invLabel, word_t length, cap_t cap,
 
     case TCBUnbindNotification:
         return decodeUnbindNotification(cap);
-# 908 "/workspace/seL4-c89/src/object/tcb.c"
+# 908 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
         /* There is no notion of arch specific TCB invocations so this needs to go here */
-# 928 "/workspace/seL4-c89/src/object/tcb.c"
+# 928 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     case TCBSetTLSBase:
         return decodeSetTLSBase(cap, length, buffer);
 
@@ -20141,7 +20141,7 @@ exception_t decodeWriteRegisters(cap_t cap, word_t length, word_t *buffer)
                                     flags & (1ul << (WriteRegisters_resume)),
                                     w, transferArch, buffer);
 }
-# 1095 "/workspace/seL4-c89/src/object/tcb.c"
+# 1095 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 /* TCBConfigure batches SetIPCBuffer and parts of SetSpace. */
 exception_t decodeTCBConfigure(cap_t cap, word_t length, cte_t *slot, word_t *buffer)
 {
@@ -20237,7 +20237,7 @@ exception_t decodeTCBConfigure(cap_t cap, word_t length, cte_t *slot, word_t *bu
     }
 
     setThreadState(ksCurThread, ThreadState_Restart);
-# 1201 "/workspace/seL4-c89/src/object/tcb.c"
+# 1201 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     return invokeTCB_ThreadControl(
                ((tcb_t *)(cap_thread_cap_get_capTCBPtr(cap))), slot,
                faultEP, 0, 0,
@@ -20336,7 +20336,7 @@ exception_t decodeSetMCPriority(cap_t cap, word_t length, word_t *buffer)
                ((void *)0), thread_control_update_mcp);
 
 }
-# 1335 "/workspace/seL4-c89/src/object/tcb.c"
+# 1335 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 exception_t decodeSetSchedParams(cap_t cap, word_t length, word_t *buffer)
 
 {
@@ -20380,7 +20380,7 @@ exception_t decodeSetSchedParams(cap_t cap, word_t length, word_t *buffer)
                                                                            ;
         return status;
     }
-# 1432 "/workspace/seL4-c89/src/object/tcb.c"
+# 1432 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     setThreadState(ksCurThread, ThreadState_Restart);
 
 
@@ -20435,7 +20435,7 @@ exception_t decodeSetIPCBuffer(cap_t cap, word_t length, cte_t *slot, word_t *bu
     }
 
     setThreadState(ksCurThread, ThreadState_Restart);
-# 1496 "/workspace/seL4-c89/src/object/tcb.c"
+# 1496 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     return invokeTCB_ThreadControl(
                ((tcb_t *)(cap_thread_cap_get_capTCBPtr(cap))), slot,
                0, 0, 0,
@@ -20469,7 +20469,7 @@ exception_t decodeSetSpace(cap_t cap, word_t length, cte_t *slot, word_t *buffer
         current_syscall_error.type = seL4_TruncatedMessage;
         return EXCEPTION_SYSCALL_ERROR;
     }
-# 1541 "/workspace/seL4-c89/src/object/tcb.c"
+# 1541 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     cptr_t faultEP = getSyscallArg(0, buffer);
     cRootData = getSyscallArg(1, buffer);
     vRootData = getSyscallArg(2, buffer);
@@ -20520,9 +20520,9 @@ exception_t decodeSetSpace(cap_t cap, word_t length, cte_t *slot, word_t *buffer
         current_syscall_error.type = seL4_IllegalOperation;
         return EXCEPTION_SYSCALL_ERROR;
     }
-# 1602 "/workspace/seL4-c89/src/object/tcb.c"
+# 1602 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     setThreadState(ksCurThread, ThreadState_Restart);
-# 1612 "/workspace/seL4-c89/src/object/tcb.c"
+# 1612 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     return invokeTCB_ThreadControl(
                ((tcb_t *)(cap_thread_cap_get_capTCBPtr(cap))), slot,
                faultEP,
@@ -20659,7 +20659,7 @@ exception_t invokeTCB_Resume(tcb_t *thread)
     restart(thread);
     return EXCEPTION_NONE;
 }
-# 1833 "/workspace/seL4-c89/src/object/tcb.c"
+# 1833 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 exception_t invokeTCB_ThreadControl(tcb_t *target, cte_t *slot,
                                     cptr_t faultep, prio_t mcp, prio_t priority,
                                     cap_t cRoot_newCap, cte_t *cRoot_srcSlot,
@@ -20733,7 +20733,7 @@ exception_t invokeTCB_ThreadControl(tcb_t *target, cte_t *slot,
 
     return EXCEPTION_NONE;
 }
-# 1943 "/workspace/seL4-c89/src/object/tcb.c"
+# 1943 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 exception_t invokeTCB_CopyRegisters(tcb_t *dest, tcb_t *tcb_src,
                                     bool_t suspendSource, bool_t resumeTarget,
                                     bool_t transferFrame, bool_t transferInteger,
@@ -20909,7 +20909,7 @@ exception_t invokeTCB_NotificationControl(tcb_t *tcb, notification_t *ntfnPtr)
 
     return EXCEPTION_NONE;
 }
-# 2126 "/workspace/seL4-c89/src/object/tcb.c"
+# 2126 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 word_t setMRs_syscall_error(tcb_t *thread, word_t *receiveIPCBuffer)
 {
     switch (current_syscall_error.type) {
@@ -20950,13 +20950,13 @@ word_t setMRs_syscall_error(tcb_t *thread, word_t *receiveIPCBuffer)
         halt();
     }
 }
-# 1 "/workspace/seL4-c89/src/object/untyped.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/untyped.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 21 "/workspace/seL4-c89/src/object/untyped.c"
+# 21 "/workspace/seL4-c89/preconfigured/src/object/untyped.c"
 static word_t alignUp(word_t baseValue, word_t alignment)
 {
     return (baseValue + ((1ul << (alignment)) - 1)) & ~((1ul << (alignment)) - 1ul);
@@ -21038,7 +21038,7 @@ exception_t decodeUntypedInvocation(word_t invLabel, word_t length, cte_t *slot,
         current_syscall_error.invalidArgumentNumber = 1;
         return EXCEPTION_SYSCALL_ERROR;
     }
-# 112 "/workspace/seL4-c89/src/object/untyped.c"
+# 112 "/workspace/seL4-c89/preconfigured/src/object/untyped.c"
     /* Lookup the destination CNode (where our caps will be placed in). */
     if (nodeDepth == 0) {
         nodeCap = rootSlot->cap;
@@ -21233,13 +21233,13 @@ exception_t invokeUntyped_Retype(cte_t *srcSlot,
 
     return EXCEPTION_NONE;
 }
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/acpi.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/acpi.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 16 "/workspace/seL4-c89/src/plat/pc99/machine/acpi.c"
+# 16 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/acpi.c"
 enum acpi_type {
     ACPI_RSDP,
     ACPI_RSDT
@@ -21769,13 +21769,13 @@ __attribute__((__section__(".boot.text"))) void acpi_dmar_scan(
     rmrr_list->num = rmrr_count;
     ((void)(0));
 }
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/hardware.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/hardware.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 18 "/workspace/seL4-c89/src/plat/pc99/machine/hardware.c"
+# 18 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/hardware.c"
 __attribute__((__section__(".boot.text"))) bool_t platAddDevices(void)
 {
     /* remove the MSI region as poking at this is undefined and may allow for
@@ -21894,13 +21894,13 @@ __attribute__((__section__(".boot.text"))) uint32_t tsc_init(void)
     /* finally, return mhz */
     return tsc_khz / 1000u;
 }
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/intel-vtd.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/intel-vtd.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/io.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/io.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -21912,7 +21912,7 @@ __attribute__((__section__(".boot.text"))) uint32_t tsc_init(void)
 
 
 
-# 1 "/workspace/seL4-c89/include/drivers/uart.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/drivers/uart.h" 1
 /*
  * Copyright 2021, Axel Heider <axelheider@gmx.de>
  *
@@ -21920,19 +21920,19 @@ __attribute__((__section__(".boot.text"))) uint32_t tsc_init(void)
  */
 
        
-# 13 "/workspace/seL4-c89/src/plat/pc99/machine/io.c" 2
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/ioapic.c"
+# 13 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/io.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/ioapic.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 21 "/workspace/seL4-c89/src/plat/pc99/machine/ioapic.c"
+# 21 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/ioapic.c"
 /*
  * Maximum Redirection Entry, bits 23:16 in IOAPIC_REG_IOAPICVER -- corresponds
  * to number of interrupt input pins for the IOAPIC minus one.
  */
-# 42 "/workspace/seL4-c89/src/plat/pc99/machine/ioapic.c"
+# 42 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/ioapic.c"
 /*
  * Cache what we believe is in the low word of the IOREDTBL. This
  * has all the state of trigger modes etc etc.
@@ -22091,7 +22091,7 @@ void ioapic_map_pin_to_vector(word_t ioapic, word_t pin, word_t level,
     ioredtbl_state[index] |= ioapic_read(ioapic, 0x10) & ~((1ul << (16)) - 1ul);
     ioapic_write(ioapic, 0x10, ioredtbl_state[index]);
 }
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/pic.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/pic.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -22197,7 +22197,7 @@ void pic_ack_active_irq(void)
         out8(0x20, 0x20);
     }
 }
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/pit.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/pit.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -22241,19 +22241,19 @@ __attribute__((__section__(".boot.text"))) void pit_wait_wraparound(void)
         count |= (in8(0x40) << 8);
     }
 }
-# 1 "/workspace/seL4-c89/src/smp/ipi.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/smp/ipi.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/smp/lock.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/smp/lock.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
-# 1 "/workspace/seL4-c89/src/string.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/string.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -22296,7 +22296,7 @@ word_t strlcat(char *dest, const char *src, word_t size)
     }
     return len;
 }
-# 1 "/workspace/seL4-c89/src/util.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/util.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *
@@ -22722,7 +22722,7 @@ static __attribute__((unused)) __attribute__((__const__)) inline unsigned ctz64(
 /* These are only provided when the relevant config items are set. */
 /* We define these separately from `ctz32` etc. so that we can verify all of */
 /* `ctz32` etc. without necessarily linking them into the kernel binary. */
-# 1 "/workspace/seL4-c89/src/config/default_domain.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/config/default_domain.c"
 /*
  * Copyright 2014, General Dynamics C4 Systems
  *

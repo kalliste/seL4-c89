@@ -54,11 +54,11 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/libsel4/include" TYPE DIRECTORY FILES
-    "/workspace/seL4-c89/libsel4/include/"
-    "/workspace/seL4-c89/libsel4/arch_include/x86/"
-    "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/"
-    "/workspace/seL4-c89/libsel4/sel4_plat_include/pc99/"
-    "/workspace/seL4-c89/libsel4/mode_include/64/"
+    "/workspace/seL4-c89/preconfigured/libsel4/include/"
+    "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/"
+    "/workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/"
+    "/workspace/seL4-c89/preconfigured/libsel4/sel4_plat_include/pc99/"
+    "/workspace/seL4-c89/preconfigured/libsel4/mode_include/64/"
     "/workspace/seL4-c89/preconfigured/X64_verified/libsel4/include/"
     "/workspace/seL4-c89/preconfigured/X64_verified/libsel4/arch_include/x86/"
     "/workspace/seL4-c89/preconfigured/X64_verified/libsel4/sel4_arch_include/x86_64/"
@@ -69,7 +69,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/libsel4/src" TYPE DIRECTORY FILES "/workspace/seL4-c89/libsel4/src/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/libsel4/src" TYPE DIRECTORY FILES "/workspace/seL4-c89/preconfigured/libsel4/src/")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

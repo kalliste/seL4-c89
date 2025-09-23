@@ -4,14 +4,14 @@
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 0 "<command-line>" 2
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/kernel_all_copy.c"
-# 1 "/workspace/seL4-c89/src/api/faults.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/api/faults.c"
 
 
 
 
 
 
-# 1 "/workspace/seL4-c89/include/config.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/config.h" 1
 
 
 
@@ -20,7 +20,7 @@
 
        
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/config.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/config.h" 1
 
 
 
@@ -38,10 +38,10 @@
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/gen_config/kernel/gen_config.h" 1
        
 # 5 "/workspace/seL4-c89/preconfigured/X64_verified/autoconf/autoconf.h" 2
-# 12 "/workspace/seL4-c89/libsel4/include/sel4/config.h" 2
-# 10 "/workspace/seL4-c89/include/config.h" 2
-# 8 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/types.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/config.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/config.h" 2
+# 8 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/types.h" 1
 
 
 
@@ -50,7 +50,7 @@
 
        
 
-# 1 "/workspace/seL4-c89/include/basic_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/basic_types.h" 1
 
 
 
@@ -59,7 +59,7 @@
 
        
 
-# 1 "/workspace/seL4-c89/include/stdint.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/stdint.h" 1
 
 
 
@@ -68,7 +68,7 @@
 
        
 
-# 1 "/workspace/seL4-c89/include/64/mode/stdint.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/64/mode/stdint.h" 1
 
 
 
@@ -76,7 +76,7 @@
 
 
        
-# 10 "/workspace/seL4-c89/include/stdint.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/stdint.h" 2
 
 typedef unsigned char uint8_t;
 typedef unsigned short uint16_t;
@@ -95,8 +95,8 @@ typedef signed long long int64_t;
 
 typedef uint64_t uintmax_t;
 typedef int64_t intmax_t;
-# 10 "/workspace/seL4-c89/include/basic_types.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/types.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/include/basic_types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/types.h" 1
 
 
 
@@ -106,7 +106,7 @@ typedef int64_t intmax_t;
        
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/types.h" 1
 
 
 
@@ -115,7 +115,7 @@ typedef int64_t intmax_t;
 
        
 
-# 1 "/workspace/seL4-c89/include/assert.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/assert.h" 1
 
 
 
@@ -125,7 +125,7 @@ typedef int64_t intmax_t;
        
 
 
-# 1 "/workspace/seL4-c89/include/util.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/util.h" 1
 
 
 
@@ -133,14 +133,14 @@ typedef int64_t intmax_t;
 
 
        
-# 94 "/workspace/seL4-c89/include/util.h"
+# 94 "/workspace/seL4-c89/preconfigured/include/util.h"
 void __builtin_unreachable(void);
-# 115 "/workspace/seL4-c89/include/util.h"
+# 115 "/workspace/seL4-c89/preconfigured/include/util.h"
 static inline int wrap_config_set(int x)
 {
     return x;
 }
-# 138 "/workspace/seL4-c89/include/util.h"
+# 138 "/workspace/seL4-c89/preconfigured/include/util.h"
 void halt(void) __attribute__((__noreturn__));
 void memzero(void *s, unsigned long n);
 void *memset(void *s, unsigned long c, unsigned long n) __attribute__((externally_visible));
@@ -148,12 +148,12 @@ void *memcpy(void *ptr_dst, const void *ptr_src, unsigned long n) __attribute__(
 int __attribute__((__pure__)) strncmp(const char *s1, const char *s2, int n);
 long __attribute__((__const__)) char_to_long(char c);
 long __attribute__((__pure__)) str_to_long(const char *str);
-# 168 "/workspace/seL4-c89/include/util.h"
+# 168 "/workspace/seL4-c89/preconfigured/include/util.h"
 __attribute__((__const__)) int __clzsi2(uint32_t x);
 __attribute__((__const__)) int __clzdi2(uint64_t x);
 __attribute__((__const__)) int __ctzsi2(uint32_t x);
 __attribute__((__const__)) int __ctzdi2(uint64_t x);
-# 195 "/workspace/seL4-c89/include/util.h"
+# 195 "/workspace/seL4-c89/preconfigured/include/util.h"
 static inline long
 __attribute__((__const__)) clzl(unsigned long x)
 {
@@ -167,7 +167,7 @@ __attribute__((__const__)) clzl(unsigned long x)
     return __builtin_clzl(x);
 
 }
-# 220 "/workspace/seL4-c89/include/util.h"
+# 220 "/workspace/seL4-c89/preconfigured/include/util.h"
 static inline long long
 __attribute__((__const__)) clzll(unsigned long long x)
 {
@@ -177,19 +177,19 @@ __attribute__((__const__)) clzll(unsigned long long x)
     return __builtin_clzll(x);
 
 }
-# 242 "/workspace/seL4-c89/include/util.h"
+# 242 "/workspace/seL4-c89/preconfigured/include/util.h"
 static inline long
 __attribute__((__const__)) ctzl(unsigned long x)
 {
-# 267 "/workspace/seL4-c89/include/util.h"
+# 267 "/workspace/seL4-c89/preconfigured/include/util.h"
     return __builtin_ctzl(x);
 
 }
-# 282 "/workspace/seL4-c89/include/util.h"
+# 282 "/workspace/seL4-c89/preconfigured/include/util.h"
 static inline long long
 __attribute__((__const__)) ctzll(unsigned long long x)
 {
-# 297 "/workspace/seL4-c89/include/util.h"
+# 297 "/workspace/seL4-c89/preconfigured/include/util.h"
     return __builtin_ctzll(x);
 
 }
@@ -211,11 +211,11 @@ __attribute__((__const__)) popcountl(unsigned long mask)
 
 
 }
-# 11 "/workspace/seL4-c89/include/assert.h" 2
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/types.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/assert.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/types.h" 2
 
 typedef int __assert_failed_long_is_64bits[(sizeof(unsigned long) == 8) ? 1 : -1] __attribute__((unused));
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/types.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/types.h" 2
 
 
 typedef unsigned long word_t;
@@ -234,14 +234,14 @@ typedef word_t node_id_t;
 typedef word_t dom_t;
 
 typedef uint64_t timestamp_t;
-# 11 "/workspace/seL4-c89/include/basic_types.h" 2
-# 43 "/workspace/seL4-c89/include/basic_types.h"
+# 11 "/workspace/seL4-c89/preconfigured/include/basic_types.h" 2
+# 43 "/workspace/seL4-c89/preconfigured/include/basic_types.h"
 enum _bool {
     false = 0,
     true = 1
 };
 typedef word_t bool_t;
-# 56 "/workspace/seL4-c89/include/basic_types.h"
+# 56 "/workspace/seL4-c89/preconfigured/include/basic_types.h"
 typedef struct region {
     pptr_t start;
     pptr_t end;
@@ -275,8 +275,8 @@ typedef cptr_t seL4_CPtr;
 typedef node_id_t seL4_NodeId;
 typedef paddr_t seL4_PAddr;
 typedef dom_t seL4_Domain;
-# 10 "/workspace/seL4-c89/include/types.h" 2
-# 1 "/workspace/seL4-c89/include/compound_types.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/include/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/compound_types.h" 1
 
 
 
@@ -286,7 +286,7 @@ typedef dom_t seL4_Domain;
        
 
 
-# 1 "/workspace/seL4-c89/include/api/types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/api/types.h" 1
 
 
 
@@ -298,32 +298,13 @@ typedef dom_t seL4_Domain;
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h" 1
 
 
        
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/simple_types.h" 1
-
-
-
-
-
-
-       
-
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/macros.h" 1
-
-
-
-
-
-
-       
-# 10 "/workspace/seL4-c89/libsel4/include/sel4/simple_types.h" 2
-# 27 "/workspace/seL4-c89/libsel4/include/sel4/simple_types.h"
-# 1 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/simple_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/simple_types.h" 1
 
 
 
@@ -332,7 +313,7 @@ typedef dom_t seL4_Domain;
 
        
 
-# 1 "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/simple_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/macros.h" 1
 
 
 
@@ -340,9 +321,28 @@ typedef dom_t seL4_Domain;
 
 
        
-# 10 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/simple_types.h" 2
-# 28 "/workspace/seL4-c89/libsel4/include/sel4/simple_types.h" 2
-# 37 "/workspace/seL4-c89/libsel4/include/sel4/simple_types.h"
+# 10 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/simple_types.h" 2
+# 27 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/simple_types.h"
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/simple_types.h" 1
+
+
+
+
+
+
+       
+
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/simple_types.h" 1
+
+
+
+
+
+
+       
+# 10 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/simple_types.h" 2
+# 28 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/simple_types.h" 2
+# 37 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/simple_types.h"
 typedef signed char seL4_Int8;
 typedef unsigned char seL4_Uint8;
 
@@ -371,18 +371,18 @@ typedef unsigned int seL4_Uint32;
 
 _Static_assert(sizeof(seL4_Int32) == 4, "sizeof_seL4_Int32_is_4_byte");
 _Static_assert(sizeof(seL4_Uint32) == 4, "sizeof_seL4_Uint32_is_4_byte");
-# 83 "/workspace/seL4-c89/libsel4/include/sel4/simple_types.h"
+# 83 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/simple_types.h"
 typedef signed long int seL4_Int64;
 typedef unsigned long int seL4_Uint64;
-# 102 "/workspace/seL4-c89/libsel4/include/sel4/simple_types.h"
+# 102 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/simple_types.h"
 typedef seL4_Int8 seL4_Bool;
-# 116 "/workspace/seL4-c89/libsel4/include/sel4/simple_types.h"
+# 116 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/simple_types.h"
 typedef seL4_Uint64 seL4_Word;
-# 128 "/workspace/seL4-c89/libsel4/include/sel4/simple_types.h"
+# 128 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/simple_types.h"
 typedef seL4_Word seL4_CPtr;
 
 
-# 1 "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h" 1
 
 
 
@@ -390,7 +390,7 @@ typedef seL4_Word seL4_CPtr;
 
 
        
-# 69 "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h"
+# 69 "/workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/constants.h"
 _Static_assert((3) + (9) == 12, "seL4_PageTableEntryBits_seL4_PageTableIndexBits_seL4_PageTableBits");;
 _Static_assert((3) + (9) == 12, "seL4_PageDirEntryBits_seL4_PageDirIndexBits_seL4_PageDirBits");;
 _Static_assert((3) + (9) == 12, "seL4_PDPTEntryBits_seL4_PDPTIndexBits_seL4_PDPTBits");;
@@ -439,20 +439,20 @@ typedef enum {
     seL4_UserException_Length,
     _enum_pad_seL4_UserException_Msg = ((1ULL << ((sizeof(long)*8) - 1)) - 1)
 } seL4_UserException_Msg;
-# 132 "/workspace/seL4-c89/libsel4/include/sel4/simple_types.h" 2
+# 132 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/simple_types.h" 2
 
 _Static_assert(sizeof(seL4_Word) == (1u << 3), "seL4_WordSizeBits_matches");
 
 
 
 _Static_assert(8 * sizeof(seL4_Word) == 64, "seL4_WordBits_matches");
-# 7 "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h" 2
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/debug_assert.h" 1
-# 13 "/workspace/seL4-c89/libsel4/include/sel4/debug_assert.h"
+# 7 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/debug_assert.h" 1
+# 13 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/debug_assert.h"
        
-# 22 "/workspace/seL4-c89/libsel4/include/sel4/debug_assert.h"
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/assert.h" 1
-# 15 "/workspace/seL4-c89/libsel4/include/sel4/assert.h"
+# 22 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/debug_assert.h"
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/assert.h" 1
+# 15 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/assert.h"
        
 
 
@@ -461,8 +461,8 @@ _Static_assert(8 * sizeof(seL4_Word) == 64, "seL4_WordBits_matches");
 
 
 void __assert_fail(const char *str, const char *file, int line, const char *function);
-# 23 "/workspace/seL4-c89/libsel4/include/sel4/debug_assert.h" 2
-# 8 "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h" 2
+# 23 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/debug_assert.h" 2
+# 8 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h" 2
 struct seL4_CNode_CapData {
     seL4_Uint64 words[1];
 };
@@ -473,8 +473,8 @@ seL4_CNode_CapData_new(seL4_Uint64 guard, seL4_Uint64 guardSize) {
     seL4_CNode_CapData_t seL4_CNode_CapData;
 
 
-    do { if (!((guard & ~0x3ffffffffffffffull) == ((0 && (guard & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(guard & ~0x3ffffffffffffffull) == ((0 && (guard & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 18, __func__); } } while(0);
-    do { if (!((guardSize & ~0x3full) == ((0 && (guardSize & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(guardSize & ~0x3full) == ((0 && (guardSize & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 19, __func__); } } while(0);
+    do { if (!((guard & ~0x3ffffffffffffffull) == ((0 && (guard & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(guard & ~0x3ffffffffffffffull) == ((0 && (guard & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 18, __func__); } } while(0);
+    do { if (!((guardSize & ~0x3full) == ((0 && (guardSize & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(guardSize & ~0x3full) == ((0 && (guardSize & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 19, __func__); } } while(0);
 
     seL4_CNode_CapData.words[0] = 0
         | (guard & 0x3ffffffffffffffull) << 6
@@ -486,8 +486,8 @@ seL4_CNode_CapData_new(seL4_Uint64 guard, seL4_Uint64 guardSize) {
 static inline void
 seL4_CNode_CapData_ptr_new(seL4_CNode_CapData_t *seL4_CNode_CapData_ptr, seL4_Uint64 guard, seL4_Uint64 guardSize) {
 
-    do { if (!((guard & ~0x3ffffffffffffffull) == ((0 && (guard & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(guard & ~0x3ffffffffffffffull) == ((0 && (guard & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 31, __func__); } } while(0);
-    do { if (!((guardSize & ~0x3full) == ((0 && (guardSize & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(guardSize & ~0x3full) == ((0 && (guardSize & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 32, __func__); } } while(0);
+    do { if (!((guard & ~0x3ffffffffffffffull) == ((0 && (guard & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(guard & ~0x3ffffffffffffffull) == ((0 && (guard & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 31, __func__); } } while(0);
+    do { if (!((guardSize & ~0x3full) == ((0 && (guardSize & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(guardSize & ~0x3full) == ((0 && (guardSize & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 32, __func__); } } while(0);
 
     seL4_CNode_CapData_ptr->words[0] = 0
         | (guard & 0x3ffffffffffffffull) << 6
@@ -508,7 +508,7 @@ seL4_CNode_CapData_get_guard(seL4_CNode_CapData_t seL4_CNode_CapData) {
 static inline seL4_CNode_CapData_t __attribute__((__const__))
 seL4_CNode_CapData_set_guard(seL4_CNode_CapData_t seL4_CNode_CapData, seL4_Uint64 v64) {
 
-    do { if (!((((~0xffffffffffffffc0ull >> 6 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xffffffffffffffc0ull >> 6 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 53, __func__); } } while(0);
+    do { if (!((((~0xffffffffffffffc0ull >> 6 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xffffffffffffffc0ull >> 6 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 53, __func__); } } while(0);
     seL4_CNode_CapData.words[0] &= ~0xffffffffffffffc0ull;
     seL4_CNode_CapData.words[0] |= (v64 << 6) & 0xffffffffffffffc0ull;
     return seL4_CNode_CapData;
@@ -528,7 +528,7 @@ seL4_CNode_CapData_ptr_get_guard(seL4_CNode_CapData_t *seL4_CNode_CapData_ptr) {
 static inline void
 seL4_CNode_CapData_ptr_set_guard(seL4_CNode_CapData_t *seL4_CNode_CapData_ptr, seL4_Uint64 v64) {
 
-    do { if (!((((~0xffffffffffffffc0ull >> 6) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xffffffffffffffc0ull >> 6) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 73, __func__); } } while(0);
+    do { if (!((((~0xffffffffffffffc0ull >> 6) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xffffffffffffffc0ull >> 6) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 73, __func__); } } while(0);
     seL4_CNode_CapData_ptr->words[0] &= ~0xffffffffffffffc0ull;
     seL4_CNode_CapData_ptr->words[0] |= (v64 << 6) & 0xffffffffffffffc0;
 }
@@ -547,7 +547,7 @@ seL4_CNode_CapData_get_guardSize(seL4_CNode_CapData_t seL4_CNode_CapData) {
 static inline seL4_CNode_CapData_t __attribute__((__const__))
 seL4_CNode_CapData_set_guardSize(seL4_CNode_CapData_t seL4_CNode_CapData, seL4_Uint64 v64) {
 
-    do { if (!((((~0x3full >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x3full >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 92, __func__); } } while(0);
+    do { if (!((((~0x3full >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x3full >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 92, __func__); } } while(0);
     seL4_CNode_CapData.words[0] &= ~0x3full;
     seL4_CNode_CapData.words[0] |= (v64 << 0) & 0x3full;
     return seL4_CNode_CapData;
@@ -567,7 +567,7 @@ seL4_CNode_CapData_ptr_get_guardSize(seL4_CNode_CapData_t *seL4_CNode_CapData_pt
 static inline void
 seL4_CNode_CapData_ptr_set_guardSize(seL4_CNode_CapData_t *seL4_CNode_CapData_ptr, seL4_Uint64 v64) {
 
-    do { if (!((((~0x3full >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x3full >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 112, __func__); } } while(0);
+    do { if (!((((~0x3full >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x3full >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 112, __func__); } } while(0);
     seL4_CNode_CapData_ptr->words[0] &= ~0x3full;
     seL4_CNode_CapData_ptr->words[0] |= (v64 << 0) & 0x3f;
 }
@@ -582,10 +582,10 @@ seL4_CapRights_new(seL4_Uint64 capAllowGrantReply, seL4_Uint64 capAllowGrant, se
     seL4_CapRights_t seL4_CapRights;
 
 
-    do { if (!((capAllowGrantReply & ~0x1ull) == ((0 && (capAllowGrantReply & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowGrantReply & ~0x1ull) == ((0 && (capAllowGrantReply & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 127, __func__); } } while(0);
-    do { if (!((capAllowGrant & ~0x1ull) == ((0 && (capAllowGrant & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowGrant & ~0x1ull) == ((0 && (capAllowGrant & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 128, __func__); } } while(0);
-    do { if (!((capAllowRead & ~0x1ull) == ((0 && (capAllowRead & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowRead & ~0x1ull) == ((0 && (capAllowRead & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 129, __func__); } } while(0);
-    do { if (!((capAllowWrite & ~0x1ull) == ((0 && (capAllowWrite & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowWrite & ~0x1ull) == ((0 && (capAllowWrite & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 130, __func__); } } while(0);
+    do { if (!((capAllowGrantReply & ~0x1ull) == ((0 && (capAllowGrantReply & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowGrantReply & ~0x1ull) == ((0 && (capAllowGrantReply & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 127, __func__); } } while(0);
+    do { if (!((capAllowGrant & ~0x1ull) == ((0 && (capAllowGrant & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowGrant & ~0x1ull) == ((0 && (capAllowGrant & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 128, __func__); } } while(0);
+    do { if (!((capAllowRead & ~0x1ull) == ((0 && (capAllowRead & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowRead & ~0x1ull) == ((0 && (capAllowRead & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 129, __func__); } } while(0);
+    do { if (!((capAllowWrite & ~0x1ull) == ((0 && (capAllowWrite & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowWrite & ~0x1ull) == ((0 && (capAllowWrite & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 130, __func__); } } while(0);
 
     seL4_CapRights.words[0] = 0
         | (capAllowGrantReply & 0x1ull) << 3
@@ -599,10 +599,10 @@ seL4_CapRights_new(seL4_Uint64 capAllowGrantReply, seL4_Uint64 capAllowGrant, se
 static inline void
 seL4_CapRights_ptr_new(seL4_CapRights_t *seL4_CapRights_ptr, seL4_Uint64 capAllowGrantReply, seL4_Uint64 capAllowGrant, seL4_Uint64 capAllowRead, seL4_Uint64 capAllowWrite) {
 
-    do { if (!((capAllowGrantReply & ~0x1ull) == ((0 && (capAllowGrantReply & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowGrantReply & ~0x1ull) == ((0 && (capAllowGrantReply & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 144, __func__); } } while(0);
-    do { if (!((capAllowGrant & ~0x1ull) == ((0 && (capAllowGrant & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowGrant & ~0x1ull) == ((0 && (capAllowGrant & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 145, __func__); } } while(0);
-    do { if (!((capAllowRead & ~0x1ull) == ((0 && (capAllowRead & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowRead & ~0x1ull) == ((0 && (capAllowRead & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 146, __func__); } } while(0);
-    do { if (!((capAllowWrite & ~0x1ull) == ((0 && (capAllowWrite & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowWrite & ~0x1ull) == ((0 && (capAllowWrite & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 147, __func__); } } while(0);
+    do { if (!((capAllowGrantReply & ~0x1ull) == ((0 && (capAllowGrantReply & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowGrantReply & ~0x1ull) == ((0 && (capAllowGrantReply & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 144, __func__); } } while(0);
+    do { if (!((capAllowGrant & ~0x1ull) == ((0 && (capAllowGrant & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowGrant & ~0x1ull) == ((0 && (capAllowGrant & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 145, __func__); } } while(0);
+    do { if (!((capAllowRead & ~0x1ull) == ((0 && (capAllowRead & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowRead & ~0x1ull) == ((0 && (capAllowRead & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 146, __func__); } } while(0);
+    do { if (!((capAllowWrite & ~0x1ull) == ((0 && (capAllowWrite & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capAllowWrite & ~0x1ull) == ((0 && (capAllowWrite & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 147, __func__); } } while(0);
 
     seL4_CapRights_ptr->words[0] = 0
         | (capAllowGrantReply & 0x1ull) << 3
@@ -625,7 +625,7 @@ seL4_CapRights_get_capAllowGrantReply(seL4_CapRights_t seL4_CapRights) {
 static inline seL4_CapRights_t __attribute__((__const__))
 seL4_CapRights_set_capAllowGrantReply(seL4_CapRights_t seL4_CapRights, seL4_Uint64 v64) {
 
-    do { if (!((((~0x8ull >> 3 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x8ull >> 3 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 170, __func__); } } while(0);
+    do { if (!((((~0x8ull >> 3 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x8ull >> 3 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 170, __func__); } } while(0);
     seL4_CapRights.words[0] &= ~0x8ull;
     seL4_CapRights.words[0] |= (v64 << 3) & 0x8ull;
     return seL4_CapRights;
@@ -645,7 +645,7 @@ seL4_CapRights_ptr_get_capAllowGrantReply(seL4_CapRights_t *seL4_CapRights_ptr) 
 static inline void
 seL4_CapRights_ptr_set_capAllowGrantReply(seL4_CapRights_t *seL4_CapRights_ptr, seL4_Uint64 v64) {
 
-    do { if (!((((~0x8ull >> 3) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x8ull >> 3) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 190, __func__); } } while(0);
+    do { if (!((((~0x8ull >> 3) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x8ull >> 3) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 190, __func__); } } while(0);
     seL4_CapRights_ptr->words[0] &= ~0x8ull;
     seL4_CapRights_ptr->words[0] |= (v64 << 3) & 0x8;
 }
@@ -664,7 +664,7 @@ seL4_CapRights_get_capAllowGrant(seL4_CapRights_t seL4_CapRights) {
 static inline seL4_CapRights_t __attribute__((__const__))
 seL4_CapRights_set_capAllowGrant(seL4_CapRights_t seL4_CapRights, seL4_Uint64 v64) {
 
-    do { if (!((((~0x4ull >> 2 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x4ull >> 2 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 209, __func__); } } while(0);
+    do { if (!((((~0x4ull >> 2 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x4ull >> 2 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 209, __func__); } } while(0);
     seL4_CapRights.words[0] &= ~0x4ull;
     seL4_CapRights.words[0] |= (v64 << 2) & 0x4ull;
     return seL4_CapRights;
@@ -684,7 +684,7 @@ seL4_CapRights_ptr_get_capAllowGrant(seL4_CapRights_t *seL4_CapRights_ptr) {
 static inline void
 seL4_CapRights_ptr_set_capAllowGrant(seL4_CapRights_t *seL4_CapRights_ptr, seL4_Uint64 v64) {
 
-    do { if (!((((~0x4ull >> 2) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x4ull >> 2) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 229, __func__); } } while(0);
+    do { if (!((((~0x4ull >> 2) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x4ull >> 2) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 229, __func__); } } while(0);
     seL4_CapRights_ptr->words[0] &= ~0x4ull;
     seL4_CapRights_ptr->words[0] |= (v64 << 2) & 0x4;
 }
@@ -703,7 +703,7 @@ seL4_CapRights_get_capAllowRead(seL4_CapRights_t seL4_CapRights) {
 static inline seL4_CapRights_t __attribute__((__const__))
 seL4_CapRights_set_capAllowRead(seL4_CapRights_t seL4_CapRights, seL4_Uint64 v64) {
 
-    do { if (!((((~0x2ull >> 1 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x2ull >> 1 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 248, __func__); } } while(0);
+    do { if (!((((~0x2ull >> 1 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x2ull >> 1 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 248, __func__); } } while(0);
     seL4_CapRights.words[0] &= ~0x2ull;
     seL4_CapRights.words[0] |= (v64 << 1) & 0x2ull;
     return seL4_CapRights;
@@ -723,7 +723,7 @@ seL4_CapRights_ptr_get_capAllowRead(seL4_CapRights_t *seL4_CapRights_ptr) {
 static inline void
 seL4_CapRights_ptr_set_capAllowRead(seL4_CapRights_t *seL4_CapRights_ptr, seL4_Uint64 v64) {
 
-    do { if (!((((~0x2ull >> 1) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x2ull >> 1) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 268, __func__); } } while(0);
+    do { if (!((((~0x2ull >> 1) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x2ull >> 1) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 268, __func__); } } while(0);
     seL4_CapRights_ptr->words[0] &= ~0x2ull;
     seL4_CapRights_ptr->words[0] |= (v64 << 1) & 0x2;
 }
@@ -742,7 +742,7 @@ seL4_CapRights_get_capAllowWrite(seL4_CapRights_t seL4_CapRights) {
 static inline seL4_CapRights_t __attribute__((__const__))
 seL4_CapRights_set_capAllowWrite(seL4_CapRights_t seL4_CapRights, seL4_Uint64 v64) {
 
-    do { if (!((((~0x1ull >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x1ull >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 287, __func__); } } while(0);
+    do { if (!((((~0x1ull >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x1ull >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 287, __func__); } } while(0);
     seL4_CapRights.words[0] &= ~0x1ull;
     seL4_CapRights.words[0] |= (v64 << 0) & 0x1ull;
     return seL4_CapRights;
@@ -762,7 +762,7 @@ seL4_CapRights_ptr_get_capAllowWrite(seL4_CapRights_t *seL4_CapRights_ptr) {
 static inline void
 seL4_CapRights_ptr_set_capAllowWrite(seL4_CapRights_t *seL4_CapRights_ptr, seL4_Uint64 v64) {
 
-    do { if (!((((~0x1ull >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x1ull >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 307, __func__); } } while(0);
+    do { if (!((((~0x1ull >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x1ull >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 307, __func__); } } while(0);
     seL4_CapRights_ptr->words[0] &= ~0x1ull;
     seL4_CapRights_ptr->words[0] |= (v64 << 0) & 0x1;
 }
@@ -777,10 +777,10 @@ seL4_MessageInfo_new(seL4_Uint64 label, seL4_Uint64 capsUnwrapped, seL4_Uint64 e
     seL4_MessageInfo_t seL4_MessageInfo;
 
 
-    do { if (!((label & ~0xfffffffffffffull) == ((0 && (label & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(label & ~0xfffffffffffffull) == ((0 && (label & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 322, __func__); } } while(0);
-    do { if (!((capsUnwrapped & ~0x7ull) == ((0 && (capsUnwrapped & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capsUnwrapped & ~0x7ull) == ((0 && (capsUnwrapped & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 323, __func__); } } while(0);
-    do { if (!((extraCaps & ~0x3ull) == ((0 && (extraCaps & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(extraCaps & ~0x3ull) == ((0 && (extraCaps & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 324, __func__); } } while(0);
-    do { if (!((length & ~0x7full) == ((0 && (length & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(length & ~0x7full) == ((0 && (length & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 325, __func__); } } while(0);
+    do { if (!((label & ~0xfffffffffffffull) == ((0 && (label & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(label & ~0xfffffffffffffull) == ((0 && (label & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 322, __func__); } } while(0);
+    do { if (!((capsUnwrapped & ~0x7ull) == ((0 && (capsUnwrapped & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capsUnwrapped & ~0x7ull) == ((0 && (capsUnwrapped & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 323, __func__); } } while(0);
+    do { if (!((extraCaps & ~0x3ull) == ((0 && (extraCaps & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(extraCaps & ~0x3ull) == ((0 && (extraCaps & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 324, __func__); } } while(0);
+    do { if (!((length & ~0x7full) == ((0 && (length & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(length & ~0x7full) == ((0 && (length & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 325, __func__); } } while(0);
 
     seL4_MessageInfo.words[0] = 0
         | (label & 0xfffffffffffffull) << 12
@@ -794,10 +794,10 @@ seL4_MessageInfo_new(seL4_Uint64 label, seL4_Uint64 capsUnwrapped, seL4_Uint64 e
 static inline void
 seL4_MessageInfo_ptr_new(seL4_MessageInfo_t *seL4_MessageInfo_ptr, seL4_Uint64 label, seL4_Uint64 capsUnwrapped, seL4_Uint64 extraCaps, seL4_Uint64 length) {
 
-    do { if (!((label & ~0xfffffffffffffull) == ((0 && (label & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(label & ~0xfffffffffffffull) == ((0 && (label & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 339, __func__); } } while(0);
-    do { if (!((capsUnwrapped & ~0x7ull) == ((0 && (capsUnwrapped & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capsUnwrapped & ~0x7ull) == ((0 && (capsUnwrapped & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 340, __func__); } } while(0);
-    do { if (!((extraCaps & ~0x3ull) == ((0 && (extraCaps & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(extraCaps & ~0x3ull) == ((0 && (extraCaps & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 341, __func__); } } while(0);
-    do { if (!((length & ~0x7full) == ((0 && (length & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(length & ~0x7full) == ((0 && (length & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 342, __func__); } } while(0);
+    do { if (!((label & ~0xfffffffffffffull) == ((0 && (label & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(label & ~0xfffffffffffffull) == ((0 && (label & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 339, __func__); } } while(0);
+    do { if (!((capsUnwrapped & ~0x7ull) == ((0 && (capsUnwrapped & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(capsUnwrapped & ~0x7ull) == ((0 && (capsUnwrapped & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 340, __func__); } } while(0);
+    do { if (!((extraCaps & ~0x3ull) == ((0 && (extraCaps & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(extraCaps & ~0x3ull) == ((0 && (extraCaps & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 341, __func__); } } while(0);
+    do { if (!((length & ~0x7full) == ((0 && (length & (1ull << 63))) ? 0x0 : 0))) { __assert_fail("(length & ~0x7full) == ((0 && (length & (1ull << 63))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 342, __func__); } } while(0);
 
     seL4_MessageInfo_ptr->words[0] = 0
         | (label & 0xfffffffffffffull) << 12
@@ -820,7 +820,7 @@ seL4_MessageInfo_get_label(seL4_MessageInfo_t seL4_MessageInfo) {
 static inline seL4_MessageInfo_t __attribute__((__const__))
 seL4_MessageInfo_set_label(seL4_MessageInfo_t seL4_MessageInfo, seL4_Uint64 v64) {
 
-    do { if (!((((~0xfffffffffffff000ull >> 12 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xfffffffffffff000ull >> 12 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 365, __func__); } } while(0);
+    do { if (!((((~0xfffffffffffff000ull >> 12 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xfffffffffffff000ull >> 12 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 365, __func__); } } while(0);
     seL4_MessageInfo.words[0] &= ~0xfffffffffffff000ull;
     seL4_MessageInfo.words[0] |= (v64 << 12) & 0xfffffffffffff000ull;
     return seL4_MessageInfo;
@@ -840,7 +840,7 @@ seL4_MessageInfo_ptr_get_label(seL4_MessageInfo_t *seL4_MessageInfo_ptr) {
 static inline void
 seL4_MessageInfo_ptr_set_label(seL4_MessageInfo_t *seL4_MessageInfo_ptr, seL4_Uint64 v64) {
 
-    do { if (!((((~0xfffffffffffff000ull >> 12) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xfffffffffffff000ull >> 12) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 385, __func__); } } while(0);
+    do { if (!((((~0xfffffffffffff000ull >> 12) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xfffffffffffff000ull >> 12) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 385, __func__); } } while(0);
     seL4_MessageInfo_ptr->words[0] &= ~0xfffffffffffff000ull;
     seL4_MessageInfo_ptr->words[0] |= (v64 << 12) & 0xfffffffffffff000;
 }
@@ -859,7 +859,7 @@ seL4_MessageInfo_get_capsUnwrapped(seL4_MessageInfo_t seL4_MessageInfo) {
 static inline seL4_MessageInfo_t __attribute__((__const__))
 seL4_MessageInfo_set_capsUnwrapped(seL4_MessageInfo_t seL4_MessageInfo, seL4_Uint64 v64) {
 
-    do { if (!((((~0xe00ull >> 9 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xe00ull >> 9 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 404, __func__); } } while(0);
+    do { if (!((((~0xe00ull >> 9 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xe00ull >> 9 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 404, __func__); } } while(0);
     seL4_MessageInfo.words[0] &= ~0xe00ull;
     seL4_MessageInfo.words[0] |= (v64 << 9) & 0xe00ull;
     return seL4_MessageInfo;
@@ -879,7 +879,7 @@ seL4_MessageInfo_ptr_get_capsUnwrapped(seL4_MessageInfo_t *seL4_MessageInfo_ptr)
 static inline void
 seL4_MessageInfo_ptr_set_capsUnwrapped(seL4_MessageInfo_t *seL4_MessageInfo_ptr, seL4_Uint64 v64) {
 
-    do { if (!((((~0xe00ull >> 9) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xe00ull >> 9) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 424, __func__); } } while(0);
+    do { if (!((((~0xe00ull >> 9) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0xe00ull >> 9) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 424, __func__); } } while(0);
     seL4_MessageInfo_ptr->words[0] &= ~0xe00ull;
     seL4_MessageInfo_ptr->words[0] |= (v64 << 9) & 0xe00;
 }
@@ -898,7 +898,7 @@ seL4_MessageInfo_get_extraCaps(seL4_MessageInfo_t seL4_MessageInfo) {
 static inline seL4_MessageInfo_t __attribute__((__const__))
 seL4_MessageInfo_set_extraCaps(seL4_MessageInfo_t seL4_MessageInfo, seL4_Uint64 v64) {
 
-    do { if (!((((~0x180ull >> 7 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x180ull >> 7 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 443, __func__); } } while(0);
+    do { if (!((((~0x180ull >> 7 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x180ull >> 7 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 443, __func__); } } while(0);
     seL4_MessageInfo.words[0] &= ~0x180ull;
     seL4_MessageInfo.words[0] |= (v64 << 7) & 0x180ull;
     return seL4_MessageInfo;
@@ -918,7 +918,7 @@ seL4_MessageInfo_ptr_get_extraCaps(seL4_MessageInfo_t *seL4_MessageInfo_ptr) {
 static inline void
 seL4_MessageInfo_ptr_set_extraCaps(seL4_MessageInfo_t *seL4_MessageInfo_ptr, seL4_Uint64 v64) {
 
-    do { if (!((((~0x180ull >> 7) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x180ull >> 7) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 463, __func__); } } while(0);
+    do { if (!((((~0x180ull >> 7) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x180ull >> 7) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 463, __func__); } } while(0);
     seL4_MessageInfo_ptr->words[0] &= ~0x180ull;
     seL4_MessageInfo_ptr->words[0] |= (v64 << 7) & 0x180;
 }
@@ -937,7 +937,7 @@ seL4_MessageInfo_get_length(seL4_MessageInfo_t seL4_MessageInfo) {
 static inline seL4_MessageInfo_t __attribute__((__const__))
 seL4_MessageInfo_set_length(seL4_MessageInfo_t seL4_MessageInfo, seL4_Uint64 v64) {
 
-    do { if (!((((~0x7full >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x7full >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 482, __func__); } } while(0);
+    do { if (!((((~0x7full >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x7full >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 482, __func__); } } while(0);
     seL4_MessageInfo.words[0] &= ~0x7full;
     seL4_MessageInfo.words[0] |= (v64 << 0) & 0x7full;
     return seL4_MessageInfo;
@@ -957,12 +957,12 @@ seL4_MessageInfo_ptr_get_length(seL4_MessageInfo_t *seL4_MessageInfo_ptr) {
 static inline void
 seL4_MessageInfo_ptr_set_length(seL4_MessageInfo_t *seL4_MessageInfo_ptr, seL4_Uint64 v64) {
 
-    do { if (!((((~0x7full >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x7full >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/libsel4/include/sel4/shared_types_gen.h", 502, __func__); } } while(0);
+    do { if (!((((~0x7full >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0))) { __assert_fail("(((~0x7full >> 0) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0)", "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types_gen.h", 502, __func__); } } while(0);
     seL4_MessageInfo_ptr->words[0] &= ~0x7full;
     seL4_MessageInfo_ptr->words[0] |= (v64 << 0) & 0x7f;
 }
-# 13 "/workspace/seL4-c89/include/api/types.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/api/types.h" 1
+# 13 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/api/types.h" 1
 
 
 
@@ -971,7 +971,7 @@ seL4_MessageInfo_ptr_set_length(seL4_MessageInfo_t *seL4_MessageInfo_ptr, seL4_U
 
        
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/objecttype.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/objecttype.h" 1
 
 
 
@@ -996,8 +996,8 @@ __attribute__((deprecated("use seL4_NotificationObject"))) static const seL4_Obj
     seL4_NotificationObject;
 
 typedef seL4_Word api_object_t;
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/api/types.h" 2
-# 1 "/workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/objecttype.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/objecttype.h" 1
 
 
 
@@ -1016,8 +1016,8 @@ typedef enum _mode_object {
 
     seL4_ModeObjectTypeCount
 } seL4_seL4ArchObjectType;
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/api/types.h" 2
-# 1 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/objecttype.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/objecttype.h" 1
 
 
 
@@ -1033,21 +1033,21 @@ typedef enum _object {
     seL4_X86_LargePageObject,
     seL4_X86_PageTableObject,
     seL4_X86_PageDirectoryObject,
-# 26 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/objecttype.h"
+# 26 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/objecttype.h"
     seL4_ObjectTypeCount
 } seL4_ArchObjectType;
 typedef seL4_Word object_t;
-# 12 "/workspace/seL4-c89/include/arch/x86/arch/api/types.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/api/types.h" 2
 
 enum asidConstants {
     asidInvalid = 0
 };
 
 typedef word_t asid_t;
-# 14 "/workspace/seL4-c89/include/api/types.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/constants.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/constants.h" 1
 
 
 
@@ -1055,7 +1055,7 @@ typedef word_t asid_t;
 
 
        
-# 44 "/workspace/seL4-c89/libsel4/include/sel4/constants.h"
+# 44 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/constants.h"
 enum priorityConstants {
     seL4_InvalidPrio = -1,
     seL4_MinPrio = 0,
@@ -1095,8 +1095,8 @@ typedef enum {
                         | seL4_TCBFlag_fpuDisabled
 
 } seL4_TCBFlag;
-# 17 "/workspace/seL4-c89/include/api/types.h" 2
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/shared_types.h" 1
+# 17 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/shared_types.h" 1
 
 
 
@@ -1128,8 +1128,8 @@ typedef enum {
     seL4_CapFault_GuardMismatch_BitsFound,
     _enum_pad_seL4_CapFault_Msg = ((1ULL << ((sizeof(long)*8) - 1)) - 1),
 } seL4_CapFault_Msg;
-# 18 "/workspace/seL4-c89/include/api/types.h" 2
-# 1 "/workspace/seL4-c89/include/machine/io.h" 1
+# 18 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/io.h" 1
 
 
 
@@ -1137,7 +1137,7 @@ typedef enum {
 
 
        
-# 19 "/workspace/seL4-c89/include/api/types.h" 2
+# 19 "/workspace/seL4-c89/preconfigured/include/api/types.h" 2
 
 
 
@@ -1220,8 +1220,8 @@ static inline word_t __attribute__((__const__)) wordFromMessageInfo(seL4_Message
 {
     return mi.words[0];
 }
-# 11 "/workspace/seL4-c89/include/compound_types.h" 2
-# 1 "/workspace/seL4-c89/include/object/structures.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/compound_types.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 1
 
 
 
@@ -4911,20 +4911,10 @@ x86_irq_state_irq_reserved_new(void) {
 
     return x86_irq_state;
 }
-# 13 "/workspace/seL4-c89/include/object/structures.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 2
 
 
-# 1 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/constants.h" 1
-
-
-
-
-
-
-       
-# 16 "/workspace/seL4-c89/include/object/structures.h" 2
-
-# 1 "/workspace/seL4-c89/include/benchmark/benchmark_utilisation_.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/constants.h" 1
 
 
 
@@ -4932,7 +4922,17 @@ x86_irq_state_irq_reserved_new(void) {
 
 
        
-# 18 "/workspace/seL4-c89/include/object/structures.h" 2
+# 16 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 2
+
+# 1 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_utilisation_.h" 1
+
+
+
+
+
+
+       
+# 18 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 2
 
 enum irq_state {
     IRQInactive = 0,
@@ -4969,7 +4969,7 @@ enum notification_state {
     NtfnState_Active = 2
 };
 typedef word_t notification_state_t;
-# 112 "/workspace/seL4-c89/include/object/structures.h"
+# 112 "/workspace/seL4-c89/preconfigured/include/object/structures.h"
 static inline cap_t __attribute__((__const__)) Zombie_new(word_t number, word_t type, word_t ptr)
 {
     word_t mask;
@@ -5044,7 +5044,7 @@ enum tcb_cnode_index {
 
 
     tcbVTable = 1,
-# 198 "/workspace/seL4-c89/include/object/structures.h"
+# 198 "/workspace/seL4-c89/preconfigured/include/object/structures.h"
     tcbReply = 2,
 
 
@@ -5057,7 +5057,7 @@ enum tcb_cnode_index {
 };
 typedef word_t tcb_cnode_index_t;
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h" 1
 
 
 
@@ -5065,20 +5065,8 @@ typedef word_t tcb_cnode_index_t;
 
 
        
-# 16 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/hardware.h" 1
-
-
-
-
-
-
-       
-
-
-
-
-# 1 "/workspace/seL4-c89/include/linker.h" 1
+# 16 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/hardware.h" 1
 
 
 
@@ -5088,7 +5076,9 @@ typedef word_t tcb_cnode_index_t;
        
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/linker.h" 1
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/linker.h" 1
 
 
 
@@ -5096,9 +5086,19 @@ typedef word_t tcb_cnode_index_t;
 
 
        
-# 11 "/workspace/seL4-c89/include/linker.h" 2
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/machine/hardware.h" 2
-# 21 "/workspace/seL4-c89/include/arch/x86/arch/machine/hardware.h"
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/linker.h" 1
+
+
+
+
+
+
+       
+# 11 "/workspace/seL4-c89/preconfigured/include/linker.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/hardware.h" 2
+# 21 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/hardware.h"
 enum vm_fault_type {
     X86DataFault = 0,
     X86InstructionFault = 1
@@ -5203,8 +5203,8 @@ static inline void arch_clean_invalidate_caches(void)
 
 
 bool_t init_ibrs(void);
-# 17 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/registerset.h" 1
+# 17 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/registerset.h" 1
 
 
 
@@ -5218,7 +5218,7 @@ bool_t init_ibrs(void);
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine/registerset.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine/registerset.h" 1
 
 
 
@@ -5226,7 +5226,7 @@ bool_t init_ibrs(void);
 
 
        
-# 23 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine/registerset.h"
+# 23 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine/registerset.h"
 enum _register {
 
 
@@ -5291,12 +5291,12 @@ enum messageSizes {
 
 
 };
-# 140 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine/registerset.h"
+# 140 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine/registerset.h"
 extern const register_t msgRegisters[];
 extern const register_t frameRegisters[];
 extern const register_t gpRegisters[];
-# 15 "/workspace/seL4-c89/include/arch/x86/arch/machine/registerset.h" 2
-# 57 "/workspace/seL4-c89/include/arch/x86/arch/machine/registerset.h"
+# 15 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/registerset.h" 2
+# 57 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/registerset.h"
 struct user_fpu_state {
     uint8_t state[576];
 };
@@ -5322,7 +5322,7 @@ word_t Mode_sanitiseRegister(register_t reg, word_t v);
 
 
 
-# 18 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h" 2
+# 18 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h" 2
 
 
 enum tcb_arch_cnode_index {
@@ -5343,9 +5343,9 @@ typedef struct arch_tcb {
 
 
 } arch_tcb_t;
-# 61 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 61 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
 typedef int __assert_failed_vtd_pt_size_sane[(9 + 3 == 12) ? 1 : -1] __attribute__((unused));
-# 120 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 120 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
 struct rdmsr_safe_result {
     uint64_t value;
     bool_t success;
@@ -5366,7 +5366,7 @@ enum vm_rights {
 };
 typedef word_t vm_rights_t;
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/object/structures.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/object/structures.h" 1
 
 
 
@@ -5374,7 +5374,7 @@ typedef word_t vm_rights_t;
 
 
        
-# 25 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/object/structures.h"
+# 25 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/object/structures.h"
 typedef int __assert_failed_gdt_idt_ptr_packed[(sizeof(gdt_idt_ptr_t) == sizeof(uint16_t) * 5) ? 1 : -1] __attribute__((unused));
 
 
@@ -5385,15 +5385,15 @@ typedef int __assert_failed_unsigned_int_size_32[(sizeof(unsigned int) == 4) ? 1
 
 
 typedef int __assert_failed_uint64_t_size_64[(sizeof(uint64_t) == 8) ? 1 : -1] __attribute__((unused));
-# 59 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/object/structures.h"
+# 59 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/object/structures.h"
 typedef pml4e_t vspace_root_t;
-# 99 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/object/structures.h"
+# 99 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/object/structures.h"
 struct asid_pool {
     asid_map_t array[(1ul << (asidLowBits))];
 };
 
 typedef struct asid_pool asid_pool_t;
-# 114 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/object/structures.h"
+# 114 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/object/structures.h"
 static inline asid_t __attribute__((__pure__)) cap_get_capMappedASID(cap_t cap)
 {
     cap_tag_t ctag;
@@ -5475,7 +5475,7 @@ static inline void *__attribute__((__const__)) cap_get_modeCapPtr(cap_t cap)
         return ((void *)0);
     }
 }
-# 141 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h" 2
+# 141 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h" 2
 
 static inline word_t __attribute__((__const__)) cap_get_archCapSizeBits(cap_t cap)
 {
@@ -5495,13 +5495,13 @@ static inline word_t __attribute__((__const__)) cap_get_archCapSizeBits(cap_t ca
 
     case cap_io_port_cap:
         return 0;
-# 168 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 168 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     case cap_asid_control_cap:
         return 0;
 
     case cap_asid_pool_cap:
         return 12;
-# 188 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 188 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     default:
         return cap_get_modeCapSizeBits(cap);
     }
@@ -5526,13 +5526,13 @@ static inline bool_t __attribute__((__const__)) cap_get_archCapIsPhysical(cap_t 
 
     case cap_io_port_cap:
         return false;
-# 221 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 221 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     case cap_asid_control_cap:
         return false;
 
     case cap_asid_pool_cap:
         return true;
-# 241 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 241 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     default:
         return cap_get_modeCapIsPhysical(cap);
     }
@@ -5557,13 +5557,13 @@ static inline void *__attribute__((__const__)) cap_get_archCapPtr(cap_t cap)
 
     case cap_io_port_cap:
         return ((void *)0);
-# 274 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 274 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     case cap_asid_control_cap:
         return ((void *)0);
 
     case cap_asid_pool_cap:
         return ((asid_pool_t*)cap_asid_pool_cap_get_capASIDPool(cap));
-# 294 "/workspace/seL4-c89/include/arch/x86/arch/object/structures.h"
+# 294 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.h"
     default:
         return cap_get_modeCapPtr(cap);
     }
@@ -5579,7 +5579,7 @@ static inline bool_t __attribute__((__const__)) Arch_isCapRevocable(cap_t derive
         return false;
     }
 }
-# 211 "/workspace/seL4-c89/include/object/structures.h" 2
+# 211 "/workspace/seL4-c89/preconfigured/include/object/structures.h" 2
 
 struct user_data {
     word_t words[(1ul << (12)) / sizeof(word_t)];
@@ -5643,7 +5643,7 @@ struct tcb {
 
 
     prio_t tcbPriority;
-# 284 "/workspace/seL4-c89/include/object/structures.h"
+# 284 "/workspace/seL4-c89/preconfigured/include/object/structures.h"
     word_t tcbTimeSlice;
 
 
@@ -5671,7 +5671,7 @@ struct tcb {
 
 };
 typedef struct tcb tcb_t;
-# 404 "/workspace/seL4-c89/include/object/structures.h"
+# 404 "/workspace/seL4-c89/preconfigured/include/object/structures.h"
 typedef int __assert_failed_cte_size_sane[(sizeof(cte_t) == (1ul << (5))) ? 1 : -1] __attribute__((unused));
 typedef int __assert_failed_tcb_cte_size_sane[((4 + 5) <= (11 - 1)) ? 1 : -1] __attribute__((unused));
 typedef int __assert_failed_tcb_size_sane[((1ul << ((11 - 1))) >= sizeof(tcb_t)) ? 1 : -1] __attribute__((unused));
@@ -5683,13 +5683,13 @@ typedef int __assert_failed_notification_size_sane[(sizeof(notification_t) == (1
 
 
 typedef int __assert_failed_ipc_buf_size_sane[(sizeof(seL4_IPCBuffer) == (1ul << (10))) ? 1 : -1] __attribute__((unused));
-# 424 "/workspace/seL4-c89/include/object/structures.h"
+# 424 "/workspace/seL4-c89/preconfigured/include/object/structures.h"
 static inline word_t __attribute__((__const__))
 isArchCap(cap_t cap)
 {
     return (cap_get_capType(cap) % 2);
 }
-# 12 "/workspace/seL4-c89/include/compound_types.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/compound_types.h" 2
 
 
 struct pde_range {
@@ -5710,9 +5710,9 @@ struct extra_caps {
     cte_ptr_t excaprefs[((1ul<<(seL4_MsgExtraCapBits))-1)];
 };
 typedef struct extra_caps extra_caps_t;
-# 11 "/workspace/seL4-c89/include/types.h" 2
-# 9 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/api/faults.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/types.h" 2
+# 9 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/api/faults.h" 1
 
 
 
@@ -5729,8 +5729,8 @@ word_t Arch_setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffe
 
 bool_t handleFaultReply(tcb_t *receiver, tcb_t *sender);
 bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType);
-# 10 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/api/syscall.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/api/syscall.h" 1
 
 
 
@@ -5740,7 +5740,7 @@ bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType);
        
 
 
-# 1 "/workspace/seL4-c89/include/machine.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/machine.h" 1
 
 
 
@@ -5749,7 +5749,7 @@ bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType);
 
        
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine.h" 1
 
 
 
@@ -5758,7 +5758,7 @@ bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType);
 
        
 
-# 1 "/workspace/seL4-c89/include/machine/interrupt.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/interrupt.h" 1
 
 
 
@@ -5766,17 +5766,17 @@ bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType);
 
 
        
-# 44 "/workspace/seL4-c89/include/machine/interrupt.h"
+# 44 "/workspace/seL4-c89/preconfigured/include/machine/interrupt.h"
 typedef word_t irq_t;
-# 63 "/workspace/seL4-c89/include/machine/interrupt.h"
+# 63 "/workspace/seL4-c89/preconfigured/include/machine/interrupt.h"
 static inline irq_t getActiveIRQ(void);
-# 75 "/workspace/seL4-c89/include/machine/interrupt.h"
+# 75 "/workspace/seL4-c89/preconfigured/include/machine/interrupt.h"
 static inline bool_t isIRQPending(void);
-# 85 "/workspace/seL4-c89/include/machine/interrupt.h"
+# 85 "/workspace/seL4-c89/preconfigured/include/machine/interrupt.h"
 static inline void maskInterrupt(bool_t disable, irq_t irq);
-# 98 "/workspace/seL4-c89/include/machine/interrupt.h"
+# 98 "/workspace/seL4-c89/preconfigured/include/machine/interrupt.h"
 static inline void ackInterrupt(irq_t irq);
-# 112 "/workspace/seL4-c89/include/machine/interrupt.h"
+# 112 "/workspace/seL4-c89/preconfigured/include/machine/interrupt.h"
 static inline void deactivateInterrupt(irq_t irq);
 
 
@@ -5785,14 +5785,14 @@ static inline void deactivateInterrupt(irq_t irq);
 
 
 static inline void handleSpuriousIRQ(void);
-# 131 "/workspace/seL4-c89/include/machine/interrupt.h"
+# 131 "/workspace/seL4-c89/preconfigured/include/machine/interrupt.h"
 static inline void handleReservedIRQ(irq_t irq);
 
 
 
 static inline void deactivateInterrupt(irq_t irq) {}
-# 10 "/workspace/seL4-c89/include/plat/pc99/plat/machine.h" 2
-# 19 "/workspace/seL4-c89/include/plat/pc99/plat/machine.h"
+# 10 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine.h" 2
+# 19 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine.h"
 typedef enum _interrupt_t {
     int_invalid = -1,
     int_debug = 1,
@@ -5841,8 +5841,8 @@ typedef enum _platform_irq_t {
 
     irqInvalid = 255,
 } platform_irq_t;
-# 10 "/workspace/seL4-c89/include/machine.h" 2
-# 1 "/workspace/seL4-c89/include/machine/registerset.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/include/machine.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/registerset.h" 1
 
 
 
@@ -5880,21 +5880,21 @@ static inline word_t __attribute__((__pure__)) getRegister(tcb_t *thread, regist
 {
     return thread->tcbArch.tcbContext.registers[reg];
 }
-# 11 "/workspace/seL4-c89/include/machine.h" 2
-# 1 "/workspace/seL4-c89/include/hardware.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/machine.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/hardware.h" 1
 
 
 
 
 
        
-# 49 "/workspace/seL4-c89/include/hardware.h"
+# 49 "/workspace/seL4-c89/preconfigured/include/hardware.h"
 extern char ki_end[1];
 
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/hardware.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/hardware.h" 1
 
 
 
@@ -5904,7 +5904,7 @@ extern char ki_end[1];
        
 
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 1
 
 
 
@@ -5912,13 +5912,13 @@ extern char ki_end[1];
 
 
        
-# 115 "/workspace/seL4-c89/include/plat/pc99/plat/64/plat_mode/machine/hardware.h"
+# 115 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/64/plat_mode/machine/hardware.h"
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/generated/plat_mode/machine/hardware_gen.h" 1
 
 
        
-# 116 "/workspace/seL4-c89/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/tlb_bitmap_defs.h" 1
+# 116 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/tlb_bitmap_defs.h" 1
 
 
 
@@ -5926,10 +5926,10 @@ extern char ki_end[1];
 
 
        
-# 117 "/workspace/seL4-c89/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 2
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/hardware.h" 2
-# 55 "/workspace/seL4-c89/include/hardware.h" 2
-# 12 "/workspace/seL4-c89/include/machine.h" 2
+# 117 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/64/plat_mode/machine/hardware.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/hardware.h" 2
+# 55 "/workspace/seL4-c89/preconfigured/include/hardware.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/machine.h" 2
 
 
 
@@ -5977,7 +5977,7 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
 }
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h" 1
 
 
 
@@ -5988,7 +5988,7 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 1
 
 
 
@@ -6002,7 +6002,7 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
 
 
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/devices.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/devices.h" 1
 
 
 
@@ -6010,18 +6010,8 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
 
 
        
-# 15 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/vcpu.h" 1
-
-
-
-
-
-
-       
-
-
-# 1 "/workspace/seL4-c89/include/api/failures.h" 1
+# 15 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/vcpu.h" 1
 
 
 
@@ -6031,7 +6021,17 @@ static inline p_region_t __attribute__((__const__)) pptr_to_paddr_reg(const regi
        
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/errors.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/api/failures.h" 1
+
+
+
+
+
+
+       
+
+
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/errors.h" 1
 
 
 
@@ -6059,7 +6059,7 @@ typedef enum {
 
     seL4_NumErrors
 } seL4_Error;
-# 11 "/workspace/seL4-c89/include/api/failures.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/api/failures.h" 2
 
 
 
@@ -6087,12 +6087,12 @@ struct syscall_error {
     syscall_error_type_t type;
 };
 typedef struct syscall_error syscall_error_t;
-# 47 "/workspace/seL4-c89/include/api/failures.h"
+# 47 "/workspace/seL4-c89/preconfigured/include/api/failures.h"
 extern lookup_fault_t current_lookup_fault;
 extern seL4_Fault_t current_fault;
 extern syscall_error_t current_syscall_error;
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/object/vcpu.h" 2
-# 168 "/workspace/seL4-c89/include/arch/x86/arch/object/vcpu.h"
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/vcpu.h" 2
+# 168 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/vcpu.h"
 enum exit_reasons {
     EXCEPTION_OR_NMI = 0x00,
     EXTERNAL_INTERRUPT = 0x01,
@@ -6156,8 +6156,8 @@ enum exit_reasons {
 
 
 typedef uint16_t vpid_t;
-# 16 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/iospace.h" 1
+# 16 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/iospace.h" 1
 
 
 
@@ -6165,8 +6165,8 @@ typedef uint16_t vpid_t;
 
 
        
-# 17 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/ioport.h" 1
+# 17 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/ioport.h" 1
 
 
 
@@ -6174,7 +6174,7 @@ typedef uint16_t vpid_t;
 
 
        
-# 16 "/workspace/seL4-c89/include/arch/x86/arch/object/ioport.h"
+# 16 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/ioport.h"
 void setIOPortMask(void *ioport_bitmap, uint16_t low, uint16_t high, bool_t set);
 
 exception_t decodeX86PortInvocation(word_t invLabel, word_t length, cptr_t cptr, cte_t *slot, cap_t cap,
@@ -6184,22 +6184,10 @@ exception_t decodeX86PortControlInvocation(word_t invLabel, word_t length, cptr_
 
 
 void freeIOPortRange(uint16_t first_port, uint16_t last_port);
-# 18 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 2
+# 18 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 2
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/model/statedata.h" 1
-
-
-
-
-
-
-       
-
-
-
-
-# 1 "/workspace/seL4-c89/include/model/statedata.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/model/statedata.h" 1
 
 
 
@@ -6211,7 +6199,19 @@ void freeIOPortRange(uint16_t first_port, uint16_t last_port);
 
 
 
-# 1 "/workspace/seL4-c89/include/object/tcb.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/model/statedata.h" 1
+
+
+
+
+
+
+       
+
+
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/object/tcb.h" 1
 
 
 
@@ -6225,7 +6225,7 @@ void freeIOPortRange(uint16_t first_port, uint16_t last_port);
 
 
 
-# 1 "/workspace/seL4-c89/include/object/cnode.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object/cnode.h" 1
 
 
 
@@ -6266,7 +6266,7 @@ cap_transfer_t __attribute__((__pure__)) loadCapTransfer(word_t *buffer);
 
 exception_t invokeCNodeSaveCaller(cte_t *destSlot);
 void setupReplyMaster(tcb_t *thread);
-# 15 "/workspace/seL4-c89/include/object/tcb.h" 2
+# 15 "/workspace/seL4-c89/preconfigured/include/object/tcb.h" 2
 
 
 
@@ -6350,7 +6350,7 @@ static inline void tcb_queue_insert(tcb_t *tcb, tcb_t *after)
     after->tcbSchedPrev = tcb;
     before->tcbSchedNext = tcb;
 }
-# 167 "/workspace/seL4-c89/include/object/tcb.h"
+# 167 "/workspace/seL4-c89/preconfigured/include/object/tcb.h"
 tcb_queue_t tcbEPAppend(tcb_t *tcb, tcb_queue_t queue);
 tcb_queue_t tcbEPDequeue(tcb_t *tcb, tcb_queue_t queue);
 
@@ -6382,7 +6382,7 @@ exception_t decodeSetSpace(cap_t cap, word_t length,
 exception_t decodeDomainInvocation(word_t invLabel, word_t length, word_t *buffer);
 exception_t decodeBindNotification(cap_t cap);
 exception_t decodeUnbindNotification(cap_t cap);
-# 218 "/workspace/seL4-c89/include/object/tcb.h"
+# 218 "/workspace/seL4-c89/preconfigured/include/object/tcb.h"
 enum thread_control_flag {
     thread_control_update_priority = 0x1,
     thread_control_update_ipc_buffer = 0x2,
@@ -6395,7 +6395,7 @@ typedef word_t thread_control_flag_t;
 
 exception_t invokeTCB_Suspend(tcb_t *thread);
 exception_t invokeTCB_Resume(tcb_t *thread);
-# 245 "/workspace/seL4-c89/include/object/tcb.h"
+# 245 "/workspace/seL4-c89/preconfigured/include/object/tcb.h"
 exception_t invokeTCB_ThreadControl(tcb_t *target, cte_t *slot, cptr_t faultep,
                                     prio_t mcp, prio_t priority, cap_t cRoot_newCap,
                                     cte_t *cRoot_srcSlot, cap_t vRoot_newCap,
@@ -6422,8 +6422,8 @@ word_t setMRs_syscall_error(tcb_t *thread, word_t *receiveIPCBuffer);
 word_t __attribute__((__const__)) Arch_decodeTransfer(word_t flags);
 exception_t __attribute__((__const__)) Arch_performTransfer(word_t arch, tcb_t *tcb_src,
                                        tcb_t *tcb_dest);
-# 13 "/workspace/seL4-c89/include/model/statedata.h" 2
-# 58 "/workspace/seL4-c89/include/model/statedata.h"
+# 13 "/workspace/seL4-c89/preconfigured/include/model/statedata.h" 2
+# 58 "/workspace/seL4-c89/preconfigured/include/model/statedata.h"
 
 extern tcb_queue_t ksReadyQueues[(16 * 256)] __attribute__((externally_visible));
 extern word_t ksReadyQueuesL1Bitmap[16] __attribute__((externally_visible));
@@ -6431,9 +6431,9 @@ extern word_t ksReadyQueuesL2Bitmap[16][((256 + (1 << 6) - 1) / (1 << 6))] __att
 extern tcb_t *ksCurThread __attribute__((externally_visible));
 extern tcb_t *ksIdleThread __attribute__((externally_visible));
 extern tcb_t *ksSchedulerAction __attribute__((externally_visible));
-# 77 "/workspace/seL4-c89/include/model/statedata.h"
+# 77 "/workspace/seL4-c89/preconfigured/include/model/statedata.h"
 extern tcb_t * ksCurFPUOwner __attribute__((externally_visible));
-# 92 "/workspace/seL4-c89/include/model/statedata.h"
+# 92 "/workspace/seL4-c89/preconfigured/include/model/statedata.h"
 ;
 
 extern word_t ksNumCPUs;
@@ -6458,7 +6458,7 @@ extern word_t ksDomainTime;
 
 
 extern char ksIdleThreadTCB[1][(1ul << (11))];
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/model/statedata.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/model/statedata.h" 2
 
 extern pml4e_t x64KSKernelPML4[(1ul << (9))] __attribute__((externally_visible));
 extern pdpte_t x64KSKernelPDPT[(1ul << (9))];
@@ -6487,9 +6487,9 @@ extern word_t x64KSCurrentUserCR3 __attribute__((externally_visible));
 
 
 ;
-# 50 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/model/statedata.h"
+# 50 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/model/statedata.h"
 extern word_t x64KSIRQStack[1][6 + 2] __attribute__((__aligned__(64))) __attribute__((externally_visible)) __attribute__((__section__(".skim.bss")));
-# 21 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h" 2
+# 21 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h" 2
 
 
 
@@ -6541,12 +6541,12 @@ extern x86_arch_global_state_t x86KSGlobalState[1] __attribute__((__aligned__(64
 extern asid_pool_t *x86KSASIDTable[];
 extern uint32_t x86KScacheLineSizeBits;
 extern user_fpu_state_t x86KSnullFpuState __attribute__((__aligned__(64)));
-# 88 "/workspace/seL4-c89/include/arch/x86/arch/model/statedata.h"
+# 88 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/statedata.h"
 extern x86_irq_state_t x86KSIRQState[];
 
 extern word_t x86KSAllocatedIOPorts[(1ul << (16)) / 64];
-# 12 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/cpu_registers.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/cpu_registers.h" 1
 
 
 
@@ -6554,10 +6554,10 @@ extern word_t x86KSAllocatedIOPorts[(1ul << (16)) / 64];
 
 
        
-# 32 "/workspace/seL4-c89/include/arch/x86/arch/machine/cpu_registers.h"
+# 32 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/cpu_registers.h"
 static unsigned long control_reg_order;
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine/cpu_registers.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine/cpu_registers.h" 1
 
 
 
@@ -6608,7 +6608,7 @@ static inline void write_cr4(unsigned long val)
 {
     __asm__ volatile("movq %0, %%cr4" :: "r"(val), "m"(control_reg_order));
 }
-# 35 "/workspace/seL4-c89/include/arch/x86/arch/machine/cpu_registers.h" 2
+# 35 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/cpu_registers.h" 2
 
 static inline void xsetbv(uint32_t reg, uint64_t value)
 {
@@ -6619,8 +6619,8 @@ static inline void write_xcr0(uint64_t value)
 {
     xsetbv(0, value);
 }
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/model/smp.h" 1
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/smp.h" 1
 
 
 
@@ -6633,7 +6633,7 @@ static inline void write_xcr0(uint64_t value)
 
 
 
-# 1 "/workspace/seL4-c89/include/model/smp.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/model/smp.h" 1
 
 
 
@@ -6641,8 +6641,8 @@ static inline void write_xcr0(uint64_t value)
 
 
        
-# 14 "/workspace/seL4-c89/include/arch/x86/arch/model/smp.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/model/smp.h" 1
+# 14 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/smp.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/model/smp.h" 1
 
 
 
@@ -6650,33 +6650,9 @@ static inline void write_xcr0(uint64_t value)
 
 
        
-# 15 "/workspace/seL4-c89/include/arch/x86/arch/model/smp.h" 2
-# 14 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine.h" 1
-
-
-
-
-
-
-       
-
-
-
-
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/pat.h" 1
-
-
-
-
-
-
-       
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/machine.h" 2
-
-
-
-# 1 "/workspace/seL4-c89/include/object/interrupt.h" 1
+# 15 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/model/smp.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h" 1
 
 
 
@@ -6688,7 +6664,31 @@ static inline void write_xcr0(uint64_t value)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/interrupt.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/pat.h" 1
+
+
+
+
+
+
+       
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h" 2
+
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/object/interrupt.h" 1
+
+
+
+
+
+
+       
+
+
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/interrupt.h" 1
 
 
 
@@ -6706,7 +6706,7 @@ exception_t Arch_decodeIRQControlInvocation(word_t invLabel, word_t length,
                                             cte_t *srcSlot, word_t *buffer);
 void Arch_irqStateInit(void);
 exception_t Arch_checkIRQ(word_t irq_w);
-# 13 "/workspace/seL4-c89/include/object/interrupt.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/object/interrupt.h" 2
 
 
 exception_t decodeIRQControlInvocation(word_t invLabel, word_t length,
@@ -6721,8 +6721,8 @@ void deletedIRQHandler(irq_t irq);
 void handleInterrupt(irq_t irq);
 bool_t isIRQActive(irq_t irq);
 void setIRQState(irq_state_t irqState, irq_t irq);
-# 17 "/workspace/seL4-c89/include/arch/x86/arch/machine.h" 2
-# 99 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 17 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h" 2
+# 99 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
 word_t __attribute__((__pure__)) getRestartPC(tcb_t *thread);
 void setNextPC(tcb_t *thread, word_t v);
 
@@ -6821,7 +6821,7 @@ static inline uint64_t x86_rdtsc(void)
                 );
     return ((uint64_t) hi) << 32llu | (uint64_t) lo;
 }
-# 205 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 205 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
 enum x86_vendor {
     X86_VENDOR_INTEL = 0,
     X86_VENDOR_AMD,
@@ -6865,7 +6865,7 @@ static inline void x86_write_fs_base_impl(word_t base);
 static inline word_t x86_read_fs_base_impl(void);
 static inline void x86_write_gs_base_impl(word_t base);
 static inline word_t x86_read_gs_base_impl(void);
-# 274 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 274 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
 static inline void x86_write_fs_base(word_t base, cpu_id_t cpu)
 {
     x86_write_fs_base_impl(base);
@@ -6885,7 +6885,7 @@ static inline word_t x86_read_gs_base(cpu_id_t cpu)
 {
     return x86_read_gs_base_impl();
 }
-# 328 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 328 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
 static inline void x86_load_fsgs_base(tcb_t *thread, cpu_id_t cpu)
 {
 
@@ -6931,7 +6931,7 @@ static inline exception_t Arch_setTLSRegister(word_t tls_base)
     if (sanitised != tls_base) {
         return EXCEPTION_SYSCALL_ERROR;
     }
-# 383 "/workspace/seL4-c89/include/arch/x86/arch/machine.h"
+# 383 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine.h"
     x86_set_tls_segment_base(sanitised);
 
     return EXCEPTION_NONE;
@@ -7518,8 +7518,8 @@ void int_fd(void);
 void int_fe(void);
 
 void int_ff(void);
-# 15 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h" 2
-# 32 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h"
+# 15 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h" 2
+# 32 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h"
 static inline cr3_t makeCR3(paddr_t addr, word_t pcid)
 {
     return cr3_new(addr, wrap_config_set(1) ? pcid : 0);
@@ -7766,13 +7766,13 @@ static inline word_t x86_read_fs_base_impl(void)
 
 static inline void x86_save_fsgs_base(tcb_t *thread, cpu_id_t cpu)
 {
-# 293 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h"
+# 293 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h"
     word_t cur_fs_base = x86_read_fs_base(cpu);
     setRegister(thread, FS_BASE, cur_fs_base);
     word_t cur_gs_base = x86_read_gs_base(cpu);
     setRegister(thread, GS_BASE, cur_gs_base);
 }
-# 322 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h"
+# 322 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h"
 static inline void x86_write_gs_base_impl(word_t base)
 {
     __asm__ volatile("wrgsbase %0"::"r"(base));
@@ -7784,33 +7784,33 @@ static inline word_t x86_read_gs_base_impl(void)
     __asm__ volatile("rdgsbase %0":"=r"(base));
     return base;
 }
-# 348 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/machine.h"
+# 348 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/machine.h"
 static inline void x86_set_tls_segment_base(word_t tls_base)
 {
     x86_write_fs_base(tls_base, 0lu);
 }
-# 60 "/workspace/seL4-c89/include/machine.h" 2
-# 11 "/workspace/seL4-c89/include/api/syscall.h" 2
+# 60 "/workspace/seL4-c89/preconfigured/include/machine.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/api/syscall.h" 2
 
 
-# 1 "/workspace/seL4-c89/include/kernel/vspace.h" 1
-
-
-
-
-
-       
-
-
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/vspace.h" 1
-
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/vspace.h" 1
 
 
 
 
 
        
-# 18 "/workspace/seL4-c89/include/arch/x86/arch/kernel/vspace.h"
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/vspace.h" 1
+
+
+
+
+
+
+       
+# 18 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/vspace.h"
 struct lookupPTSlot_ret {
     exception_t status;
     pte_t *ptSlot;
@@ -7929,8 +7929,8 @@ static inline bool_t checkVPAlignment(vm_page_size_t sz, word_t w)
 {
     return (!((w) & ((1ul << (pageBitsForSize(sz))) - 1ul)));
 }
-# 10 "/workspace/seL4-c89/include/kernel/vspace.h" 2
-# 14 "/workspace/seL4-c89/include/api/syscall.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/kernel/vspace.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/api/syscall.h" 2
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/gen_headers/arch/api/syscall.h" 1
 # 13 "/workspace/seL4-c89/preconfigured/X64_verified/gen_headers/arch/api/syscall.h"
        
@@ -7947,10 +7947,10 @@ enum syscall {
 # 84 "/workspace/seL4-c89/preconfigured/X64_verified/gen_headers/arch/api/syscall.h"
 };
 typedef word_t syscall_t;
-# 15 "/workspace/seL4-c89/include/api/syscall.h" 2
-# 1 "/workspace/seL4-c89/include/api/debug.h" 1
-# 16 "/workspace/seL4-c89/include/api/syscall.h" 2
-# 32 "/workspace/seL4-c89/include/api/syscall.h"
+# 15 "/workspace/seL4-c89/preconfigured/include/api/syscall.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/api/debug.h" 1
+# 16 "/workspace/seL4-c89/preconfigured/include/api/syscall.h" 2
+# 32 "/workspace/seL4-c89/preconfigured/include/api/syscall.h"
 exception_t handleSyscall(syscall_t syscall);
 exception_t handleInterruptEntry(void);
 exception_t handleUnknownSyscall(word_t w);
@@ -7968,8 +7968,8 @@ static inline word_t __attribute__((__pure__)) getSyscallArg(word_t i, word_t *i
 }
 
 extern extra_caps_t current_extra_caps;
-# 11 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/kernel/thread.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/thread.h" 1
 
 
 
@@ -7977,7 +7977,7 @@ extern extra_caps_t current_extra_caps;
 
 
        
-# 19 "/workspace/seL4-c89/include/kernel/thread.h"
+# 19 "/workspace/seL4-c89/preconfigured/include/kernel/thread.h"
 static inline __attribute__((__const__)) word_t ready_queues_index(word_t dom, word_t prio)
 {
     if (numDomains > 1) {
@@ -8070,7 +8070,7 @@ static inline bool_t __attribute__((__pure__)) isStopped(const tcb_t *thread)
         return false;
     }
 }
-# 163 "/workspace/seL4-c89/include/kernel/thread.h"
+# 163 "/workspace/seL4-c89/preconfigured/include/kernel/thread.h"
 void Arch_switchToThread(tcb_t *tcb);
 void Arch_switchToIdleThread(void);
 void Arch_configureIdleThread(tcb_t *tcb);
@@ -8122,8 +8122,8 @@ static inline void updateRestartPC(tcb_t *tcb)
 {
     setRegister(tcb, FaultIP, getRegister(tcb, NextIP));
 }
-# 12 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/thread.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/thread.h" 1
 
 
 
@@ -8132,17 +8132,7 @@ static inline void updateRestartPC(tcb_t *tcb)
 
        
 
-# 1 "/workspace/seL4-c89/include/object.h" 1
-
-
-
-
-
-
-       
-
-
-# 1 "/workspace/seL4-c89/include/object/objecttype.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object.h" 1
 
 
 
@@ -8152,19 +8142,7 @@ static inline void updateRestartPC(tcb_t *tcb)
        
 
 
-
-
-
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/hardware.h" 1
-
-
-
-
-
-
-       
-
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object/objecttype.h" 1
 
 
 
@@ -8177,9 +8155,16 @@ static inline void updateRestartPC(tcb_t *tcb)
 
 
 
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/hardware.h" 1
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/apic.h" 1
+
+
+
+
+       
+
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 1
 
 
 
@@ -8191,7 +8176,22 @@ static inline void updateRestartPC(tcb_t *tcb)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/xapic.h" 1
+
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/apic.h" 1
+
+
+
+
+
+
+       
+
+
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/xapic.h" 1
 
 
 
@@ -8259,8 +8259,8 @@ static inline void apic_write_icr(word_t high, word_t low)
     apic_write_reg(APIC_ICR2, high);
     apic_write_reg(APIC_ICR1, low);
 }
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/kernel/apic.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/x2apic.h" 1
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/apic.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/x2apic.h" 1
 
 
 
@@ -8273,7 +8273,7 @@ static inline void apic_write_icr(word_t high, word_t low)
 
 
 __attribute__((__section__(".boot.text"))) bool_t x2apic_is_enabled(void);
-# 14 "/workspace/seL4-c89/include/arch/x86/arch/kernel/apic.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/apic.h" 2
 
 __attribute__((__section__(".boot.text"))) bool_t apic_enable(void);
 __attribute__((__section__(".boot.text"))) void apic_send_init_ipi(cpu_id_t cpu_id);
@@ -8292,9 +8292,9 @@ bool_t apic_is_interrupt_pending(void);
 
 void apic_send_ipi_core(irq_t vector, cpu_id_t cpu_id);
 void apic_send_ipi_cluster(irq_t vector, word_t mda);
-# 16 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 2
+# 16 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 2
 
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/acpi.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/acpi.h" 1
 
 
 
@@ -8381,8 +8381,8 @@ void acpi_dmar_scan(
 bool_t acpi_fadt_scan(
     acpi_rsdp_t *acpi_rsdp
 );
-# 18 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 2
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/ioapic.h" 1
+# 18 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/ioapic.h" 1
 
 
 
@@ -8404,8 +8404,8 @@ exception_t ioapic_decode_map_pin_to_vector(word_t ioapic, word_t pin, word_t le
 
 
 void ioapic_map_pin_to_vector(word_t ioapic, word_t pin, word_t level, word_t polarity, word_t vector);
-# 19 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 2
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/pic.h" 1
+# 19 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/pic.h" 1
 
 
 
@@ -8425,8 +8425,8 @@ void pic_disable(void);
 void pic_mask_irq(bool_t mask, irq_t irq);
 bool_t pic_is_irq_pending(void);
 void pic_ack_active_irq(void);
-# 20 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 2
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/intel-vtd.h" 1
+# 20 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/intel-vtd.h" 1
 
 
 
@@ -8434,11 +8434,11 @@ void pic_ack_active_irq(void);
 
 
        
-# 21 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h" 2
+# 21 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h" 2
 
 static inline void handleReservedIRQ(irq_t irq)
 {
-# 34 "/workspace/seL4-c89/include/plat/pc99/plat/machine/interrupt.h"
+# 34 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/interrupt.h"
 }
 
 static inline void receivePendingIRQ(void)
@@ -8553,14 +8553,14 @@ static inline void maskInterrupt(bool_t disable, irq_t irq)
 
     }
 }
-# 10 "/workspace/seL4-c89/include/plat/pc99/plat/machine/hardware.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/hardware.h" 2
 
 
 
 
 bool_t platAddDevices(void);
-# 14 "/workspace/seL4-c89/include/object/objecttype.h" 2
-# 1 "/workspace/seL4-c89/include/object/cap.h" 1
+# 14 "/workspace/seL4-c89/preconfigured/include/object/objecttype.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/object/cap.h" 1
 
 
 
@@ -8582,8 +8582,8 @@ struct finaliseCap_ret {
     cap_t cleanupInfo;
 };
 typedef struct finaliseCap_ret finaliseCap_ret_t;
-# 15 "/workspace/seL4-c89/include/object/objecttype.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/objecttype.h" 1
+# 15 "/workspace/seL4-c89/preconfigured/include/object/objecttype.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/objecttype.h" 1
 
 
 
@@ -8638,7 +8638,7 @@ static inline __attribute__((__const__)) bool_t Arch_isMDBParentOf(cap_t cap_a, 
 {
     return true;
 }
-# 16 "/workspace/seL4-c89/include/object/objecttype.h" 2
+# 16 "/workspace/seL4-c89/preconfigured/include/object/objecttype.h" 2
 
 
 deriveCap_ret_t deriveCap(cte_t *slot, cap_t cap);
@@ -8652,7 +8652,7 @@ cap_t createObject(object_t t, void *regionBase, word_t, bool_t deviceMemory);
 void createNewObjects(object_t t, cte_t *parent,
                       cte_t *destCNode, word_t destOffset, word_t destLength,
                       void *regionBase, word_t userSize, bool_t deviceMemory);
-# 41 "/workspace/seL4-c89/include/object/objecttype.h"
+# 41 "/workspace/seL4-c89/preconfigured/include/object/objecttype.h"
 exception_t decodeInvocation(word_t invLabel, word_t length,
                              cptr_t capIndex, cte_t *slot, cap_t cap,
                              bool_t block, bool_t call, word_t *buffer);
@@ -8679,8 +8679,8 @@ word_t __attribute__((__const__)) cap_get_capSizeBits(cap_t cap);
 bool_t __attribute__((__const__)) cap_get_capIsPhysical(cap_t cap);
 void *__attribute__((__const__)) cap_get_capPtr(cap_t cap);
 bool_t __attribute__((__const__)) isCapRevocable(cap_t derivedCap, cap_t srcCap);
-# 11 "/workspace/seL4-c89/include/object.h" 2
-# 1 "/workspace/seL4-c89/include/object/notification.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/object.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/object/notification.h" 1
 
 
 
@@ -8700,15 +8700,15 @@ void completeSignal(notification_t *ntfnPtr, tcb_t *tcb);
 void unbindMaybeNotification(notification_t *ntfnPtr);
 void unbindNotification(tcb_t *tcb);
 void bindNotification(tcb_t *tcb, notification_t *ntfnPtr);
-# 39 "/workspace/seL4-c89/include/object/notification.h"
+# 39 "/workspace/seL4-c89/preconfigured/include/object/notification.h"
 static inline void ntfn_set_active(notification_t *ntfnPtr, word_t badge)
 {
     notification_ptr_set_state(ntfnPtr, NtfnState_Active);
     notification_ptr_set_ntfnMsgIdentifier(ntfnPtr, badge);
 }
-# 12 "/workspace/seL4-c89/include/object.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/object.h" 2
 
-# 1 "/workspace/seL4-c89/include/object/endpoint.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object/endpoint.h" 1
 
 
 
@@ -8735,7 +8735,7 @@ static inline void ep_ptr_set_queue(endpoint_t *epptr, tcb_queue_t queue)
     endpoint_ptr_set_epQueue_head(epptr, (word_t)queue.head);
     endpoint_ptr_set_epQueue_tail(epptr, (word_t)queue.end);
 }
-# 35 "/workspace/seL4-c89/include/object/endpoint.h"
+# 35 "/workspace/seL4-c89/preconfigured/include/object/endpoint.h"
 void sendIPC(bool_t blocking, bool_t do_call, word_t badge,
              bool_t canGrant, bool_t canGrantReply, tcb_t *thread,
              endpoint_t *epptr);
@@ -8746,11 +8746,11 @@ void cancelAllIPC(endpoint_t *epptr);
 void cancelBadgedSends(endpoint_t *epptr, word_t badge);
 void replyFromKernel_error(tcb_t *thread);
 void replyFromKernel_success_empty(tcb_t *thread);
-# 14 "/workspace/seL4-c89/include/object.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/object.h" 2
 
 
 
-# 1 "/workspace/seL4-c89/include/object/untyped.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/object/untyped.h" 1
 
 
 
@@ -8758,7 +8758,7 @@ void replyFromKernel_success_empty(tcb_t *thread);
 
 
        
-# 30 "/workspace/seL4-c89/include/object/untyped.h"
+# 30 "/workspace/seL4-c89/preconfigured/include/object/untyped.h"
 exception_t decodeUntypedInvocation(word_t invLabel, word_t length,
                                     cte_t *slot, cap_t cap,
                                     bool_t call, word_t *buffer);
@@ -8766,8 +8766,8 @@ exception_t invokeUntyped_Retype(cte_t *srcSlot, bool_t reset,
                                  void *retypeBase, object_t newType, word_t userSize,
                                  cte_t *destCNode, word_t destOffset, word_t destLength,
                                  bool_t deviceMemory);
-# 18 "/workspace/seL4-c89/include/object.h" 2
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/kernel/thread.h" 2
+# 18 "/workspace/seL4-c89/preconfigured/include/object.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/thread.h" 2
 
 word_t sanitiseRegister(register_t reg, word_t v, bool_t archInfo);
 
@@ -8777,8 +8777,8 @@ static inline bool_t __attribute__((__const__)) Arch_getSanitiseRegisterInfo(tcb
 }
 
 void Mode_postModifyRegisters(tcb_t *tptr);
-# 13 "/workspace/seL4-c89/src/api/faults.c" 2
-# 1 "/workspace/seL4-c89/include/machine/debug.h" 1
+# 13 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/debug.h" 1
 
 
 
@@ -8786,7 +8786,7 @@ void Mode_postModifyRegisters(tcb_t *tptr);
 
 
        
-# 14 "/workspace/seL4-c89/src/api/faults.c" 2
+# 14 "/workspace/seL4-c89/preconfigured/src/api/faults.c" 2
 
 
 
@@ -8906,7 +8906,7 @@ bool_t handleFaultReply(tcb_t *receiver, tcb_t *sender)
     case seL4_Fault_UserException:
         copyMRsFaultReply(sender, receiver, MessageID_Exception, (((length)<(n_exceptionMessage))?(length):(n_exceptionMessage)));
         return (label == 0);
-# 186 "/workspace/seL4-c89/src/api/faults.c"
+# 186 "/workspace/seL4-c89/preconfigured/src/api/faults.c"
     default:
         return Arch_handleFaultReply(receiver, sender, seL4_Fault_get_seL4_FaultType(fault));
     }
@@ -8940,15 +8940,15 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
         return setMR(receiver, receiveIPCBuffer, n_exceptionMessage + 1u,
                      seL4_Fault_UserException_get_code(sender->tcbFault));
     }
-# 257 "/workspace/seL4-c89/src/api/faults.c"
+# 257 "/workspace/seL4-c89/preconfigured/src/api/faults.c"
     default:
         return Arch_setMRs_fault(sender, receiver, receiveIPCBuffer,
                                  seL4_Fault_get_seL4_FaultType(sender->tcbFault));
     }
 }
-# 1 "/workspace/seL4-c89/src/api/syscall.c"
-# 9 "/workspace/seL4-c89/src/api/syscall.c"
-# 1 "/workspace/seL4-c89/include/benchmark/benchmark.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
+# 9 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark.h" 1
 
 
 
@@ -8958,7 +8958,7 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
        
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/benchmark.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/benchmark.h" 1
 
 
 
@@ -8966,22 +8966,11 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
 
 
        
-# 11 "/workspace/seL4-c89/include/benchmark/benchmark.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark.h" 2
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/benchmark_tracepoints_types.h" 1
-
-
-
-
-
-
-       
-# 15 "/workspace/seL4-c89/include/benchmark/benchmark.h" 2
-# 10 "/workspace/seL4-c89/src/api/syscall.c" 2
-
-# 1 "/workspace/seL4-c89/include/benchmark/benchmark_track.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/benchmark_tracepoints_types.h" 1
 
 
 
@@ -8989,10 +8978,10 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
 
 
        
+# 15 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
 
-
-
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/benchmark_track_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_track.h" 1
 
 
 
@@ -9000,10 +8989,21 @@ word_t setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer)
 
 
        
-# 12 "/workspace/seL4-c89/include/benchmark/benchmark_track.h" 2
 
 
-# 1 "/workspace/seL4-c89/include/kernel/cspace.h" 1
+
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/benchmark_track_types.h" 1
+
+
+
+
+
+
+       
+# 12 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_track.h" 2
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/cspace.h" 1
 
 
 
@@ -9064,9 +9064,9 @@ lookupSlot_ret_t lookupPivotSlot(cap_t root, cptr_t capptr,
 resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap,
                                             cptr_t capptr,
                                             word_t n_bits);
-# 15 "/workspace/seL4-c89/include/benchmark/benchmark_track.h" 2
-# 12 "/workspace/seL4-c89/src/api/syscall.c" 2
-# 1 "/workspace/seL4-c89/include/benchmark/benchmark_utilisation.h" 1
+# 15 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_track.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_utilisation.h" 1
 
 
 
@@ -9077,7 +9077,7 @@ resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap,
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/benchmark_utilisation_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/benchmark_utilisation_types.h" 1
 
 
 
@@ -9085,13 +9085,13 @@ resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap,
 
 
        
-# 12 "/workspace/seL4-c89/include/benchmark/benchmark_utilisation.h" 2
-# 13 "/workspace/seL4-c89/src/api/syscall.c" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/benchmark/benchmark_utilisation.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
 
 
 
 
-# 1 "/workspace/seL4-c89/include/kernel/faulthandler.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/faulthandler.h" 1
 
 
 
@@ -9099,19 +9099,19 @@ resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap,
 
 
        
-# 22 "/workspace/seL4-c89/include/kernel/faulthandler.h"
+# 22 "/workspace/seL4-c89/preconfigured/include/kernel/faulthandler.h"
 exception_t sendFaultIPC(tcb_t *tptr);
 void handleDoubleFault(tcb_t *tptr, seL4_Fault_t ex1);
 
 void handleFault(tcb_t *tptr);
-# 18 "/workspace/seL4-c89/src/api/syscall.c" 2
+# 18 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
 
 
 
 
 
 
-# 1 "/workspace/seL4-c89/include/string.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/string.h" 1
 
 
 
@@ -9125,8 +9125,8 @@ void handleFault(tcb_t *tptr);
 word_t strnlen(const char *s, word_t maxlen);
 word_t strlcpy(char *dest, const char *src, word_t size);
 word_t strlcat(char *dest, const char *src, word_t size);
-# 25 "/workspace/seL4-c89/src/api/syscall.c" 2
-# 1 "/workspace/seL4-c89/include/kernel/traps.h" 1
+# 25 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/traps.h" 1
 
 
 
@@ -9137,7 +9137,7 @@ word_t strlcat(char *dest, const char *src, word_t size);
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/traps.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/traps.h" 1
 
 
 
@@ -9182,8 +9182,8 @@ __attribute__((externally_visible)) __attribute__((__noreturn__));
 
 void c_handle_vmexit(void)
 __attribute__((externally_visible)) __attribute__((__noreturn__));
-# 12 "/workspace/seL4-c89/include/kernel/traps.h" 2
-# 1 "/workspace/seL4-c89/include/smp/lock.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/include/kernel/traps.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/smp/lock.h" 1
 
 
 
@@ -9197,7 +9197,7 @@ __attribute__((externally_visible)) __attribute__((__noreturn__));
 
 
 
-# 1 "/workspace/seL4-c89/include/smp/ipi.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/smp/ipi.h" 1
 
 
 
@@ -9209,7 +9209,7 @@ __attribute__((externally_visible)) __attribute__((__noreturn__));
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/smp/ipi.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/smp/ipi.h" 1
 
 
 
@@ -9217,9 +9217,9 @@ __attribute__((externally_visible)) __attribute__((__noreturn__));
 
 
        
-# 13 "/workspace/seL4-c89/include/smp/ipi.h" 2
-# 15 "/workspace/seL4-c89/include/smp/lock.h" 2
-# 13 "/workspace/seL4-c89/include/kernel/traps.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/smp/ipi.h" 2
+# 15 "/workspace/seL4-c89/preconfigured/include/smp/lock.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/kernel/traps.h" 2
 
 
 
@@ -9238,15 +9238,15 @@ static inline void c_entry_hook(void)
 
 static inline void c_exit_hook(void)
 {
-# 44 "/workspace/seL4-c89/include/kernel/traps.h"
+# 44 "/workspace/seL4-c89/preconfigured/include/kernel/traps.h"
     arch_c_exit_hook();
 }
-# 26 "/workspace/seL4-c89/src/api/syscall.c" 2
-# 40 "/workspace/seL4-c89/src/api/syscall.c"
+# 26 "/workspace/seL4-c89/preconfigured/src/api/syscall.c" 2
+# 40 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
 exception_t handleInterruptEntry(void)
 {
     irq_t irq;
-# 51 "/workspace/seL4-c89/src/api/syscall.c"
+# 51 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     irq = getActiveIRQ();
     if ((irq) != (irqInvalid)) {
         handleInterrupt(irq);
@@ -9271,9 +9271,9 @@ exception_t handleInterruptEntry(void)
 
 exception_t handleUnknownSyscall(word_t w)
 {
-# 210 "/workspace/seL4-c89/src/api/syscall.c"
+# 210 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     { { current_fault = seL4_Fault_UnknownSyscall_new(w); handleFault(ksCurThread); } }
-# 227 "/workspace/seL4-c89/src/api/syscall.c"
+# 227 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     schedule();
     activateThread();
 
@@ -9295,7 +9295,7 @@ exception_t handleUserLevelFault(word_t w_a, word_t w_b)
 exception_t handleVMFaultEvent(vm_fault_type_t vm_faultType)
 {
     { { exception_t status = handleVMFault(ksCurThread, vm_faultType); if (status != EXCEPTION_NONE) { handleFault(ksCurThread); } } }
-# 256 "/workspace/seL4-c89/src/api/syscall.c"
+# 256 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     schedule();
     activateThread();
 
@@ -9385,7 +9385,7 @@ static exception_t handleInvocation(bool_t isCall, bool_t isBlocking)
 
     return EXCEPTION_NONE;
 }
-# 369 "/workspace/seL4-c89/src/api/syscall.c"
+# 369 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
 static void handleReply(void)
 {
     cte_t *callerSlot;
@@ -9450,7 +9450,7 @@ static void handleRecv(bool_t isBlocking)
             handleFault(ksCurThread);
             break;
         }
-# 447 "/workspace/seL4-c89/src/api/syscall.c"
+# 447 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
         deleteCallerCap(ksCurThread);
         receiveIPC(ksCurThread, lu_ret.cap, isBlocking);
 
@@ -9479,10 +9479,10 @@ static void handleRecv(bool_t isBlocking)
         break;
     }
 }
-# 502 "/workspace/seL4-c89/src/api/syscall.c"
+# 502 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
 static void handleYield(void)
 {
-# 512 "/workspace/seL4-c89/src/api/syscall.c"
+# 512 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     tcbSchedDequeue(ksCurThread);
     tcbSchedAppend(ksCurThread);
     rescheduleRequired();
@@ -9494,15 +9494,15 @@ exception_t handleSyscall(syscall_t syscall)
     exception_t ret;
     irq_t irq;
     { { switch (syscall) { case SysSend: ret = handleInvocation(false, true); if (__builtin_expect(!!(ret != EXCEPTION_NONE), 0)) { ; irq = getActiveIRQ(); if ((irq) != (irqInvalid)) { handleInterrupt(irq); } } break; case SysNBSend: ret = handleInvocation(false, false); if (__builtin_expect(!!(ret != EXCEPTION_NONE), 0)) { ; irq = getActiveIRQ(); if ((irq) != (irqInvalid)) { handleInterrupt(irq); } } break; case SysCall: ret = handleInvocation(true, true); if (__builtin_expect(!!(ret != EXCEPTION_NONE), 0)) { ; irq = getActiveIRQ(); if ((irq) != (irqInvalid)) { handleInterrupt(irq); } } break; case SysRecv: handleRecv(true); break; case SysReply: handleReply(); break; case SysReplyRecv: handleReply(); handleRecv(true); break; case SysNBRecv: handleRecv(false); break; case SysYield: handleYield(); break; default: halt(); } } }
-# 631 "/workspace/seL4-c89/src/api/syscall.c"
+# 631 "/workspace/seL4-c89/preconfigured/src/api/syscall.c"
     schedule();
     activateThread();
 
     return EXCEPTION_NONE;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
-# 9 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
-# 1 "/workspace/seL4-c89/include/machine/fpu.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
+# 9 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/fpu.h" 1
 
 
 
@@ -9514,7 +9514,7 @@ exception_t handleSyscall(syscall_t syscall)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/fpu.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/fpu.h" 1
 
 
 
@@ -9522,7 +9522,7 @@ exception_t handleSyscall(syscall_t syscall)
 
 
        
-# 19 "/workspace/seL4-c89/include/arch/x86/arch/machine/fpu.h"
+# 19 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/fpu.h"
 bool_t Arch_initFpu(void);
 
 
@@ -9610,7 +9610,7 @@ static inline void disableFpu(void)
 {
     write_cr0(read_cr0() | (1ul << (3)));
 }
-# 13 "/workspace/seL4-c89/include/machine/fpu.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/machine/fpu.h" 2
 
 
 
@@ -9638,18 +9638,9 @@ static inline void __attribute__((always_inline)) lazyFPURestore(tcb_t *thread)
         switchLocalFpuOwner(thread);
     }
 }
-# 10 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c" 2
+# 10 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c" 2
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/debug.h" 1
-
-
-
-
-
-
-       
-# 12 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c" 2
-# 1 "/workspace/seL4-c89/include/kernel/stack.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/debug.h" 1
 
 
 
@@ -9657,10 +9648,8 @@ static inline void __attribute__((always_inline)) lazyFPURestore(tcb_t *thread)
 
 
        
-
-
-
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/stack.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/stack.h" 1
 
 
 
@@ -9668,7 +9657,18 @@ static inline void __attribute__((always_inline)) lazyFPURestore(tcb_t *thread)
 
 
        
-# 12 "/workspace/seL4-c89/include/kernel/stack.h" 2
+
+
+
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/stack.h" 1
+
+
+
+
+
+
+       
+# 12 "/workspace/seL4-c89/preconfigured/include/kernel/stack.h" 2
 
 
 
@@ -9676,8 +9676,8 @@ static inline void __attribute__((always_inline)) lazyFPURestore(tcb_t *thread)
 
 
 extern char kernel_stack_alloc[1][(1ul << (12))];
-# 13 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c" 2
-# 208 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
+# 13 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c" 2
+# 208 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
 void __attribute__((externally_visible)) __attribute__((__noreturn__)) restore_user_context(void)
 {
     c_exit_hook();
@@ -9704,7 +9704,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) restore_u
 
     tcb_t *cur_thread = ksCurThread;
     word_t *irqstack = x64KSIRQStack[0lu];
-# 255 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
+# 255 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
     if (wrap_config_set(0)) {
         x86_disable_ibrs();
     }
@@ -9716,7 +9716,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) restore_u
         (!wrap_config_set(0) || !wrap_config_set(0)
          || ((cur_thread->tcbArch.tcbContext.registers[FLAGS] & (1ul << (8))) == 0))) {
         if (wrap_config_set(1)) {
-# 274 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
+# 274 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
             irqstack[0] = 0;
             irqstack[1] = 0;
             irqstack[2] = 0;
@@ -9866,7 +9866,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) restore_u
 
 
             "popq %%rcx\n"
-# 446 "/workspace/seL4-c89/src/arch/x86/64/c_traps.c"
+# 446 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
             "movq (x64KSCurrentUserCR3), %%rsp\n"
             "movq %%rsp, %%cr3\n"
 
@@ -9906,14 +9906,14 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_x64_han
     c_handle_interrupt(irq, syscall);
     __builtin_unreachable();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/kernel/elf.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/elf.c"
 
 
 
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/elf.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/elf.h" 1
 
 
 
@@ -9923,7 +9923,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_x64_han
        
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/elf.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/elf.h" 1
 
 
 
@@ -9962,13 +9962,13 @@ typedef struct Elf64_Phdr {
     uint64_t p_memsz;
     uint64_t p_align;
 } Elf64_Phdr_t, Elf_Phdr_t;
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/kernel/elf.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/elf.h" 2
 
 
 bool_t elf_checkFile(Elf_Header_t *elfFile);
 v_region_t elf_getMemoryBounds(Elf_Header_t *elfFile);
 void elf_load(Elf_Header_t *elfFile, seL4_Word offset);
-# 8 "/workspace/seL4-c89/src/arch/x86/64/kernel/elf.c" 2
+# 8 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/elf.c" 2
 
 
 __attribute__((__section__(".boot.text"))) bool_t elf_checkFile(Elf64_Header_t *elf)
@@ -10027,8 +10027,8 @@ __attribute__((__section__(".boot.text"))) void elf_load(Elf64_Header_t *elf, se
         memset((void *)dst, 0, phdr[i].p_memsz - len);
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/kernel/thread.c"
-# 14 "/workspace/seL4-c89/src/arch/x86/64/kernel/thread.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/thread.c"
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/thread.c"
 void Arch_switchToThread(tcb_t *tcb)
 {
 
@@ -10089,9 +10089,9 @@ void Mode_postModifyRegisters(tcb_t *tptr)
         setRegister(tptr, Error, 0);
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c"
-# 10 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c"
-# 1 "/workspace/seL4-c89/include/kernel/boot.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c"
+# 10 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/kernel/boot.h" 1
 
 
 
@@ -10102,7 +10102,7 @@ void Mode_postModifyRegisters(tcb_t *tptr)
 
 
 
-# 1 "/workspace/seL4-c89/include/bootinfo.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/bootinfo.h" 1
 
 
 
@@ -10113,7 +10113,7 @@ void Mode_postModifyRegisters(tcb_t *tptr)
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/include/sel4/bootinfo_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/bootinfo_types.h" 1
 
 
 
@@ -10192,9 +10192,9 @@ typedef struct seL4_BootInfo {
 
 
 } seL4_BootInfo;
-# 87 "/workspace/seL4-c89/libsel4/include/sel4/bootinfo_types.h"
+# 87 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/bootinfo_types.h"
 _Static_assert(sizeof(seL4_BootInfo) <= (1ul<<(12)), "invalid_seL4_BootInfoFrameSize");
-# 101 "/workspace/seL4-c89/libsel4/include/sel4/bootinfo_types.h"
+# 101 "/workspace/seL4-c89/preconfigured/libsel4/include/sel4/bootinfo_types.h"
 typedef enum {
     SEL4_BOOTINFO_HEADER_PADDING = 0,
     SEL4_BOOTINFO_HEADER_X86_VBE = 1,
@@ -10217,9 +10217,9 @@ typedef struct seL4_BootInfoHeader {
 _Static_assert(sizeof(seL4_BootInfoHeader) == 2 * sizeof(seL4_Word), "invalid_seL4_BootInfoHeader");
 
                                                          ;
-# 12 "/workspace/seL4-c89/include/bootinfo.h" 2
-# 12 "/workspace/seL4-c89/include/kernel/boot.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/bootinfo.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/include/bootinfo.h" 2
+# 12 "/workspace/seL4-c89/preconfigured/include/kernel/boot.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/bootinfo.h" 1
 
 
 
@@ -10227,7 +10227,7 @@ _Static_assert(sizeof(seL4_BootInfoHeader) == 2 * sizeof(seL4_Word), "invalid_se
 
 
        
-# 13 "/workspace/seL4-c89/include/kernel/boot.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/kernel/boot.h" 2
 
 
 
@@ -10355,10 +10355,10 @@ static inline __attribute__((__section__(".boot.text"))) pptr_t it_alloc_paging(
 
 
 word_t arch_get_n_paging(v_region_t it_veg);
-# 11 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c" 2
+# 11 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c" 2
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/boot.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/boot.h" 1
 
 
 
@@ -10371,7 +10371,7 @@ word_t arch_get_n_paging(v_region_t it_veg);
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/bootinfo_types.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/bootinfo_types.h" 1
 
 
 
@@ -10503,7 +10503,7 @@ typedef struct seL4_X86_BootInfo_mmap {
 } __attribute__((packed)) seL4_X86_BootInfo_mmap_t;
 
 typedef struct multiboot2_fb seL4_X86_BootInfo_fb_t;
-# 14 "/workspace/seL4-c89/include/arch/x86/arch/kernel/boot.h" 2
+# 14 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/boot.h" 2
 
 typedef struct mem_p_regs {
     word_t count;
@@ -10540,8 +10540,8 @@ bool_t init_cpu(
 
 bool_t add_allocated_p_region(p_region_t reg);
 void init_allocated_p_regions(void);
-# 14 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/boot_sys.h" 1
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/boot_sys.h" 1
 
 
 
@@ -10550,7 +10550,7 @@ void init_allocated_p_regions(void);
 
        
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/multiboot.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/multiboot.h" 1
 
 
 
@@ -10558,7 +10558,7 @@ void init_allocated_p_regions(void);
 
 
        
-# 16 "/workspace/seL4-c89/include/arch/x86/arch/kernel/multiboot.h"
+# 16 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/multiboot.h"
 typedef struct multiboot_module {
     uint32_t start;
     uint32_t end;
@@ -10604,8 +10604,8 @@ typedef struct multiboot_info {
         uint16_t vbe_interface_len;
     } part2;
 } __attribute__((packed)) multiboot_info_t;
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/kernel/boot_sys.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/multiboot2.h" 1
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/boot_sys.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/multiboot2.h" 1
 
 
 
@@ -10659,7 +10659,7 @@ enum multiboot2_tags {
     MULTIBOOT2_TAG_ACPI_1 = 14,
     MULTIBOOT2_TAG_ACPI_2 = 15,
 };
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/kernel/boot_sys.h" 2
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/boot_sys.h" 2
 
 
 typedef struct boot_state {
@@ -10689,7 +10689,7 @@ void boot_sys(
     unsigned long multiboot_magic,
     void *multiboot
 );
-# 15 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c" 2
+# 15 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c" 2
 # 1 "/workspace/seL4-c89/preconfigured/X64_verified/gen_headers/arch/api/invocation.h" 1
 # 12 "/workspace/seL4-c89/preconfigured/X64_verified/gen_headers/arch/api/invocation.h"
        
@@ -10808,8 +10808,8 @@ enum arch_invocation_label {
 # 88 "/workspace/seL4-c89/preconfigured/X64_verified/gen_headers/arch/api/invocation.h"
     nArchInvocationLabels
 };
-# 16 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/tlb.h" 1
+# 16 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/tlb.h" 1
 
 
 
@@ -10819,7 +10819,7 @@ enum arch_invocation_label {
        
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/tlb.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/tlb.h" 1
 
 
 
@@ -10828,7 +10828,7 @@ enum arch_invocation_label {
 
        
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/smp/ipi_inline.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/smp/ipi_inline.h" 1
 
 
 
@@ -10836,7 +10836,7 @@ enum arch_invocation_label {
 
 
        
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/kernel/tlb.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/tlb.h" 2
 
 static inline void invalidatePageStructureCacheASID(paddr_t root, asid_t asid, word_t mask)
 {
@@ -10861,8 +10861,8 @@ static inline void invalidateTranslationAll(word_t mask)
     invalidateLocalTranslationAll();
     ;
 }
-# 11 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/smp/ipi.h" 1
+# 11 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/smp/ipi.h" 1
 
 
 
@@ -10870,8 +10870,8 @@ static inline void invalidateTranslationAll(word_t mask)
 
 
        
-# 12 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/tlb_bitmap.h" 1
+# 12 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/tlb_bitmap.h" 1
 
 
 
@@ -10885,7 +10885,7 @@ static inline void invalidateTranslationAll(word_t mask)
 
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/vspace.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/vspace.h" 1
 
 
 
@@ -10949,8 +10949,8 @@ static inline __attribute__((__const__)) pml4e_t x86_make_empty_root_mapping(voi
                0
            );
 }
-# 15 "/workspace/seL4-c89/include/arch/x86/arch/kernel/tlb_bitmap.h" 2
-# 13 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
+# 15 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/tlb_bitmap.h" 2
+# 13 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/kernel/tlb.h" 2
 
 
 
@@ -10978,8 +10978,8 @@ static inline void invalidateASID(vspace_root_t *vspace, asid_t asid, word_t mas
     invalidateLocalASID(vspace, asid);
     ;
 }
-# 17 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c" 2
-# 33 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c"
+# 17 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c" 2
+# 33 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c"
 pml4e_t boot_pml4[(1ul << (9))] __attribute__((__aligned__((1ul << (12))))) __attribute__((externally_visible)) __attribute__((__section__(".phys.bss")));
 pdpte_t boot_pdpt[(1ul << (9))] __attribute__((__aligned__((1ul << (12))))) __attribute__((externally_visible)) __attribute__((__section__(".phys.bss")));
 
@@ -11082,7 +11082,7 @@ __attribute__((__section__(".boot.text"))) bool_t map_kernel_window(
                            1,
                            1
                        );
-# 244 "/workspace/seL4-c89/src/arch/x86/64/kernel/vspace.c"
+# 244 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/kernel/vspace.c"
     if (!map_kernel_window_devices(x64KSKernelPT, num_ioapic, ioapic_paddrs, num_drhu, drhu_list)) {
         return false;
     }
@@ -12370,9 +12370,9 @@ exception_t decodeX86ModeMapPage(word_t label, vm_page_size_t page_size, cte_t *
     }
     halt();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/machine/capdl.c"
-# 1 "/workspace/seL4-c89/src/arch/x86/64/machine/registerset.c"
-# 12 "/workspace/seL4-c89/src/arch/x86/64/machine/registerset.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/machine/capdl.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/machine/registerset.c"
+# 12 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/machine/registerset.c"
 const register_t msgRegisters[] = {
     R10, R8, R9, R15
 };
@@ -12429,9 +12429,9 @@ word_t Mode_sanitiseRegister(register_t reg, word_t v)
     }
     return v;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/model/smp.c"
-# 1 "/workspace/seL4-c89/src/arch/x86/64/model/statedata.c"
-# 10 "/workspace/seL4-c89/src/arch/x86/64/model/statedata.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/model/smp.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/model/statedata.c"
+# 10 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/model/statedata.c"
 pml4e_t x64KSKernelPML4[(1ul << (9))] __attribute__((__aligned__((1ul << (12))))) __attribute__((externally_visible));
 pdpte_t x64KSKernelPDPT[(1ul << (9))] __attribute__((__aligned__((1ul << (12)))));
 
@@ -12454,9 +12454,9 @@ word_t x64KSCurrentUserCR3;
 
 
 word_t x64KSIRQStack[1][6 + 2] __attribute__((__aligned__(64))) __attribute__((externally_visible)) __attribute__((__section__(".skim.bss")));
-# 1 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c"
-# 17 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c"
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/ept.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c"
+# 17 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/ept.h" 1
 
 
 
@@ -12464,7 +12464,7 @@ word_t x64KSIRQStack[1][6 + 2] __attribute__((__aligned__(64))) __attribute__((e
 
 
        
-# 18 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c" 2
+# 18 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c" 2
 
 
 
@@ -12552,7 +12552,7 @@ finaliseCap_ret_t Mode_finaliseCap(cap_t cap, bool_t final)
     case cap_frame_cap:
         if (cap_frame_cap_get_capFMappedASID(cap)) {
             switch (cap_frame_cap_get_capFMapType(cap)) {
-# 120 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c"
+# 120 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c"
             case X86_MappingVSpace:
                 unmapPage(
                     cap_frame_cap_get_capFSize(cap),
@@ -12728,7 +12728,7 @@ cap_t Mode_createObject(object_t t, void *regionBase, word_t userSize, bool_t de
                    (word_t)regionBase,
                    0
                );
-# 307 "/workspace/seL4-c89/src/arch/x86/64/object/objecttype.c"
+# 307 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/object/objecttype.c"
     default:
 
 
@@ -12763,9 +12763,9 @@ exception_t Mode_decodeInvocation(
         return EXCEPTION_SYSCALL_ERROR;
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/64/smp/ipi.c"
-# 1 "/workspace/seL4-c89/src/arch/x86/api/faults.c"
-# 13 "/workspace/seL4-c89/src/arch/x86/api/faults.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/smp/ipi.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/api/faults.c"
+# 13 "/workspace/seL4-c89/preconfigured/src/arch/x86/api/faults.c"
 bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType)
 {
     switch (faultType) {
@@ -12846,10 +12846,10 @@ word_t handleKernelException(
     halt();
     __builtin_unreachable();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/benchmark/benchmark.c"
-# 1 "/workspace/seL4-c89/src/arch/x86/c_traps.c"
-# 10 "/workspace/seL4-c89/src/arch/x86/c_traps.c"
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/fastpath/fastpath.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/benchmark/benchmark.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c"
+# 10 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/fastpath/fastpath.h" 1
 
 
 
@@ -12858,7 +12858,7 @@ word_t handleKernelException(
 
        
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/fastpath/fastpath.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/fastpath/fastpath.h" 1
 
 
 
@@ -12866,7 +12866,7 @@ word_t handleKernelException(
 
 
        
-# 21 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/fastpath/fastpath.h"
+# 21 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/fastpath/fastpath.h"
 static inline tcb_t *endpoint_ptr_get_epQueue_tail_fp(endpoint_t *ep_ptr)
 {
     uint64_t ret = ep_ptr->words[0] & 0xfffffffffffcull;
@@ -12893,7 +12893,7 @@ static inline void __attribute__((always_inline)) switchToThread_fp(tcb_t *threa
        
         setCurrentUserCR3(next_cr3);
     }
-# 55 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/fastpath/fastpath.h"
+# 55 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/fastpath/fastpath.h"
     lazyFPURestore(thread);
 
     if (wrap_config_set(0)) {
@@ -12986,7 +12986,7 @@ static inline void __attribute__((__noreturn__)) __attribute__((always_inline)) 
         irqstack[4] = 0;
         irqstack[5] = 0;
     }
-# 159 "/workspace/seL4-c89/include/arch/x86/arch/64/mode/fastpath/fastpath.h"
+# 159 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/64/mode/fastpath/fastpath.h"
     if (wrap_config_set(0)) {
         x86_disable_ibrs();
     }
@@ -13092,7 +13092,7 @@ static inline void __attribute__((__noreturn__)) __attribute__((always_inline)) 
     }
     __builtin_unreachable();
 }
-# 10 "/workspace/seL4-c89/include/arch/x86/arch/fastpath/fastpath.h" 2
+# 10 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/fastpath/fastpath.h" 2
 
 
 static inline int fastpath_reply_cap_check(cap_t cap)
@@ -13113,12 +13113,12 @@ __attribute__((__noreturn__));
 void fastpath_reply_recv(word_t cptr, word_t r_msgInfo)
 
 __attribute__((__noreturn__));
-# 11 "/workspace/seL4-c89/src/arch/x86/c_traps.c" 2
+# 11 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c" 2
 
 
 
 
-# 1 "/workspace/seL4-c89/libsel4/arch_include/x86/sel4/arch/vmenter.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/libsel4/arch_include/x86/sel4/arch/vmenter.h" 1
 
 
 
@@ -13126,7 +13126,7 @@ __attribute__((__noreturn__));
 
 
        
-# 16 "/workspace/seL4-c89/src/arch/x86/c_traps.c" 2
+# 16 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c" 2
 
 
 
@@ -13164,7 +13164,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_handle_
 
 
         handleVMFaultEvent(type);
-# 62 "/workspace/seL4-c89/src/arch/x86/c_traps.c"
+# 62 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c"
     } else if (irq < int_irq_min) {
 
 
@@ -13202,7 +13202,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_handle_
 
 void __attribute__((__noreturn__)) slowpath(syscall_t syscall)
 {
-# 118 "/workspace/seL4-c89/src/arch/x86/c_traps.c"
+# 118 "/workspace/seL4-c89/preconfigured/src/arch/x86/c_traps.c"
     if (__builtin_expect(!!(syscall < (-8) || syscall > (-1)), 0)) {
 
 
@@ -13268,7 +13268,7 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_handle_
     slowpath(syscall);
     __builtin_unreachable();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/idle.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/idle.c"
 
 
 
@@ -13276,8 +13276,8 @@ void __attribute__((externally_visible)) __attribute__((__noreturn__)) c_handle_
 
 
 
-# 1 "/workspace/seL4-c89/include/api/debug.h" 1
-# 9 "/workspace/seL4-c89/src/arch/x86/idle.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/include/api/debug.h" 1
+# 9 "/workspace/seL4-c89/preconfigured/src/arch/x86/idle.c" 2
 
 
 
@@ -13311,9 +13311,9 @@ void __attribute__((externally_visible)) halt(void)
     idle_thread();
     __builtin_unreachable();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c"
-# 13 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c"
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/pit.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c"
+# 13 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/pit.h" 1
 
 
 
@@ -13327,7 +13327,7 @@ void __attribute__((externally_visible)) halt(void)
 
 void pit_init(void);
 void pit_wait_wraparound(void);
-# 14 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c" 2
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c" 2
 
 
 
@@ -13367,7 +13367,7 @@ __attribute__((__section__(".boot.text"))) bool_t apic_init(bool_t mask_legacy_i
     if (!apic_enable()) {
         return false;
     }
-# 69 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c"
+# 69 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c"
     apic_khz = apic_measure_freq();
 
     apic_version.words[0] = apic_read_reg(APIC_VERSION);
@@ -13377,7 +13377,7 @@ __attribute__((__section__(".boot.text"))) bool_t apic_init(bool_t mask_legacy_i
         ((void)(0));
         return false;
     }
-# 87 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c"
+# 87 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c"
     num_lvt_entries = apic_version_get_max_lvt_entry(apic_version) + 1;
     if (num_lvt_entries < 3) {
         ((void)(0));
@@ -13451,7 +13451,7 @@ __attribute__((__section__(".boot.text"))) bool_t apic_init(bool_t mask_legacy_i
             int_timer
         ).words[0]
     );
-# 171 "/workspace/seL4-c89/src/arch/x86/kernel/apic.c"
+# 171 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/apic.c"
     return true;
 }
 
@@ -13459,9 +13459,9 @@ void apic_ack_active_interrupt(void)
 {
     apic_write_reg(APIC_EOI, 0);
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
-# 19 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/machine/timer.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
+# 19 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/timer.h" 1
 
 
 
@@ -13469,7 +13469,7 @@ void apic_ack_active_interrupt(void)
 
 
        
-# 75 "/workspace/seL4-c89/include/arch/x86/arch/machine/timer.h"
+# 75 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/machine/timer.h"
 static inline void resetTimer(void)
 {
 
@@ -13478,7 +13478,7 @@ static inline void resetTimer(void)
 
 
 __attribute__((__section__(".boot.text"))) uint32_t tsc_init(void);
-# 20 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c" 2
+# 20 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c" 2
 
 
 
@@ -13497,7 +13497,7 @@ __attribute__((__section__(".boot.text"))) static void init_irqs(cap_t root_cnod
     for (i = 0; i <= maxIRQ; i++) {
         if (i == irq_timer) {
             setIRQState(IRQTimer, i);
-# 46 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
+# 46 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
         } else if (i == 2 && wrap_config_set(0)) {
 
             setIRQState(IRQReserved, i);
@@ -13686,7 +13686,7 @@ __attribute__((__section__(".boot.text"))) bool_t init_sys_state(
     padding_header.id = SEL4_BOOTINFO_HEADER_PADDING;
     padding_header.len = (extra_bi_region.end - extra_bi_region.start) - extra_bi_offset;
     *(seL4_BootInfoHeader *)(extra_bi_region.start + extra_bi_offset) = padding_header;
-# 242 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
+# 242 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
     it_vspace_cap = create_it_address_space(root_cnode_cap, it_v_reg);
     if (cap_get_capType(it_vspace_cap) == cap_null_cap) {
         return false;
@@ -13764,7 +13764,7 @@ __attribute__((__section__(".boot.text"))) bool_t init_sys_state(
         return false;
     }
     init_core_state(initial);
-# 332 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
+# 332 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
     ndks_boot.bi_frame->numIOPTLevels = -1;
 
 
@@ -13857,12 +13857,12 @@ __attribute__((__section__(".boot.text"))) bool_t init_cpu(
     if (wrap_config_set(0)) {
         enablePMCUser();
     }
-# 432 "/workspace/seL4-c89/src/arch/x86/kernel/boot.c"
+# 432 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot.c"
     return true;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c"
-# 13 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c"
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/cmdline.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c"
+# 13 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/cmdline.h" 1
 
 
 
@@ -13882,10 +13882,10 @@ typedef struct cmdline_opt {
 } cmdline_opt_t;
 
 void cmdline_parse(const char *cmdline, cmdline_opt_t *cmdline_opt);
-# 14 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c" 2
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c" 2
 
 
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/kernel/smp_sys.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/kernel/smp_sys.h" 1
 
 
 
@@ -13893,8 +13893,8 @@ void cmdline_parse(const char *cmdline, cmdline_opt_t *cmdline_opt);
 
 
        
-# 17 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c" 2
-# 31 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c"
+# 17 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c" 2
+# 31 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c"
 extern char boot_cpu_start[1];
 extern char boot_cpu_end[1];
 
@@ -13905,7 +13905,7 @@ extern char boot_stack_top[1];
 
 extern char ki_skim_start[1];
 extern char ki_skim_end[1];
-# 51 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c"
+# 51 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c"
 __attribute__((__section__(".boot.bss")))
 boot_state_t boot_state;
 
@@ -14239,7 +14239,7 @@ static __attribute__((__section__(".boot.text"))) bool_t try_boot_sys(void)
                                                                                        ;
         }
     }
-# 394 "/workspace/seL4-c89/src/arch/x86/kernel/boot_sys.c"
+# 394 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/boot_sys.c"
     ((void)(0))
 
 
@@ -14582,9 +14582,9 @@ __attribute__((__section__(".boot.text"))) __attribute__((externally_visible)) v
     schedule();
     activateThread();
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/cmdline.c"
-# 13 "/workspace/seL4-c89/src/arch/x86/kernel/cmdline.c"
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/io.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/cmdline.c"
+# 13 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/cmdline.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/io.h" 1
 
 
 
@@ -14609,7 +14609,7 @@ uint8_t in8(uint16_t port);
 uint16_t in16(uint16_t port);
 
 uint32_t in32(uint16_t port);
-# 14 "/workspace/seL4-c89/src/arch/x86/kernel/cmdline.c" 2
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/cmdline.c" 2
 
 
 
@@ -14704,20 +14704,20 @@ static void __attribute__((unused)) parse_uint16_array(char *str, uint16_t *arra
 
 void cmdline_parse(const char *cmdline, cmdline_opt_t *cmdline_opt)
 {
-# 164 "/workspace/seL4-c89/src/arch/x86/kernel/cmdline.c"
+# 164 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/cmdline.c"
     cmdline_opt->disable_iommu = parse_bool(cmdline, cmdline_str_disable_iommu);
     ((void)(0));
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/ept.c"
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/smp_sys.c"
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/thread.c"
-# 10 "/workspace/seL4-c89/src/arch/x86/kernel/thread.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/ept.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/smp_sys.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/thread.c"
+# 10 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/thread.c"
 void Arch_postModifyRegisters(tcb_t *tptr)
 {
     Mode_postModifyRegisters(tptr);
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/vspace.c"
-# 18 "/workspace/seL4-c89/src/arch/x86/kernel/vspace.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/vspace.c"
+# 18 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/vspace.c"
 static exception_t performPageGetAddress(void *vbase_ptr, bool_t call)
 {
 
@@ -15547,7 +15547,7 @@ static exception_t performX86FrameInvocationUnmap(cap_t cap, cte_t *cte)
         switch (cap_frame_cap_get_capFMapType(cap)) {
         case X86_MappingVSpace:
             return performX86PageInvocationUnmap(cap, cte);
-# 855 "/workspace/seL4-c89/src/arch/x86/kernel/vspace.c"
+# 855 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/vspace.c"
         case X86_MappingNone:
             halt();
             break;
@@ -15779,7 +15779,7 @@ exception_t decodeX86FrameInvocation(
         setThreadState(ksCurThread, ThreadState_Restart);
         return performX86FrameInvocationUnmap(cap, cte);
     }
-# 1098 "/workspace/seL4-c89/src/arch/x86/kernel/vspace.c"
+# 1098 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/vspace.c"
     case X86PageGetAddress: {
 
         ;
@@ -16094,8 +16094,8 @@ exception_t decodeX86MMUInvocation(
         return decodeX86ModeMMUInvocation(invLabel, length, cptr, cte, cap, call, buffer);
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/x2apic.c"
-# 10 "/workspace/seL4-c89/src/arch/x86/kernel/x2apic.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/x2apic.c"
+# 10 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/x2apic.c"
 __attribute__((__section__(".boot.text"))) bool_t x2apic_is_enabled(void)
 {
     apic_base_msr_t apic_base_msr;
@@ -16108,8 +16108,8 @@ __attribute__((__section__(".boot.text"))) bool_t x2apic_is_enabled(void)
     }
     return false;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/kernel/xapic.c"
-# 28 "/workspace/seL4-c89/src/arch/x86/kernel/xapic.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/xapic.c"
+# 28 "/workspace/seL4-c89/preconfigured/src/arch/x86/kernel/xapic.c"
 __attribute__((__section__(".boot.text"))) bool_t apic_enable(void)
 {
     apic_base_msr_t apic_base_msr;
@@ -16249,10 +16249,10 @@ void apic_send_ipi_cluster(irq_t vector, word_t mda)
         ).words[0]
     );
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/breakpoint.c"
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/capdl.c"
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/cpu_identification.c"
-# 17 "/workspace/seL4-c89/src/arch/x86/machine/cpu_identification.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/breakpoint.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/capdl.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/cpu_identification.c"
+# 17 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/cpu_identification.c"
 const char X86_CPUID_VENDOR_STRING_INTEL[] = {'G', 'e', 'n', 'u', 'i', 'n', 'e', 'I', 'n', 't', 'e', 'l', 0};
 const char X86_CPUID_VENDOR_STRING_AMD_LEGACY[] = { 'A', 'M', 'D', 'i', 's', 'b', 'e', 't', 't', 'e', 'r', '!', 0};
 const char X86_CPUID_VENDOR_STRING_AMD[] = {'A', 'u', 't', 'h', 'e', 'n', 't', 'i', 'c', 'A', 'M', 'D', 0};
@@ -16306,7 +16306,7 @@ __attribute__((__section__(".boot.text"))) static void x86_cpuid_intel_identity_
     } else {
         ci->display.family = ci->display.extended_family + original.family;
     }
-# 90 "/workspace/seL4-c89/src/arch/x86/machine/cpu_identification.c"
+# 90 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/cpu_identification.c"
     if (ci->display.family == 0x06 || ci->display.family == 0x0F) {
         ci->display.model = (ci->display.extended_model << 4u) + original.model;
     } else {
@@ -16384,8 +16384,8 @@ bool_t x86_cpuid_initialize(void)
         return false;
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/fpu.c"
-# 16 "/workspace/seL4-c89/src/arch/x86/machine/fpu.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/fpu.c"
+# 16 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/fpu.c"
 void Arch_initFpuContext(user_context_t *context)
 {
     context->fpuState = x86KSnullFpuState;
@@ -16460,8 +16460,8 @@ __attribute__((__section__(".boot.text"))) bool_t Arch_initFpu(void)
     }
     return true;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/hardware.c"
-# 17 "/workspace/seL4-c89/src/arch/x86/machine/hardware.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/hardware.c"
+# 17 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/hardware.c"
 __attribute__((__section__(".boot.text"))) void init_sysenter_msrs(void)
 {
     x86_wrmsr(0x174, (uint64_t)(word_t)(1 << 3));
@@ -16627,8 +16627,8 @@ __attribute__((__section__(".boot.text"))) bool_t init_ibrs(void)
     }
     return true;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/machine/registerset.c"
-# 10 "/workspace/seL4-c89/src/arch/x86/machine/registerset.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/registerset.c"
+# 10 "/workspace/seL4-c89/preconfigured/src/arch/x86/machine/registerset.c"
 void Arch_initContext(user_context_t *context)
 {
     Mode_initContext(context);
@@ -16663,8 +16663,8 @@ word_t sanitiseRegister(register_t reg, word_t v, bool_t archInfo)
     }
     return v;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/model/statedata.c"
-# 17 "/workspace/seL4-c89/src/arch/x86/model/statedata.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/model/statedata.c"
+# 17 "/workspace/seL4-c89/preconfigured/src/arch/x86/model/statedata.c"
 interrupt_t x86KScurInterrupt __attribute__((externally_visible));
 
 interrupt_t x86KSPendingInterrupt;
@@ -16695,13 +16695,13 @@ user_fpu_state_t x86KSnullFpuState __attribute__((__aligned__(64)));
 
 
 uint32_t x86KSnumDrhu;
-# 69 "/workspace/seL4-c89/src/arch/x86/model/statedata.c"
+# 69 "/workspace/seL4-c89/preconfigured/src/arch/x86/model/statedata.c"
 x86_irq_state_t x86KSIRQState[maxIRQ + 1];
 
 word_t x86KSAllocatedIOPorts[(1ul << (16)) / 64];
-# 1 "/workspace/seL4-c89/src/arch/x86/object/interrupt.c"
-# 13 "/workspace/seL4-c89/src/arch/x86/object/interrupt.c"
-# 1 "/workspace/seL4-c89/include/plat/pc99/plat/machine/pci.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/interrupt.c"
+# 13 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/interrupt.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/plat/pc99/plat/machine/pci.h" 1
 
 
 
@@ -16709,7 +16709,7 @@ word_t x86KSAllocatedIOPorts[(1ul << (16)) / 64];
 
 
        
-# 14 "/workspace/seL4-c89/src/arch/x86/object/interrupt.c" 2
+# 14 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/interrupt.c" 2
 
 void Arch_irqStateInit(void)
 {
@@ -16885,8 +16885,8 @@ exception_t Arch_decodeIRQControlInvocation(word_t invLabel, word_t length, cte_
         halt();
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/object/ioport.c"
-# 15 "/workspace/seL4-c89/src/arch/x86/object/ioport.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/ioport.c"
+# 15 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/ioport.c"
 static inline void apply_pattern(word_t_may_alias *w, word_t pattern, bool_t set)
 {
     if (set) {
@@ -17193,9 +17193,9 @@ void setIOPortMask(void *ioport_bitmap, uint16_t low, uint16_t high, bool_t set)
         apply_pattern(bitmap + low_word, make_pattern(0, high_index + 1), set);
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/object/iospace.c"
-# 1 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
-# 23 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/iospace.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
+# 23 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
 deriveCap_ret_t Arch_deriveCap(cte_t *slot, cap_t cap)
 {
     deriveCap_ret_t ret;
@@ -17238,7 +17238,7 @@ deriveCap_ret_t Arch_deriveCap(cte_t *slot, cap_t cap)
         ret.cap = cap;
         ret.status = EXCEPTION_NONE;
         return ret;
-# 136 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 136 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     default:
         return Mode_deriveCap(slot, cap);
     }
@@ -17246,7 +17246,7 @@ deriveCap_ret_t Arch_deriveCap(cte_t *slot, cap_t cap)
 
 cap_t __attribute__((__const__)) Arch_updateCapData(bool_t preserve, word_t data, cap_t cap)
 {
-# 164 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 164 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     return cap;
 }
 
@@ -17311,7 +17311,7 @@ finaliseCap_ret_t Arch_finaliseCap(cap_t cap, bool_t final)
             return fc_ret;
         }
         break;
-# 283 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 283 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     default:
         return Mode_finaliseCap(cap, final);
     }
@@ -17377,7 +17377,7 @@ bool_t __attribute__((__const__)) Arch_sameRegionAs(cap_t cap_a, cap_t cap_b)
                     cap_io_port_cap_get_capIOPortLastPort(cap_b);
         }
         break;
-# 403 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 403 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     }
 
     return Mode_sameRegionAs(cap_a, cap_b);
@@ -17417,7 +17417,7 @@ word_t Arch_getObjectSize(word_t t)
         return 12;
     case 0xffffff:
         return 12;
-# 454 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 454 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     default:
         return Mode_getObjectSize(t);
     }
@@ -17425,7 +17425,7 @@ word_t Arch_getObjectSize(word_t t)
 
 cap_t Arch_createObject(object_t t, void *regionBase, word_t userSize, bool_t deviceMemory)
 {
-# 498 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 498 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
         return Mode_createObject(t, regionBase, userSize, deviceMemory);
 
 
@@ -17450,7 +17450,7 @@ exception_t Arch_decodeInvocation(
         return decodeX86PortControlInvocation(invLabel, length, cptr, slot, cap, buffer);
     case cap_io_port_cap:
         return decodeX86PortInvocation(invLabel, length, cptr, slot, cap, call, buffer);
-# 537 "/workspace/seL4-c89/src/arch/x86/object/objecttype.c"
+# 537 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/objecttype.c"
     default:
         return Mode_decodeInvocation(invLabel, length, cptr, slot, cap, call, buffer);
     }
@@ -17471,9 +17471,9 @@ void Arch_postCapDeletion(cap_t cap)
         freeIOPortRange(first_port, last_port);
     }
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/object/tcb.c"
-# 11 "/workspace/seL4-c89/src/arch/x86/object/tcb.c"
-# 1 "/workspace/seL4-c89/include/arch/x86/arch/object/tcb.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/tcb.c"
+# 11 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/tcb.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/tcb.h" 1
 
 
 
@@ -17481,7 +17481,7 @@ void Arch_postCapDeletion(cap_t cap)
 
 
        
-# 12 "/workspace/seL4-c89/src/arch/x86/object/tcb.c" 2
+# 12 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/tcb.c" 2
 
 
 word_t __attribute__((__const__)) Arch_decodeTransfer(word_t flags)
@@ -17493,13 +17493,13 @@ exception_t __attribute__((__const__)) Arch_performTransfer(word_t arch, tcb_t *
 {
     return EXCEPTION_NONE;
 }
-# 1 "/workspace/seL4-c89/src/arch/x86/object/vcpu.c"
-# 1 "/workspace/seL4-c89/src/arch/x86/smp/ipi.c"
-# 1 "/workspace/seL4-c89/src/assert.c"
-# 1 "/workspace/seL4-c89/src/benchmark/benchmark.c"
-# 1 "/workspace/seL4-c89/src/benchmark/benchmark_track.c"
-# 1 "/workspace/seL4-c89/src/benchmark/benchmark_utilisation.c"
-# 1 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/object/vcpu.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/smp/ipi.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/assert.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/benchmark/benchmark.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/benchmark/benchmark_track.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/benchmark/benchmark_utilisation.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
 
 
 
@@ -17507,7 +17507,7 @@ exception_t __attribute__((__const__)) Arch_performTransfer(word_t arch, tcb_t *
 
 
 
-# 1 "/workspace/seL4-c89/include/fastpath/fastpath.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/fastpath/fastpath.h" 1
 
 
 
@@ -17515,7 +17515,7 @@ exception_t __attribute__((__const__)) Arch_performTransfer(word_t arch, tcb_t *
 
 
        
-# 89 "/workspace/seL4-c89/include/fastpath/fastpath.h"
+# 89 "/workspace/seL4-c89/preconfigured/include/fastpath/fastpath.h"
 static inline cap_t __attribute__((always_inline)) lookup_fp(cap_t cap, cptr_t cptr)
 {
     word_t cptr2;
@@ -17598,8 +17598,8 @@ static inline void endpoint_ptr_set_epQueue_head_np(endpoint_t *ep_ptr, word_t e
 {
     ep_ptr->words[1] = epQueue_head;
 }
-# 9 "/workspace/seL4-c89/src/fastpath/fastpath.c" 2
-# 19 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 9 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c" 2
+# 19 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
 void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
 {
     seL4_MessageInfo_t info;
@@ -17646,7 +17646,7 @@ void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
     if (__builtin_expect(!!(endpoint_ptr_get_state(ep_ptr) != EPState_Recv), 0)) {
         slowpath(SysCall);
     }
-# 74 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 74 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     newVTable = (((cte_t *)((word_t)(dest)&~((1ul << (11)) - 1ul)))+(tcbVTable))->cap;
 
 
@@ -17656,9 +17656,9 @@ void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
     if (__builtin_expect(!!(! isValidVTableRoot_fp(newVTable)), 0)) {
         slowpath(SysCall);
     }
-# 91 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 91 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     stored_hw_asid.words[0] = cap_pml4_cap_get_capPML4MappedASID_fp(newVTable);
-# 124 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 124 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     dom = maxDom ? ksCurDomain : 0;
 
     if (__builtin_expect(!!(dest->tcbPriority < ksCurThread->tcbPriority && !isHighestPrio(dom, dest->tcbPriority)), 0)
@@ -17672,11 +17672,11 @@ void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
                                                                 ) {
         slowpath(SysCall);
     }
-# 145 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 145 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     if (__builtin_expect(!!(dest->tcbDomain != ksCurDomain && 0 < maxDom), 0)) {
         slowpath(SysCall);
     }
-# 178 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 178 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     endpoint_ptr_set_epQueue_head_np(ep_ptr, ((word_t)(dest->tcbEPNext)));
     if (__builtin_expect(!!(dest->tcbEPNext), 0)) {
         dest->tcbEPNext->tcbEPPrev = ((void *)0);
@@ -17689,7 +17689,7 @@ void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
 
     thread_state_ptr_set_tsType_np(&ksCurThread->tcbState,
                                    ThreadState_BlockedOnReply);
-# 209 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 209 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     cte_t *replySlot = (((cte_t *)((word_t)(ksCurThread)&~((1ul << (11)) - 1ul)))+(tcbReply));
 
 
@@ -17715,7 +17715,7 @@ void __attribute__((__noreturn__)) fastpath_call(word_t cptr, word_t msgInfo)
 
     fastpath_restore(badge, msgInfo, ksCurThread);
 }
-# 242 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 242 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
 void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgInfo)
 
 {
@@ -17754,7 +17754,7 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
                                                              ) {
         slowpath(SysReplyRecv);
     }
-# 292 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 292 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     if (__builtin_expect(!!(ksCurThread->tcbBoundNotification && notification_ptr_get_state(ksCurThread->tcbBoundNotification) == NtfnState_Active), 0)
                                                                                                                ) {
         slowpath(SysReplyRecv);
@@ -17767,7 +17767,7 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
     if (__builtin_expect(!!(endpoint_ptr_get_state(ep_ptr) == EPState_Send), 0)) {
         slowpath(SysReplyRecv);
     }
-# 320 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 320 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     cte_t *callerSlot = (((cte_t *)((word_t)(ksCurThread)&~((1ul << (11)) - 1ul)))+(tcbCaller));
     cap_t callerCap = callerSlot->cap;
     if (__builtin_expect(!!(!fastpath_reply_cap_check(callerCap)), 0)) {
@@ -17776,7 +17776,7 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
 
 
     caller = ((tcb_t *)(cap_reply_cap_get_capTCBPtr(callerCap)));
-# 339 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 339 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     fault_type = seL4_Fault_get_seL4_FaultType(caller->tcbFault);
 
 
@@ -17808,16 +17808,16 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
 
 
     stored_hw_asid.words[0] = cap_pml4_cap_get_capPML4MappedASID(newVTable);
-# 401 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 401 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     dom = maxDom ? ksCurDomain : 0;
     if (__builtin_expect(!!(!isHighestPrio(dom, caller->tcbPriority)), 0)) {
         slowpath(SysReplyRecv);
     }
-# 414 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 414 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     if (__builtin_expect(!!(caller->tcbDomain != ksCurDomain && 0 < maxDom), 0)) {
         slowpath(SysReplyRecv);
     }
-# 442 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 442 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     thread_state_ptr_mset_blockingObject_tsType(
         &ksCurThread->tcbState, (word_t)ep_ptr, ThreadState_BlockedOnReceive);
 
@@ -17858,13 +17858,13 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
                                              EPState_Recv);
 
     }
-# 501 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 501 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
     mdb_node_ptr_mset_mdbNext_mdbRevocable_mdbFirstBadged(
         &((cte_t *)(mdb_node_get_mdbPrev(callerSlot->cteMDBNode)))->cteMDBNode,
         0, 1, 1);
     callerSlot->cap = cap_null_cap_new();
     callerSlot->cteMDBNode = mdb_node_new(0, false, false, 0);
-# 536 "/workspace/seL4-c89/src/fastpath/fastpath.c"
+# 536 "/workspace/seL4-c89/preconfigured/src/fastpath/fastpath.c"
         badge = 0;
 
         fastpath_copy_mrs(length, ksCurThread, caller);
@@ -17881,13 +17881,13 @@ void __attribute__((__noreturn__)) fastpath_reply_recv(word_t cptr, word_t msgIn
 
 
 }
-# 1 "/workspace/seL4-c89/src/inlines.c"
-# 10 "/workspace/seL4-c89/src/inlines.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/inlines.c"
+# 10 "/workspace/seL4-c89/preconfigured/src/inlines.c"
 lookup_fault_t current_lookup_fault;
 seL4_Fault_t current_fault;
 syscall_error_t current_syscall_error;
-# 1 "/workspace/seL4-c89/src/kernel/boot.c"
-# 21 "/workspace/seL4-c89/src/kernel/boot.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
+# 21 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 __attribute__((__section__(".boot.bss"))) ndks_boot_t ndks_boot;
 
 __attribute__((__section__(".boot.bss"))) rootserver_mem_t rootserver;
@@ -18000,7 +18000,7 @@ __attribute__((__section__(".boot.text"))) static bool_t insert_region(region_t 
             return true;
         }
     }
-# 143 "/workspace/seL4-c89/src/kernel/boot.c"
+# 143 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
     ((void)(0))
 
                                                                  ;
@@ -18077,7 +18077,7 @@ __attribute__((__section__(".boot.text"))) static void create_rootserver_objects
     rootserver.cnode = alloc_rootserver_obj(cnode_size_bits, 1);
     maybe_alloc_extra_bi(12, extra_bi_size_bits);
     rootserver.vspace = alloc_rootserver_obj(12, 1);
-# 227 "/workspace/seL4-c89/src/kernel/boot.c"
+# 227 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
     maybe_alloc_extra_bi(12, extra_bi_size_bits);
     typedef int __assert_failed_invalid_seL4_ASIDPoolBits[(12 == 12) ? 1 : -1] __attribute__((unused));;
     rootserver.asid_pool = alloc_rootserver_obj(12, 1);
@@ -18180,7 +18180,7 @@ __attribute__((__section__(".boot.text"))) void create_bi_frame_cap(cap_t root_c
     cap_t cap = create_mapped_it_frame_cap(pd_cap, rootserver.boot_info, vptr, 1, false, false);
     write_slot((((slot_ptr_t)(((pptr_t)cap_get_capPtr(root_cnode_cap)))) + (seL4_CapBootInfoFrame)), cap);
 }
-# 339 "/workspace/seL4-c89/src/kernel/boot.c"
+# 339 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 __attribute__((__section__(".boot.text"))) word_t calculate_extra_bi_size_bits(word_t extra_size)
 {
     if (extra_size == 0) {
@@ -18288,7 +18288,7 @@ __attribute__((__section__(".boot.text"))) cap_t create_it_asid_pool(cap_t root_
 
     return ap_cap;
 }
-# 477 "/workspace/seL4-c89/src/kernel/boot.c"
+# 477 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 __attribute__((__section__(".boot.text"))) void create_idle_thread(void)
 {
     pptr_t pptr;
@@ -18303,7 +18303,7 @@ __attribute__((__section__(".boot.text"))) void create_idle_thread(void)
 
 
         ;
-# 500 "/workspace/seL4-c89/src/kernel/boot.c"
+# 500 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 }
 
 __attribute__((__section__(".boot.text"))) tcb_t *create_initial_thread(cap_t root_cnode_cap, cap_t it_pd_cap, vptr_t ui_v_entry, vptr_t bi_frame_vptr,
@@ -18372,25 +18372,25 @@ __attribute__((__section__(".boot.text"))) tcb_t *create_initial_thread(cap_t ro
 
     cap_t cap = cap_thread_cap_new(((word_t)(tcb)));
     write_slot((((slot_ptr_t)(((pptr_t)cap_get_capPtr(root_cnode_cap)))) + (seL4_CapInitThreadTCB)), cap);
-# 577 "/workspace/seL4-c89/src/kernel/boot.c"
+# 577 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
     return tcb;
 }
-# 600 "/workspace/seL4-c89/src/kernel/boot.c"
+# 600 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 __attribute__((__section__(".boot.text"))) void init_core_state(tcb_t *scheduler_action)
 {
 
     ksCurFPUOwner = ((void *)0);
-# 614 "/workspace/seL4-c89/src/kernel/boot.c"
+# 614 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
     ksSchedulerAction = scheduler_action;
     ksCurThread = ksIdleThread;
-# 624 "/workspace/seL4-c89/src/kernel/boot.c"
+# 624 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 }
-# 637 "/workspace/seL4-c89/src/kernel/boot.c"
+# 637 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 __attribute__((__section__(".boot.text"))) static bool_t pptr_in_kernel_window(pptr_t pptr)
 {
     return pptr >= 0xffffff8000000000ul && pptr < 0xffffffff80000000ul;
 }
-# 655 "/workspace/seL4-c89/src/kernel/boot.c"
+# 655 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 __attribute__((__section__(".boot.text"))) static bool_t provide_untyped_cap(
     cap_t root_cnode_cap,
     bool_t device_memory,
@@ -18450,7 +18450,7 @@ __attribute__((__section__(".boot.text"))) static bool_t provide_untyped_cap(
     }
     return ret;
 }
-# 730 "/workspace/seL4-c89/src/kernel/boot.c"
+# 730 "/workspace/seL4-c89/preconfigured/src/kernel/boot.c"
 __attribute__((__section__(".boot.text"))) static bool_t create_untypeds_for_region(
     cap_t root_cnode_cap,
     bool_t device_memory,
@@ -18803,8 +18803,8 @@ __attribute__((__section__(".boot.text"))) bool_t init_freemem(word_t n_availabl
                                                                         ;
     return false;
 }
-# 1 "/workspace/seL4-c89/src/kernel/cspace.c"
-# 15 "/workspace/seL4-c89/src/kernel/cspace.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/kernel/cspace.c"
+# 15 "/workspace/seL4-c89/preconfigured/src/kernel/cspace.c"
 lookupCap_ret_t lookupCap(tcb_t *thread, cptr_t cPtr)
 {
     lookupSlot_raw_ret_t lu_ret;
@@ -18984,8 +18984,8 @@ resolveAddressBits_ret_t resolveAddressBits(cap_t nodeCap, cptr_t capptr, word_t
         }
     }
 }
-# 1 "/workspace/seL4-c89/src/kernel/faulthandler.c"
-# 54 "/workspace/seL4-c89/src/kernel/faulthandler.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/kernel/faulthandler.c"
+# 54 "/workspace/seL4-c89/preconfigured/src/kernel/faulthandler.c"
 void handleFault(tcb_t *tptr)
 {
     exception_t status;
@@ -19035,19 +19035,19 @@ exception_t sendFaultIPC(tcb_t *tptr)
         return EXCEPTION_FAULT;
     }
 }
-# 148 "/workspace/seL4-c89/src/kernel/faulthandler.c"
+# 148 "/workspace/seL4-c89/preconfigured/src/kernel/faulthandler.c"
 void handleDoubleFault(tcb_t *tptr, seL4_Fault_t ex1)
 
 {
-# 171 "/workspace/seL4-c89/src/kernel/faulthandler.c"
+# 171 "/workspace/seL4-c89/preconfigured/src/kernel/faulthandler.c"
     setThreadState(tptr, ThreadState_Inactive);
 }
-# 1 "/workspace/seL4-c89/src/kernel/stack.c"
-# 9 "/workspace/seL4-c89/src/kernel/stack.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/kernel/stack.c"
+# 9 "/workspace/seL4-c89/preconfigured/src/kernel/stack.c"
 __attribute__((externally_visible)) __attribute__((__aligned__(16)))
 char kernel_stack_alloc[1][(1ul << (12))];
-# 1 "/workspace/seL4-c89/src/kernel/thread.c"
-# 25 "/workspace/seL4-c89/src/kernel/thread.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
+# 25 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 static seL4_MessageInfo_t
 transferCaps(seL4_MessageInfo_t info,
              endpoint_t *endpoint, tcb_t *receiver,
@@ -19117,7 +19117,7 @@ void restart(tcb_t *target)
 {
     if (isStopped(target)) {
         cancelIPC(target);
-# 105 "/workspace/seL4-c89/src/kernel/thread.c"
+# 105 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
         setupReplyMaster(target);
         setThreadState(target, ThreadState_Restart);
         tcbSchedEnqueue(target);
@@ -19148,7 +19148,7 @@ void doIPCTransfer(tcb_t *sender, endpoint_t *endpoint, word_t badge,
 void doReplyTransfer(tcb_t *sender, tcb_t *receiver, cte_t *slot, bool_t grant)
 
 {
-# 152 "/workspace/seL4-c89/src/kernel/thread.c"
+# 152 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
    
                                       ;
 
@@ -19180,7 +19180,7 @@ void doReplyTransfer(tcb_t *sender, tcb_t *receiver, cte_t *slot, bool_t grant)
             setThreadState(receiver, ThreadState_Inactive);
         }
     }
-# 199 "/workspace/seL4-c89/src/kernel/thread.c"
+# 199 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 }
 
 void doNormalTransfer(tcb_t *sender, word_t *sendBuffer, endpoint_t *endpoint,
@@ -19322,7 +19322,7 @@ static void nextDomain(void)
     ksDomainTime = ksDomSchedule[ksDomScheduleIdx].length;
 
 }
-# 364 "/workspace/seL4-c89/src/kernel/thread.c"
+# 364 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 static void scheduleChooseNewThread(void)
 {
     if (ksDomainTime == 0) {
@@ -19380,7 +19380,7 @@ void schedule(void)
         }
     }
     ksSchedulerAction = ((tcb_t*)0);
-# 434 "/workspace/seL4-c89/src/kernel/thread.c"
+# 434 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 }
 
 void chooseThread(void)
@@ -19412,7 +19412,7 @@ void chooseThread(void)
 
 void switchToThread(tcb_t *thread)
 {
-# 475 "/workspace/seL4-c89/src/kernel/thread.c"
+# 475 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
     Arch_switchToThread(thread);
 
 
@@ -19448,7 +19448,7 @@ void setMCPriority(tcb_t *tptr, prio_t mcp)
 {
     tptr->tcbMCP = mcp;
 }
-# 540 "/workspace/seL4-c89/src/kernel/thread.c"
+# 540 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 void setPriority(tcb_t *tptr, prio_t prio)
 {
     tcbSchedDequeue(tptr);
@@ -19502,7 +19502,7 @@ void scheduleTCB(tcb_t *tptr)
         rescheduleRequired();
     }
 }
-# 676 "/workspace/seL4-c89/src/kernel/thread.c"
+# 676 "/workspace/seL4-c89/preconfigured/src/kernel/thread.c"
 void timerTick(void)
 {
     if (__builtin_expect(!!(thread_state_get_tsType(ksCurThread->tcbState) == ThreadState_Running), 1)
@@ -19546,9 +19546,9 @@ void rescheduleRequired(void)
     }
     ksSchedulerAction = ((tcb_t*) 1);
 }
-# 1 "/workspace/seL4-c89/src/machine/capdl.c"
-# 1 "/workspace/seL4-c89/src/machine/fpu.c"
-# 15 "/workspace/seL4-c89/src/machine/fpu.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/machine/capdl.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/machine/fpu.c"
+# 15 "/workspace/seL4-c89/preconfigured/src/machine/fpu.c"
 void switchLocalFpuOwner(tcb_t *new_owner)
 {
     enableFpu();
@@ -19584,9 +19584,9 @@ void fpuRelease(tcb_t *thread)
         switchFpuOwner(((void *)0), 0);
     }
 }
-# 1 "/workspace/seL4-c89/src/machine/io.c"
-# 1 "/workspace/seL4-c89/src/machine/registerset.c"
-# 9 "/workspace/seL4-c89/src/machine/registerset.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/machine/io.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/machine/registerset.c"
+# 9 "/workspace/seL4-c89/preconfigured/src/machine/registerset.c"
 const register_t fault_messages[][(((n_syscallMessage)>(n_exceptionMessage))?(n_syscallMessage):(n_exceptionMessage))] = {
     [MessageID_Syscall] = { [seL4_UnknownSyscall_RAX] = RAX, [seL4_UnknownSyscall_RBX] = RBX, [seL4_UnknownSyscall_RCX] = RCX, [seL4_UnknownSyscall_RDX] = RDX, [seL4_UnknownSyscall_RSI] = RSI, [seL4_UnknownSyscall_RDI] = RDI, [seL4_UnknownSyscall_RBP] = RBP, [seL4_UnknownSyscall_R8] = R8, [seL4_UnknownSyscall_R9] = R9, [seL4_UnknownSyscall_R10] = R10, [seL4_UnknownSyscall_R11] = R11, [seL4_UnknownSyscall_R12] = R12, [seL4_UnknownSyscall_R13] = R13, [seL4_UnknownSyscall_R14] = R14, [seL4_UnknownSyscall_R15] = R15, [seL4_UnknownSyscall_FaultIP] = FaultIP, [seL4_UnknownSyscall_SP] = RSP, [seL4_UnknownSyscall_FLAGS] = FLAGS},
     [MessageID_Exception] = { [seL4_UserException_FaultIP] = FaultIP, [seL4_UserException_SP] = RSP, [seL4_UserException_FLAGS] = FLAGS},
@@ -19594,7 +19594,7 @@ const register_t fault_messages[][(((n_syscallMessage)>(n_exceptionMessage))?(n_
 
 
 };
-# 1 "/workspace/seL4-c89/src/model/preemption.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/model/preemption.c"
 
 
 
@@ -19602,7 +19602,7 @@ const register_t fault_messages[][(((n_syscallMessage)>(n_exceptionMessage))?(n_
 
 
 
-# 1 "/workspace/seL4-c89/include/model/preemption.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/include/model/preemption.h" 1
 
 
 
@@ -19614,7 +19614,7 @@ const register_t fault_messages[][(((n_syscallMessage)>(n_exceptionMessage))?(n_
 
 
 exception_t preemptionPoint(void);
-# 9 "/workspace/seL4-c89/src/model/preemption.c" 2
+# 9 "/workspace/seL4-c89/preconfigured/src/model/preemption.c" 2
 
 
 
@@ -19626,7 +19626,7 @@ exception_t preemptionPoint(void)
 {
 
     ksWorkUnitsCompleted++;
-# 29 "/workspace/seL4-c89/src/model/preemption.c"
+# 29 "/workspace/seL4-c89/preconfigured/src/model/preemption.c"
     if (ksWorkUnitsCompleted >= 100) {
         ksWorkUnitsCompleted = 0;
 
@@ -19642,8 +19642,8 @@ exception_t preemptionPoint(void)
 
     return EXCEPTION_NONE;
 }
-# 1 "/workspace/seL4-c89/src/model/smp.c"
-# 1 "/workspace/seL4-c89/src/model/statedata.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/model/smp.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/model/statedata.c"
 
 
 
@@ -19651,9 +19651,9 @@ exception_t preemptionPoint(void)
 
 
 
-# 1 "/workspace/seL4-c89/include/api/debug.h" 1
-# 9 "/workspace/seL4-c89/src/model/statedata.c" 2
-# 18 "/workspace/seL4-c89/src/model/statedata.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/api/debug.h" 1
+# 9 "/workspace/seL4-c89/preconfigured/src/model/statedata.c" 2
+# 18 "/workspace/seL4-c89/preconfigured/src/model/statedata.c"
 ;
 
 
@@ -19683,7 +19683,7 @@ tcb_t * ksSchedulerAction;
 
 
 tcb_t * ksCurFPUOwner;
-# 75 "/workspace/seL4-c89/src/model/statedata.c"
+# 75 "/workspace/seL4-c89/preconfigured/src/model/statedata.c"
 word_t ksWorkUnitsCompleted;
 
 irq_state_t intStateIRQTable[(maxIRQ + 1)];
@@ -19707,8 +19707,8 @@ word_t ksDomScheduleIdx;
 
 
 __attribute__((__section__("._idle_thread"))) char ksIdleThreadTCB[1][(1ul << (11))] __attribute__((__aligned__((1ul << (11)))));
-# 1 "/workspace/seL4-c89/src/object/cnode.c"
-# 25 "/workspace/seL4-c89/src/object/cnode.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/cnode.c"
+# 25 "/workspace/seL4-c89/preconfigured/src/object/cnode.c"
 struct finaliseSlot_ret {
     exception_t status;
     bool_t success;
@@ -20619,8 +20619,8 @@ cap_transfer_t __attribute__((__pure__)) loadCapTransfer(word_t *buffer)
     const int offset = seL4_MsgMaxLength + ((1ul<<(seL4_MsgExtraCapBits))-1) + 2;
     return capTransferFromWords(buffer + offset);
 }
-# 1 "/workspace/seL4-c89/src/object/endpoint.c"
-# 23 "/workspace/seL4-c89/src/object/endpoint.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
+# 23 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
 void sendIPC(bool_t blocking, bool_t do_call, word_t badge,
              bool_t canGrant, bool_t canGrantReply, tcb_t *thread, endpoint_t *epptr)
 
@@ -20676,7 +20676,7 @@ void sendIPC(bool_t blocking, bool_t do_call, word_t badge,
 
 
         doIPCTransfer(thread, epptr, badge, canGrant, dest);
-# 105 "/workspace/seL4-c89/src/object/endpoint.c"
+# 105 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
         bool_t replyCanGrant = thread_state_ptr_get_blockingIPCCanGrant(&dest->tcbState);;
 
         setThreadState(dest, ThreadState_Running);
@@ -20708,12 +20708,12 @@ void receiveIPC(tcb_t *thread, cap_t cap, bool_t isBlocking)
     ;
 
     epptr = ((endpoint_t *)(cap_endpoint_cap_get_capEPPtr(cap)));
-# 149 "/workspace/seL4-c89/src/object/endpoint.c"
+# 149 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
     ntfnPtr = thread->tcbBoundNotification;
     if (ntfnPtr && notification_ptr_get_state(ntfnPtr) == NtfnState_Active) {
         completeSignal(ntfnPtr, thread);
     } else {
-# 163 "/workspace/seL4-c89/src/object/endpoint.c"
+# 163 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
         switch (endpoint_ptr_get_state(epptr)) {
         case EPState_Idle:
         case EPState_Recv: {
@@ -20782,7 +20782,7 @@ void receiveIPC(tcb_t *thread, cap_t cap, bool_t isBlocking)
                           canGrant, thread);
 
             do_call = thread_state_ptr_get_blockingIPCIsCall(&sender->tcbState);
-# 261 "/workspace/seL4-c89/src/object/endpoint.c"
+# 261 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
             if (do_call) {
                 if (canGrant || canGrantReply) {
                     setupCallerCap(sender, thread, cap_endpoint_cap_get_capCanGrant(cap));
@@ -20808,7 +20808,7 @@ void replyFromKernel_error(tcb_t *thread)
     ipcBuffer = lookupIPCBuffer(true, thread);
     setRegister(thread, badgeRegister, 0);
     len = setMRs_syscall_error(thread, ipcBuffer);
-# 295 "/workspace/seL4-c89/src/object/endpoint.c"
+# 295 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
     setRegister(thread, msgInfoRegister, wordFromMessageInfo(
                     seL4_MessageInfo_new(current_syscall_error.type, 0, 0, len)));
 }
@@ -20849,7 +20849,7 @@ void cancelIPC(tcb_t *tptr)
         if (!queue.head) {
             endpoint_ptr_set_state(epptr, EPState_Idle);
         }
-# 344 "/workspace/seL4-c89/src/object/endpoint.c"
+# 344 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
         setThreadState(tptr, ThreadState_Inactive);
         break;
     }
@@ -20882,7 +20882,7 @@ void cancelIPC(tcb_t *tptr)
     }
     }
 }
-# 400 "/workspace/seL4-c89/src/object/endpoint.c"
+# 400 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
 void cancelAllIPC(endpoint_t *epptr)
 {
     switch (endpoint_ptr_get_state(epptr)) {
@@ -20899,7 +20899,7 @@ void cancelAllIPC(endpoint_t *epptr)
 
 
         for (; thread; thread = thread->tcbEPNext) {
-# 425 "/workspace/seL4-c89/src/object/endpoint.c"
+# 425 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
             setThreadState(thread, ThreadState_Restart);
             tcbSchedEnqueue(thread);
 
@@ -20933,7 +20933,7 @@ void cancelBadgedSends(endpoint_t *epptr, word_t badge)
             word_t b = thread_state_ptr_get_blockingIPCBadge(
                            &thread->tcbState);
             next = thread->tcbEPNext;
-# 466 "/workspace/seL4-c89/src/object/endpoint.c"
+# 466 "/workspace/seL4-c89/preconfigured/src/object/endpoint.c"
             if (b == badge) {
                 setThreadState(thread, ThreadState_Restart);
                 tcbSchedEnqueue(thread);
@@ -20956,9 +20956,9 @@ void cancelBadgedSends(endpoint_t *epptr, word_t badge)
         halt();
     }
 }
-# 1 "/workspace/seL4-c89/src/object/interrupt.c"
-# 20 "/workspace/seL4-c89/src/object/interrupt.c"
-# 1 "/workspace/seL4-c89/include/machine/timer.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/object/interrupt.c"
+# 20 "/workspace/seL4-c89/preconfigured/src/object/interrupt.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/machine/timer.h" 1
 
 
 
@@ -20966,9 +20966,9 @@ void cancelBadgedSends(endpoint_t *epptr, word_t badge)
 
 
        
-# 34 "/workspace/seL4-c89/include/machine/timer.h"
+# 34 "/workspace/seL4-c89/preconfigured/include/machine/timer.h"
 static inline void resetTimer(void);
-# 21 "/workspace/seL4-c89/src/object/interrupt.c" 2
+# 21 "/workspace/seL4-c89/preconfigured/src/object/interrupt.c" 2
 
 
 exception_t decodeIRQControlInvocation(word_t invLabel, word_t length,
@@ -21084,7 +21084,7 @@ exception_t decodeIRQHandlerInvocation(word_t invLabel, irq_t irq)
 
 void invokeIRQHandler_AckIRQ(irq_t irq)
 {
-# 159 "/workspace/seL4-c89/src/object/interrupt.c"
+# 159 "/workspace/seL4-c89/preconfigured/src/object/interrupt.c"
     if (wrap_config_set(0)) {
         deactivateInterrupt(irq);
     } else {
@@ -21224,8 +21224,8 @@ void setIRQState(irq_state_t irqState, irq_t irq)
 
     maskInterrupt(irqState == IRQInactive, irq);
 }
-# 1 "/workspace/seL4-c89/src/object/notification.c"
-# 19 "/workspace/seL4-c89/src/object/notification.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
+# 19 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
 static inline tcb_queue_t __attribute__((__pure__)) ntfn_ptr_get_queue(notification_t *ntfnPtr)
 {
     tcb_queue_t ntfn_queue;
@@ -21241,7 +21241,7 @@ static inline void ntfn_ptr_set_queue(notification_t *ntfnPtr, tcb_queue_t ntfn_
     notification_ptr_set_ntfnQueue_head(ntfnPtr, (word_t)ntfn_queue.head);
     notification_ptr_set_ntfnQueue_tail(ntfnPtr, (word_t)ntfn_queue.end);
 }
-# 62 "/workspace/seL4-c89/src/object/notification.c"
+# 62 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
 void sendSignal(notification_t *ntfnPtr, word_t badge)
 {
     switch (notification_ptr_get_state(ntfnPtr)) {
@@ -21255,7 +21255,7 @@ void sendSignal(notification_t *ntfnPtr, word_t badge)
                 setThreadState(tcb, ThreadState_Running);
                 setRegister(tcb, badgeRegister, badge);
                 { { possibleSwitchTo(tcb); } }
-# 122 "/workspace/seL4-c89/src/object/notification.c"
+# 122 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
             } else {
 
 
@@ -21293,7 +21293,7 @@ void sendSignal(notification_t *ntfnPtr, word_t badge)
         setThreadState(dest, ThreadState_Running);
         setRegister(dest, badgeRegister, badge);
         { { possibleSwitchTo(dest); } }
-# 175 "/workspace/seL4-c89/src/object/notification.c"
+# 175 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
         break;
     }
 
@@ -21350,7 +21350,7 @@ void receiveSignal(tcb_t *thread, cap_t cap, bool_t isBlocking)
             thread, badgeRegister,
             notification_ptr_get_ntfnMsgIdentifier(ntfnPtr));
         notification_ptr_set_state(ntfnPtr, NtfnState_Idle);
-# 239 "/workspace/seL4-c89/src/object/notification.c"
+# 239 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
         break;
     }
 }
@@ -21367,7 +21367,7 @@ void cancelAllSignals(notification_t *ntfnPtr)
 
         for (; thread; thread = thread->tcbEPNext) {
             setThreadState(thread, ThreadState_Restart);
-# 269 "/workspace/seL4-c89/src/object/notification.c"
+# 269 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
             tcbSchedEnqueue(thread);
 
         }
@@ -21404,7 +21404,7 @@ void completeSignal(notification_t *ntfnPtr, tcb_t *tcb)
         badge = notification_ptr_get_ntfnMsgIdentifier(ntfnPtr);
         setRegister(tcb, badgeRegister, badge);
         notification_ptr_set_state(ntfnPtr, NtfnState_Idle);
-# 321 "/workspace/seL4-c89/src/object/notification.c"
+# 321 "/workspace/seL4-c89/preconfigured/src/object/notification.c"
     } else {
         halt();
     }
@@ -21441,8 +21441,8 @@ void bindNotification(tcb_t *tcb, notification_t *ntfnPtr)
     notification_ptr_set_ntfnBoundTCB(ntfnPtr, (word_t)tcb);
     tcb->tcbBoundNotification = ntfnPtr;
 }
-# 1 "/workspace/seL4-c89/src/object/objecttype.c"
-# 33 "/workspace/seL4-c89/src/object/objecttype.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
+# 33 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
 word_t getObjectSize(word_t t, word_t userObjSize)
 {
     if (t >= seL4_NonArchObjectTypeCount) {
@@ -21546,7 +21546,7 @@ finaliseCap_ret_t finaliseCap(cap_t cap, bool_t final, bool_t exposed)
         return fc_ret;
 
     case cap_reply_cap:
-# 156 "/workspace/seL4-c89/src/object/objecttype.c"
+# 156 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     case cap_null_cap:
     case cap_domain_cap:
         fc_ret.remainder = cap_null_cap_new();
@@ -21582,7 +21582,7 @@ finaliseCap_ret_t finaliseCap(cap_t cap, bool_t final, bool_t exposed)
            
             cte_ptr = (((cte_t *)((word_t)(tcb)&~((1ul << (11)) - 1ul)))+(tcbCTable));
             unbindNotification(tcb);
-# 200 "/workspace/seL4-c89/src/object/objecttype.c"
+# 200 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
             suspend(tcb);
 
 
@@ -21599,7 +21599,7 @@ finaliseCap_ret_t finaliseCap(cap_t cap, bool_t final, bool_t exposed)
         }
         break;
     }
-# 241 "/workspace/seL4-c89/src/object/objecttype.c"
+# 241 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     case cap_zombie_cap:
         fc_ret.remainder = cap;
         fc_ret.cleanupInfo = cap_null_cap_new();
@@ -21716,7 +21716,7 @@ bool_t __attribute__((__const__)) sameRegionAs(cap_t cap_a, cap_t cap_b)
                    (word_t)cap_irq_handler_cap_get_capIRQ(cap_b);
         }
         break;
-# 373 "/workspace/seL4-c89/src/object/objecttype.c"
+# 373 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     default:
         if (isArchCap(cap_a) &&
             isArchCap(cap_b)) {
@@ -21881,7 +21881,7 @@ cap_t createObject(object_t t, void *regionBase, word_t userSize, bool_t deviceM
 
 
         ;
-# 545 "/workspace/seL4-c89/src/object/objecttype.c"
+# 545 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
         return cap_thread_cap_new(((word_t)(tcb)));
     }
 
@@ -21911,7 +21911,7 @@ cap_t createObject(object_t t, void *regionBase, word_t userSize, bool_t deviceM
 
 
         return cap_untyped_cap_new(0, !!deviceMemory, userSize, ((word_t)(regionBase)));
-# 593 "/workspace/seL4-c89/src/object/objecttype.c"
+# 593 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     default:
         halt();
     }
@@ -22014,7 +22014,7 @@ exception_t decodeInvocation(word_t invLabel, word_t length,
                    ((notification_t *)(cap_notification_cap_get_capNtfnPtr(cap))),
                    cap_notification_cap_get_capNtfnBadge(cap));
     }
-# 704 "/workspace/seL4-c89/src/object/objecttype.c"
+# 704 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     case cap_reply_cap:
         if (__builtin_expect(!!(cap_reply_cap_get_capReplyMaster(cap)), 0)) {
            
@@ -22032,15 +22032,15 @@ exception_t decodeInvocation(word_t invLabel, word_t length,
 
 
     case cap_thread_cap:
-# 729 "/workspace/seL4-c89/src/object/objecttype.c"
+# 729 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
         return decodeTCBInvocation(invLabel, length, cap, slot, call, buffer);
 
     case cap_domain_cap:
-# 740 "/workspace/seL4-c89/src/object/objecttype.c"
+# 740 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
         return decodeDomainInvocation(invLabel, length, buffer);
 
     case cap_cnode_cap:
-# 751 "/workspace/seL4-c89/src/object/objecttype.c"
+# 751 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
         return decodeCNodeInvocation(invLabel, length, cap, buffer);
 
     case cap_untyped_cap:
@@ -22052,12 +22052,12 @@ exception_t decodeInvocation(word_t invLabel, word_t length,
     case cap_irq_handler_cap:
         return decodeIRQHandlerInvocation(invLabel,
                                           (cap_irq_handler_cap_get_capIRQ(cap)));
-# 783 "/workspace/seL4-c89/src/object/objecttype.c"
+# 783 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
     default:
         halt();
     }
 }
-# 798 "/workspace/seL4-c89/src/object/objecttype.c"
+# 798 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
 exception_t performInvocation_Endpoint(endpoint_t *ep, word_t badge,
                                        bool_t canGrant, bool_t canGrantReply,
                                        bool_t block, bool_t call)
@@ -22074,7 +22074,7 @@ exception_t performInvocation_Notification(notification_t *ntfn, word_t badge)
 
     return EXCEPTION_NONE;
 }
-# 822 "/workspace/seL4-c89/src/object/objecttype.c"
+# 822 "/workspace/seL4-c89/preconfigured/src/object/objecttype.c"
 exception_t performInvocation_Reply(tcb_t *thread, cte_t *slot, bool_t canGrant)
 {
     doReplyTransfer(ksCurThread, thread, slot, canGrant);
@@ -22281,8 +22281,8 @@ bool_t __attribute__((__const__)) isCapRevocable(cap_t derivedCap, cap_t srcCap)
         return false;
     }
 }
-# 1 "/workspace/seL4-c89/src/object/tcb.c"
-# 32 "/workspace/seL4-c89/src/object/tcb.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
+# 32 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 static exception_t checkPrio(prio_t prio, tcb_t *auth)
 {
     prio_t mcp;
@@ -22449,7 +22449,7 @@ void tcbSchedDequeue(tcb_t *tcb)
         }
     }
 }
-# 239 "/workspace/seL4-c89/src/object/tcb.c"
+# 239 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 tcb_queue_t tcbEPAppend(tcb_t *tcb, tcb_queue_t queue)
 {
     if (!queue.head) {
@@ -22482,7 +22482,7 @@ tcb_queue_t tcbEPDequeue(tcb_t *tcb, tcb_queue_t queue)
 
     return queue;
 }
-# 338 "/workspace/seL4-c89/src/object/tcb.c"
+# 338 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 cptr_t __attribute__((__pure__)) getExtraCPtr(word_t *bufferPtr, word_t i)
 {
     return (cptr_t)bufferPtr[seL4_MsgMaxLength + 2 + i];
@@ -22582,7 +22582,7 @@ word_t copyMRs(tcb_t *sender, word_t *sendBuf, tcb_t *receiver,
 
     return i;
 }
-# 767 "/workspace/seL4-c89/src/object/tcb.c"
+# 767 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 static exception_t invokeSetTLSBase(tcb_t *thread, word_t tls_base)
 {
     setRegister(thread, TLS_BASE, tls_base);
@@ -22713,7 +22713,7 @@ exception_t decodeTCBInvocation(word_t invLabel, word_t length, cap_t cap,
 
     case TCBUnbindNotification:
         return decodeUnbindNotification(cap);
-# 928 "/workspace/seL4-c89/src/object/tcb.c"
+# 928 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     case TCBSetTLSBase:
         return decodeSetTLSBase(cap, length, buffer);
 
@@ -22859,7 +22859,7 @@ exception_t decodeWriteRegisters(cap_t cap, word_t length, word_t *buffer)
                                     flags & (1ul << (WriteRegisters_resume)),
                                     w, transferArch, buffer);
 }
-# 1096 "/workspace/seL4-c89/src/object/tcb.c"
+# 1096 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 exception_t decodeTCBConfigure(cap_t cap, word_t length, cte_t *slot, word_t *buffer)
 {
     cte_t *bufferSlot, *cRootSlot, *vRootSlot;
@@ -22954,7 +22954,7 @@ exception_t decodeTCBConfigure(cap_t cap, word_t length, cte_t *slot, word_t *bu
     }
 
     setThreadState(ksCurThread, ThreadState_Restart);
-# 1201 "/workspace/seL4-c89/src/object/tcb.c"
+# 1201 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     return invokeTCB_ThreadControl(
                ((tcb_t *)(cap_thread_cap_get_capTCBPtr(cap))), slot,
                faultEP, 0, 0,
@@ -23053,7 +23053,7 @@ exception_t decodeSetMCPriority(cap_t cap, word_t length, word_t *buffer)
                ((void *)0), thread_control_update_mcp);
 
 }
-# 1335 "/workspace/seL4-c89/src/object/tcb.c"
+# 1335 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 exception_t decodeSetSchedParams(cap_t cap, word_t length, word_t *buffer)
 
 {
@@ -23097,7 +23097,7 @@ exception_t decodeSetSchedParams(cap_t cap, word_t length, word_t *buffer)
                                                                            ;
         return status;
     }
-# 1432 "/workspace/seL4-c89/src/object/tcb.c"
+# 1432 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     setThreadState(ksCurThread, ThreadState_Restart);
 
 
@@ -23152,7 +23152,7 @@ exception_t decodeSetIPCBuffer(cap_t cap, word_t length, cte_t *slot, word_t *bu
     }
 
     setThreadState(ksCurThread, ThreadState_Restart);
-# 1496 "/workspace/seL4-c89/src/object/tcb.c"
+# 1496 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     return invokeTCB_ThreadControl(
                ((tcb_t *)(cap_thread_cap_get_capTCBPtr(cap))), slot,
                0, 0, 0,
@@ -23186,7 +23186,7 @@ exception_t decodeSetSpace(cap_t cap, word_t length, cte_t *slot, word_t *buffer
         current_syscall_error.type = seL4_TruncatedMessage;
         return EXCEPTION_SYSCALL_ERROR;
     }
-# 1541 "/workspace/seL4-c89/src/object/tcb.c"
+# 1541 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     cptr_t faultEP = getSyscallArg(0, buffer);
     cRootData = getSyscallArg(1, buffer);
     vRootData = getSyscallArg(2, buffer);
@@ -23237,9 +23237,9 @@ exception_t decodeSetSpace(cap_t cap, word_t length, cte_t *slot, word_t *buffer
         current_syscall_error.type = seL4_IllegalOperation;
         return EXCEPTION_SYSCALL_ERROR;
     }
-# 1602 "/workspace/seL4-c89/src/object/tcb.c"
+# 1602 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     setThreadState(ksCurThread, ThreadState_Restart);
-# 1612 "/workspace/seL4-c89/src/object/tcb.c"
+# 1612 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
     return invokeTCB_ThreadControl(
                ((tcb_t *)(cap_thread_cap_get_capTCBPtr(cap))), slot,
                faultEP,
@@ -23376,7 +23376,7 @@ exception_t invokeTCB_Resume(tcb_t *thread)
     restart(thread);
     return EXCEPTION_NONE;
 }
-# 1833 "/workspace/seL4-c89/src/object/tcb.c"
+# 1833 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 exception_t invokeTCB_ThreadControl(tcb_t *target, cte_t *slot,
                                     cptr_t faultep, prio_t mcp, prio_t priority,
                                     cap_t cRoot_newCap, cte_t *cRoot_srcSlot,
@@ -23450,7 +23450,7 @@ exception_t invokeTCB_ThreadControl(tcb_t *target, cte_t *slot,
 
     return EXCEPTION_NONE;
 }
-# 1943 "/workspace/seL4-c89/src/object/tcb.c"
+# 1943 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 exception_t invokeTCB_CopyRegisters(tcb_t *dest, tcb_t *tcb_src,
                                     bool_t suspendSource, bool_t resumeTarget,
                                     bool_t transferFrame, bool_t transferInteger,
@@ -23626,7 +23626,7 @@ exception_t invokeTCB_NotificationControl(tcb_t *tcb, notification_t *ntfnPtr)
 
     return EXCEPTION_NONE;
 }
-# 2126 "/workspace/seL4-c89/src/object/tcb.c"
+# 2126 "/workspace/seL4-c89/preconfigured/src/object/tcb.c"
 word_t setMRs_syscall_error(tcb_t *thread, word_t *receiveIPCBuffer)
 {
     switch (current_syscall_error.type) {
@@ -23667,8 +23667,8 @@ word_t setMRs_syscall_error(tcb_t *thread, word_t *receiveIPCBuffer)
         halt();
     }
 }
-# 1 "/workspace/seL4-c89/src/object/untyped.c"
-# 21 "/workspace/seL4-c89/src/object/untyped.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/object/untyped.c"
+# 21 "/workspace/seL4-c89/preconfigured/src/object/untyped.c"
 static word_t alignUp(word_t baseValue, word_t alignment)
 {
     return (baseValue + ((1ul << (alignment)) - 1)) & ~((1ul << (alignment)) - 1ul);
@@ -23750,7 +23750,7 @@ exception_t decodeUntypedInvocation(word_t invLabel, word_t length, cte_t *slot,
         current_syscall_error.invalidArgumentNumber = 1;
         return EXCEPTION_SYSCALL_ERROR;
     }
-# 113 "/workspace/seL4-c89/src/object/untyped.c"
+# 113 "/workspace/seL4-c89/preconfigured/src/object/untyped.c"
     if (nodeDepth == 0) {
         nodeCap = rootSlot->cap;
     } else {
@@ -23808,7 +23808,7 @@ exception_t decodeUntypedInvocation(word_t invLabel, word_t length, cte_t *slot,
             return status;
         }
     }
-# 182 "/workspace/seL4-c89/src/object/untyped.c"
+# 182 "/workspace/seL4-c89/preconfigured/src/object/untyped.c"
     status = ensureNoChildren(slot);
     if (status != EXCEPTION_NONE) {
         freeIndex = cap_untyped_cap_get_capFreeIndex(cap);
@@ -23818,7 +23818,7 @@ exception_t decodeUntypedInvocation(word_t invLabel, word_t length, cte_t *slot,
         reset = true;
     }
     freeRef = ((word_t)(((word_t)(cap_untyped_cap_get_capPtr(cap))) + ((freeIndex)<<4)));
-# 200 "/workspace/seL4-c89/src/object/untyped.c"
+# 200 "/workspace/seL4-c89/preconfigured/src/object/untyped.c"
     untypedFreeBytes = (1ul << (cap_untyped_cap_get_capBlockSize(cap))) -
                        ((freeIndex)<<4);
 
@@ -23925,8 +23925,8 @@ exception_t invokeUntyped_Retype(cte_t *srcSlot,
 
     return EXCEPTION_NONE;
 }
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/acpi.c"
-# 16 "/workspace/seL4-c89/src/plat/pc99/machine/acpi.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/acpi.c"
+# 16 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/acpi.c"
 enum acpi_type {
     ACPI_RSDP,
     ACPI_RSDT
@@ -24456,8 +24456,8 @@ __attribute__((__section__(".boot.text"))) void acpi_dmar_scan(
     rmrr_list->num = rmrr_count;
     ((void)(0));
 }
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/hardware.c"
-# 18 "/workspace/seL4-c89/src/plat/pc99/machine/hardware.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/hardware.c"
+# 18 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/hardware.c"
 __attribute__((__section__(".boot.text"))) bool_t platAddDevices(void)
 {
 
@@ -24479,7 +24479,7 @@ __attribute__((__section__(".boot.text"))) bool_t platAddDevices(void)
 
 __attribute__((__section__(".boot.text"))) static inline uint32_t measure_tsc_khz(void)
 {
-# 50 "/workspace/seL4-c89/src/plat/pc99/machine/hardware.c"
+# 50 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/hardware.c"
     for (int i = 0; i < 10; i++) {
 
 
@@ -24566,10 +24566,10 @@ __attribute__((__section__(".boot.text"))) uint32_t tsc_init(void)
 
     return tsc_khz / 1000u;
 }
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/intel-vtd.c"
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/io.c"
-# 12 "/workspace/seL4-c89/src/plat/pc99/machine/io.c"
-# 1 "/workspace/seL4-c89/include/drivers/uart.h" 1
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/intel-vtd.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/io.c"
+# 12 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/io.c"
+# 1 "/workspace/seL4-c89/preconfigured/include/drivers/uart.h" 1
 
 
 
@@ -24577,9 +24577,9 @@ __attribute__((__section__(".boot.text"))) uint32_t tsc_init(void)
 
 
        
-# 13 "/workspace/seL4-c89/src/plat/pc99/machine/io.c" 2
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/ioapic.c"
-# 48 "/workspace/seL4-c89/src/plat/pc99/machine/ioapic.c"
+# 13 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/io.c" 2
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/ioapic.c"
+# 48 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/ioapic.c"
 static uint32_t ioredtbl_state[240 * (((1)>(1))?(1):(1))];
 
 
@@ -24732,8 +24732,8 @@ void ioapic_map_pin_to_vector(word_t ioapic, word_t pin, word_t level,
     ioredtbl_state[index] |= ioapic_read(ioapic, 0x10) & ~((1ul << (16)) - 1ul);
     ioapic_write(ioapic, 0x10, ioredtbl_state[index]);
 }
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/pic.c"
-# 17 "/workspace/seL4-c89/src/plat/pc99/machine/pic.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/pic.c"
+# 17 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/pic.c"
 __attribute__((__section__(".boot.text"))) void pic_remap_irqs(interrupt_t interrupt)
 {
     out8(0x20, 0x11);
@@ -24823,8 +24823,8 @@ void pic_ack_active_irq(void)
         out8(0x20, 0x20);
     }
 }
-# 1 "/workspace/seL4-c89/src/plat/pc99/machine/pit.c"
-# 18 "/workspace/seL4-c89/src/plat/pc99/machine/pit.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/pit.c"
+# 18 "/workspace/seL4-c89/preconfigured/src/plat/pc99/machine/pit.c"
 __attribute__((__section__(".boot.text"))) void pit_init(void)
 {
     uint16_t divisor = (1193182 * 50) / 1000;
@@ -24851,10 +24851,10 @@ __attribute__((__section__(".boot.text"))) void pit_wait_wraparound(void)
         count |= (in8(0x40) << 8);
     }
 }
-# 1 "/workspace/seL4-c89/src/smp/ipi.c"
-# 1 "/workspace/seL4-c89/src/smp/lock.c"
-# 1 "/workspace/seL4-c89/src/string.c"
-# 11 "/workspace/seL4-c89/src/string.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/smp/ipi.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/smp/lock.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/string.c"
+# 11 "/workspace/seL4-c89/preconfigured/src/string.c"
 word_t strnlen(const char *s, word_t maxlen)
 {
     word_t len;
@@ -24887,8 +24887,8 @@ word_t strlcat(char *dest, const char *src, word_t size)
     }
     return len;
 }
-# 1 "/workspace/seL4-c89/src/util.c"
-# 15 "/workspace/seL4-c89/src/util.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/util.c"
+# 15 "/workspace/seL4-c89/preconfigured/src/util.c"
 typedef unsigned long __attribute__((__may_alias__)) ulong_alias;
 
 
@@ -25013,18 +25013,18 @@ long __attribute__((__pure__)) str_to_long(const char *str)
 
     return val;
 }
-# 171 "/workspace/seL4-c89/src/util.c"
+# 171 "/workspace/seL4-c89/preconfigured/src/util.c"
 typedef int __assert_failed_clz_ulong_32_or_64[(sizeof(unsigned long) == 4 || sizeof(unsigned long) == 8) ? 1 : -1] __attribute__((unused));;
 typedef int __assert_failed_clz_ullong_64[(sizeof(unsigned long long) == 8) ? 1 : -1] __attribute__((unused));;
 typedef int __assert_failed_clz_word_size[(sizeof(unsigned long) * 8 == 64) ? 1 : -1] __attribute__((unused));;
-# 186 "/workspace/seL4-c89/src/util.c"
+# 186 "/workspace/seL4-c89/preconfigured/src/util.c"
 static __attribute__((unused)) __attribute__((__const__)) inline unsigned clz32(uint32_t x)
 {
 
 
     unsigned count = 32;
     uint32_t mask = (0xFFFFFFFF);
-# 209 "/workspace/seL4-c89/src/util.c"
+# 209 "/workspace/seL4-c89/preconfigured/src/util.c"
     if (1) {
 
         mask >>= (1 << 4);
@@ -25128,7 +25128,7 @@ static __attribute__((unused)) __attribute__((__const__)) inline unsigned ctz32(
 {
     unsigned count = (x == 0);
     uint32_t mask = (0xFFFFFFFF);
-# 331 "/workspace/seL4-c89/src/util.c"
+# 331 "/workspace/seL4-c89/preconfigured/src/util.c"
     if (1) {
 
         mask >>= (1 << 4);
@@ -25218,8 +25218,8 @@ static __attribute__((unused)) __attribute__((__const__)) inline unsigned ctz64(
 
     return count;
 }
-# 1 "/workspace/seL4-c89/src/config/default_domain.c"
-# 12 "/workspace/seL4-c89/src/config/default_domain.c"
+# 1 "/workspace/seL4-c89/preconfigured/src/config/default_domain.c"
+# 12 "/workspace/seL4-c89/preconfigured/src/config/default_domain.c"
 const dschedule_t ksDomSchedule[] = {
     { .domain = 0, .length = 1 },
 };

@@ -1,4 +1,4 @@
-/* generated from /workspace/seL4-c89/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/types.bf */
+/* generated from /workspace/seL4-c89/preconfigured/libsel4/sel4_arch_include/x86_64/sel4/sel4_arch/types.bf */
 
 #pragma once
 
