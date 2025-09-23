@@ -52,7 +52,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | `pristine/` | 932 | 0 | 932 | 0 | Mirrors the upstream configs, sources, non-DTS tools, baseline root metadata including `.github` and `.reuse`, the LaTeX manual, and the relocated toolchain helper files. |
 | `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
 | `src/` | 0 | 0 | 0 | 0 | Root kernel sources now match the pristine snapshot across every architecture; all tailored files live exclusively under `preconfigured/src/`. |
-| `include/` | 0 | 0 | 0 | 0 | Root headers now match the pristine snapshot; customized copies sit under `preconfigured/include/`. |
+| `include/` | 308 | 0 | 0 | 308 | Root headers removed from the repository root after confirming the baseline tree lives under `pristine/include/` and the tailored copies reside in `preconfigured/include/`. |
 | `pipdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/pipdeps/`; counted under the `preconfigured/` row. |
 | `libsel4/` | 0 | 0 | 0 | 0 | Root library now matches the pristine snapshot; the customized copy lives under `preconfigured/libsel4/`. |
 | `configs/` | 0 | 0 | 0 | 0 | Root presets removed; the untouched copies now live exclusively under `pristine/configs/`. |
@@ -128,9 +128,10 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Relocated the LaTeX manual into `pristine/manual/` and removed the duplicate tree from the repository root so the pristine snapshot remains the single source of truth.
 - Removed the root `configs/` directory and the top-level `CMakeLists.txt`/`config.cmake` pair after confirming the untouched copies already live under `pristine/`, then moved the remaining toolchain helpers (`FindseL4.cmake`, `gcc.cmake`, `llvm.cmake`, `gdb-macros`, and `VERSION`) into `pristine/` to clear them from the root.
 - Reworked the top-level README so the layout overview, manual links, and build instructions reference the new `pristine/` and `preconfigured/` locations instead of the retired root trees.
+- Removed the root `include/` directory now that the untouched headers live under `pristine/include/` and the customized copies live under `preconfigured/include/`, further shrinking the repository root toward the planned metadata-only shell.
 
 ### Next actions
 - Audit other root-level documentation for assumptions about path locations as additional helpers migrate.
-- Verify that the repository root remains limited to essential metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there (notably the remaining `include/`, `libsel4/`, `src/`, and `tools/` snapshots).
+- Verify that the repository root remains limited to essential metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there (notably the remaining `libsel4/`, `src/`, and `tools/` snapshots).
 - Call out in the top-level README and related docs that all pristine sources live exclusively under `pristine/` so contributors do not expect duplicates in the root tree.
 - Audit any remaining recorded build artifacts (for example, additional architecture snapshots) to confirm they also reference the localized `preconfigured/` copies before final cleanup.
