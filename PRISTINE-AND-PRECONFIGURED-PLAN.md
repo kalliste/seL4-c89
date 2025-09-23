@@ -48,14 +48,14 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ### Top-level change summary
 | Path / File | Total paths | Modified | Added | Deleted | Notes |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `preconfigured/` | 1,728 | 0 | 1,728 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, and relocated tooling. |
+| `preconfigured/` | 1,729 | 0 | 1,729 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, and relocated tooling. |
 | `pristine/` | 900 | 0 | 900 | 0 | Mirrors the upstream configs, sources, non-DTS tools, and baseline root metadata including `.github` and `.reuse`. |
 | `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
 | `src/` | 44 | 44 | 0 | 0 | Root sources remain modified; compare against `pristine/src/` in later cleanup steps. |
 | `include/` | 43 | 43 | 0 | 0 | Root headers remain modified; pristine copies now live under `pristine/include/`. |
 | `pipdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/pipdeps/`; counted under the `preconfigured/` row. |
 | `libsel4/` | 4 | 4 | 0 | 0 | Root library files remain modified; compare with `pristine/libsel4/` during reconciliation. |
-| `tools/` | 1 | 0 | 1 | 0 | Only the virtual environment helper remains at the root; preconfigured-specific scripts have moved under `preconfigured/tools/`. |
+| `tools/` | 0 | 0 | 0 | 0 | Root `tools/` now matches the pristine tree after relocating the virtual environment helper. |
 | `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; baseline version archived under `pristine/.gitignore`. |
 | `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling. |
 | `PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch. |
@@ -99,7 +99,16 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Refreshed the progress table so the consolidated counts in `preconfigured/` reflect the relocated assets.
 - Introduced a `preconfigured/tools/` directory that now hosts the wrapper generator and build logging helpers, clearing the preconfigured-specific scripts out of the root `tools/` tree.
 - Hardened the logging helper so it resolves the repository root automatically, allowing it to run from any working directory without manual path juggling.
+- Relocated the virtual-environment bootstrap script into `preconfigured/tools/` and taught it how to find the repository root and `tools/python-deps` helper after the move.
 
 ### Next actions
-- Continue auditing the repository root for generated artifacts or helper scripts that should join the `preconfigured/` tree.
-- Decide whether to relocate the remaining virtual-environment helper or keep it at the root alongside other shared tooling.
+- Continue auditing the repository root for generated artifacts or helper scripts that should join the `preconfigured/` tree as other directories are cleaned up.
+- Keep cross-checking documentation whenever helpers move so instructions stay aligned with the new locations.
+
+## Step 7 Progress: Clean and reconcile duplicates
+- Removed the lone `tools/venv.sh` script from the repository root so the remaining `tools/` tree matches the pristine snapshot.
+- Updated the top-level README to reference the relocated helper, preventing confusion while the two-tree layout solidifies.
+
+### Next actions
+- Prepare to carve the modified `include/`, `libsel4/`, and `src/` directories into the `preconfigured/` tree so the root copies can revert to their pristine counterparts.
+- Audit other root-level documentation for assumptions about path locations as additional helpers migrate.

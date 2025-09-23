@@ -94,8 +94,9 @@ Repository Overview
 Python Environment
 ------------------
 
-The seL4 build uses several Python modules. A helper script is provided to
-create a virtual environment and install these dependencies.
+The seL4 build uses several Python modules. A helper script is provided under
+`preconfigured/tools/venv.sh` to create a virtual environment and install
+these dependencies.
 
 The repository includes a `.python-version` file for use with
 [pyenv](https://github.com/pyenv/pyenv).  To set up the recommended Python
@@ -110,14 +111,14 @@ After selecting the interpreter, create the virtual environment and install
 the required modules:
 
 ```
-./tools/venv.sh
+./preconfigured/tools/venv.sh
 ```
 
 Invoking the script with a command runs that command inside the environment.
 For example:
 
 ```
-./tools/venv.sh python --version
+./preconfigured/tools/venv.sh python --version
 ```
 
 Build Instructions
