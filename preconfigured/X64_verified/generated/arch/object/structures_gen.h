@@ -1,4 +1,4 @@
-/* generated from /workspace/seL4-c89/include/arch/x86/arch/object/structures.bf */
+/* generated from /workspace/seL4-c89/preconfigured/include/arch/x86/arch/object/structures.bf */
 
 #pragma once
 

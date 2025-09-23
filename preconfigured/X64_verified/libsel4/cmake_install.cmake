@@ -1,4 +1,4 @@
-# Install script for directory: /workspace/seL4-c89/libsel4
+# Install script for directory: /workspace/seL4-c89/preconfigured/libsel4
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -1,4 +1,4 @@
-/* generated from /workspace/seL4-c89/libsel4/mode_include/64/sel4/shared_types.bf */
+/* generated from /workspace/seL4-c89/preconfigured/libsel4/mode_include/64/sel4/shared_types.bf */
 
 #pragma once
 

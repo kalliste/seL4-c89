@@ -48,7 +48,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ### Top-level change summary
 | Path / File | Total paths | Modified | Added | Deleted | Notes |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `preconfigured/` | 2,329 | 0 | 2,329 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, relocated tooling, the copied header tree, the relocated `libsel4/` sources used by the preconfigured view, and the expanded `src/` mirror with all customized kernel sources (ARM, RISC-V, and x86 variants). |
+| `preconfigured/` | 2,333 | 0 | 2,333 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, relocated tooling, the copied header tree, the relocated `libsel4/` sources used by the preconfigured view, and the expanded `src/` mirror with all customized kernel sources (ARM, RISC-V, and x86 variants). Copied the generator helpers and the supporting `tools/hardware/` package into `preconfigured/tools/` so cached builds no longer depend on the root `tools/` directory. |
 | `pristine/` | 900 | 0 | 900 | 0 | Mirrors the upstream configs, sources, non-DTS tools, and baseline root metadata including `.github` and `.reuse`. |
 | `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
 | `src/` | 0 | 0 | 0 | 0 | Root kernel sources now match the pristine snapshot across every architecture; all tailored files live exclusively under `preconfigured/src/`. |
@@ -106,12 +106,14 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Seeded a new `preconfigured/src/` subtree with the 77 kernel C sources and four x86 assembly files that the replay helper compiles so the preconfigured build no longer depends on the root `src/` tree.
 - Updated every generated wrapper translation unit and the replay script to include from `preconfigured/src/`, aligning the helper inputs with the new location.
 - Pulled the remaining ARM, RISC-V, and platform kernel sources into `preconfigured/src/` alongside the existing x86 files so every customized translation unit now lives entirely within the preconfigured tree.
+- Rewrote the captured `preconfigured/X64_verified` Ninja, cache, and generated headers so their include paths resolve through `preconfigured/include`, `preconfigured/libsel4`, and `preconfigured/src`, eliminating hard-coded dependencies on the restored root tree.
+- Mirrored the bitfield, invocation, syscall, and configuration generator helpers—together with the `tools/hardware/` support modules—into `preconfigured/tools/`, and redirected cached tool references to those copies to keep the preconfigured build fully self-contained.
 
 ### Next actions
 - Continue auditing the repository root for generated artifacts or helper scripts that should join the `preconfigured/` tree as other directories are cleaned up.
 - Keep cross-checking documentation whenever helpers move so instructions stay aligned with the new locations.
 - Double-check that every script or build file under `preconfigured/` pulls dependencies from within that directory, adding copies of any remaining external inputs so the tree is fully self-contained.
-- Regenerate or rewrite the recorded Ninja files under `preconfigured/X64_verified/` so they stop referencing the repository-root `src/` and `libsel4/` paths now that the customized sources live entirely inside `preconfigured/`.
+- Spot-check other cached build directories as they appear to ensure their recorded paths also resolve through the relocated `preconfigured/` assets.
 
 ## Step 7 Progress: Clean and reconcile duplicates
 - Removed the lone `tools/venv.sh` script from the repository root so the remaining `tools/` tree matches the pristine snapshot.
@@ -120,9 +122,10 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Reset the root `libsel4/` directory to the pristine commit, leaving the tailored library exclusively under `preconfigured/libsel4/` for the preconfigured build.
 - Copied the customized x86 kernel sources into `preconfigured/src/` and reset their root counterparts to the pristine commit, trimming the outstanding root `src/` delta from 44 paths to 14 that cover other architectures and platforms.
 - Migrated the remaining ARM, RISC-V, timer, and platform-specific kernel sources into `preconfigured/src/` and restored their root copies from the pristine snapshot so the entire kernel tree at the repository root now matches upstream.
+- Confirmed that the recorded `preconfigured/X64_verified` build metadata now relies solely on the relocated `preconfigured/` trees, preventing the root snapshot from creeping back into scripted rebuilds.
 
 ### Next actions
-- Validate that regenerated Ninja logs and other recorded build metadata stop pointing at the root tree now that the customized sources have been relocated.
 - Audit other root-level documentation for assumptions about path locations as additional helpers migrate.
 - Verify that the repository root remains limited to essential metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there.
 - Call out in the top-level README and related docs that all pristine sources live exclusively under `pristine/` so contributors do not expect duplicates in the root tree.
+- Audit any remaining recorded build artifacts (for example, additional architecture snapshots) to confirm they also reference the localized `preconfigured/` copies before final cleanup.
