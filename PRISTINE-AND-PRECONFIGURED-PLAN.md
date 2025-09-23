@@ -57,7 +57,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | `libsel4/` | 197 | 0 | 0 | 197 | Root library removed from the repository root; the untouched headers and generators live in `pristine/libsel4/` while the tailored copies remain under `preconfigured/libsel4/`. |
 | `configs/` | 0 | 0 | 0 | 0 | Root presets removed; the untouched copies now live exclusively under `pristine/configs/`. |
 | `manual/` | 0 | 0 | 0 | 0 | Root manual removed after relocating the sources into `pristine/manual/`. |
-| `tools/` | 0 | 0 | 0 | 0 | Root `tools/` now matches the pristine tree after relocating the virtual environment helper. |
+| `tools/` | 0 | 0 | 0 | 0 | Removed the root `tools/` directory after confirming the pristine snapshot and `preconfigured/tools/` host the required helpers. |
 | `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; baseline version archived under `pristine/.gitignore`. Updated ignore patterns for the relocated `pristine/manual/` tree. |
 | `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling. |
 | `KERNEL-ALL-PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch. |
@@ -103,7 +103,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Refreshed the progress table so the consolidated counts in `preconfigured/` reflect the relocated assets.
 - Introduced a `preconfigured/tools/` directory that now hosts the wrapper generator and build logging helpers, clearing the preconfigured-specific scripts out of the root `tools/` tree.
 - Hardened the logging helper so it resolves the repository root automatically, allowing it to run from any working directory without manual path juggling.
-- Relocated the virtual-environment bootstrap script into `preconfigured/tools/` and taught it how to find the repository root and `tools/python-deps` helper after the move.
+- Relocated the virtual-environment bootstrap script into `preconfigured/tools/`, copied the Python dependency helper alongside it, and taught the script to consume that local copy so the tree stays self-contained.
 - Copied the customized `libsel4/` hierarchy into `preconfigured/libsel4/`, bringing 197 tailored library files and generators alongside the rest of the preconfigured snapshot.
 - Updated `preconfigured/replay_preconfigured_build.sh` so it now consumes headers from `preconfigured/include/` and `preconfigured/libsel4/`, keeping the helper self-contained after the root directories are restored.
 - Seeded a new `preconfigured/src/` subtree with the 77 kernel C sources and four x86 assembly files that the replay helper compiles so the preconfigured build no longer depends on the root `src/` tree.
@@ -122,6 +122,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 
 ## Step 7 Progress: Clean and reconcile duplicates
 - Removed the lone `tools/venv.sh` script from the repository root so the remaining `tools/` tree matches the pristine snapshot.
+- Deleted the root `tools/` directory entirely after double-checking every required script exists under `pristine/tools/` or `preconfigured/tools/`, leaving the repository root focused on shared metadata.
 - Updated the top-level README to reference the relocated helper, preventing confusion while the two-tree layout solidifies.
 - Copied the existing `include/` hierarchy into `preconfigured/include/` and reset the root `include/` directory to the pristine commit so the customized headers now live exclusively under the preconfigured tree.
 - Reset the root `libsel4/` directory to the pristine commit, leaving the tailored library exclusively under `preconfigured/libsel4/` for the preconfigured build.
@@ -138,6 +139,6 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 
 ### Next actions
 - Audit other root-level documentation for assumptions about path locations as additional helpers migrate.
-- Verify that the repository root now holds only essential metadata alongside `pristine/` and `preconfigured/`, identifying any lingering helper directories (particularly under `tools/`) that still need relocation.
+- Verify that the repository root now holds only essential metadata alongside `pristine/` and `preconfigured/`, identifying any lingering helper directories that still need relocation.
 - Call out in the top-level README and related docs that all pristine sources live exclusively under `pristine/` so contributors do not expect duplicates in the root tree.
 - Audit any remaining recorded build artifacts (for example, additional architecture snapshots) to confirm they also reference the localized `preconfigured/` copies before final cleanup.

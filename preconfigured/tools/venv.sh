@@ -12,7 +12,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-PYTHON_DEPS_DIR="$REPO_ROOT/tools/python-deps"
+PYTHON_DEPS_DIR="$SCRIPT_DIR/python-deps"
 VENV_DIR="$REPO_ROOT/.venv"
 
 if [ ! -d "$PYTHON_DEPS_DIR" ]; then
