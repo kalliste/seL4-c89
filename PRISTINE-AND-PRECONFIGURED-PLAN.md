@@ -50,11 +50,11 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | --- | ---: | ---: | ---: | ---: | --- |
 | `sysdeps/` | 1,582 | 0 | 1,582 | 0 | Completely new directory full of generated or third-party sources that must stay under `preconfigured/`. |
 | `preconfigured/` | 134 | 0 | 134 | 0 | Newly added helper tree; plan to keep under `preconfigured/` and audit contents in later commits. |
-| `pristine/` | 38 | 0 | 38 | 0 | New directory added in Step 3 containing baseline build configuration files (`CMakeLists.txt`, `config.cmake`, and `configs/`). |
-| `src/` | 44 | 44 | 0 | 0 | Upstream sources modified in place; these need pristine copies restored. |
-| `include/` | 43 | 43 | 0 | 0 | Upstream headers modified in place; also need pristine copies restored. |
+| `pristine/` | 855 | 0 | 855 | 0 | Contains the baseline configs plus pristine `include/`, `libsel4/`, and `src/` trees from commit `1c50485c9a1b3c0595c143432664ab55e59e7991`. |
+| `src/` | 44 | 44 | 0 | 0 | Root sources remain modified; compare against `pristine/src/` in later cleanup steps. |
+| `include/` | 43 | 43 | 0 | 0 | Root headers remain modified; pristine copies now live under `pristine/include/`. |
 | `pipdeps/` | 8 | 0 | 8 | 0 | New Python dependency lockfiles; candidates for `preconfigured/`. |
-| `libsel4/` | 4 | 4 | 0 | 0 | Library sources modified in place; will receive pristine copies later. |
+| `libsel4/` | 4 | 4 | 0 | 0 | Root library files remain modified; compare with `pristine/libsel4/` during reconciliation. |
 | `tools/` | 3 | 0 | 3 | 0 | Small set of helper scripts newly added for the preconfigured layout. |
 | `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; revisit once pristine tree is in place. |
 | `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling. |
@@ -70,6 +70,12 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Counted 38 files now living under `pristine/`, and recorded the directory in the change summary table above to keep the progress tracker in sync.
 
 ### Next actions
-- Continue Step 4 by restoring the upstream `include/`, `libsel4/`, and `src/` trees under `pristine/` in focused commits.
+- Use the new pristine trees to guide cleanup of the modified root `include/`, `libsel4/`, and `src/` directories in subsequent commits.
 - Audit remaining root-level assets so that generated or convenience files ultimately reside under `preconfigured/`.
 - Keep updating the table counts and notes as additional directories move into `pristine/` or `preconfigured/`.
+
+## Step 4 Progress: Restore source and headers
+- Added the upstream `include/` hierarchy (308 files) to `pristine/include/`, preserving the baseline headers alongside the preconfigured copies.
+- Imported the upstream `libsel4/` tree (197 files) into `pristine/libsel4/` so that both the public interfaces and generator tools are available in their untouched form.
+- Brought the upstream kernel `src/` tree (312 files) into `pristine/src/`, completing the snapshot of core sources required for future comparisons.
+- Updated the progress table to reflect 855 pristine-tracked files and noted that the root `include/`, `libsel4/`, and `src/` trees still need cleanup in later steps.
