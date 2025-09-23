@@ -144,7 +144,7 @@ done
 cd "$BUILD_DIR"
 cd "$ROOT_DIR"/preconfigured/X64_verified && /usr/bin/cmake -E touch "$ROOT_DIR"/preconfigured/X64_verified/generated_prune/plat_mode/machine/hardware_gen.h "$ROOT_DIR"/preconfigured/X64_verified/generated_prune/arch/object/structures_gen.h "$ROOT_DIR"/preconfigured/X64_verified/generated_prune/sel4/shared_types_gen.h
 $CC --sysroot="$ROOT_DIR"/preconfigured/X64_verified  "${COMMON_GCC_ARGS[@]}" -I"$ROOT_DIR"/preconfigured/X64_verified/libsel4/autoconf -I"$ROOT_DIR"/preconfigured/X64_verified/libsel4/gen_config -m64 $CFLAGS -E -P -MD -MT libsel4/CMakeFiles/libsel4_shared_types_gen_pbf_temp_lib.dir/libsel4_shared_types_gen_pbf_temp.c.obj -MF libsel4/CMakeFiles/libsel4_shared_types_gen_pbf_temp_lib.dir/libsel4_shared_types_gen_pbf_temp.c.obj.d -o libsel4/CMakeFiles/libsel4_shared_types_gen_pbf_temp_lib.dir/libsel4_shared_types_gen_pbf_temp.c.obj -c "$ROOT_DIR"/preconfigured/X64_verified/libsel4/libsel4_shared_types_gen_pbf_temp.c
-python3 "$ROOT_DIR"/tools/generate_kernel_wrappers.py
+python3 "$ROOT_DIR"/preconfigured/tools/generate_kernel_wrappers.py
 
 WRAPPER_OBJECTS=()
 for source in "${KERNEL_SOURCES[@]}"; do

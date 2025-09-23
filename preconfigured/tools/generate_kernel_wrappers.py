@@ -9,7 +9,8 @@ import re
 import sys
 from typing import Iterable, List
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
+# Repository root (three levels above this file: ../../..).
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 REPLAY_SCRIPT = ROOT / "preconfigured" / "replay_preconfigured_build.sh"
 WRAPPER_ROOT = ROOT / "preconfigured" / "X64_verified" / "src"
 KERNEL_COPY_PATH = ROOT / "preconfigured" / "X64_verified" / "kernel_all_copy.c"
