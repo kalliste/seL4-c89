@@ -9,7 +9,6 @@
 #include <types.h>
 #include <api/failures.h>
 #include <object/structures.h>
-#include <machine/interrupt.h>
 #include <arch/object/interrupt.h>
 #include <plat/machine.h>
 

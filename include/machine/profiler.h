@@ -23,7 +23,7 @@
  * This value corresponds to the size of a hash table, and needs
  * to be a prime number to ensure correctness.
  */
-/*#define MAX_UNIQUE_INSTRUCTIONS ((256 * 1024) + 3)  /* 262147 is prime */ */
+//#define MAX_UNIQUE_INSTRUCTIONS ((256 * 1024) + 3)  /* 262147 is prime */
 /* Downsized to fit in the default 1M kernel section - davec */
 #define MAX_UNIQUE_INSTRUCTIONS 94349
 

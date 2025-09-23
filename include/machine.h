@@ -35,15 +35,9 @@ static inline paddr_t CONST addrFromKPPtr(const void *pptr)
     return (paddr_t)pptr - KERNEL_ELF_BASE_OFFSET;
 }
 
-#ifndef paddr_to_pptr
 #define paddr_to_pptr(x)   ptrFromPAddr(x)
-#endif
-#ifndef pptr_to_paddr
 #define pptr_to_paddr(x)   addrFromPPtr(x)
-#endif
-#ifndef kpptr_to_paddr
 #define kpptr_to_paddr(x)  addrFromKPPtr(x)
-#endif
 
 static inline region_t CONST paddr_to_pptr_reg(const p_region_t p_reg)
 {

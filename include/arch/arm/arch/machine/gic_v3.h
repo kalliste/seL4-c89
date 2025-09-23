@@ -329,7 +329,7 @@ static inline void ackInterrupt(irq_t irq)
     /* Perform priority drop for current IRQ */
     SYSTEM_WRITE_WORD(ICC_EOIR1_EL1, hw_irq);
 
-    /* If the IRQ is not going to user level then we need to deactivate it too. */
+    // If the IRQ is not going to user level then we need to deactivate it too.
     if (unlikely(hw_irq > maxIRQ) ||
         intStateIRQTable[IRQT_TO_IDX(irq)] != IRQSignal) {
         /* There needs to be an isb() to ensure completion of the system

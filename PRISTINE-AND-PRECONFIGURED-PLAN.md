@@ -48,11 +48,11 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ### Top-level change summary
 | Path / File | Total paths | Modified | Added | Deleted | Notes |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `preconfigured/` | 1,729 | 0 | 1,729 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, and relocated tooling. |
+| `preconfigured/` | 2,030 | 0 | 2,030 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, relocated tooling, and the copied header tree. |
 | `pristine/` | 900 | 0 | 900 | 0 | Mirrors the upstream configs, sources, non-DTS tools, and baseline root metadata including `.github` and `.reuse`. |
 | `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
 | `src/` | 44 | 44 | 0 | 0 | Root sources remain modified; compare against `pristine/src/` in later cleanup steps. |
-| `include/` | 43 | 43 | 0 | 0 | Root headers remain modified; pristine copies now live under `pristine/include/`. |
+| `include/` | 0 | 0 | 0 | 0 | Root headers now match the pristine snapshot; customized copies sit under `preconfigured/include/`. |
 | `pipdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/pipdeps/`; counted under the `preconfigured/` row. |
 | `libsel4/` | 4 | 4 | 0 | 0 | Root library files remain modified; compare with `pristine/libsel4/` during reconciliation. |
 | `tools/` | 0 | 0 | 0 | 0 | Root `tools/` now matches the pristine tree after relocating the virtual environment helper. |
@@ -109,8 +109,11 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ## Step 7 Progress: Clean and reconcile duplicates
 - Removed the lone `tools/venv.sh` script from the repository root so the remaining `tools/` tree matches the pristine snapshot.
 - Updated the top-level README to reference the relocated helper, preventing confusion while the two-tree layout solidifies.
+- Copied the existing `include/` hierarchy into `preconfigured/include/` and reset the root `include/` directory to the pristine
+  commit so the customized headers now live exclusively under the preconfigured tree.
 
 ### Next actions
-- Prepare to carve the modified `include/`, `libsel4/`, and `src/` directories into the `preconfigured/` tree so the root copies can revert to their pristine counterparts.
+- Repeat the copy-and-restore workflow for the modified `libsel4/` and `src/` trees so every customized source gains a
+  preconfigured counterpart and the root mirrors the pristine checkout.
 - Audit other root-level documentation for assumptions about path locations as additional helpers migrate.
 - Verify that the repository root remains limited to metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there.

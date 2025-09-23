@@ -7,7 +7,6 @@
 #pragma once
 
 #include <arch/types.h>
-#include <object/structures.h>
 #include <arch/object/structures.h>
 #include <arch/machine/hardware.h>
 #include <arch/machine/pat.h>
@@ -967,8 +966,6 @@ void int_fd(void);
 void int_fe(void);
 /** MODIFIES: phantom_machine_state */
 void int_ff(void);
-
-#include <mode/machine.h>
 
 #ifdef CONFIG_VTX
 void handle_vmexit(void);

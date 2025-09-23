@@ -116,7 +116,7 @@ static inline void NORETURN FORCE_INLINE fastpath_restore(word_t badge, word_t m
         "movl %%ecx, %%esp\n"
         "popl %%edi \n"
         "popl %%ebp \n"
-        /* Skip FaultIP and Error */
+        // Skip FaultIP and Error
         "addl $8, %%esp \n"
         "popl %%edx \n"
         "movl 8(%%esp), %%ecx \n"
