@@ -9,7 +9,6 @@
 #include <config.h>
 #include <stdint.h>
 #include <util.h>
-#include <sel4/simple_types.h>
 #include <sel4/shared_types_gen.h>
 #include <arch/api/types.h>
 #include <arch/types.h>

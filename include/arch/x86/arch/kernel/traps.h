@@ -8,13 +8,6 @@
 
 #include <config.h>
 #include <util.h>
-#include <machine.h>
-#include <arch/machine.h>
-#include <model/statedata.h>
-#include <arch/model/statedata.h>
-#include <object/structures.h>
-#include <plat/machine/interrupt.h>
-#include <api/syscall.h>
 
 static inline void arch_c_entry_hook(void)
 {

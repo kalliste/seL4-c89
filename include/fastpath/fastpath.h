@@ -6,14 +6,6 @@
 
 #pragma once
 
-#include <types.h>
-#include <object/structures.h>
-#include <object/tcb.h>
-#include <object/cnode.h>
-#include <object/endpoint.h>
-#include <kernel/thread.h>
-#include <kernel/cspace.h>
-
 #ifdef CONFIG_KERNEL_MCS
 #include <object/reply.h>
 #include <object/notification.h>

@@ -6,11 +6,8 @@
 
 #pragma once
 
-#include <types.h>
-#include <arch/kernel/boot.h>
 #include <arch/kernel/multiboot.h>
 #include <arch/kernel/multiboot2.h>
-#include <plat/machine/devices.h>
 
 /* type definitions (directly corresponding to abstract specification) */
 typedef struct boot_state {

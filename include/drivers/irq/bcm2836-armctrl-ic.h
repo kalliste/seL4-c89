@@ -29,8 +29,8 @@ enum {
     INTERRUPT_CORE_PMU                       =  9,
     INTERRUPT_CORE_AXI                       = 10,
     INTERRUPT_CORE_LOCAL_TIMER               = 11,
-    /*17:12 Peripheral 1..15 interrupt (Currently not used) */
-    /*31:28 <Reserved> */
+    //17:12 Peripheral 1..15 interrupt (Currently not used)
+    //31:28 <Reserved>
 
     INTERRUPT_BASIC_IRQ_ARM_TIMER            = (BASIC_IRQ_OFFSET + 0),
     INTERRUPT_BASIC_IRQ_ARM_MAILBOX          = (BASIC_IRQ_OFFSET + 1),
@@ -53,7 +53,7 @@ enum {
     INTERRUPT_BASIC_IRQ_GPU_IRQ_56           = (BASIC_IRQ_OFFSET + 18),
     INTERRUPT_BASIC_IRQ_GPU_IRQ_57           = (BASIC_IRQ_OFFSET + 19),
     INTERRUPT_BASIC_IRQ_GPU_IRQ_62           = (BASIC_IRQ_OFFSET + 20),
-    /* 31:21 <unused> */
+    // 31:21 <unused>
 
     INTERRUPT_IRQ_AUX                        = (NORMAL_IRQ_OFFSET + 29),
     INTERRUPT_IRQ_I2C_SPI_SLV                = (NORMAL_IRQ_OFFSET + 43),

@@ -5,7 +5,6 @@
  */
 #pragma once
 #include <config.h>
-#include <types.h>
 
 typedef struct cmdline_opt {
 #ifdef CONFIG_PRINTING

@@ -7,8 +7,6 @@
 #pragma once
 
 #include <arch/smp/ipi_inline.h>
-#include <arch/machine.h>
-#include <model/statedata.h>
 
 static inline void invalidatePageStructureCacheASID(paddr_t root, asid_t asid, word_t mask)
 {
