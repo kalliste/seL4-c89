@@ -14,7 +14,7 @@ set -euo pipefail
 # repository's preconfigured/ folder).
 BUILD_SUBDIR="${1:-X64_verified}"
 # Output log file (relative to repository root).
-LOG_FILE="${2:-preconfigured_build.log}"
+LOG_FILE="${2:-preconfigured/preconfigured_build.log}"
 
 BUILD_DIR="preconfigured/${BUILD_SUBDIR}"
 

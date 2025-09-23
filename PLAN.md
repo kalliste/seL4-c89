@@ -1,20 +1,20 @@
 # Plan: Replace `kernel_all.c` Aggregation with Wrapper-Based Translation Units
 
 ## Background and Constraints
-- The preconfigured build script `replay_preconfigured_build.sh` currently generates `preconfigured/X64_verified/kernel_all.c` by feeding 56 source files through `tools/cpp_gen.sh` and then compiles that single translation unit into `kernel.elf` alongside the required assembly sources.【F:replay_preconfigured_build.sh†L40-L115】
+- The preconfigured build script `preconfigured/replay_preconfigured_build.sh` currently generates `preconfigured/X64_verified/kernel_all.c` by feeding 56 source files through `tools/cpp_gen.sh` and then compiles that single translation unit into `kernel.elf` alongside the required assembly sources.【F:preconfigured/replay_preconfigured_build.sh†L40-L115】
 - `kernel_all_pp_prune.c` inside `preconfigured/X64_verified/` shows the result of the preprocessing stage, where every original `.c` file is pulled in through `#line` directives. Static functions from different modules therefore coexist inside one translation unit, which masks cross-file linkage boundaries.【F:preconfigured/X64_verified/kernel_all_pp_prune.c†L1-L20】
 - The goal is to organize these static functions so that each module once again has its own translation unit while preserving internal linkage semantics. To avoid editing upstream sources directly, we will introduce wrapper `.c` files under `preconfigured/X64_verified/` that include the canonical sources and, when necessary, provide exported shim symbols.
 
 ## High-Level Objectives
 1. Mirror the layout of the original `src/` tree (and any other contributing trees such as `libsel4`) inside `preconfigured/X64_verified/` without duplicating logic.
 2. Ensure every module that currently feeds into `kernel_all.c` builds as an isolated translation unit while retaining its `static` helpers.
-3. Update `replay_preconfigured_build.sh` to compile the wrapper units instead of `kernel_all.c`, and make sure any generated artifacts (e.g., `kernel_all_copy.c`) still receive the content they expect.
+3. Update `preconfigured/replay_preconfigured_build.sh` to compile the wrapper units instead of `kernel_all.c`, and make sure any generated artifacts (e.g., `kernel_all_copy.c`) still receive the content they expect.
 4. Verify that the preconfigured build still completes successfully and produces an identical (or acceptably close) `kernel.elf`.
 
 ## Detailed Steps
 
 ### 1. Inventory the Aggregated Sources
-- Parse the long `tools/cpp_gen.sh` invocation in `replay_preconfigured_build.sh` to record the canonical ordering of the source files. This ordering can affect inlined `static` functions and macro side effects, so capture it verbatim for reference when introducing wrappers.【F:replay_preconfigured_build.sh†L63-L115】
+- Parse the long `tools/cpp_gen.sh` invocation in `preconfigured/replay_preconfigured_build.sh` to record the canonical ordering of the source files. This ordering can affect inlined `static` functions and macro side effects, so capture it verbatim for reference when introducing wrappers.【F:preconfigured/replay_preconfigured_build.sh†L63-L115】
 - Group the files by their top-level directory (`src/api`, `src/arch/x86`, `src/plat`, etc.) to help drive the mirrored directory creation under `preconfigured/X64_verified/`.
 - While scanning, note modules that already provide generated outputs (`default_domain.c`, etc.) so we can double-check that they exist at build time.
 
@@ -141,7 +141,7 @@
 - If a module already lives under `preconfigured/X64_verified/` (e.g., generated sources), skip duplication and just reference the generated file directly.
 
 #### Step 3 progress (2025-09-23)
-- Added `tools/generate_kernel_wrappers.py`, which scrapes the `tools/cpp_gen.sh` invocation from `replay_preconfigured_build.sh` and emits `_wrapper.c` files that mirror the `src/` tree under `preconfigured/X64_verified/src/`.
+- Added `tools/generate_kernel_wrappers.py`, which scrapes the `tools/cpp_gen.sh` invocation from `preconfigured/replay_preconfigured_build.sh` and emits `_wrapper.c` files that mirror the `src/` tree under `preconfigured/X64_verified/src/`.
 - Generated 77 wrappers via the helper; each file just `#include`s its canonical source with a relative path, so static helpers stay scoped to their home translation units.
 - Spot-checked deeply nested modules (`arch/x86/64/kernel/vspace`, `config/default_domain`) to confirm the relative include paths resolve correctly and no existing generated sources were duplicated.
 - The generator is idempotent, so we can rerun it after upstream list changes; with the wrappers in place we're ready to swap the build over in Step 4.
@@ -149,11 +149,11 @@
 ### 4. Update Build Script and Ancillary Targets
 - Replace the `tools/cpp_gen.sh ... > kernel_all.c` pipeline with commands that synchronize (or regenerate) the wrapper files. Because wrappers simply `#include` the upstream sources, we likely only need to ensure the directory hierarchy exists; no per-build regeneration is required.
 - Modify the subsequent compile step to emit individual object files for each wrapper instead of `kernel_all.c`. Keep the ordering consistent with the original list to minimize risk of hidden dependencies.
-- Audit other references to `kernel_all.c` within `replay_preconfigured_build.sh` (e.g., the compilation of `kernel_all_copy.c`) and adjust them to point to the new object list or remove obsolete artifacts.
+- Audit other references to `kernel_all.c` within `preconfigured/replay_preconfigured_build.sh` (e.g., the compilation of `kernel_all_copy.c`) and adjust them to point to the new object list or remove obsolete artifacts.
 - Confirm that `cmake`/`ninja` artifacts inside `preconfigured/X64_verified/` do not expect the monolithic file; update or recreate stubs if needed.
 
 #### Step 4 progress (2025-09-24)
-- Declared a `KERNEL_SOURCES` array in `replay_preconfigured_build.sh` that preserves the original 77-item ordering from the `cpp_gen.sh` invocation, letting both the wrapper generator and the build script share a single source of truth.
+- Declared a `KERNEL_SOURCES` array in `preconfigured/replay_preconfigured_build.sh` that preserves the original 77-item ordering from the `cpp_gen.sh` invocation, letting both the wrapper generator and the build script share a single source of truth.
 - Replaced the `cpp_gen.sh` pipeline with an explicit call to `tools/generate_kernel_wrappers.py`, followed by a Bash loop that compiles each `_wrapper.c` translation unit into its own object (creating subdirectories on demand) while collecting the resulting object paths for linking.
 - Updated the final link step to consume the accumulated wrapper objects instead of the legacy `kernel_all.c.obj`, keeping the existing assembler objects at the front of the link line to preserve behaviour.
 - Tweaked `tools/generate_kernel_wrappers.py` to parse the new array format so future wrapper regeneration keeps working without the deleted pipeline.
@@ -161,17 +161,17 @@
 
 #### Step 4 progress (2025-09-25)
 - Taught `tools/generate_kernel_wrappers.py` to emit `preconfigured/X64_verified/kernel_all_copy.c` as a simple include-aggregator so `kernel_all_copy.c` stays in sync with the wrapper inventory without reintroducing monolithic compilation.【F:tools/generate_kernel_wrappers.py†L1-L108】【F:preconfigured/X64_verified/kernel_all_copy.c†L1-L77】
-- Audited ancillary `kernel_all.c` references in `replay_preconfigured_build.sh` and replaced the implicit object collection with an explicit `kernel_wrapper_objects.list` manifest that records every wrapper object for later consumers.【F:replay_preconfigured_build.sh†L114-L144】
+- Audited ancillary `kernel_all.c` references in `preconfigured/replay_preconfigured_build.sh` and replaced the implicit object collection with an explicit `kernel_wrapper_objects.list` manifest that records every wrapper object for later consumers.【F:preconfigured/replay_preconfigured_build.sh†L114-L144】
 - Verified the generator now succeeds (missing `os` import bug fixed) and captured the manifest/aggregator adjustments as prep for sharing the object list with downstream tooling.【36f76b†L1-L3】
-- Trial build via `replay_preconfigured_build.sh` now trips on `kpptr_to_paddr` missing from `mode/machine.h`; this header-order issue will need attention when we tackle Step 5 validation.【2722b5†L1-L10】
+- Trial build via `preconfigured/replay_preconfigured_build.sh` now trips on `kpptr_to_paddr` missing from `mode/machine.h`; this header-order issue will need attention when we tackle Step 5 validation.【2722b5†L1-L10】
 
 ### 5. Validate the Reworked Build
-- Run `./replay_preconfigured_build.sh` from a clean state to ensure all wrappers compile and link successfully.
+- Run `./preconfigured/replay_preconfigured_build.sh` from a clean state to ensure all wrappers compile and link successfully.
 - Compare the resulting `kernel.elf` with the baseline output from the monolithic build using `cmp` or `diffoscope`. Document any differences and investigate whether they stem from legitimate translation-unit reordering (e.g., `static` inline functions now producing different inlining) versus real regressions.
 - Keep the plan handy for follow-up tasks: if validation reveals missing helpers, iterate by extending the relevant wrapper with the required exports.
 
 #### Step 5 progress (2025-09-26)
-- First end-to-end wrapper build attempt (`./replay_preconfigured_build.sh`) still dies early in `src/api/syscall.c` because `include/benchmark/benchmark_track.h` pulls in `<mode/machine.h>` before `<machine.h>`, leaving `kpptr_to_paddr` undefined.【d274fa†L1-L10】 The monolithic TU masked this ordering issue, so each wrapper will need its own include hygiene.
+- First end-to-end wrapper build attempt (`./preconfigured/replay_preconfigured_build.sh`) still dies early in `src/api/syscall.c` because `include/benchmark/benchmark_track.h` pulls in `<mode/machine.h>` before `<machine.h>`, leaving `kpptr_to_paddr` undefined.【d274fa†L1-L10】 The monolithic TU masked this ordering issue, so each wrapper will need its own include hygiene.
 - After fixing that single blocker, the build surfaced a broader wave of missing declarations (e.g., `x86_save_fsgs_base`, `servicePendingIRQ`, `seL4_Word`, and later the cap helpers in `object/objecttype.c`).【c5fad7†L1-L41】【263a49†L1-L24】【e214fa†L1-L41】【04dc3e†L1-L40】 These all trace back to files that previously relied on neighboring `.c` inclusions for prototypes or macros. The new wrapper regime will require adding explicit headers such as `<machine.h>`, `<plat/machine/interrupt.h>`, `<kernel/thread.h>`, and `<object/objecttype.h>` in the affected translation units.
 - A brute-force experiment that injected platform interrupt headers high in the include stack resolved the `servicePendingIRQ` family but triggered a cascade of new dependencies (missing `interrupt_t`, node-state symbols, TLS helpers). That experiment was reverted; future fixes should instead add the minimal headers directly to the few translation units that use those helpers.
 - Current status: build still fails, but we now have a concrete checklist of missing includes to work through. Next pass should tackle them incrementally (e.g., start with the syscall/benchmark header pairing, then the trap/interrupt path, then the x86 thread/vspace modules).
@@ -180,14 +180,14 @@
 #### Step 5 progress (2025-09-27)
 - Promoted `unmapPDPT` to a proper export by dropping its `static` qualifier in `src/arch/x86/64/kernel/vspace.c` and advertising it through `include/arch/x86/arch/kernel/vspace.h`, letting `object/objecttype.c` tear down PDPT mappings without piggybacking on the monolithic TU.
 - Hardened the include graph around the early failure sites: wrappers that relied on transitive visibility now pull in the appropriate headers directly (e.g., `<machine.h>` in `benchmark_track.h`/`smp/lock.h`, `<plat/machine/interrupt.h>` for trap and VCPU helpers, `<kernel/thread.h>` alongside the architecture-specific thread header). The thread header also publishes the idle-thread switch prototypes so both x86 kernel implementations have real declarations.
-- Re-running `./replay_preconfigured_build.sh` clears the prior `kpptr_to_paddr`, `x86_save_fsgs_base`, and IRQ-service blockers. The build now stops later on missing generated constants (`seL4_FastMessageRegisters`, `tcbCNodeEntries`) and capability accessors, giving us an updated checklist for the next include promotion pass.
+- Re-running `./preconfigured/replay_preconfigured_build.sh` clears the prior `kpptr_to_paddr`, `x86_save_fsgs_base`, and IRQ-service blockers. The build now stops later on missing generated constants (`seL4_FastMessageRegisters`, `tcbCNodeEntries`) and capability accessors, giving us an updated checklist for the next include promotion pass.
 
 #### Step 5 progress (2025-09-28)
 - Added explicit visibility for the preemption helpers (`preemptionPoint` et al.) by including `<model/preemption.h>` from `src/object/untyped.c`, unblocking the earlier decode path failure reported at line ~263.
 - Restored ACPI/interrupt platform helpers to standalone TU builds by pulling their dependencies into the relevant sources: `src/plat/pc99/machine/acpi.c` now includes `<arch/kernel/vspace.h>` and `<plat/machine/pci.h>`, while the PIC/PIT hardware shims import `<plat/machine/io.h>` so the port I/O stubs are declared. Also extended `plat` interrupt headers with forward declarations for the APIC query helpers to avoid implicit prototypes during the nested include cycle triggered by `<machine/interrupt.h>`.
 - Augmented the PC99 hardware bring-up module with the headers that publish `reserve_region`, `pit_*`, and `tsc_init`, preventing a new wave of missing-prototype diagnostics as we compiled deeper into the wrapper list.
 - Trimmed the inline comments from the `_seL4_int64_fmt` macros in `libsel4/include/sel4/simple_types.h`; the previous in-macro comments tripped the token-pasting logic that synthesises `SEL4_WORD_CONST` on LP64 targets once translation units separated.
-- After the include cleanup, `./replay_preconfigured_build.sh` now runs to completion (only emitting the usual linker warnings about RWX segments). Capture of the successful run lives in `build.log` for reference; future steps can proceed to artifact comparison.
+- After the include cleanup, `./preconfigured/replay_preconfigured_build.sh` now runs to completion (only emitting the usual linker warnings about RWX segments). Capture of the successful run lives in `build.log` for reference; future steps can proceed to artifact comparison.
 
 ## Open Questions / Risks
 - Some static helpers may rely on `#undef`/`#define` sequences across file boundaries that only work in the aggregated translation unit. Wrappers that `#include` the original `.c` should inherit those macros, but we must verify no ordering dependencies remain.

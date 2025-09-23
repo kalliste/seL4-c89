@@ -48,12 +48,12 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ### Top-level change summary
 | Path / File | Total paths | Modified | Added | Deleted | Notes |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `sysdeps/` | 1,582 | 0 | 1,582 | 0 | Completely new directory full of generated or third-party sources that must stay under `preconfigured/`. |
-| `preconfigured/` | 134 | 0 | 134 | 0 | Newly added helper tree; plan to keep under `preconfigured/` and audit contents in later commits. |
-| `pristine/` | 874 | 0 | 874 | 0 | Mirrors the upstream configs, sources, non-DTS tools, and baseline root metadata for easy comparison against local changes. |
+| `preconfigured/` | 1,726 | 0 | 1,726 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, and helper logs/scripts. |
+| `pristine/` | 900 | 0 | 900 | 0 | Mirrors the upstream configs, sources, non-DTS tools, and baseline root metadata including `.github` and `.reuse`. |
+| `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
 | `src/` | 44 | 44 | 0 | 0 | Root sources remain modified; compare against `pristine/src/` in later cleanup steps. |
 | `include/` | 43 | 43 | 0 | 0 | Root headers remain modified; pristine copies now live under `pristine/include/`. |
-| `pipdeps/` | 8 | 0 | 8 | 0 | New Python dependency lockfiles; candidates for `preconfigured/`. |
+| `pipdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/pipdeps/`; counted under the `preconfigured/` row. |
 | `libsel4/` | 4 | 4 | 0 | 0 | Root library files remain modified; compare with `pristine/libsel4/` during reconciliation. |
 | `tools/` | 3 | 0 | 3 | 0 | Small set of helper scripts newly added for the preconfigured layout; upstream copy now mirrored in `pristine/tools/`. |
 | `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; baseline version archived under `pristine/.gitignore`. |
@@ -61,8 +61,8 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | `PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch. |
 | `PRISTINE-AND-PRECONFIGURED-PLAN.md` | 1 | 0 | 1 | 0 | Current planning document (being updated in this step). |
 | `README.md` | 1 | 1 | 0 | 0 | Root README modified; needs reconciliation after directories are split. |
-| `preconfigured_build.log` | 1 | 0 | 1 | 0 | Generated build log; should live under `preconfigured/`. |
-| `replay_preconfigured_build.sh` | 1 | 0 | 1 | 0 | Helper script for replaying the build; belongs in `preconfigured/`. |
+| `preconfigured/preconfigured_build.log` | 1 | 0 | 1 | 0 | Generated build log now stored within `preconfigured/`. |
+| `preconfigured/replay_preconfigured_build.sh` | 1 | 0 | 1 | 0 | Helper script now lives under `preconfigured/`; tooling updated to follow. |
 
 ## Step 3 Progress: Introduce the `pristine/` skeleton
 - Created the new `pristine/` directory with a README explaining that it mirrors upstream commit `1c50485c9a1b3c0595c143432664ab55e59e7991`.
@@ -86,8 +86,18 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Copied the upstream `.cmake-format.yaml`, `.gitignore`, and `README.md` into `pristine/` so that baseline metadata sits alongside the clean source snapshot.
 - Renamed the local guidance document to `pristine/README.pristine.md` and expanded it to describe the growing coverage of the pristine snapshot.
 - Updated the change summary counts and notes to record the new pristine totals and cross-links.
+- Captured the upstream `.github` workflows and `.reuse/` licensing metadata inside `pristine/` so future root cleanup can defer to those pristine copies.
 
 ### Next actions
-- Continue migrating additional root metadata (e.g. `.github/`, `.reuse/`, and release notes) into `pristine/`.
+- Continue migrating additional root metadata (e.g. release notes and manual updates) into `pristine/`.
 - Stage the remaining `tools/dts/` device tree sources in a follow-up commit once we can keep the diff within the size budget.
 - Start moving preconfigured-only helpers into the `preconfigured/` tree once we have pristine references for each script.
+
+## Step 6 Progress: Corral preconfigured assets
+- Moved the generated `pipdeps/` and `sysdeps/` hierarchies underneath `preconfigured/` so dependency snapshots stay out of the repository root.
+- Relocated `preconfigured_build.log` and the replay helper script into `preconfigured/`, updating tooling and documentation to reference their new homes.
+- Refreshed the progress table so the consolidated counts in `preconfigured/` reflect the relocated assets.
+
+### Next actions
+- Continue auditing the repository root for generated artifacts or helper scripts that should join the `preconfigured/` tree.
+- Decide whether to group logs and helper scripts into subdirectories within `preconfigured/` before moving additional tooling there.
