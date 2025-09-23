@@ -18,6 +18,7 @@
 #include <arch/model/statedata.h>
 #include <arch/object/vcpu.h>
 #include <arch/object/ioport.h>
+#include <plat/machine/interrupt.h>
 #include <util.h>
 #include <sel4/arch/vmenter.h>
 

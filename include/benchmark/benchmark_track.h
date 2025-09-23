@@ -11,6 +11,7 @@
 #include <sel4/benchmark_track_types.h>
 #include <sel4/arch/constants.h>
 #include <machine/io.h>
+#include <machine.h>
 #include <kernel/cspace.h>
 #include <model/statedata.h>
 #include <mode/machine.h>
