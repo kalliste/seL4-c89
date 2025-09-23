@@ -48,21 +48,28 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ### Top-level change summary
 | Path / File | Total paths | Modified | Added | Deleted | Notes |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `sysdeps/` | 1,582 | 0 | 1,582 | 0 | Completely new directory full of generated or third-party sources that must stay under `preconfigured/`.
-| `preconfigured/` | 134 | 0 | 134 | 0 | Newly added helper tree; plan to keep under `preconfigured/` and audit contents in later commits.
-| `src/` | 44 | 44 | 0 | 0 | Upstream sources modified in place; these need pristine copies restored.
-| `include/` | 43 | 43 | 0 | 0 | Upstream headers modified in place; also need pristine copies restored.
-| `pipdeps/` | 8 | 0 | 8 | 0 | New Python dependency lockfiles; candidates for `preconfigured/`.
-| `libsel4/` | 4 | 4 | 0 | 0 | Library sources modified in place; will receive pristine copies later.
-| `tools/` | 3 | 0 | 3 | 0 | Small set of helper scripts newly added for the preconfigured layout.
-| `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; revisit once pristine tree is in place.
-| `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling.
-| `PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch.
-| `PRISTINE-AND-PRECONFIGURED-PLAN.md` | 1 | 0 | 1 | 0 | Current planning document (being updated in this step).
-| `README.md` | 1 | 1 | 0 | 0 | Root README modified; needs reconciliation after directories are split.
-| `preconfigured_build.log` | 1 | 0 | 1 | 0 | Generated build log; should live under `preconfigured/`.
-| `replay_preconfigured_build.sh` | 1 | 0 | 1 | 0 | Helper script for replaying the build; belongs in `preconfigured/`.
+| `sysdeps/` | 1,582 | 0 | 1,582 | 0 | Completely new directory full of generated or third-party sources that must stay under `preconfigured/`. |
+| `preconfigured/` | 134 | 0 | 134 | 0 | Newly added helper tree; plan to keep under `preconfigured/` and audit contents in later commits. |
+| `pristine/` | 38 | 0 | 38 | 0 | New directory added in Step 3 containing baseline build configuration files (`CMakeLists.txt`, `config.cmake`, and `configs/`). |
+| `src/` | 44 | 44 | 0 | 0 | Upstream sources modified in place; these need pristine copies restored. |
+| `include/` | 43 | 43 | 0 | 0 | Upstream headers modified in place; also need pristine copies restored. |
+| `pipdeps/` | 8 | 0 | 8 | 0 | New Python dependency lockfiles; candidates for `preconfigured/`. |
+| `libsel4/` | 4 | 4 | 0 | 0 | Library sources modified in place; will receive pristine copies later. |
+| `tools/` | 3 | 0 | 3 | 0 | Small set of helper scripts newly added for the preconfigured layout. |
+| `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; revisit once pristine tree is in place. |
+| `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling. |
+| `PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch. |
+| `PRISTINE-AND-PRECONFIGURED-PLAN.md` | 1 | 0 | 1 | 0 | Current planning document (being updated in this step). |
+| `README.md` | 1 | 1 | 0 | 0 | Root README modified; needs reconciliation after directories are split. |
+| `preconfigured_build.log` | 1 | 0 | 1 | 0 | Generated build log; should live under `preconfigured/`. |
+| `replay_preconfigured_build.sh` | 1 | 0 | 1 | 0 | Helper script for replaying the build; belongs in `preconfigured/`. |
+
+## Step 3 Progress: Introduce the `pristine/` skeleton
+- Created the new `pristine/` directory with a README explaining that it mirrors upstream commit `1c50485c9a1b3c0595c143432664ab55e59e7991`.
+- Imported the baseline `CMakeLists.txt`, `config.cmake`, and the entire `configs/` tree into `pristine/` directly from the reference commit, giving us an untouched configuration snapshot for future comparisons.
+- Counted 38 files now living under `pristine/`, and recorded the directory in the change summary table above to keep the progress tracker in sync.
 
 ### Next actions
-- Use this checklist to drive the upcoming commits that introduce `pristine/` and move preconfigured assets out of the root tree.
-- Update the "Total paths" counts and notes as directories are migrated or cleaned in subsequent steps.
+- Continue Step 4 by restoring the upstream `include/`, `libsel4/`, and `src/` trees under `pristine/` in focused commits.
+- Audit remaining root-level assets so that generated or convenience files ultimately reside under `preconfigured/`.
+- Keep updating the table counts and notes as additional directories move into `pristine/` or `preconfigured/`.
