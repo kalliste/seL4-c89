@@ -140,6 +140,12 @@
 - Place wrappers in directories that mirror the original tree so include paths remain intuitive. Reuse the original file names with a suffix (e.g., `_wrapper.c`) to avoid colliding with genuine sources.
 - If a module already lives under `preconfigured/X64_verified/` (e.g., generated sources), skip duplication and just reference the generated file directly.
 
+#### Step 3 progress (2025-09-23)
+- Added `tools/generate_kernel_wrappers.py`, which scrapes the `tools/cpp_gen.sh` invocation from `replay_preconfigured_build.sh` and emits `_wrapper.c` files that mirror the `src/` tree under `preconfigured/X64_verified/src/`.
+- Generated 77 wrappers via the helper; each file just `#include`s its canonical source with a relative path, so static helpers stay scoped to their home translation units.
+- Spot-checked deeply nested modules (`arch/x86/64/kernel/vspace`, `config/default_domain`) to confirm the relative include paths resolve correctly and no existing generated sources were duplicated.
+- The generator is idempotent, so we can rerun it after upstream list changes; with the wrappers in place we're ready to swap the build over in Step 4.
+
 ### 4. Update Build Script and Ancillary Targets
 - Replace the `tools/cpp_gen.sh ... > kernel_all.c` pipeline with commands that synchronize (or regenerate) the wrapper files. Because wrappers simply `#include` the upstream sources, we likely only need to ensure the directory hierarchy exists; no per-build regeneration is required.
 - Modify the subsequent compile step to emit individual object files for each wrapper instead of `kernel_all.c`. Keep the ordering consistent with the original list to minimize risk of hidden dependencies.
