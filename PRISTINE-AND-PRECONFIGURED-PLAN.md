@@ -50,13 +50,13 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | --- | ---: | ---: | ---: | ---: | --- |
 | `sysdeps/` | 1,582 | 0 | 1,582 | 0 | Completely new directory full of generated or third-party sources that must stay under `preconfigured/`. |
 | `preconfigured/` | 134 | 0 | 134 | 0 | Newly added helper tree; plan to keep under `preconfigured/` and audit contents in later commits. |
-| `pristine/` | 855 | 0 | 855 | 0 | Contains the baseline configs plus pristine `include/`, `libsel4/`, and `src/` trees from commit `1c50485c9a1b3c0595c143432664ab55e59e7991`. |
+| `pristine/` | 874 | 0 | 874 | 0 | Mirrors the upstream configs, sources, non-DTS tools, and baseline root metadata for easy comparison against local changes. |
 | `src/` | 44 | 44 | 0 | 0 | Root sources remain modified; compare against `pristine/src/` in later cleanup steps. |
 | `include/` | 43 | 43 | 0 | 0 | Root headers remain modified; pristine copies now live under `pristine/include/`. |
 | `pipdeps/` | 8 | 0 | 8 | 0 | New Python dependency lockfiles; candidates for `preconfigured/`. |
 | `libsel4/` | 4 | 4 | 0 | 0 | Root library files remain modified; compare with `pristine/libsel4/` during reconciliation. |
-| `tools/` | 3 | 0 | 3 | 0 | Small set of helper scripts newly added for the preconfigured layout. |
-| `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; revisit once pristine tree is in place. |
+| `tools/` | 3 | 0 | 3 | 0 | Small set of helper scripts newly added for the preconfigured layout; upstream copy now mirrored in `pristine/tools/`. |
+| `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; baseline version archived under `pristine/.gitignore`. |
 | `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling. |
 | `PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch. |
 | `PRISTINE-AND-PRECONFIGURED-PLAN.md` | 1 | 0 | 1 | 0 | Current planning document (being updated in this step). |
@@ -78,4 +78,16 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Added the upstream `include/` hierarchy (308 files) to `pristine/include/`, preserving the baseline headers alongside the preconfigured copies.
 - Imported the upstream `libsel4/` tree (197 files) into `pristine/libsel4/` so that both the public interfaces and generator tools are available in their untouched form.
 - Brought the upstream kernel `src/` tree (312 files) into `pristine/src/`, completing the snapshot of core sources required for future comparisons.
-- Updated the progress table to reflect 855 pristine-tracked files and noted that the root `include/`, `libsel4/`, and `src/` trees still need cleanup in later steps.
+- Retrieved the upstream `tools/` scripts (42 files) excluding the large `dts/` snapshots into `pristine/tools/` so every helper has a pristine counterpart next to the customized root versions.
+- Updated the progress table to track the growing pristine snapshot (now 874 files) and noted that the root `include/`, `libsel4/`, and `src/` trees still need cleanup in later steps.
+
+
+## Step 5 Progress: Restore top-level files
+- Copied the upstream `.cmake-format.yaml`, `.gitignore`, and `README.md` into `pristine/` so that baseline metadata sits alongside the clean source snapshot.
+- Renamed the local guidance document to `pristine/README.pristine.md` and expanded it to describe the growing coverage of the pristine snapshot.
+- Updated the change summary counts and notes to record the new pristine totals and cross-links.
+
+### Next actions
+- Continue migrating additional root metadata (e.g. `.github/`, `.reuse/`, and release notes) into `pristine/`.
+- Stage the remaining `tools/dts/` device tree sources in a follow-up commit once we can keep the diff within the size budget.
+- Start moving preconfigured-only helpers into the `preconfigured/` tree once we have pristine references for each script.
