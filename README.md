@@ -51,12 +51,10 @@ For example:
 Build Instructions
 ------------------
 
-See the seL4 website for [build instructions][6].
-
 ### Development build for this fork
 
-Our builds always target the `X64_verified` configuration and use Ninja
-instead of GNU Make for both the pristine and preconfigured trees.  The
+Our builds of the pristine/ folder always target the `X64_verified`
+ configuration and use Ninja instead of GNU Make.  The
 procedure below has been verified to produce `kernel.elf` from the
 pristine sources on a 64‑bit host.
 
