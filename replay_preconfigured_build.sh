@@ -5,20 +5,20 @@ ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 BUILD_DIR="$ROOT_DIR/preconfigured/X64_verified"
 export CC=/usr/bin/gcc
 COMMON_GCC_ARGS=(
-  "-I\"$ROOT_DIR\"/include"
-  "-I\"$ROOT_DIR\"/include/64"
-  "-I\"$ROOT_DIR\"/include/arch/x86"
-  "-I\"$ROOT_DIR\"/include/arch/x86/arch/64"
-  "-I\"$ROOT_DIR\"/include/plat/pc99"
-  "-I\"$ROOT_DIR\"/include/plat/pc99/plat/64"
-  "-I\"$ROOT_DIR\"/libsel4/include"
-  "-I\"$ROOT_DIR\"/libsel4/arch_include/x86"
-  "-I\"$ROOT_DIR\"/libsel4/sel4_arch_include/x86_64"
-  "-I\"$ROOT_DIR\"/libsel4/sel4_plat_include/pc99"
-  "-I\"$ROOT_DIR\"/libsel4/mode_include/64"
-  "-I\"$ROOT_DIR\"/preconfigured/X64_verified/gen_config"
-  "-I\"$ROOT_DIR\"/preconfigured/X64_verified/autoconf"
-  "-I\"$ROOT_DIR\"/preconfigured/X64_verified/gen_headers"
+  "-I$ROOT_DIR/include"
+  "-I$ROOT_DIR/include/64"
+  "-I$ROOT_DIR/include/arch/x86"
+  "-I$ROOT_DIR/include/arch/x86/arch/64"
+  "-I$ROOT_DIR/include/plat/pc99"
+  "-I$ROOT_DIR/include/plat/pc99/plat/64"
+  "-I$ROOT_DIR/libsel4/include"
+  "-I$ROOT_DIR/libsel4/arch_include/x86"
+  "-I$ROOT_DIR/libsel4/sel4_arch_include/x86_64"
+  "-I$ROOT_DIR/libsel4/sel4_plat_include/pc99"
+  "-I$ROOT_DIR/libsel4/mode_include/64"
+  "-I$ROOT_DIR/preconfigured/X64_verified/gen_config"
+  "-I$ROOT_DIR/preconfigured/X64_verified/autoconf"
+  "-I$ROOT_DIR/preconfigured/X64_verified/gen_headers"
 )
 export COMMON_GCC_ARGS
 KERNEL_SOURCES=(
@@ -155,6 +155,8 @@ for source in "${KERNEL_SOURCES[@]}"; do
     $CC --sysroot="$ROOT_DIR"/preconfigured/X64_verified  "${COMMON_GCC_ARGS[@]}" -I"$ROOT_DIR"/preconfigured/X64_verified/generated -m64 $CFLAGS -MD -MT "$obj" -MF "$dep" -o "$obj" -c "$ROOT_DIR"/preconfigured/X64_verified/"$wrapper"
     WRAPPER_OBJECTS+=("$obj")
 done
+
+printf '%s\n' "${WRAPPER_OBJECTS[@]}" > kernel_wrapper_objects.list
 $CC --sysroot="$ROOT_DIR"/preconfigured/X64_verified  "${COMMON_GCC_ARGS[@]}" -I"$ROOT_DIR"/preconfigured/X64_verified/libsel4/autoconf -I"$ROOT_DIR"/preconfigured/X64_verified/libsel4/gen_config -m64 $CFLAGS -E -P -MD -MT libsel4/CMakeFiles/libsel4_sel4_arch_types_gen_pbf_temp_lib.dir/libsel4_sel4_arch_types_gen_pbf_temp.c.obj -MF libsel4/CMakeFiles/libsel4_sel4_arch_types_gen_pbf_temp_lib.dir/libsel4_sel4_arch_types_gen_pbf_temp.c.obj.d -o libsel4/CMakeFiles/libsel4_sel4_arch_types_gen_pbf_temp_lib.dir/libsel4_sel4_arch_types_gen_pbf_temp.c.obj -c "$ROOT_DIR"/preconfigured/X64_verified/libsel4/libsel4_sel4_arch_types_gen_pbf_temp.c
 # Kernel syscall header is checked in; header generation skipped
 $CC --sysroot="$ROOT_DIR"/preconfigured/X64_verified  "${COMMON_GCC_ARGS[@]}" -m64 $CFLAGS -E -CC -I"$ROOT_DIR"/preconfigured/X64_verified/generated_prune -MD -MT CMakeFiles/kernel_all_pp_prune_wrapper_temp_lib.dir/kernel_all_pp_prune_wrapper_temp.c.obj -MF CMakeFiles/kernel_all_pp_prune_wrapper_temp_lib.dir/kernel_all_pp_prune_wrapper_temp.c.obj.d -o CMakeFiles/kernel_all_pp_prune_wrapper_temp_lib.dir/kernel_all_pp_prune_wrapper_temp.c.obj -c "$ROOT_DIR"/preconfigured/X64_verified/kernel_all_pp_prune_wrapper_temp.c
