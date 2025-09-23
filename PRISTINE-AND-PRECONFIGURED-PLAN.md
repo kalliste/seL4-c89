@@ -138,4 +138,4 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Verify that the repository root now holds only essential metadata alongside `pristine/` and `preconfigured/`, identifying any lingering helper directories (particularly under `tools/`) that still need relocation.
 - Call out in the top-level README and related docs that all pristine sources live exclusively under `pristine/` so contributors do not expect duplicates in the root tree.
 - Audit any remaining recorded build artifacts (for example, additional architecture snapshots) to confirm they also reference the localized `preconfigured/` copies before final cleanup.
-- Plan the relocation or archival of bulky helper trees such as `tools/dts/` so the root `tools/` snapshot can eventually mirror the pristine layout without redundant device-tree caches.
+- Plan the relocation or archival of bulky helper trees such as `tools/dts/`
