@@ -101,7 +101,8 @@ KERNEL_SOURCES=(
   "src/config/default_domain.c"
 )
 # Add common compiler flags
-CFLAGS="-D__KERNEL_64__ -march=nehalem -O3 -DNDEBUG -std=c99 -Wall -Werror -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -Wmissing-declarations -Wundef -Wpointer-arith -Wno-nonnull -nostdinc -ffreestanding -fno-stack-protector -fno-asynchronous-unwind-tables -fno-common -O2 -nostdlib -fno-pic -fno-pie -mcmodel=kernel -mno-mmx -mno-sse -mno-sse2 -mno-3dnow"
+# CFLAGS="-D__KERNEL_64__ -march=nehalem -O3 -DNDEBUG -std=c99 -Wall -Werror -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -Wmissing-declarations -Wundef -Wpointer-arith -Wno-nonnull -nostdinc -ffreestanding -fno-stack-protector -fno-asynchronous-unwind-tables -fno-common -O2 -nostdlib -fno-pic -fno-pie -mcmodel=kernel -mno-mmx -mno-sse -mno-sse2 -mno-3dnow"
+CFLAGS="-D__KERNEL_64__ -march=nehalem -O3 -DNDEBUG -std=c90 -pedantic -Wall -Wextra -Werror -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -Wmissing-declarations -Wundef -Wpointer-arith -Wno-nonnull -nostdinc -ffreestanding -fno-stack-protector -fno-asynchronous-unwind-tables -fno-common -O2 -nostdlib -fno-pic -fno-pie -mcmodel=kernel -mno-mmx -mno-sse -mno-sse2 -mno-3dnow"
 export CFLAGS
 # Pre-create directories referenced by commands
 DIRS=(
