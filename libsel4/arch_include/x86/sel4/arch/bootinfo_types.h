@@ -116,10 +116,10 @@ typedef struct _seL4_X86_BootInfo_VBE {
  * https://www.gnu.org/software/grub/manual/multiboot/multiboot.html
  */
 typedef struct seL4_X86_mb_mmap {
-    uint32_t size; /* size of this struct in bytes */
-    uint64_t base_addr; /* physical address of start of this region */
-    uint64_t length; /* length of the region this struct represents in bytes */
-    uint32_t type; /* memory type of region. Type 1 corresponds to RAM. */
+    uint32_t size; // size of this struct in bytes
+    uint64_t base_addr; // physical address of start of this region
+    uint64_t length; // length of the region this struct represents in bytes
+    uint32_t type; // memory type of region. Type 1 corresponds to RAM.
 } SEL4_PACKED seL4_X86_mb_mmap_t;
 
 typedef struct seL4_X86_BootInfo_mmap {
