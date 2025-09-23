@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include <machine/interrupt.h>
-
 #define PIC_IRQ_LINES 16
 #define IOAPIC_IRQ_LINES 240
 

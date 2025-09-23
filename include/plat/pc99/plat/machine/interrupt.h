@@ -19,6 +19,9 @@
 #include <plat/machine/pic.h>
 #include <plat/machine/intel-vtd.h>
 
+bool_t apic_is_interrupt_pending(void);
+void apic_ack_active_interrupt(void);
+
 static inline void handleReservedIRQ(irq_t irq)
 {
 #ifdef CONFIG_IOMMU

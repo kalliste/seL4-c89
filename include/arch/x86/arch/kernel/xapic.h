@@ -8,6 +8,7 @@
 
 #include <config.h>
 #include <plat_mode/machine/hardware.h>
+#include <plat/machine/devices.h>
 
 #ifdef CONFIG_XAPIC
 typedef enum _apic_reg_t {

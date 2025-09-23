@@ -9,6 +9,7 @@
 #include <api/failures.h>
 #include <api/invocation.h>
 #include <api/syscall.h>
+#include <api/faults.h>
 #include <sel4/shared_types.h>
 #include <machine/io.h>
 #include <object/structures.h>
@@ -18,6 +19,7 @@
 #include <object/schedcontext.h>
 #endif
 #include <object/tcb.h>
+#include <object/notification.h>
 #include <kernel/cspace.h>
 #include <kernel/thread.h>
 #include <kernel/vspace.h>
@@ -26,6 +28,8 @@
 #include <string.h>
 #include <stdint.h>
 #include <arch/smp/ipi_inline.h>
+#include <arch/kernel/thread.h>
+#include <machine/fpu.h>
 
 #define NULL_PRIO 0
 

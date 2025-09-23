@@ -6,13 +6,16 @@
 
 #include <config.h>
 #include <model/statedata.h>
+#include <smp/lock.h>
 #include <machine/fpu.h>
 #include <arch/fastpath/fastpath.h>
 #include <arch/kernel/traps.h>
+#include <kernel/traps.h>
 #include <machine/debug.h>
 #include <arch/object/vcpu.h>
 #include <api/syscall.h>
 #include <sel4/arch/vmenter.h>
+#include <plat/machine.h>
 
 #include <benchmark/benchmark_track.h>
 #include <benchmark/benchmark_utilisation.h>

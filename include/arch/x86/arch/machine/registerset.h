@@ -11,6 +11,7 @@
 #include <util.h>
 #include <assert.h>
 
+#include <sel4/sel4_arch/constants.h>
 #include <mode/machine/registerset.h>
 
 /* Minimum hardware-enforced alignment needed for FPU state. */

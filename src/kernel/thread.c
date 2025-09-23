@@ -9,6 +9,7 @@
 #include <util.h>
 #include <api/faults.h>
 #include <api/types.h>
+#include <api/syscall.h>
 #include <kernel/cspace.h>
 #include <kernel/thread.h>
 #include <kernel/vspace.h>

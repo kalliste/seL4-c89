@@ -10,6 +10,7 @@
 #include <api/failures.h>
 #include <api/types.h>
 #include <object/structures.h>
+#include <object/cap.h>
 #include <object/cnode.h>
 
 deriveCap_ret_t Arch_deriveCap(cte_t *slot, cap_t cap);

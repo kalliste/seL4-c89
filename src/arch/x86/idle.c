@@ -6,6 +6,8 @@
 
 #include <config.h>
 #include <api/debug.h>
+#include <util.h>
+#include <kernel/thread.h>
 
 /*
  * The idle thread does not have a dedicated stack and runs in

@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <plat/machine/devices.h>
+
 #define MAX_NUM_FREEMEM_REG 16
 
 /*

@@ -5,6 +5,7 @@
  */
 
 #include <kernel/thread.h>
+#include <kernel/cspace.h>
 #include <api/failures.h>
 #include <api/syscall.h>
 #include <machine/io.h>

@@ -7,6 +7,7 @@
 #pragma once
 
 #include <object/structures.h>
+#include <machine.h>
 #include <object/objecttype.h>
 #include <object/notification.h>
 #include <object/cnode.h>
