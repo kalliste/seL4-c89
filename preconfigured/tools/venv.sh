@@ -11,13 +11,19 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+PYTHON_DEPS_DIR="$REPO_ROOT/tools/python-deps"
 VENV_DIR="$REPO_ROOT/.venv"
+
+if [ ! -d "$PYTHON_DEPS_DIR" ]; then
+    echo "error: expected Python dependency helper at '$PYTHON_DEPS_DIR'" >&2
+    exit 1
+fi
 
 if [ ! -f "$VENV_DIR/bin/activate" ]; then
     python3 -m venv "$VENV_DIR"
     "$VENV_DIR/bin/pip" install --upgrade pip
-    "$VENV_DIR/bin/pip" install -e "$SCRIPT_DIR/python-deps"
+    "$VENV_DIR/bin/pip" install -e "$PYTHON_DEPS_DIR"
 fi
 
 # shellcheck disable=SC1091
