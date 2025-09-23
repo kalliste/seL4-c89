@@ -24,12 +24,12 @@
 *.ist
 
 tools/parsetab.py
-manual/env.tex
-manual/manual.pdf
-manual/stage
-manual/doxygen-output
-manual/generated
-manual/generated_markdown
+pristine/manual/env.tex
+pristine/manual/manual.pdf
+pristine/manual/stage
+pristine/manual/doxygen-output
+pristine/manual/generated
+pristine/manual/generated_markdown
 
 # Emacs backups
 *~
