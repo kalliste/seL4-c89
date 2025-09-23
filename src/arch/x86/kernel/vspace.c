@@ -8,16 +8,12 @@
 #include <api/syscall.h>
 #include <machine/io.h>
 #include <kernel/boot.h>
-#include <kernel/thread.h>
-#include <kernel/cspace.h>
 #include <model/statedata.h>
 #include <arch/kernel/vspace.h>
 #include <arch/api/invocation.h>
 #include <arch/kernel/tlb_bitmap.h>
 #include <mode/kernel/tlb.h>
 #include <mode/kernel/vspace.h>
-#include <object/objecttype.h>
-#include <object/untyped.h>
 
 static exception_t performPageGetAddress(void *vbase_ptr, bool_t call)
 {
@@ -823,9 +819,9 @@ static exception_t performX86PageInvocationUnmap(cap_t cap, cte_t *ctSlot)
 {
     assert(cap_frame_cap_get_capFMappedASID(cap));
     assert(cap_frame_cap_get_capFMapType(cap) == X86_MappingVSpace);
-    /* We have this `if` for something we just asserted to be true for simplicity of verification */
-    /* This has no performance implications as when this function is inlined this `if` will be */
-    /* inside an identical `if` and will therefore be elided */
+    // We have this `if` for something we just asserted to be true for simplicity of verification
+    // This has no performance implications as when this function is inlined this `if` will be
+    // inside an identical `if` and will therefore be elided
     if (cap_frame_cap_get_capFMappedASID(cap)) {
         unmapPage(
             cap_frame_cap_get_capFSize(cap),

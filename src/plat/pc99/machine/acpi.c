@@ -12,8 +12,6 @@
 #include <plat/machine.h>
 #include <plat/machine/acpi.h>
 #include <plat/machine/devices.h>
-#include <plat/machine/pci.h>
-#include <arch/kernel/vspace.h>
 
 enum acpi_type {
     ACPI_RSDP,
@@ -207,7 +205,7 @@ BOOT_CODE static void *acpi_table_init(void *entry, enum acpi_type table_type)
         pages_for_table = (rsdp_entry->length + offset_in_page) / MASK(LARGE_PAGE_BITS) + 1;
         break;
     }
-    case ACPI_RSDT: { /* RSDT, MADT, DMAR etc. */
+    case ACPI_RSDT: { // RSDT, MADT, DMAR etc.
         acpi_rsdt_t *rsdt_entry = (acpi_rsdt_t *)entry;
         pages_for_table = (rsdt_entry->header.length + offset_in_page) / MASK(LARGE_PAGE_BITS) + 1;
         break;

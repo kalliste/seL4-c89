@@ -8,7 +8,6 @@
 #include <machine/io.h>
 #include <plat/machine/hardware.h>
 #include <plat/machine/pic.h>
-#include <plat/machine/io.h>
 
 /* PIC (i8259) base registers */
 #define PIC1_BASE 0x20

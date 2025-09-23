@@ -16,7 +16,6 @@
 #include <linker.h>
 #include <hardware.h>
 #include <util.h>
-#include <object/untyped.h>
 
 /* (node-local) state accessed only during bootstrapping */
 BOOT_BSS ndks_boot_t ndks_boot;
@@ -176,14 +175,14 @@ BOOT_CODE static word_t calculate_rootserver_size(v_region_t it_v_reg, word_t ex
 {
     /* work out how much memory we need for root server objects */
     word_t size = BIT(CONFIG_ROOT_CNODE_SIZE_BITS + seL4_SlotBits);
-    size += BIT(seL4_TCBBits); /* root thread tcb */
-    size += BIT(seL4_PageBits); /* ipc buf */
-    size += BIT(seL4_BootInfoFrameBits); /* boot info */
+    size += BIT(seL4_TCBBits); // root thread tcb
+    size += BIT(seL4_PageBits); // ipc buf
+    size += BIT(seL4_BootInfoFrameBits); // boot info
     size += BIT(seL4_ASIDPoolBits);
     size += extra_bi_size_bits > 0 ? BIT(extra_bi_size_bits) : 0;
-    size += BIT(seL4_VSpaceBits); /* root vspace */
+    size += BIT(seL4_VSpaceBits); // root vspace
 #ifdef CONFIG_KERNEL_MCS
-    size += BIT(seL4_MinSchedContextBits); /* root sched context */
+    size += BIT(seL4_MinSchedContextBits); // root sched context
 #endif
     /* for all archs, seL4_PageTable Bits is the size of all non top-level paging structures */
     return size + arch_get_n_paging(it_v_reg) * BIT(seL4_PageTableBits);

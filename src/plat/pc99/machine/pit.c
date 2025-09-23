@@ -6,7 +6,6 @@
 
 #include <linker.h>
 #include <machine/io.h>
-#include <plat/machine/io.h>
 #include <plat/machine/pit.h>
 
 /* PIT (i8253) registers */

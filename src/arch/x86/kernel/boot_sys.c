@@ -16,7 +16,6 @@
 #include <arch/kernel/smp_sys.h>
 #include <arch/kernel/vspace.h>
 #include <arch/kernel/elf.h>
-#include <kernel/thread.h>
 #include <smp/lock.h>
 #include <linker.h>
 #include <plat/machine/acpi.h>
@@ -191,8 +190,8 @@ static BOOT_CODE bool_t try_boot_sys_node(cpu_id_t cpu_id)
 static BOOT_CODE bool_t add_mem_p_regs(p_region_t reg)
 {
     if (reg.start == reg.end) {
-        /* Return true here if asked to add an empty region. */
-        /* Some of the callers round down the end address to */
+        // Return true here if asked to add an empty region.
+        // Some of the callers round down the end address to
         return true;
     }
     if (reg.end > PADDR_TOP && reg.start > PADDR_TOP) {

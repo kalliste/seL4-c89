@@ -12,7 +12,6 @@
 #include <api/types.h>
 #include <machine/io.h>
 #include <object/structures.h>
-#include <object/endpoint.h>
 #include <object/objecttype.h>
 #include <object/cnode.h>
 #include <object/interrupt.h>
