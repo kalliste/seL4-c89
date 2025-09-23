@@ -97,9 +97,7 @@ ninja -C preconfigured/X64_verified
 
 The [`preconfigured/replay_preconfigured_build.sh`](./preconfigured/replay_preconfigured_build.sh)
 script replays the captured commands for the checked-in
-`preconfigured/X64_verified` build tree.  It requires the same host tools as
-the Ninja workflow above (`cmake`, `ninja`, `gcc`, `xmllint`) together with
-`python3` on `PATH`.
+`preconfigured/X64_verified` build tree.
 
 1. From the repository root, execute the replay script:
 
