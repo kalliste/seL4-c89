@@ -11,6 +11,7 @@ from typing import Iterable, List
 
 # Repository root (three levels above this file: ../../..).
 ROOT = pathlib.Path(__file__).resolve().parents[2]
+PRECONFIGURED_SRC = ROOT / "preconfigured" / "src"
 REPLAY_SCRIPT = ROOT / "preconfigured" / "replay_preconfigured_build.sh"
 WRAPPER_ROOT = ROOT / "preconfigured" / "X64_verified" / "src"
 KERNEL_COPY_PATH = ROOT / "preconfigured" / "X64_verified" / "kernel_all_copy.c"
@@ -33,11 +34,16 @@ def extract_source_paths(script_text: str) -> List[pathlib.Path]:
     return [pathlib.Path(p) for p in paths]
 
 
-def build_wrapper_path(source_path: pathlib.Path) -> pathlib.Path:
-    """Map a source path like src/foo/bar.c to its wrapper location."""
+def strip_src_prefix(source_path: pathlib.Path) -> pathlib.Path:
+    """Return the path relative to the src/ root."""
     if not source_path.parts or source_path.parts[0] != "src":
         raise ValueError(f"Expected path rooted at src/, got {source_path}")
-    relative = pathlib.Path(*source_path.parts[1:])
+    return pathlib.Path(*source_path.parts[1:])
+
+
+def build_wrapper_path(source_path: pathlib.Path) -> pathlib.Path:
+    """Map a source path like src/foo/bar.c to its wrapper location."""
+    relative = strip_src_prefix(source_path)
     return WRAPPER_ROOT / relative.parent / f"{relative.stem}_wrapper.c"
 
 
@@ -63,14 +69,14 @@ def render_wrapper(source_path: pathlib.Path, include_path: str) -> str:
     )
 
 
-def render_kernel_copy(sources: List[pathlib.Path]) -> str:
+def render_kernel_copy(absolute_sources: List[pathlib.Path]) -> str:
     lines = [
         "// Generated aggregator used for kernel_all_copy.c.",
         "// Maintains compatibility with preconfigured build tooling.",
         "",
     ]
-    for source in sources:
-        include_rel = os.path.relpath(ROOT / source, KERNEL_COPY_PATH.parent)
+    for source in absolute_sources:
+        include_rel = os.path.relpath(source, KERNEL_COPY_PATH.parent)
         lines.append(f'#include "{include_rel.replace(os.sep, "/")}"')
     lines.append("")
     return "\n".join(lines)
@@ -95,8 +101,10 @@ def main(argv: Iterable[str]) -> int:
     sources = extract_source_paths(script_text)
 
     changed_files = []
+    absolute_sources: List[pathlib.Path] = []
     for source in sources:
-        absolute_source = ROOT / source
+        relative_source = strip_src_prefix(source)
+        absolute_source = PRECONFIGURED_SRC / relative_source
         if not absolute_source.exists():
             raise FileNotFoundError(f"Source file not found: {absolute_source}")
         wrapper_path = build_wrapper_path(source)
@@ -105,8 +113,9 @@ def main(argv: Iterable[str]) -> int:
         content = render_wrapper(source, include_path)
         if write_file_if_changed(wrapper_path, content):
             changed_files.append(wrapper_path)
+        absolute_sources.append(absolute_source)
 
-    kernel_copy_content = render_kernel_copy(sources)
+    kernel_copy_content = render_kernel_copy(absolute_sources)
     if write_file_if_changed(KERNEL_COPY_PATH, kernel_copy_content):
         changed_files.append(KERNEL_COPY_PATH)
 

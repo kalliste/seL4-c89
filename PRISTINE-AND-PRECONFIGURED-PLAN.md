@@ -58,7 +58,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | `configs/` | 0 | 0 | 0 | 0 | Root presets removed; the untouched copies now live exclusively under `pristine/configs/`. |
 | `manual/` | 0 | 0 | 0 | 0 | Root manual removed after relocating the sources into `pristine/manual/`. |
 | `tools/` | 0 | 0 | 0 | 0 | Root `tools/` now matches the pristine tree after relocating the virtual environment helper. |
-| `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; baseline version archived under `pristine/.gitignore`. |
+| `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; baseline version archived under `pristine/.gitignore`. Updated ignore patterns for the relocated `pristine/manual/` tree. |
 | `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling. |
 | `KERNEL-ALL-PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch. |
 | `PRISTINE-AND-PRECONFIGURED-PLAN.md` | 1 | 0 | 1 | 0 | Current planning document (being updated in this step). |
@@ -91,6 +91,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Updated the change summary counts and notes to record the new pristine totals and cross-links.
 - Captured the upstream `.github` workflows and `.reuse/` licensing metadata inside `pristine/` so future root cleanup can defer to those pristine copies.
 - Mirrored the upstream release notes, contributor guides, and licensing metadata (`CAVEATS.md`, `CHANGES.md`, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `CONTRIBUTORS.md`, `LICENSE.md`, `LICENSES/`, and `SECURITY.md`) into `pristine/` so every baseline top-level document now lives next to the clean source snapshot.
+- Updated the root `.gitignore` so LaTeX builds under `pristine/manual/` stay ignored after relocating the manual snapshot from the repository root.
 
 ### Next actions
 - Spot-check for any remaining top-level metadata that still needs pristine mirrors and track new root documents as they appear.
@@ -110,11 +111,13 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Pulled the remaining ARM, RISC-V, and platform kernel sources into `preconfigured/src/` alongside the existing x86 files so every customized translation unit now lives entirely within the preconfigured tree.
 - Rewrote the captured `preconfigured/X64_verified` Ninja, cache, and generated headers so their include paths resolve through `preconfigured/include`, `preconfigured/libsel4`, and `preconfigured/src`, eliminating hard-coded dependencies on the restored root tree.
 - Mirrored the bitfield, invocation, syscall, and configuration generator helpers—together with the `tools/hardware/` support modules—into `preconfigured/tools/`, and redirected cached tool references to those copies to keep the preconfigured build fully self-contained.
+- Pointed `preconfigured/tools/generate_kernel_wrappers.py` at `preconfigured/src/` so wrapper regeneration no longer fails with `FileNotFoundError` now that the root `src/` tree has been removed.
 
 ### Next actions
 - Continue auditing the repository root for generated artifacts or helper scripts that should join the `preconfigured/` tree as other directories are cleaned up.
 - Keep cross-checking documentation whenever helpers move so instructions stay aligned with the new locations.
 - Double-check that every script or build file under `preconfigured/` pulls dependencies from within that directory, adding copies of any remaining external inputs so the tree is fully self-contained.
+- Keep scanning the preconfigured helper scripts for assumptions about the old root layout so similar path issues can be fixed before they break cached tooling.
 - Spot-check other cached build directories as they appear to ensure their recorded paths also resolve through the relocated `preconfigured/` assets.
 
 ## Step 7 Progress: Clean and reconcile duplicates
