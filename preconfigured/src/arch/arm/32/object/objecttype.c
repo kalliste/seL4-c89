@@ -234,7 +234,7 @@ finaliseCap_ret_t Arch_finaliseCap(cap_t cap, bool_t final)
 
 #ifndef CONFIG_ENABLE_SMP_SUPPORT
     case cap_sgi_signal_cap:
-        // do nothing
+        /* do nothing */
         break;
 #endif
 

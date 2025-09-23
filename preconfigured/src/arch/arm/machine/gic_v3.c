@@ -81,11 +81,11 @@ static inline uint64_t sgir_word_from_args(word_t irq, word_t target)
 {
     uint64_t t = target; /* make sure shifts below are on 64 bit */
     return (uint64_t) irq << ICC_SGI1R_INTID_SHIFT
-           | (1llu << (t & 0xf)) // AFF0 base
-           | ((t >> 4)  & 0x0f) << ICC_SGI1R_RS_SHIFT // AFF0 Range select
-           | ((t >> 8)  & 0xff) << ICC_SGI1R_AFF1_SHIFT // AFF1
-           | ((t >> 16) & 0xff) << ICC_SGI1R_AFF2_SHIFT // AFF2
-           | ((t >> 24) & 0xff) << ICC_SGI1R_AFF2_SHIFT; // AFF3
+           | (1llu << (t & 0xf)) /* AFF0 base */
+           | ((t >> 4)  & 0x0f) << ICC_SGI1R_RS_SHIFT /* AFF0 Range select */
+           | ((t >> 8)  & 0xff) << ICC_SGI1R_AFF1_SHIFT /* AFF1 */
+           | ((t >> 16) & 0xff) << ICC_SGI1R_AFF2_SHIFT /* AFF2 */
+           | ((t >> 24) & 0xff) << ICC_SGI1R_AFF2_SHIFT; /* AFF3 */
 }
 
 /* Wait for completion of a distributor change */
@@ -384,8 +384,8 @@ void ipi_send_target(irq_t irq, word_t cpuTargetList)
             word_t mpidr = mpidr_map[i];
             word_t aff1 = MPIDR_AFF1(mpidr);
             word_t aff0 = MPIDR_AFF0(mpidr);
-            // AFF1 is assumed to be contiguous and less than CONFIG_MAX_NUM_NODES.
-            // The targets are grouped by AFF1.
+            /* AFF1 is assumed to be contiguous and less than CONFIG_MAX_NUM_NODES. */
+            /* The targets are grouped by AFF1. */
             assert(aff1 >= 0 && aff1 < CONFIG_MAX_NUM_NODES);
             sgi1r[aff1] |= sgi1r_base | (aff1 << ICC_SGI1R_AFF1_SHIFT) | (1 << aff0);
             if (aff1 > last_aff1) {

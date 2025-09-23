@@ -270,9 +270,9 @@ BOOT_CODE void map_kernel_window(void)
         armKSGlobalKernelPDs[GET_KPT_INDEX(vaddr, KLVL_FRM_ARM_PT_LVL(1))][GET_KPT_INDEX(vaddr,
                                                                                          KLVL_FRM_ARM_PT_LVL(2))] = pte_pte_page_new(
 #ifdef CONFIG_ARM_HYPERVISOR_SUPPORT
-                                                                                                                        0, // XN
+                                                                                                                        0, /* XN */
 #else
-                                                                                                                        1, // UXN
+                                                                                                                        1, /* UXN */
 #endif
                                                                                                                         paddr,
                                                                                                                         0,                        /* global */
@@ -1985,9 +1985,9 @@ exception_t benchmark_arch_map_logBuffer(word_t frame_cptr)
 
     *armKSGlobalLogPTE = pte_pte_page_new(
 #ifdef CONFIG_ARM_HYPERVISOR_SUPPORT
-                             0, // XN
+                             0, /* XN */
 #else
-                             1, // UXN
+                             1, /* UXN */
 #endif
                              ksUserLogBuffer,
                              0,                         /* global */
