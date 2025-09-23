@@ -15,17 +15,17 @@ WRAPPER_ROOT = ROOT / "preconfigured" / "X64_verified" / "src"
 
 
 def extract_source_paths(script_text: str) -> List[pathlib.Path]:
-    """Return the list of source files fed into tools/cpp_gen.sh."""
+    """Return the list of kernel source files in build order."""
     match = re.search(
-        r"tools/cpp_gen\.sh(?P<body>.*?)>\s*kernel_all\.c",
+        r"KERNEL_SOURCES=\(\s*(?P<body>.*?)\)\s*# Add common compiler flags",
         script_text,
         re.S,
     )
     if not match:
-        raise RuntimeError("Unable to locate tools/cpp_gen.sh invocation")
+        raise RuntimeError("Unable to locate KERNEL_SOURCES definition")
 
-    invocation = match.group("body")
-    paths = re.findall(r'"\$ROOT_DIR"/([^"\s]+\.c)', invocation)
+    body = match.group("body")
+    paths = re.findall(r'"([^"\s]+\.c)"', body)
     if not paths:
         raise RuntimeError("No source paths found in cpp_gen.sh invocation")
     return [pathlib.Path(p) for p in paths]

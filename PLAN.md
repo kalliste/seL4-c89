@@ -152,6 +152,13 @@
 - Audit other references to `kernel_all.c` within `replay_preconfigured_build.sh` (e.g., the compilation of `kernel_all_copy.c`) and adjust them to point to the new object list or remove obsolete artifacts.
 - Confirm that `cmake`/`ninja` artifacts inside `preconfigured/X64_verified/` do not expect the monolithic file; update or recreate stubs if needed.
 
+#### Step 4 progress (2025-09-24)
+- Declared a `KERNEL_SOURCES` array in `replay_preconfigured_build.sh` that preserves the original 77-item ordering from the `cpp_gen.sh` invocation, letting both the wrapper generator and the build script share a single source of truth.
+- Replaced the `cpp_gen.sh` pipeline with an explicit call to `tools/generate_kernel_wrappers.py`, followed by a Bash loop that compiles each `_wrapper.c` translation unit into its own object (creating subdirectories on demand) while collecting the resulting object paths for linking.
+- Updated the final link step to consume the accumulated wrapper objects instead of the legacy `kernel_all.c.obj`, keeping the existing assembler objects at the front of the link line to preserve behaviour.
+- Tweaked `tools/generate_kernel_wrappers.py` to parse the new array format so future wrapper regeneration keeps working without the deleted pipeline.
+- Next up: audit ancillary references to the removed monolithic file (e.g., `kernel_all_copy.c` consumers) and prepare the script to surface the expanded object list to later steps in the build.
+
 ### 5. Validate the Reworked Build
 - Run `./replay_preconfigured_build.sh` from a clean state to ensure all wrappers compile and link successfully.
 - Compare the resulting `kernel.elf` with the baseline output from the monolithic build using `cmp` or `diffoscope`. Document any differences and investigate whether they stem from legitimate translation-unit reordering (e.g., `static` inline functions now producing different inlining) versus real regressions.
