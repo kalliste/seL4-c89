@@ -23,16 +23,18 @@ The seL4 build uses several Python modules. A helper script is provided under
 `preconfigured/tools/venv.sh` to create a virtual environment and install
 these dependencies.
 
-The repository includes a `.python-version` file for use with
+The pristine snapshot retains the upstream `.python-version` file at
+`pristine/.python-version` for use with
 [pyenv](https://github.com/pyenv/pyenv).  To set up the recommended Python
-version locally:
+version locally without writing new files into the repository root:
 
 ```
-pyenv install $(cat .python-version)  # only required once
-pyenv local $(cat .python-version)
+pyenv install $(cat pristine/.python-version)  # only required once
+pyenv shell $(cat pristine/.python-version)
 ```
 
-After selecting the interpreter, create the virtual environment and install
+After selecting (or temporarily activating) the interpreter, create the
+virtual environment and install
 the required modules:
 
 ```

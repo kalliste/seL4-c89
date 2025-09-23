@@ -48,8 +48,8 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 ### Top-level change summary
 | Path / File | Total paths | Modified | Added | Deleted | Notes |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `preconfigured/` | 2,333 | 0 | 2,333 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, relocated tooling, the copied header tree, the relocated `libsel4/` sources used by the preconfigured view, and the expanded `src/` mirror with all customized kernel sources (ARM, RISC-V, and x86 variants). Copied the generator helpers and the supporting `tools/hardware/` package into `preconfigured/tools/` so cached builds no longer depend on the root `tools/` directory. |
-| `pristine/` | 994 | 0 | 994 | 0 | Mirrors the upstream configs, sources, non-DTS tools, baseline root metadata including `.github`, `.reuse`, the LaTeX manual, the replicated release notes/licensing docs, and the relocated toolchain helper files. |
+| `preconfigured/` | 2,359 | 0 | 2,359 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, relocated tooling, the copied header tree, the relocated `libsel4/` sources used by the preconfigured view, and the expanded `src/` mirror with all customized kernel sources (ARM, RISC-V, and x86 variants). Copied the generator helpers and the supporting `tools/hardware/` package into `preconfigured/tools/` so cached builds no longer depend on the root `tools/` directory. |
+| `pristine/` | 1,023 | 0 | 1,023 | 0 | Mirrors the upstream configs, sources, non-DTS tools, baseline root metadata including `.github`, `.reuse`, the LaTeX manual, the replicated release notes/licensing docs, and the relocated toolchain helper files. |
 | `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
 | `src/` | 312 | 0 | 0 | 312 | Removed the entire kernel source tree from the repository root after relocating every architecture, driver, fastpath, object, and platform directory into `pristine/src/` and `preconfigured/src/`, leaving no kernel sources at the top level. |
 | `include/` | 308 | 0 | 0 | 308 | Root headers removed from the repository root after confirming the baseline tree lives under `pristine/include/` and the tailored copies reside in `preconfigured/include/`. |
@@ -59,10 +59,10 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | `manual/` | 0 | 0 | 0 | 0 | Root manual removed after relocating the sources into `pristine/manual/`. |
 | `tools/` | 0 | 0 | 0 | 0 | Removed the root `tools/` directory after confirming the pristine snapshot and `preconfigured/tools/` host the required helpers. |
 | `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; baseline version archived under `pristine/.gitignore`. Updated ignore patterns for the relocated `pristine/manual/` tree. |
-| `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling. |
+| `.python-version` | 0 | 0 | 0 | 0 | Root pyenv pin removed; pristine snapshot retains `pristine/.python-version` for reference. |
 | `KERNEL-ALL-PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch. |
 | `PRISTINE-AND-PRECONFIGURED-PLAN.md` | 1 | 0 | 1 | 0 | Current planning document (being updated in this step). |
-| `README.md` | 1 | 1 | 0 | 0 | Root README modified; needs reconciliation after directories are split. |
+| `README.md` | 1 | 1 | 0 | 0 | Root README updated to describe the split layout and reference the relocated `.python-version`. |
 | `preconfigured/preconfigured_build.log` | 1 | 0 | 1 | 0 | Generated build log now stored within `preconfigured/`. |
 | `preconfigured/replay_preconfigured_build.sh` | 1 | 0 | 1 | 0 | Helper script now lives under `preconfigured/`; tooling updated to follow. |
 
@@ -144,3 +144,9 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Verify that the repository root now holds only essential metadata alongside `pristine/` and `preconfigured/`, identifying any lingering helper directories that still need relocation.
 - Call out in the top-level README and related docs that all pristine sources live exclusively under `pristine/` so contributors do not expect duplicates in the root tree.
 - Audit any remaining recorded build artifacts (for example, additional architecture snapshots) to confirm they also reference the localized `preconfigured/` copies before final cleanup.
+
+## Step 8 Progress: Final consistency passes
+- Recounted the tracked files in `preconfigured/` (2,359) and `pristine/` (1,023) so the change-summary table reflects the current repository layout.
+- Updated the top-level README to direct contributors to `pristine/.python-version` and to prefer `pyenv shell` for temporary interpreter selection, preventing accidental recreation of a root `.python-version` file.
+- Confirmed that the repository root now contains only planning documents, `pristine/`, `preconfigured/`, `.gitignore`, `.github/`, and `LICENSE.md`, leaving no stray source directories outside the two canonical trees.
+- Noted for future work: if developers still prefer a persistent `pyenv local` configuration, consider adding `.python-version` to `.gitignore` so personal pins do not appear in future diffs.
