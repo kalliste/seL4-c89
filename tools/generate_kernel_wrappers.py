@@ -10,7 +10,7 @@ import sys
 from typing import Iterable, List
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-REPLAY_SCRIPT = ROOT / "replay_preconfigured_build.sh"
+REPLAY_SCRIPT = ROOT / "preconfigured" / "replay_preconfigured_build.sh"
 WRAPPER_ROOT = ROOT / "preconfigured" / "X64_verified" / "src"
 KERNEL_COPY_PATH = ROOT / "preconfigured" / "X64_verified" / "kernel_all_copy.c"
 
