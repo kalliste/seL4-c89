@@ -7,7 +7,7 @@
 ## Reorganization goals
 - Restore an untouched copy of the original source tree so it lives under a new `pristine/` directory, and do not duplicate those sources anywhere else in the repository root.
 - Keep all build products, generated headers, helper scripts, and other convenience changes in `preconfigured/`, with any files required to build the preconfigured view copied into that directory rather than referencing paths outside it.
-- Ensure the repository root only contains shared metadata (licenses, top-level READMEs, planning documents, etc.) plus the two primary directories (`pristine/` and `preconfigured/`), keeping the root otherwise empty of standalone source files.
+- Ensure the repository root remains mostly empty—containing only shared metadata (licenses, top-level READMEs, planning documents, `.gitignore`, etc.) plus the two primary directories (`pristine/` and `preconfigured/`). No standalone source directories should stay duplicated at the root once the layout is complete.
 - Make every adjustment in commits that are small enough for ChatGPT Codex limits (aim for well under ~200 files per commit and avoid huge blobs whenever possible).
 
 ## Step-by-step plan (commit-sized tasks)
@@ -24,12 +24,12 @@
    - Add the `libsel4/` and `src/` trees in their own commits.
    - If other original subdirectories (e.g. `manual/`, `tools/`) are required, bring them in with dedicated commits so no single change set becomes excessive.
 5. **Restore any original top-level files.**
-   - For files like `README.md`, `.gitignore`, `PLAN.md`, etc., create commits that bring the pristine versions into `pristine/` (or keep them at the repo root if they should remain shared) while ensuring the root version matches the upstream baseline.
+   - For files like `README.md`, `.gitignore`, `KERNEL-ALL-PLAN.md`, etc., create commits that bring the pristine versions into `pristine/` (or keep them at the repo root if they should remain shared) while ensuring the root version matches the upstream baseline and stays minimal.
 6. **Corral preconfigured assets.**
    - Relocate or copy the generated/build-time artifacts that currently live outside `preconfigured/` into the `preconfigured/` directory structure. Break this work into topic commits (e.g. one for `pipdeps/`, another for `sysdeps/`, etc.) so each change stays reviewable.
    - As part of each commit, adjust scripts or references so they point to the new locations.
 7. **Clean and reconcile duplicates.**
-   - Once `pristine/` holds the clean sources, remove or revert modified originals that remain at the repo root so that the root mirrors the baseline commit.
+   - Once `pristine/` holds the clean sources, remove or revert modified originals that remain at the repo root so that the root shrinks back to the minimal metadata shell while `pristine/` serves as the authoritative mirror of the baseline commit.
    - Ensure `preconfigured/` contains the customized copies needed for the simplified build, and update documentation to clarify which tree to use.
 8. **Final consistency passes.**
    - Run formatting or linting tools (if any) and update CI/build scripts to reference the new directories.
@@ -58,7 +58,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | `tools/` | 0 | 0 | 0 | 0 | Root `tools/` now matches the pristine tree after relocating the virtual environment helper. |
 | `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; baseline version archived under `pristine/.gitignore`. |
 | `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling. |
-| `PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch. |
+| `KERNEL-ALL-PLAN.md` | 1 | 0 | 1 | 0 | Planning document introduced in this branch. |
 | `PRISTINE-AND-PRECONFIGURED-PLAN.md` | 1 | 0 | 1 | 0 | Current planning document (being updated in this step). |
 | `README.md` | 1 | 1 | 0 | 0 | Root README modified; needs reconciliation after directories are split. |
 | `preconfigured/preconfigured_build.log` | 1 | 0 | 1 | 0 | Generated build log now stored within `preconfigured/`. |
@@ -69,10 +69,11 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Imported the baseline `CMakeLists.txt`, `config.cmake`, and the entire `configs/` tree into `pristine/` directly from the reference commit, giving us an untouched configuration snapshot for future comparisons.
 - Counted 38 files now living under `pristine/`, and recorded the directory in the change summary table above to keep the progress tracker in sync.
 
-### Next actions
+### Immediate follow-ups after introducing the `pristine/` skeleton
 - Use the new pristine trees to guide cleanup of the modified root `include/`, `libsel4/`, and `src/` directories in subsequent commits.
 - Audit remaining root-level assets so that generated or convenience files ultimately reside under `preconfigured/`.
 - Keep updating the table counts and notes as additional directories move into `pristine/` or `preconfigured/`.
+- Update documentation to reiterate that the root tree will stay mostly empty and that pristine sources live exclusively inside `pristine/`.
 
 ## Step 4 Progress: Restore source and headers
 - Added the upstream `include/` hierarchy (308 files) to `pristine/include/`, preserving the baseline headers alongside the preconfigured copies.
@@ -114,6 +115,7 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 
 ### Next actions
 - Repeat the copy-and-restore workflow for the modified `libsel4/` and `src/` trees so every customized source gains a
-  preconfigured counterpart and the root mirrors the pristine checkout.
+  preconfigured counterpart and the `pristine/` folder mirrors the pristine checkout.
 - Audit other root-level documentation for assumptions about path locations as additional helpers migrate.
-- Verify that the repository root remains limited to metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there.
+- Verify that the repository root remains limited to essential metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there.
+- Call out in the top-level README and related docs that all pristine sources live exclusively under `pristine/` so contributors do not expect duplicates in the root tree.
