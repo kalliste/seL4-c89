@@ -159,6 +159,12 @@
 - Tweaked `tools/generate_kernel_wrappers.py` to parse the new array format so future wrapper regeneration keeps working without the deleted pipeline.
 - Next up: audit ancillary references to the removed monolithic file (e.g., `kernel_all_copy.c` consumers) and prepare the script to surface the expanded object list to later steps in the build.
 
+#### Step 4 progress (2025-09-25)
+- Taught `tools/generate_kernel_wrappers.py` to emit `preconfigured/X64_verified/kernel_all_copy.c` as a simple include-aggregator so `kernel_all_copy.c` stays in sync with the wrapper inventory without reintroducing monolithic compilation.【F:tools/generate_kernel_wrappers.py†L1-L108】【F:preconfigured/X64_verified/kernel_all_copy.c†L1-L77】
+- Audited ancillary `kernel_all.c` references in `replay_preconfigured_build.sh` and replaced the implicit object collection with an explicit `kernel_wrapper_objects.list` manifest that records every wrapper object for later consumers.【F:replay_preconfigured_build.sh†L114-L144】
+- Verified the generator now succeeds (missing `os` import bug fixed) and captured the manifest/aggregator adjustments as prep for sharing the object list with downstream tooling.【36f76b†L1-L3】
+- Trial build via `replay_preconfigured_build.sh` now trips on `kpptr_to_paddr` missing from `mode/machine.h`; this header-order issue will need attention when we tackle Step 5 validation.【2722b5†L1-L10】
+
 ### 5. Validate the Reworked Build
 - Run `./replay_preconfigured_build.sh` from a clean state to ensure all wrappers compile and link successfully.
 - Compare the resulting `kernel.elf` with the baseline output from the monolithic build using `cmp` or `diffoscope`. Document any differences and investigate whether they stem from legitimate translation-unit reordering (e.g., `static` inline functions now producing different inlining) versus real regressions.

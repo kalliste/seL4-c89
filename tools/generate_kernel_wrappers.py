@@ -12,6 +12,7 @@ from typing import Iterable, List
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 REPLAY_SCRIPT = ROOT / "replay_preconfigured_build.sh"
 WRAPPER_ROOT = ROOT / "preconfigured" / "X64_verified" / "src"
+KERNEL_COPY_PATH = ROOT / "preconfigured" / "X64_verified" / "kernel_all_copy.c"
 
 
 def extract_source_paths(script_text: str) -> List[pathlib.Path]:
@@ -61,6 +62,19 @@ def render_wrapper(source_path: pathlib.Path, include_path: str) -> str:
     )
 
 
+def render_kernel_copy(sources: List[pathlib.Path]) -> str:
+    lines = [
+        "// Generated aggregator used for kernel_all_copy.c.",
+        "// Maintains compatibility with preconfigured build tooling.",
+        "",
+    ]
+    for source in sources:
+        include_rel = os.path.relpath(ROOT / source, KERNEL_COPY_PATH.parent)
+        lines.append(f'#include "{include_rel.replace(os.sep, "/")}"')
+    lines.append("")
+    return "\n".join(lines)
+
+
 def write_file_if_changed(path: pathlib.Path, content: str) -> bool:
     if path.exists():
         existing = path.read_text()
@@ -90,6 +104,10 @@ def main(argv: Iterable[str]) -> int:
         content = render_wrapper(source, include_path)
         if write_file_if_changed(wrapper_path, content):
             changed_files.append(wrapper_path)
+
+    kernel_copy_content = render_kernel_copy(sources)
+    if write_file_if_changed(KERNEL_COPY_PATH, kernel_copy_content):
+        changed_files.append(KERNEL_COPY_PATH)
 
     if changed_files:
         print("Updated wrapper files:")
