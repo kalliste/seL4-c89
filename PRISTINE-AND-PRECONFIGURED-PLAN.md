@@ -49,12 +49,14 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 | Path / File | Total paths | Modified | Added | Deleted | Notes |
 | --- | ---: | ---: | ---: | ---: | --- |
 | `preconfigured/` | 2,333 | 0 | 2,333 | 0 | Preconfigured build tree now also houses `pipdeps/`, `sysdeps/`, helper logs/scripts, relocated tooling, the copied header tree, the relocated `libsel4/` sources used by the preconfigured view, and the expanded `src/` mirror with all customized kernel sources (ARM, RISC-V, and x86 variants). Copied the generator helpers and the supporting `tools/hardware/` package into `preconfigured/tools/` so cached builds no longer depend on the root `tools/` directory. |
-| `pristine/` | 900 | 0 | 900 | 0 | Mirrors the upstream configs, sources, non-DTS tools, and baseline root metadata including `.github` and `.reuse`. |
+| `pristine/` | 932 | 0 | 932 | 0 | Mirrors the upstream configs, sources, non-DTS tools, baseline root metadata including `.github` and `.reuse`, the LaTeX manual, and the relocated toolchain helper files. |
 | `sysdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/sysdeps/`; root copy removed. |
 | `src/` | 0 | 0 | 0 | 0 | Root kernel sources now match the pristine snapshot across every architecture; all tailored files live exclusively under `preconfigured/src/`. |
 | `include/` | 0 | 0 | 0 | 0 | Root headers now match the pristine snapshot; customized copies sit under `preconfigured/include/`. |
 | `pipdeps/` | 0 | 0 | 0 | 0 | Relocated under `preconfigured/pipdeps/`; counted under the `preconfigured/` row. |
 | `libsel4/` | 0 | 0 | 0 | 0 | Root library now matches the pristine snapshot; the customized copy lives under `preconfigured/libsel4/`. |
+| `configs/` | 0 | 0 | 0 | 0 | Root presets removed; the untouched copies now live exclusively under `pristine/configs/`. |
+| `manual/` | 0 | 0 | 0 | 0 | Root manual removed after relocating the sources into `pristine/manual/`. |
 | `tools/` | 0 | 0 | 0 | 0 | Root `tools/` now matches the pristine tree after relocating the virtual environment helper. |
 | `.gitignore` | 1 | 1 | 0 | 0 | Root metadata changed; baseline version archived under `pristine/.gitignore`. |
 | `.python-version` | 1 | 0 | 1 | 0 | New pyenv pin introduced for tooling. |
@@ -123,9 +125,12 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Copied the customized x86 kernel sources into `preconfigured/src/` and reset their root counterparts to the pristine commit, trimming the outstanding root `src/` delta from 44 paths to 14 that cover other architectures and platforms.
 - Migrated the remaining ARM, RISC-V, timer, and platform-specific kernel sources into `preconfigured/src/` and restored their root copies from the pristine snapshot so the entire kernel tree at the repository root now matches upstream.
 - Confirmed that the recorded `preconfigured/X64_verified` build metadata now relies solely on the relocated `preconfigured/` trees, preventing the root snapshot from creeping back into scripted rebuilds.
+- Relocated the LaTeX manual into `pristine/manual/` and removed the duplicate tree from the repository root so the pristine snapshot remains the single source of truth.
+- Removed the root `configs/` directory and the top-level `CMakeLists.txt`/`config.cmake` pair after confirming the untouched copies already live under `pristine/`, then moved the remaining toolchain helpers (`FindseL4.cmake`, `gcc.cmake`, `llvm.cmake`, `gdb-macros`, and `VERSION`) into `pristine/` to clear them from the root.
+- Reworked the top-level README so the layout overview, manual links, and build instructions reference the new `pristine/` and `preconfigured/` locations instead of the retired root trees.
 
 ### Next actions
 - Audit other root-level documentation for assumptions about path locations as additional helpers migrate.
-- Verify that the repository root remains limited to essential metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there.
+- Verify that the repository root remains limited to essential metadata plus the `pristine/` and `preconfigured/` directories once the source migrations land, removing any stray files that do not belong there (notably the remaining `include/`, `libsel4/`, `src/`, and `tools/` snapshots).
 - Call out in the top-level README and related docs that all pristine sources live exclusively under `pristine/` so contributors do not expect duplicates in the root tree.
 - Audit any remaining recorded build artifacts (for example, additional architecture snapshots) to confirm they also reference the localized `preconfigured/` copies before final cleanup.

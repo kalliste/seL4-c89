@@ -79,17 +79,18 @@ software, we ask you to follow our [vulnerability disclosure policy][VDP].
 Manual
 ------
 
-A hosted PDF version of the [manual](manual/) for the most recent release can be found [here][5].
+A hosted PDF version of the [manual](pristine/manual/) for the most recent release can be found [here][5].
 
 A web version of the [API documentation][8] is available as well.
 
 Repository Overview
 -------------------
 
-- `include` and `src`: C and ASM source code of seL4
-- `tools`: build tools
-- `libsel4`: C bindings for the seL4 ABI
-- `manual`: LaTeX sources of the seL4 reference manual
+- `pristine/`: Untouched snapshot of commit `1c50485c9a1b3c0595c143432664ab55e59e7991`, including the
+  original `configs/`, kernel sources, headers, libraries, tooling, and the LaTeX manual sources.
+- `preconfigured/`: Self-contained tree with the generated headers, libraries, kernel sources, and
+  build metadata required to replay the cached `X64_verified` configuration.
+- Repository root: Planning documents, changelogs, and other metadata that apply to both trees.
 
 Python Environment
 ------------------
@@ -129,7 +130,7 @@ See the seL4 website for [build instructions][6].
 ### Development build for this fork
 
 For work on this fork we configure and build the kernel with the
-`configs/X64_verified.cmake` preset.  The following steps have been
+`pristine/configs/X64_verified.cmake` preset.  The following steps have been
 tested to produce a `kernel.elf` on a 64‑bit host:
 
 1. Ensure the `file` and `xmllint` utilities are available in `PATH`.
@@ -139,12 +140,15 @@ tested to produce a `kernel.elf` on a 64‑bit host:
    pip install pyyaml jinja2 ply lxml
    ```
 
-3. Configure and build the kernel:
+3. Configure and build the kernel from the pristine sources:
 
    ```sh
-   cmake -B build -S . -C configs/X64_verified.cmake
+   cmake -B build -S pristine -C pristine/configs/X64_verified.cmake
    cmake --build build
    ```
+
+   The repository also includes `preconfigured/replay_preconfigured_build.sh` for reproducing the
+   cached `X64_verified` build without invoking CMake manually.
 
 This produces the kernel image `build/kernel.elf` when the build
 completes successfully.
