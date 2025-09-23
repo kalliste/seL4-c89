@@ -25,9 +25,9 @@ compile_assert(seL4_UnknownSyscall_Syscall, (word_t) n_syscallMessage == seL4_Un
 compile_assert(seL4_UserException_Number, (word_t) n_exceptionMessage == seL4_UserException_Number)
 compile_assert(seL4_UserException_Code, (word_t) n_exceptionMessage + 1 == seL4_UserException_Code)
 
-static inline unsigned int
+word_t
 setMRs_lookup_failure(tcb_t *receiver, word_t *receiveIPCBuffer,
-                      lookup_fault_t luf, unsigned int offset)
+                      lookup_fault_t luf, word_t offset)
 {
     word_t lufType = lookup_fault_get_lufType(luf);
     word_t i;

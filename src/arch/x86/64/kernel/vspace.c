@@ -8,6 +8,7 @@
 #include <api/syscall.h>
 #include <machine/io.h>
 #include <kernel/boot.h>
+#include <kernel/thread.h>
 #include <model/statedata.h>
 #include <arch/kernel/vspace.h>
 #include <arch/kernel/boot.h>
@@ -16,6 +17,7 @@
 #include <mode/kernel/tlb.h>
 #include <arch/kernel/tlb_bitmap.h>
 #include <object/structures.h>
+#include <object/objecttype.h>
 
 /* When using the SKIM window to isolate the kernel from the user we also need to
  * not use global mappings as having global mappings and entries in the TLB is

@@ -9,6 +9,7 @@
 #include <sel4/objecttype.h>
 #include <sel4/sel4_arch/objecttype.h>
 #include <sel4/arch/objecttype.h>
+#include <arch/types.h>
 
 enum asidConstants {
     asidInvalid = 0

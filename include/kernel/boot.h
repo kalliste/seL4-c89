@@ -10,6 +10,8 @@
 #include <types.h>
 #include <bootinfo.h>
 #include <arch/bootinfo.h>
+#include <machine.h>
+#include <object/objecttype.h>
 
 /*
  * Resolve naming differences between the abstract specifications

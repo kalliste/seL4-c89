@@ -134,3 +134,5 @@ static inline void handleReservedIRQ(irq_t irq);
 
 static inline void deactivateInterrupt(irq_t irq) {}
 #endif
+
+#include <plat/machine/interrupt.h>

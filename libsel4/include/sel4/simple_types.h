@@ -72,10 +72,12 @@ seL4_integer_size_assert(seL4_Uint32, 4)
  */
 #if defined(SEL4_INT64_IS_LONG)
 #define _seL4_int64_type    long int
-#define _seL4_int64_fmt     l  /* printf() formatting, integer suffix */
+#define _seL4_int64_fmt     l
+/* printf() formatting, integer suffix */
 #elif defined(SEL4_INT64_IS_LONG_LONG)
 #define _seL4_int64_type    long long int
-#define _seL4_int64_fmt     ll  /* printf() formatting, integer suffix */
+#define _seL4_int64_fmt     ll
+/* printf() formatting, integer suffix */
 #else
 #error missing definition for 64-bit types
 #endif

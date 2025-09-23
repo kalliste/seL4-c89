@@ -8,8 +8,9 @@
 
 #include <util.h>
 #include <arch/types.h>
-#include <arch/machine/registerset.h>
+#include <object/structures.h>
 #include <arch/object/structures.h>
+#include <arch/machine/registerset.h>
 
 typedef enum {
     MessageID_Syscall,

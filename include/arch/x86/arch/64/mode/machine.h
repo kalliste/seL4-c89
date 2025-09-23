@@ -13,6 +13,15 @@
 #include <arch/model/smp.h>
 #include <arch/machine.h>
 
+#ifndef kpptr_to_paddr
+static inline paddr_t mode_kpptr_to_paddr(const void *pptr)
+{
+    return (paddr_t)pptr - KERNEL_ELF_BASE_OFFSET;
+}
+
+#define kpptr_to_paddr(x) mode_kpptr_to_paddr(x)
+#endif
+
 /*
  * SYSEXIT  0F 35     ; Return to compatibility mode from fast system call.
  * SYSEXITQ 48 0F 35  ; Return to 64-bit mode from fast system call.

@@ -5,7 +5,13 @@
  */
 
 #include <config.h>
+#include <object/structures.h>
 #include <arch/machine/registerset.h>
+#include <arch/object/structures.h>
+#include <arch/machine.h>
+#include <arch/machine/fpu.h>
+#include <types.h>
+#include <arch/kernel/thread.h>
 
 void Arch_initContext(user_context_t *context)
 {

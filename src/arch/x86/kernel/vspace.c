@@ -8,12 +8,16 @@
 #include <api/syscall.h>
 #include <machine/io.h>
 #include <kernel/boot.h>
+#include <kernel/thread.h>
+#include <kernel/cspace.h>
 #include <model/statedata.h>
 #include <arch/kernel/vspace.h>
 #include <arch/api/invocation.h>
 #include <arch/kernel/tlb_bitmap.h>
 #include <mode/kernel/tlb.h>
 #include <mode/kernel/vspace.h>
+#include <object/objecttype.h>
+#include <object/untyped.h>
 
 static exception_t performPageGetAddress(void *vbase_ptr, bool_t call)
 {

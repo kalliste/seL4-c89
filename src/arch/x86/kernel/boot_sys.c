@@ -16,6 +16,7 @@
 #include <arch/kernel/smp_sys.h>
 #include <arch/kernel/vspace.h>
 #include <arch/kernel/elf.h>
+#include <kernel/thread.h>
 #include <smp/lock.h>
 #include <linker.h>
 #include <plat/machine/acpi.h>

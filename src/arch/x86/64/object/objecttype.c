@@ -7,6 +7,7 @@
 #include <config.h>
 #include <types.h>
 #include <api/failures.h>
+#include <machine.h>
 #include <kernel/vspace.h>
 #include <object/structures.h>
 #include <arch/machine.h>

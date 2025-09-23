@@ -16,6 +16,7 @@
 #include <linker.h>
 #include <hardware.h>
 #include <util.h>
+#include <object/untyped.h>
 
 /* (node-local) state accessed only during bootstrapping */
 BOOT_BSS ndks_boot_t ndks_boot;

@@ -16,6 +16,7 @@
 #include <object/cnode.h>
 #include <kernel/cspace.h>
 #include <kernel/thread.h>
+#include <model/preemption.h>
 #include <util.h>
 
 static word_t alignUp(word_t baseValue, word_t alignment)
