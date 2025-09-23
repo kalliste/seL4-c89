@@ -136,6 +136,8 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Deleted the root `libsel4/` directory after confirming every pristine header and generator now resides under `pristine/libsel4/` and the customized build continues to consume the copies in `preconfigured/libsel4/`.
 - Excised the common kernel sources (`src/api`, `src/kernel`, `src/machine`, `src/model`, `src/smp`), supporting benchmarks/configuration helpers, and the ARM and RISC-V architecture trees from the repository root after verifying their pristine and preconfigured counterparts are in place, leaving only the x86, driver, fastpath, object, and platform directories to retire in follow-up commits.
 - Deleted the remaining root `src/arch/x86`, `src/drivers`, `src/fastpath`, `src/object`, and `src/plat` directories after confirming their pristine and preconfigured mirrors were complete, clearing the last kernel sources from the repository root while keeping the working diff (~32k lines) within the 35,000-line budget.
+- Removed the duplicated root-level metadata files (`CAVEATS.md`, `CHANGES.md`, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `CONTRIBUTORS.md`, `SECURITY.md`, and `.cmake-format.yaml`) plus the `.reuse/` and `LICENSES/` directories now that the pristine snapshot houses their untouched counterparts, keeping the repository root focused on shared planning docs.
+- Relocated `.python-version` into `pristine/` alongside the other baseline metadata so the root tree no longer carries a pyenv pin.
 
 ### Next actions
 - Audit other root-level documentation for assumptions about path locations as additional helpers migrate.
