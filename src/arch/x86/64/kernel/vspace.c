@@ -1246,7 +1246,7 @@ static exception_t decodeX64PageDirectoryInvocation(
     return performX64PageDirectoryInvocationMap(cap, cte, pdpte, pdptSlot.pdptSlot, vspace);
 }
 
-static void unmapPDPT(asid_t asid, vptr_t vaddr, pdpte_t *pdpt)
+void unmapPDPT(asid_t asid, vptr_t vaddr, pdpte_t *pdpt)
 {
     findVSpaceForASID_ret_t find_ret;
     pml4e_t *pml4Slot;

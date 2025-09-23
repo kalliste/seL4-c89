@@ -9,7 +9,7 @@
 #include <config.h>
 #include <types.h>
 #include <util.h>
-#include <mode/machine.h>
+#include <machine.h>
 #include <arch/model/statedata.h>
 #include <smp/ipi.h>
 #include <util.h>

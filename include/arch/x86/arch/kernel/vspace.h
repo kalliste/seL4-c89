@@ -77,6 +77,7 @@ void copyGlobalMappings(vspace_root_t *new_vspace);
 word_t *PURE lookupIPCBuffer(bool_t isReceiver, tcb_t *thread);
 exception_t handleVMFault(tcb_t *thread, vm_fault_type_t vm_faultType);
 void unmapPageDirectory(asid_t asid, vptr_t vaddr, pde_t *pd);
+void unmapPDPT(asid_t asid, vptr_t vaddr, pdpte_t *pdpt);
 void unmapPageTable(asid_t, vptr_t vaddr, pte_t *pt);
 
 exception_t performASIDPoolInvocation(asid_t asid, asid_pool_t *poolPtr, cte_t *vspaceCapSlot);

@@ -7,6 +7,7 @@
 #pragma once
 
 #include <config.h>
+#include <basic_types.h>
 #include <api/types.h>
 #include <stdint.h>
 #include <arch/object/structures_gen.h>
