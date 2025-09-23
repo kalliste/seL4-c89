@@ -93,7 +93,6 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 
 ### Next actions
 - Continue migrating additional root metadata (e.g. release notes and manual updates) into `pristine/`.
-- Stage the remaining `tools/dts/` device tree sources in a follow-up commit once we can keep the diff within the size budget.
 - Start moving preconfigured-only helpers into the `preconfigured/` tree once we have pristine references for each script.
 
 ## Step 6 Progress: Corral preconfigured assets
@@ -138,4 +137,3 @@ Each bullet above is intended to correspond to a single reasonable commit (or, w
 - Verify that the repository root now holds only essential metadata alongside `pristine/` and `preconfigured/`, identifying any lingering helper directories (particularly under `tools/`) that still need relocation.
 - Call out in the top-level README and related docs that all pristine sources live exclusively under `pristine/` so contributors do not expect duplicates in the root tree.
 - Audit any remaining recorded build artifacts (for example, additional architecture snapshots) to confirm they also reference the localized `preconfigured/` copies before final cleanup.
-- Plan the relocation or archival of bulky helper trees such as `tools/dts/`
