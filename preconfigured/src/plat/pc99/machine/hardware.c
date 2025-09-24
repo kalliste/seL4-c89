@@ -52,17 +52,22 @@ BOOT_CODE static inline uint32_t measure_tsc_khz(void)
      * the expectation that it will eventually yield a sensible
      * result.
      */
-    for (int i = 0; i < TSC_FREQ_RETRIES; i++) {
+    int i;
+    uint64_t old_ticks;
+    uint64_t new_ticks;
+    uint64_t diff;
+
+    for (i = 0; i < TSC_FREQ_RETRIES; i++) {
 
         /* read tsc */
-        uint64_t old_ticks = x86_rdtsc();
+        old_ticks = x86_rdtsc();
 
         /* measure how many tsc cycles pass while PIT wraps around */
         pit_wait_wraparound();
 
-        uint64_t new_ticks = x86_rdtsc();
+        new_ticks = x86_rdtsc();
 
-        uint64_t diff = new_ticks - old_ticks;
+        diff = new_ticks - old_ticks;
 
         if ((uint32_t)diff == diff && new_ticks > old_ticks) {
             return (uint32_t)diff / PIT_WRAPAROUND_MS;
@@ -95,10 +100,15 @@ BOOT_CODE uint32_t tsc_init(void)
         BROADWELL_2_MODEL_ID, BROADWELL_3_MODEL_ID, BROADWELL_4_MODEL_ID, BROADWELL_5_MODEL_ID,
         SKYLAKE_1_MODEL_ID, SKYLAKE_2_MODEL_ID
     };
+    unsigned int i;
+    unsigned int valid_model_count;
+    uint32_t tsc_khz;
+
+    valid_model_count = (unsigned int)ARRAY_SIZE(valid_models);
 
     /* try to read the frequency from the platform info MSR */
     if (model_info->family == IA32_PREFETCHER_COMPATIBLE_FAMILIES_ID) {
-        for (int i = 0; i < ARRAY_SIZE(valid_models); i++) {
+        for (i = 0; i < valid_model_count; i++) {
             if (model_info->model == valid_models[i]) {
 
                 /* read tsc freq from the platform info msr. Under some environments such
@@ -133,7 +143,7 @@ BOOT_CODE uint32_t tsc_init(void)
     pit_wait_wraparound();
 
     /* count tsc ticks per ms */
-    uint32_t tsc_khz = measure_tsc_khz();
+    tsc_khz = measure_tsc_khz();
 
     /* finally, return mhz */
     return tsc_khz / 1000u;
