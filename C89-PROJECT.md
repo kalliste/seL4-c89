@@ -44,6 +44,13 @@ resulting compiler diagnostics.
   shims now hoist their declarations, cast their unused arguments, and return
   explicit errors, allowing the pedantic build to reach the next blocker.
 
+  The latest run also surfaced that the x86 register-set consistency checks were
+  still written in the old `compile_assert(name, expr);` style. Dropping the
+  trailing statement terminators lets the pedantic C90 build accept the
+  generated wrappers and carry on to the next failure in
+  `src/arch/x86/64/model/smp.c`, where the strict warnings now flag the empty
+  translation unit emitted when SMP support is disabled.
+
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
    machine shims still emit `ULL` and `LL` constants that trigger
@@ -160,7 +167,10 @@ resulting compiler diagnostics.
   - [x] Audit the x86 decode and mode-specific cap helpers to provide explicit
         returns and `(void)` casts for unused parameters now that the attribute
         shims collapse under C90.
-  - [ ] Teach the generated capDL wrapper sources to emit a benign definition
+  - [ ] Provide a benign definition in `src/arch/x86/64/model/smp.c` so the
+        pedantic build no longer rejects the empty translation unit when SMP is
+        disabled.
+- [ ] Teach the generated capDL wrapper sources to emit a benign definition
         when no kernel objects are present so the strict build no longer flags
         the empty translation unit under `-Wpedantic`.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
