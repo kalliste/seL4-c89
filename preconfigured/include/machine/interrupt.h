@@ -132,7 +132,10 @@ static inline void handleReservedIRQ(irq_t irq);
 
 #ifndef CONFIG_ARM_GIC_V3_SUPPORT
 
-static inline void deactivateInterrupt(irq_t irq) {}
+static inline void deactivateInterrupt(irq_t irq)
+{
+    (void)irq;
+}
 #endif
 
 #include <plat/machine/interrupt.h>

@@ -13,6 +13,7 @@ word_t sanitiseRegister(register_t reg, word_t v, bool_t archInfo);
 
 static inline bool_t CONST Arch_getSanitiseRegisterInfo(tcb_t *thread)
 {
+    (void)thread;
     return 0;
 }
 

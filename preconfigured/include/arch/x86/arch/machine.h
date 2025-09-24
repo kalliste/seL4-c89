@@ -275,21 +275,25 @@ static inline word_t x86_read_fs_base_impl(void)
 
 static inline void x86_write_fs_base(word_t base, cpu_id_t cpu)
 {
+    (void)cpu;
     x86_write_fs_base_impl(base);
 }
 
 static inline void x86_write_gs_base(word_t base, cpu_id_t cpu)
 {
+    (void)cpu;
     x86_write_gs_base_impl(base);
 }
 
 static inline word_t x86_read_fs_base(cpu_id_t cpu)
 {
+    (void)cpu;
     return x86_read_fs_base_impl();
 }
 
 static inline word_t x86_read_gs_base(cpu_id_t cpu)
 {
+    (void)cpu;
     return x86_read_gs_base_impl();
 }
 
@@ -329,15 +333,18 @@ static inline word_t x86_read_gs_base(cpu_id_t cpu)
 
 static inline void x86_load_fsgs_base(tcb_t *thread, cpu_id_t cpu)
 {
+    word_t fs_base;
+    word_t gs_base;
+
     /*
      * Restore the FS and GS base registers.
      *
      * These should only be accessed inside the kernel, between the
      * entry and exit calls to swapgs if used.
      */
-    word_t fs_base = getRegister(thread, FS_BASE);
+    fs_base = getRegister(thread, FS_BASE);
     x86_write_fs_base(fs_base, cpu);
-    word_t gs_base = getRegister(thread, GS_BASE);
+    gs_base = getRegister(thread, GS_BASE);
     x86_write_gs_base(gs_base, cpu);
 }
 

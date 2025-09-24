@@ -58,6 +58,7 @@ static inline logical_id_t apic_get_logical_id(void)
 
 static inline word_t apic_get_cluster(logical_id_t logical_id)
 {
+    (void)logical_id;
     return 0; /* always return 0 as 'init_xapic_ldr' uses flat cluster */
 }
 

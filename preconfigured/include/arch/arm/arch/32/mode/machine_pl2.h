@@ -176,11 +176,30 @@ static inline void writeHTPIDR(word_t reg)
 #else
 
 /* used in other files without guards */
-static inline void setCurrentPDPL2(paddr_t pa) {}
-static inline void invalidateHypTLB(void) {}
-static inline void writeContextIDPL2(word_t pd_val) {}
-static inline void writeContextIDAndPD(word_t id, word_t pd_val) {}
-static inline void writeHTPIDR(word_t htpidr) {}
+static inline void setCurrentPDPL2(paddr_t pa)
+{
+    (void)pa;
+}
+
+static inline void invalidateHypTLB(void)
+{
+}
+
+static inline void writeContextIDPL2(word_t pd_val)
+{
+    (void)pd_val;
+}
+
+static inline void writeContextIDAndPD(word_t id, word_t pd_val)
+{
+    (void)id;
+    (void)pd_val;
+}
+
+static inline void writeHTPIDR(word_t htpidr)
+{
+    (void)htpidr;
+}
 static inline paddr_t addressTranslateS1(vptr_t vaddr)
 {
     return vaddr;
