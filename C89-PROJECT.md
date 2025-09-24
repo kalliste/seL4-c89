@@ -130,6 +130,12 @@ to progress into `src/kernel/thread.c`. Hoisting the reply-path locals out of
 the executable statements lets `doReplyTransfer` and `schedule` satisfy C90's
 declaration rules, so the pedantic build now runs until the next blocker.
 
+Guarding `switchFpuOwner`'s CPU argument with a `(void)` cast when SMP support
+is absent lets the strict build progress into `src/machine/registerset.c`. The
+pedantic warning set now rejects the designated initialisers that expand from
+the syscall and exception message tables, so rewriting those arrays without
+bracket designators is the next compilation blocker.
+
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
    machine shims still emit `ULL` and `LL` constants that trigger
@@ -259,6 +265,9 @@ declaration rules, so the pedantic build now runs until the next blocker.
 - [x] Provide a benign definition in the x86 benchmarking stubs so the strict
   build no longer rejects the empty translation unit emitted by
   `src/arch/x86/benchmark/benchmark.c`.
+- [ ] Rewrite the syscall and exception message tables in
+  `src/machine/registerset.c` so they avoid the designated initialisers that
+  pedantic C90 rejects.
 - [ ] Provide a benign definition in the x86 EPT stubs so the strict build no
   longer rejects the empty translation unit emitted by
   `src/arch/x86/kernel/ept.c` when VT-d is disabled.
