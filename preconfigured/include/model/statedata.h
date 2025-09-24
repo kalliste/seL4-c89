@@ -33,8 +33,16 @@
 #else
 
 #define NODE_STATE_BEGIN(_name)
-#define NODE_STATE_END(_name)
-#define NODE_STATE_TYPE_DECLARE(_name, _state)
+#define NODE_STATE_GLUE3_IMPL(_a, _b, _c)       _a##_b##_c
+#define NODE_STATE_GLUE3(_a, _b, _c)            NODE_STATE_GLUE3_IMPL(_a, _b, _c)
+#define NODE_STATE_END(_name)                                                       \
+    struct NODE_STATE_GLUE3(node_state_end_dummy_, _name, __LINE__) {               \
+        unsigned int node_state_end_dummy_field;                                    \
+    }
+#define NODE_STATE_TYPE_DECLARE(_name, _state)                                      \
+    struct NODE_STATE_GLUE3(node_state_type_dummy_, _name, __LINE__) {              \
+        unsigned int node_state_type_dummy_field;                                   \
+    }
 /* UP states are declared as VISIBLE so that they are accessible in assembly */
 #define NODE_STATE_DECLARE(_type, _state)       extern _type _state VISIBLE
 

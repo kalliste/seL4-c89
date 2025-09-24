@@ -28,14 +28,15 @@ resulting compiler diagnostics.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
-- **Outcome**: The build now clears the earlier enum-related pedantic errors but
-  still stops in the shared headers. Strict C90 mode rejects the remaining
-  variadic logging shims, the packed-structure assertions, the `NODE_STATE_*`
-  macros, several unused-parameter stubs (including the FS/GS base accessors),
-  declaration-after-statement violations in the interrupt helpers, inline
-  specifier ordering in the PC99 IRQ helpers, the always-true comparison in
-  `maskInterrupt`, the inline assembly that subscripts temporaries, and the
-  lingering missing return in `setMRs_lookup_failure`.
+- **Outcome**: The build now clears the earlier enum-related pedantic errors and
+  the node-state macro fallout, but it still stops in the shared headers.
+  Strict C90 mode rejects the remaining variadic logging shims, the
+  packed-structure assertions, several unused-parameter stubs (including the
+  FS/GS base accessors), declaration-after-statement violations in the
+  interrupt helpers, inline specifier ordering in the PC99 IRQ helpers, the
+  always-true comparison in `maskInterrupt`, the inline assembly that
+  subscripts temporaries, and the lingering missing return in
+  `setMRs_lookup_failure`.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -76,8 +77,8 @@ resulting compiler diagnostics.
    pedantic diagnostics. We have now scrubbed the remaining enums that the
    previous build complained about (`X86_MappingVSpace`, the PC99 IRQ tables,
    and the thread control update flags). The outstanding pedantic fallout now
-   centres on macro shims such as the `NODE_STATE_*` helpers and the stubbed
-   logging wrappers.
+   centres on the stubbed logging wrappers and related macro shims; the
+   `NODE_STATE_*` helpers now expand cleanly under strict C90.
 8. **Structure packing guarantees**: strict mode exposes that the ACPI RSDP
    assertions rely on packing attributes that collapse under C89, causing the
    compile-time size check to fail.
@@ -107,7 +108,7 @@ resulting compiler diagnostics.
     attribute shims collapse under C90.
   - [x] replace compound literals and designated initialisers in
     `include/machine.h` with explicit temporaries to satisfy C90.
-  - normalise the `NODE_STATE_*` macros so they do not expand to stray
+  - [x] normalise the `NODE_STATE_*` macros so they do not expand to stray
     semicolons.
   - add `(void)` casts or other shims for the numerous unused parameters (e.g.
     the FS/GS base accessors, APIC helpers, and IRQ stubs) and reorder
