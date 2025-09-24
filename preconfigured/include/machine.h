@@ -47,18 +47,18 @@ static inline paddr_t CONST addrFromKPPtr(const void *pptr)
 
 static inline region_t CONST paddr_to_pptr_reg(const p_region_t p_reg)
 {
-    return (region_t) {
-        .start = (paddr_t)paddr_to_pptr(p_reg.start),
-        .end   = (paddr_t)paddr_to_pptr(p_reg.end)
-    };
+    region_t result;
+    result.start = (paddr_t)paddr_to_pptr(p_reg.start);
+    result.end = (paddr_t)paddr_to_pptr(p_reg.end);
+    return result;
 }
 
 static inline p_region_t CONST pptr_to_paddr_reg(const region_t reg)
 {
-    return (p_region_t) {
-        .start = pptr_to_paddr((const void *)reg.start),
-        .end   = pptr_to_paddr((const void *)reg.end),
-    };
+    p_region_t result;
+    result.start = pptr_to_paddr((const void *)reg.start);
+    result.end = pptr_to_paddr((const void *)reg.end);
+    return result;
 }
 
 

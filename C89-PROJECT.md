@@ -21,6 +21,8 @@ resulting compiler diagnostics.
       anonymous variadic macros.
     - [x] Tidy the libsel4 size/enumeration assertion macros so they no longer
       emit pedantic diagnostics under strict C90.
+    - [x] Replace the compound literal helpers in `machine.h` with explicit
+      temporaries.
     - [ ] Replace the remaining anonymous variadic logging helpers with
       explicit C89-compatible shims.
 
@@ -28,11 +30,12 @@ resulting compiler diagnostics.
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
 - **Outcome**: The build now clears the earlier enum-related pedantic errors but
   still stops in the shared headers. Strict C90 mode rejects the remaining
-  variadic logging shims, the packed-structure assertions, the compound literal
-  helpers in `machine.h`, the `NODE_STATE_*` macros, several unused-parameter
-  stubs (including the FS/GS base accessors), inline specifier ordering in the
-  PC99 IRQ helpers, and the lingering missing return in
-  `setMRs_lookup_failure`.
+  variadic logging shims, the packed-structure assertions, the `NODE_STATE_*`
+  macros, several unused-parameter stubs (including the FS/GS base accessors),
+  declaration-after-statement violations in the interrupt helpers, inline
+  specifier ordering in the PC99 IRQ helpers, the always-true comparison in
+  `maskInterrupt`, the inline assembly that subscripts temporaries, and the
+  lingering missing return in `setMRs_lookup_failure`.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -100,9 +103,9 @@ resulting compiler diagnostics.
   - [x] extend the enumeration cleanup to the remaining pedantic offenders
     surfaced by the latest build (e.g. `X86_MappingVSpace`, `irqInvalid`, and
     the `thread_control_update` flags).
-  - revisit the packing assertions in the PC99 ACPI/GDT helpers now that the
+  - [ ] revisit the packing assertions in the PC99 ACPI/GDT helpers now that the
     attribute shims collapse under C90.
-  - replace compound literals and designated initialisers in
+  - [x] replace compound literals and designated initialisers in
     `include/machine.h` with explicit temporaries to satisfy C90.
   - normalise the `NODE_STATE_*` macros so they do not expand to stray
     semicolons.
