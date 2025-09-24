@@ -23,7 +23,7 @@ resulting compiler diagnostics.
       emit pedantic diagnostics under strict C90.
     - [x] Give the mode-specific cap helpers and page-size queries explicit
       return paths now that the attribute shims collapse under C89.
-    - [ ] Silence the x86 fault stubs by casting their unused parameters and
+    - [x] Silence the x86 fault stubs by casting their unused parameters and
       returning explicit values for the pedantic C90 build.
   - [x] Replace the compound literal helpers in `machine.h` with explicit
     temporaries.
@@ -65,10 +65,14 @@ resulting compiler diagnostics.
 
   Casting the unused mode parameters to `(void)` and giving each helper an
   explicit return path satisfies the pedantic warnings, allowing the strict
-  build to continue into the x86 fault shims. The remaining blockers now live
-  in `src/arch/x86/api/faults.c`, where `Arch_handleFaultReply` and
-  `Arch_setMRs_fault` both drop parameters on the floor and lack explicit
-  return statements once the attribute shims collapse.
+  build to continue into the x86 fault shims. The remaining blockers previously
+  lived in `src/arch/x86/api/faults.c`, where `Arch_handleFaultReply` and
+  `Arch_setMRs_fault` both dropped parameters on the floor and lacked explicit
+  return statements once the attribute shims collapsed. Casting the unused
+  arguments to `(void)` and adding explicit return values lets the pedantic C90
+  build move past the fault wrappers and into the benchmark stubs, where the
+  generated translation unit for `src/arch/x86/benchmark/benchmark.c` now
+  reduces to an empty file and is rejected under `-Wpedantic`.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -93,14 +97,14 @@ resulting compiler diagnostics.
 4. **Unused parameter clean-ups** *(progress)*: Architecture stubs rely on the
    compiler to discard unused parameters via attributes; once those attributes
    collapse under C89, the warnings become hard errors. Most helpers now cast
-   their unused arguments to `(void)`, but the x86 fault reply/setMR stubs still
-   need the same treatment.
-   - *Potential remedies*: cast parameters to `(void)` or reintroduce
-     conditional attribute shims that keep the compiler quiet.
+   their unused arguments to `(void)`, and the x86 fault reply/setMR stubs now
+   do the same so they compile cleanly under the pedantic build.
+   - *Potential remedies*: continue casting parameters to `(void)` or
+     reintroduce conditional attribute shims that keep the compiler quiet.
 5. **Control-flow expectations** *(progress)*: Several helpers need explicit
-   returns under the stricter warning set. `setMRs_lookup_failure` and the
-   mode-specific cap helpers now return explicit values, but the x86 fault
-   wrappers still fall off the end once the attribute shims collapse.
+   returns under the stricter warning set. `setMRs_lookup_failure`, the
+   mode-specific cap helpers, and the x86 fault wrappers now return explicit
+   values so the compiler can prove a value is always produced.
    - *Potential remedies*: add explicit returns or refactor the control flow so
      that the compiler can prove a value is always produced.
 6. **Kernel/libsel4 type duplication** *(resolved)*: both the kernel headers
@@ -194,8 +198,11 @@ resulting compiler diagnostics.
           architecture-specific cases compile away.
     - [x] Add a fallback return path to `pageBitsForSize` so the helper remains
           well-defined once the large-page cases are disabled.
-    - [ ] Silence the x86 fault reply/setMR stubs so they cast unused arguments
+    - [x] Silence the x86 fault reply/setMR stubs so they cast unused arguments
           and return explicit results under pedantic C90.
+- [ ] Provide a benign definition in the x86 benchmarking stubs so the strict
+  build no longer rejects the empty translation unit emitted by
+  `src/arch/x86/benchmark/benchmark.c`.
 - [ ] Teach the generated capDL wrapper sources to emit a benign definition
         when no kernel objects are present so the strict build no longer flags
         the empty translation unit under `-Wpedantic`.
