@@ -14,9 +14,9 @@ typedef struct seL4_CNode_CapData seL4_CNode_CapData_t;
 static inline uint64_t CONST
 seL4_CNode_CapData_get_guard(seL4_CNode_CapData_t seL4_CNode_CapData) {
     uint64_t ret;
-    ret = (seL4_CNode_CapData.words[0] & 0xffffffffffffffc0ull) >> 6;
+    ret = (seL4_CNode_CapData.words[0] & ULL_CONST(0xffffffffffffffc0)) >> 6;
     /* Possibly sign extend */
-    if (__builtin_expect(!!(0 && (ret & (1ull << (63)))), 0)) {
+    if (__builtin_expect(!!(0 && (ret & (ULL_CONST(1) << (63)))), 0)) {
         ret |= 0x0;
     }
     return ret;
@@ -25,9 +25,9 @@ seL4_CNode_CapData_get_guard(seL4_CNode_CapData_t seL4_CNode_CapData) {
 static inline uint64_t CONST
 seL4_CNode_CapData_get_guardSize(seL4_CNode_CapData_t seL4_CNode_CapData) {
     uint64_t ret;
-    ret = (seL4_CNode_CapData.words[0] & 0x3full) >> 0;
+    ret = (seL4_CNode_CapData.words[0] & ULL_CONST(0x3f)) >> 0;
     /* Possibly sign extend */
-    if (__builtin_expect(!!(0 && (ret & (1ull << (63)))), 0)) {
+    if (__builtin_expect(!!(0 && (ret & (ULL_CONST(1) << (63)))), 0)) {
         ret |= 0x0;
     }
     return ret;
@@ -41,9 +41,9 @@ typedef struct seL4_CapRights seL4_CapRights_t;
 static inline uint64_t CONST
 seL4_CapRights_get_capAllowGrantReply(seL4_CapRights_t seL4_CapRights) {
     uint64_t ret;
-    ret = (seL4_CapRights.words[0] & 0x8ull) >> 3;
+    ret = (seL4_CapRights.words[0] & ULL_CONST(0x8)) >> 3;
     /* Possibly sign extend */
-    if (__builtin_expect(!!(0 && (ret & (1ull << (63)))), 0)) {
+    if (__builtin_expect(!!(0 && (ret & (ULL_CONST(1) << (63)))), 0)) {
         ret |= 0x0;
     }
     return ret;
@@ -52,9 +52,9 @@ seL4_CapRights_get_capAllowGrantReply(seL4_CapRights_t seL4_CapRights) {
 static inline uint64_t CONST
 seL4_CapRights_get_capAllowGrant(seL4_CapRights_t seL4_CapRights) {
     uint64_t ret;
-    ret = (seL4_CapRights.words[0] & 0x4ull) >> 2;
+    ret = (seL4_CapRights.words[0] & ULL_CONST(0x4)) >> 2;
     /* Possibly sign extend */
-    if (__builtin_expect(!!(0 && (ret & (1ull << (63)))), 0)) {
+    if (__builtin_expect(!!(0 && (ret & (ULL_CONST(1) << (63)))), 0)) {
         ret |= 0x0;
     }
     return ret;
@@ -63,9 +63,9 @@ seL4_CapRights_get_capAllowGrant(seL4_CapRights_t seL4_CapRights) {
 static inline uint64_t CONST
 seL4_CapRights_get_capAllowRead(seL4_CapRights_t seL4_CapRights) {
     uint64_t ret;
-    ret = (seL4_CapRights.words[0] & 0x2ull) >> 1;
+    ret = (seL4_CapRights.words[0] & ULL_CONST(0x2)) >> 1;
     /* Possibly sign extend */
-    if (__builtin_expect(!!(0 && (ret & (1ull << (63)))), 0)) {
+    if (__builtin_expect(!!(0 && (ret & (ULL_CONST(1) << (63)))), 0)) {
         ret |= 0x0;
     }
     return ret;
@@ -74,9 +74,9 @@ seL4_CapRights_get_capAllowRead(seL4_CapRights_t seL4_CapRights) {
 static inline uint64_t CONST
 seL4_CapRights_get_capAllowWrite(seL4_CapRights_t seL4_CapRights) {
     uint64_t ret;
-    ret = (seL4_CapRights.words[0] & 0x1ull) >> 0;
+    ret = (seL4_CapRights.words[0] & ULL_CONST(0x1)) >> 0;
     /* Possibly sign extend */
-    if (__builtin_expect(!!(0 && (ret & (1ull << (63)))), 0)) {
+    if (__builtin_expect(!!(0 && (ret & (ULL_CONST(1) << (63)))), 0)) {
         ret |= 0x0;
     }
     return ret;
@@ -92,16 +92,16 @@ seL4_MessageInfo_new(uint64_t label, uint64_t capsUnwrapped, uint64_t extraCaps,
     seL4_MessageInfo_t seL4_MessageInfo;
 
     /* fail if user has passed bits that we will override */  
-    assert((label & ~0xfffffffffffffull) == ((0 && (label & (1ull << 63))) ? 0x0 : 0));  
-    assert((capsUnwrapped & ~0x7ull) == ((0 && (capsUnwrapped & (1ull << 63))) ? 0x0 : 0));  
-    assert((extraCaps & ~0x3ull) == ((0 && (extraCaps & (1ull << 63))) ? 0x0 : 0));  
-    assert((length & ~0x7full) == ((0 && (length & (1ull << 63))) ? 0x0 : 0));
+    assert((label & ~ULL_CONST(0xfffffffffffff)) == ((0 && (label & (ULL_CONST(1) << 63))) ? 0x0 : 0));  
+    assert((capsUnwrapped & ~ULL_CONST(0x7)) == ((0 && (capsUnwrapped & (ULL_CONST(1) << 63))) ? 0x0 : 0));  
+    assert((extraCaps & ~ULL_CONST(0x3)) == ((0 && (extraCaps & (ULL_CONST(1) << 63))) ? 0x0 : 0));  
+    assert((length & ~ULL_CONST(0x7f)) == ((0 && (length & (ULL_CONST(1) << 63))) ? 0x0 : 0));
 
     seL4_MessageInfo.words[0] = 0
-        | (label & 0xfffffffffffffull) << 12
-        | (capsUnwrapped & 0x7ull) << 9
-        | (extraCaps & 0x3ull) << 7
-        | (length & 0x7full) << 0;
+        | (label & ULL_CONST(0xfffffffffffff)) << 12
+        | (capsUnwrapped & ULL_CONST(0x7)) << 9
+        | (extraCaps & ULL_CONST(0x3)) << 7
+        | (length & ULL_CONST(0x7f)) << 0;
 
     return seL4_MessageInfo;
 }
@@ -109,9 +109,9 @@ seL4_MessageInfo_new(uint64_t label, uint64_t capsUnwrapped, uint64_t extraCaps,
 static inline uint64_t CONST
 seL4_MessageInfo_get_label(seL4_MessageInfo_t seL4_MessageInfo) {
     uint64_t ret;
-    ret = (seL4_MessageInfo.words[0] & 0xfffffffffffff000ull) >> 12;
+    ret = (seL4_MessageInfo.words[0] & ULL_CONST(0xfffffffffffff000)) >> 12;
     /* Possibly sign extend */
-    if (__builtin_expect(!!(0 && (ret & (1ull << (63)))), 0)) {
+    if (__builtin_expect(!!(0 && (ret & (ULL_CONST(1) << (63)))), 0)) {
         ret |= 0x0;
     }
     return ret;
@@ -120,9 +120,9 @@ seL4_MessageInfo_get_label(seL4_MessageInfo_t seL4_MessageInfo) {
 static inline uint64_t CONST
 seL4_MessageInfo_get_capsUnwrapped(seL4_MessageInfo_t seL4_MessageInfo) {
     uint64_t ret;
-    ret = (seL4_MessageInfo.words[0] & 0xe00ull) >> 9;
+    ret = (seL4_MessageInfo.words[0] & ULL_CONST(0xe00)) >> 9;
     /* Possibly sign extend */
-    if (__builtin_expect(!!(0 && (ret & (1ull << (63)))), 0)) {
+    if (__builtin_expect(!!(0 && (ret & (ULL_CONST(1) << (63)))), 0)) {
         ret |= 0x0;
     }
     return ret;
@@ -131,18 +131,18 @@ seL4_MessageInfo_get_capsUnwrapped(seL4_MessageInfo_t seL4_MessageInfo) {
 static inline seL4_MessageInfo_t CONST
 seL4_MessageInfo_set_capsUnwrapped(seL4_MessageInfo_t seL4_MessageInfo, uint64_t v64) {
     /* fail if user has passed bits that we will override */
-    assert((((~0xe00ull >> 9 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0));
-    seL4_MessageInfo.words[0] &= ~0xe00ull;
-    seL4_MessageInfo.words[0] |= (v64 << 9) & 0xe00ull;
+    assert((((~ULL_CONST(0xe00) >> 9 ) | 0x0) & v64) == ((0 && (v64 & (ULL_CONST(1) << (63)))) ? 0x0 : 0));
+    seL4_MessageInfo.words[0] &= ~ULL_CONST(0xe00);
+    seL4_MessageInfo.words[0] |= (v64 << 9) & ULL_CONST(0xe00);
     return seL4_MessageInfo;
 }
 
 static inline uint64_t CONST
 seL4_MessageInfo_get_extraCaps(seL4_MessageInfo_t seL4_MessageInfo) {
     uint64_t ret;
-    ret = (seL4_MessageInfo.words[0] & 0x180ull) >> 7;
+    ret = (seL4_MessageInfo.words[0] & ULL_CONST(0x180)) >> 7;
     /* Possibly sign extend */
-    if (__builtin_expect(!!(0 && (ret & (1ull << (63)))), 0)) {
+    if (__builtin_expect(!!(0 && (ret & (ULL_CONST(1) << (63)))), 0)) {
         ret |= 0x0;
     }
     return ret;
@@ -151,18 +151,18 @@ seL4_MessageInfo_get_extraCaps(seL4_MessageInfo_t seL4_MessageInfo) {
 static inline seL4_MessageInfo_t CONST
 seL4_MessageInfo_set_extraCaps(seL4_MessageInfo_t seL4_MessageInfo, uint64_t v64) {
     /* fail if user has passed bits that we will override */
-    assert((((~0x180ull >> 7 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0));
-    seL4_MessageInfo.words[0] &= ~0x180ull;
-    seL4_MessageInfo.words[0] |= (v64 << 7) & 0x180ull;
+    assert((((~ULL_CONST(0x180) >> 7 ) | 0x0) & v64) == ((0 && (v64 & (ULL_CONST(1) << (63)))) ? 0x0 : 0));
+    seL4_MessageInfo.words[0] &= ~ULL_CONST(0x180);
+    seL4_MessageInfo.words[0] |= (v64 << 7) & ULL_CONST(0x180);
     return seL4_MessageInfo;
 }
 
 static inline uint64_t CONST
 seL4_MessageInfo_get_length(seL4_MessageInfo_t seL4_MessageInfo) {
     uint64_t ret;
-    ret = (seL4_MessageInfo.words[0] & 0x7full) >> 0;
+    ret = (seL4_MessageInfo.words[0] & ULL_CONST(0x7f)) >> 0;
     /* Possibly sign extend */
-    if (__builtin_expect(!!(0 && (ret & (1ull << (63)))), 0)) {
+    if (__builtin_expect(!!(0 && (ret & (ULL_CONST(1) << (63)))), 0)) {
         ret |= 0x0;
     }
     return ret;
@@ -171,9 +171,9 @@ seL4_MessageInfo_get_length(seL4_MessageInfo_t seL4_MessageInfo) {
 static inline seL4_MessageInfo_t CONST
 seL4_MessageInfo_set_length(seL4_MessageInfo_t seL4_MessageInfo, uint64_t v64) {
     /* fail if user has passed bits that we will override */
-    assert((((~0x7full >> 0 ) | 0x0) & v64) == ((0 && (v64 & (1ull << (63)))) ? 0x0 : 0));
-    seL4_MessageInfo.words[0] &= ~0x7full;
-    seL4_MessageInfo.words[0] |= (v64 << 0) & 0x7full;
+    assert((((~ULL_CONST(0x7f) >> 0 ) | 0x0) & v64) == ((0 && (v64 & (ULL_CONST(1) << (63)))) ? 0x0 : 0));
+    seL4_MessageInfo.words[0] &= ~ULL_CONST(0x7f);
+    seL4_MessageInfo.words[0] |= (v64 << 0) & ULL_CONST(0x7f);
     return seL4_MessageInfo;
 }
 

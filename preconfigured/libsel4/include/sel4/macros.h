@@ -9,6 +9,38 @@
 #include <sel4/config.h>
 #include <sel4/compiler.h>
 
+#ifndef SEL4_PASTE
+#define SEL4_PASTE(a, b) a ## b
+#endif
+
+#ifndef SEL4_STRINGIFY_HELPER
+#define SEL4_STRINGIFY_HELPER(x) #x
+#endif
+
+#ifndef SEL4_STRINGIFY
+#define SEL4_STRINGIFY(x) SEL4_STRINGIFY_HELPER(x)
+#endif
+
+#ifdef __ASSEMBLER__
+#ifndef UL_CONST
+#define UL_CONST(x) x
+#endif
+#ifndef ULL_CONST
+#define ULL_CONST(x) x
+#endif
+#else
+#ifndef UL_CONST
+#define UL_CONST(x) SEL4_PASTE(x, ul)
+#endif
+#ifndef ULL_CONST
+#if CONFIG_WORD_SIZE == 64
+#define ULL_CONST(x) SEL4_PASTE(x, ul)
+#else
+#define ULL_CONST(x) SEL4_PASTE(x, llu)
+#endif
+#endif
+#endif
+
 #ifndef CONST
 #define CONST   SEL4_CONST_ATTR
 #endif

@@ -14,6 +14,8 @@ resulting compiler diagnostics.
   - [x] Introduce compatibility shims for inline and attribute annotations.
   - [x] Replace obvious C99-only integer literals in shared headers with
     portable constructors.
+  - [x] Route the generated capability tables and x86 helpers through the new
+    portable constant macros.
   - [ ] Address the remaining diagnostics reported by the strict build.
 
 ## Build Attempt Summary
@@ -51,8 +53,13 @@ resulting compiler diagnostics.
      that the compiler can prove a value is always produced.
 
 ## Next Steps
-- Extend the new portable constant helpers to the generated capability tables
-  and x86 machine helpers that still rely on `ULL` literals.
+- Replace the remaining C99 constructs uncovered by the latest strict build
+  run:
+  - Drop the C++-style comments emitted in the generated wrapper sources.
+  - Provide C89-friendly definitions for the 64-bit typedefs and helpers in
+    `stdint.h`/`util.h` so they no longer rely on `long long`.
+  - Resolve the duplicated seL4 basic types between `simple_types.h` and the
+    shared kernel headers.
 - Rework the PC99 interrupt helpers so that the generated statements avoid
   declaration-after-statement issues and variadic macro misuse under strict C90.
 - Audit architecture helpers for unused parameters and modern inline idioms

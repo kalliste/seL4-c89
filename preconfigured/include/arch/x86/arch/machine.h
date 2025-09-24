@@ -12,6 +12,7 @@
 #include <arch/machine/hardware.h>
 #include <arch/machine/pat.h>
 #include <arch/machine/cpu_registers.h>
+#include <util.h>
 #include <model/statedata.h>
 #include <arch/model/statedata.h>
 #include <object/interrupt.h>
@@ -117,7 +118,7 @@ static inline uint32_t x86_rdmsr_low(const uint32_t reg)
 
 static inline uint32_t x86_rdmsr_high(const uint32_t reg)
 {
-    return (uint32_t)(x86_rdmsr(reg) >> 32ull);
+    return (uint32_t)(x86_rdmsr(reg) >> ULL_CONST(32));
 }
 
 /* Write model specific register */
@@ -193,7 +194,7 @@ static inline uint64_t x86_rdtsc(void)
                  : "=a"(lo),
                  "=d"(hi)
                 );
-    return ((uint64_t) hi) << 32llu | (uint64_t) lo;
+    return ((uint64_t) hi) << ULL_CONST(32) | (uint64_t) lo;
 }
 
 #ifdef ENABLE_SMP_SUPPORT
