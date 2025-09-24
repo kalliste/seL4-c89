@@ -354,7 +354,7 @@ json_parse(const unsigned char **ucp, const unsigned char *ue,
 	if (uc == ue)
 		goto out;
 
-	// Avoid recursion
+	/* Avoid recursion */
 	if (lvl > 500) {
 		DPRINTF("Too many levels", uc, *ucp);
 		return 0;

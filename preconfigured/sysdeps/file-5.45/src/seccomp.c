@@ -71,7 +71,7 @@ enable_sandbox_basic(void)
 	if (prctl(PR_SET_DUMPABLE, 0, 0, 0, 0) == -1)
 		return -1;
 
-	// initialize the filter
+	/* initialize the filter */
 	ctx = seccomp_init(SCMP_ACT_ALLOW);
 	if (ctx == NULL)
 	    return 1;
@@ -130,16 +130,16 @@ enable_sandbox_basic(void)
 	DENY_RULE(uselib);
 	DENY_RULE(vmsplice);
 
-	// blocking dangerous syscalls that file should not need
+	/* blocking dangerous syscalls that file should not need */
 	DENY_RULE (execve);
 	DENY_RULE (socket);
-	// ...
+	/* ... */
 
 
-	// applying filter...
+	/* applying filter... */
 	if (seccomp_load (ctx) == -1)
 		goto out;
-	// free ctx after the filter has been loaded into the kernel
+	/* free ctx after the filter has been loaded into the kernel */
 	seccomp_release(ctx);
 	return 0;
 
@@ -153,15 +153,15 @@ int
 enable_sandbox_full(void)
 {
 
-	// prevent child processes from getting more priv e.g. via setuid,
-	// capabilities, ...
+	/* prevent child processes from getting more priv e.g. via setuid, */
+	/* capabilities, ... */
 	if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) == -1)
 		return -1;
 
 	if (prctl(PR_SET_DUMPABLE, 0, 0, 0, 0) == -1)
 		return -1;
 
-	// initialize the filter
+	/* initialize the filter */
 	ctx = seccomp_init(SCMP_ACT_KILL);
 	if (ctx == NULL)
 		return -1;
@@ -190,15 +190,15 @@ enable_sandbox_full(void)
 	ALLOW_RULE(getdents64);
 #endif
 #ifdef FIONREAD
-	// called in src/compress.c under sread
+	/* called in src/compress.c under sread */
 	ALLOW_IOCTL_RULE(FIONREAD);
 #endif
 #ifdef TIOCGWINSZ
-	// musl libc may call ioctl TIOCGWINSZ on stdout
+	/* musl libc may call ioctl TIOCGWINSZ on stdout */
 	ALLOW_IOCTL_RULE(TIOCGWINSZ);
 #endif
 #ifdef TCGETS
-	// glibc may call ioctl TCGETS on stdout on physical terminal
+	/* glibc may call ioctl TCGETS on stdout on physical terminal */
 	ALLOW_IOCTL_RULE(TCGETS);
 #endif
 	ALLOW_RULE(lseek);
@@ -230,8 +230,8 @@ enable_sandbox_full(void)
 	ALLOW_RULE(statx);
 	ALLOW_RULE(stat64);
 	ALLOW_RULE(sysinfo);
-	ALLOW_RULE(umask);	// Used in file_pipe2file()
-	ALLOW_RULE(getpid);	// Used by glibc in file_pipe2file()
+	ALLOW_RULE(umask);	/* Used in file_pipe2file() */
+	ALLOW_RULE(getpid);	/* Used by glibc in file_pipe2file() */
 	ALLOW_RULE(unlink);
 	ALLOW_RULE(utimes);
 	ALLOW_RULE(write);
@@ -239,7 +239,7 @@ enable_sandbox_full(void)
 
 
 #if 0
-	// needed by valgrind
+	/* needed by valgrind */
 	ALLOW_RULE(gettid);
 	ALLOW_RULE(rt_sigtimedwait);
 #endif
@@ -275,15 +275,15 @@ enable_sandbox_full(void)
 		 goto out;
 #endif
 
-	// applying filter...
+	/* applying filter... */
 	if (seccomp_load(ctx) == -1)
 		goto out;
-	// free ctx after the filter has been loaded into the kernel
+	/* free ctx after the filter has been loaded into the kernel */
 	seccomp_release(ctx);
 	return 0;
 
 out:
-	// something went wrong
+	/* something went wrong */
 	seccomp_release(ctx);
 	return -1;
 }

@@ -299,7 +299,7 @@ file_zmagic(struct magic_set *ms, const struct buffer *b, const char *name)
 
 		/* Prevent SIGPIPE death if child dies unexpectedly */
 		if (!sa_saved) {
-			//We can use sig_act for both new and old, but
+			/* We can use sig_act for both new and old, but */
 			struct sigaction new_act;
 			memset(&new_act, 0, sizeof(new_act));
 			new_act.sa_handler = SIG_IGN;
@@ -789,9 +789,9 @@ uncompresslzlib(const unsigned char *old, unsigned char **newch,
 		goto err;
 
 	for (;;) {
-		// LZ_decompress_read() stops at member boundaries, so we may
-		// have more than one successful read after writing all data
-		// we have.
+		/* LZ_decompress_read() stops at member boundaries, so we may */
+		/* have more than one successful read after writing all data */
+		/* we have. */
 		if (old_remaining > 0) {
 			int wr = LZ_decompress_write(dec, old, old_remaining);
 			if (wr < 0)
@@ -913,7 +913,7 @@ handledesc(void *v, int fd, int fdp[3][2])
 
 	file_clear_closexec(STDIN_FILENO);
 
-///FIXME: if one of the fdp[i][j] is 0 or 1, this can bomb spectacularly
+/* /FIXME: if one of the fdp[i][j] is 0 or 1, this can bomb spectacularly */
 	movedesc(v, STDOUT_FILENO, fdp[STDOUT_FILENO][1]);
 	if (fdp[STDOUT_FILENO][0] > 2)
 		closedesc(v, fdp[STDOUT_FILENO][0]);
@@ -1219,7 +1219,7 @@ wait_err:
 		goto wait_err;
 	}
 
-	closefd(fdp[STDIN_FILENO], 0); //why? it is already closed here!
+	closefd(fdp[STDIN_FILENO], 0); /* why? it is already closed here! */
 	DPRINTF("Returning %p n=%" SIZE_T_FORMAT "u rv=%d\n", *newch, *n, rv);
 
 	return rv;

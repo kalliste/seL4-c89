@@ -685,14 +685,14 @@ const char *fmtcheck(const char *, const char *)
 #endif
 
 #ifdef HAVE_LIBSECCOMP
-// basic filter
-// this mode should not interfere with normal operations
-// only some dangerous syscalls are blacklisted
+/* basic filter */
+/* this mode should not interfere with normal operations */
+/* only some dangerous syscalls are blacklisted */
 int enable_sandbox_basic(void);
 
-// enhanced filter
-// this mode allows only the necessary syscalls used during normal operation
-// extensive testing required !!!
+/* enhanced filter */
+/* this mode allows only the necessary syscalls used during normal operation */
+/* extensive testing required !!! */
 int enable_sandbox_full(void);
 #endif
 

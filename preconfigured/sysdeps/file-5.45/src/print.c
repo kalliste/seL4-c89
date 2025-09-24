@@ -280,8 +280,8 @@ file_fmtdatetime(char *buf, size_t bsize, uint64_t v, int flags)
 		cdf_timestamp_to_timespec(&ts, CAST(cdf_timestamp_t, v));
 		t = ts.tv_sec;
 	} else {
-		// XXX: perhaps detect and print something if overflow
-		// on 32 bit time_t?
+		/* XXX: perhaps detect and print something if overflow */
+		/* on 32 bit time_t? */
 		t = CAST(time_t, v);
 	}
 
@@ -307,7 +307,7 @@ out:
 }
 
 /* 
- * https://docs.microsoft.com/en-us/windows/win32/api/winbase/\
+ * https:/* docs.microsoft.com/en-us/windows/win32/api/winbase/\ */
  *	nf-winbase-dosdatetimetofiletime?redirectedfrom=MSDN
  */
 file_protected const char *

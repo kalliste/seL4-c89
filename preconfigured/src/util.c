@@ -170,7 +170,7 @@ long PURE str_to_long(const char *str)
 
 /* Check some assumptions made by the clzl, clzll, ctzl functions: */
 compile_assert(clz_ulong_32_or_64, sizeof(unsigned long) == 4 || sizeof(unsigned long) == 8);
-compile_assert(clz_ullong_64, sizeof(unsigned long long) == 8);
+compile_assert(clz_uint64_width, sizeof(uint64_t) == 8);
 compile_assert(clz_word_size, sizeof(unsigned long) * 8 == CONFIG_WORD_SIZE);
 
 /* Count leading zeros. */

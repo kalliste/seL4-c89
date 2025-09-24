@@ -99,7 +99,7 @@ file_checkfmt(char *msg, size_t mlen, const char *fmt)
 			continue;
 		if (*++p == '%')
 			continue;
-		// Skip uninteresting.
+		/* Skip uninteresting. */
 		while (strchr("#0.'+- ", *p) != NULL)
 			p++;
 		if (*p == '*') {
@@ -676,7 +676,7 @@ check_regex(struct magic_set *ms, const char *pat)
 
 	for (p = pat; *p; p++) {
 		unsigned char c = *p;
-		// Avoid repetition
+		/* Avoid repetition */
 		if (c == oc && strchr("?*+{", c) != NULL) {
 			size_t len = strlen(pat);
 			file_magwarn(ms,
@@ -687,7 +687,7 @@ check_regex(struct magic_set *ms, const char *pat)
 		}
 		oc = c;
 		if (isprint(c) || isspace(c) || c == '\b'
-		    || c == 0x8a) // XXX: apple magic fixme
+		    || c == 0x8a) /* XXX: apple magic fixme */
 			continue;
 		size_t len = strlen(pat);
 		file_magwarn(ms,

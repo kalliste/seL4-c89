@@ -33,11 +33,7 @@
 #define UL_CONST(x) SEL4_PASTE(x, ul)
 #endif
 #ifndef ULL_CONST
-#if CONFIG_WORD_SIZE == 64
 #define ULL_CONST(x) SEL4_PASTE(x, ul)
-#else
-#define ULL_CONST(x) SEL4_PASTE(x, llu)
-#endif
 #endif
 #endif
 
