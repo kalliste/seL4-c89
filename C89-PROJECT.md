@@ -238,7 +238,7 @@ non-empty, so the pedantic build now advances to the next blocker.
           well-defined once the large-page cases are disabled.
     - [x] Silence the x86 fault reply/setMR stubs so they cast unused arguments
           and return explicit results under pedantic C90.
-- [ ] Provide a benign definition in the x86 benchmarking stubs so the strict
+- [x] Provide a benign definition in the x86 benchmarking stubs so the strict
   build no longer rejects the empty translation unit emitted by
   `src/arch/x86/benchmark/benchmark.c`.
 - [ ] Provide a benign definition in the x86 EPT stubs so the strict build no
@@ -247,6 +247,14 @@ non-empty, so the pedantic build now advances to the next blocker.
 - [ ] Teach the generated capDL wrapper sources to emit a benign definition
         when no kernel objects are present so the strict build no longer flags
         the empty translation unit under `-Wpedantic`.
+- Tackle the kernel boot initialisation helpers surfaced by the latest strict
+  build run:
+  - [ ] Replace the compound literal helpers and designated initialisers in
+        `kernel/boot.c` and the shared `REG_EMPTY`/`S_REG_EMPTY` macros with
+        explicit temporaries that satisfy C90.
+  - [ ] Hoist the loop indices, temporaries, and compile-time assertions in
+        `kernel/boot.c` so the reservation and boot-info helpers no longer
+        declare variables after statements or inside `for` initialisers.
 - [x] Tidy the x86 boot initialisation so it satisfies strict C90:
   - [x] Rework the IRQ range checks in `init_irqs` to avoid always-true
         unsigned comparisons.

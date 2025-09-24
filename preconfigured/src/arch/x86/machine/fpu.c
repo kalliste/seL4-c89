@@ -38,6 +38,7 @@ BOOT_CODE bool_t Arch_initFpu(void)
         uint64_t xsave_features;
         uint32_t xsave_instruction;
         uint64_t desired_features = config_ternary(CONFIG_XSAVE, CONFIG_XSAVE_FEATURE_SET, 1);
+        unsigned int mxcsr;
 
         /* check for XSAVE support */
         if (!(x86_cpuid_ecx(1, 0) & BIT(26))) {
@@ -49,7 +50,9 @@ BOOT_CODE bool_t Arch_initFpu(void)
         /* check feature mask */
         xsave_features = ((uint64_t)x86_cpuid_edx(0x0d, 0x0) << 32) | x86_cpuid_eax(0x0d, 0x0);
         if ((xsave_features & desired_features) != desired_features) {
-            printf("Requested feature mask is 0x%llx, but only 0x%llx supported\n", desired_features, (long long)xsave_features);
+            printf("Requested feature mask is 0x%lx, but only 0x%lx supported\n",
+                   (unsigned long)desired_features,
+                   (unsigned long)xsave_features);
             return false;
         }
         /* enable feature mask */
@@ -83,7 +86,7 @@ BOOT_CODE bool_t Arch_initFpu(void)
             }
         }
         /* Init MXCSR */
-        unsigned int mxcsr = MXCSR_INIT_VALUE;
+        mxcsr = MXCSR_INIT_VALUE;
         asm volatile("ldmxcsr %0" :: "m"(mxcsr));
     }
     return true;

@@ -118,6 +118,9 @@ exception_t decodeX86PortControlInvocation(
     lookupSlot_ret_t lu_ret;
     exception_t status;
 
+    (void)cptr;
+    (void)cap;
+
     if (invLabel != X86IOPortControlIssue) {
         userError("IOPortControl: Unknown operation.");
         current_syscall_error.type = seL4_IllegalOperation;
@@ -186,9 +189,12 @@ static exception_t invokeX86PortIn(word_t invLabel, uint16_t port, bool_t call)
     }
 
     if (call) {
-        word_t *ipcBuffer = lookupIPCBuffer(true, thread);
+        word_t *ipcBuffer;
+        unsigned int length;
+
+        ipcBuffer = lookupIPCBuffer(true, thread);
         setRegister(thread, badgeRegister, 0);
-        unsigned int length = setMR(thread, ipcBuffer, 0, res);
+        length = setMR(thread, ipcBuffer, 0, res);
         setRegister(thread, msgInfoRegister, wordFromMessageInfo(
                         seL4_MessageInfo_new(0, 0, 0, length)));
     }
@@ -225,14 +231,19 @@ exception_t decodeX86PortInvocation(
 {
     exception_t ret = EXCEPTION_NONE;
 
+    (void)cptr;
+    (void)slot;
+
     if (invLabel == X86IOPortIn8 || invLabel == X86IOPortIn16 || invLabel == X86IOPortIn32) {
+        uint16_t port;
+
         if (length < 1) {
             userError("IOPort: Truncated message.");
             current_syscall_error.type = seL4_TruncatedMessage;
             return EXCEPTION_SYSCALL_ERROR;
         }
         /* Get the port the user is trying to read from. */
-        uint16_t port = getSyscallArg(0, buffer) & 0xffff;
+        port = getSyscallArg(0, buffer) & 0xffff;
         switch (invLabel) {
         case X86IOPortIn8:
             ret = ensurePortOperationAllowed(cap, port, 1);
@@ -250,6 +261,10 @@ exception_t decodeX86PortInvocation(
         setThreadState(NODE_STATE(ksCurThread), ThreadState_Restart);
         return invokeX86PortIn(invLabel, port, call);
     } else if (invLabel == X86IOPortOut8 || invLabel == X86IOPortOut16 || invLabel == X86IOPortOut32) {
+        uint16_t port;
+        seL4_Word raw_data;
+        uint32_t data;
+
         /* Ensure the incoming message is long enough for the write. */
         if (length < 2) {
             userError("IOPort Out: Truncated message.");
@@ -257,14 +272,14 @@ exception_t decodeX86PortInvocation(
             return EXCEPTION_SYSCALL_ERROR;
         }
         /* Get the port the user is trying to write to. */
-        uint16_t port = getSyscallArg(0, buffer) & 0xffff;
-        seL4_Word raw_data = getSyscallArg(1, buffer);
         /* We construct the value for data from raw_data based on the actual size of the port
            operation. This ensures that there is no 'random' user data left over in the value
            passed to invokeX86PortOut. Whilst invokeX86PortOut will ignore any extra data and
            cast down to the correct word size removing the extra here is currently relied upon
            for verification */
-        uint32_t data = 0;
+        port = getSyscallArg(0, buffer) & 0xffff;
+        raw_data = getSyscallArg(1, buffer);
+        data = 0;
 
         switch (invLabel) {
         case X86IOPortOut8:

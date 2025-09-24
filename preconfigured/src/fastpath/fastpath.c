@@ -29,6 +29,11 @@ void NORETURN fastpath_call(word_t cptr, word_t msgInfo)
     pde_t stored_hw_asid;
     word_t fault_type;
     dom_t dom;
+#ifndef CONFIG_KERNEL_MCS
+    cte_t *replySlot;
+    cte_t *callerSlot;
+    word_t replyCanGrant;
+#endif
 
     /* Get message info, length, and fault type. */
     info = messageInfoFromWord_raw(msgInfo);
@@ -206,13 +211,13 @@ void NORETURN fastpath_call(word_t cptr, word_t msgInfo)
     sc->scReply = reply;
 #else
     /* Get sender reply slot */
-    cte_t *replySlot = TCB_PTR_CTE_PTR(NODE_STATE(ksCurThread), tcbReply);
+    replySlot = TCB_PTR_CTE_PTR(NODE_STATE(ksCurThread), tcbReply);
 
     /* Get dest caller slot */
-    cte_t *callerSlot = TCB_PTR_CTE_PTR(dest, tcbCaller);
+    callerSlot = TCB_PTR_CTE_PTR(dest, tcbCaller);
 
     /* Insert reply cap */
-    word_t replyCanGrant = thread_state_ptr_get_blockingIPCCanGrant(&dest->tcbState);;
+    replyCanGrant = thread_state_ptr_get_blockingIPCCanGrant(&dest->tcbState);
     cap_reply_cap_ptr_new_np(&callerSlot->cap, replyCanGrant, 0,
                              TCB_REF(NODE_STATE(ksCurThread)));
     mdb_node_ptr_set_mdbPrev_np(&callerSlot->cteMDBNode, CTE_REF(replySlot));
@@ -255,6 +260,10 @@ void NORETURN fastpath_reply_recv(word_t cptr, word_t msgInfo)
     vspace_root_t *cap_pd;
     pde_t stored_hw_asid;
     dom_t dom;
+#ifndef CONFIG_KERNEL_MCS
+    cte_t *callerSlot;
+    cap_t callerCap;
+#endif
 
     /* Get message info and length */
     info = messageInfoFromWord_raw(msgInfo);
@@ -317,8 +326,8 @@ void NORETURN fastpath_reply_recv(word_t cptr, word_t msgInfo)
     caller = reply_ptr->replyTCB;
 #else
     /* Only reply if the reply cap is valid. */
-    cte_t *callerSlot = TCB_PTR_CTE_PTR(NODE_STATE(ksCurThread), tcbCaller);
-    cap_t callerCap = callerSlot->cap;
+    callerSlot = TCB_PTR_CTE_PTR(NODE_STATE(ksCurThread), tcbCaller);
+    callerCap = callerSlot->cap;
     if (unlikely(!fastpath_reply_cap_check(callerCap))) {
         slowpath(SysReplyRecv);
     }
@@ -729,6 +738,11 @@ void NORETURN fastpath_vm_fault(vm_fault_type_t type)
     word_t msgInfo;
     pde_t stored_hw_asid;
     dom_t dom;
+#ifndef CONFIG_KERNEL_MCS
+    cte_t *replySlot;
+    cte_t *callerSlot;
+    word_t replyCanGrant;
+#endif
 
     /* Get the fault handler endpoint */
 #ifdef CONFIG_KERNEL_MCS
@@ -872,13 +886,13 @@ void NORETURN fastpath_vm_fault(vm_fault_type_t type)
     sc->scReply = reply;
 #else
     /* Get sender reply slot */
-    cte_t *replySlot = TCB_PTR_CTE_PTR(NODE_STATE(ksCurThread), tcbReply);
+    replySlot = TCB_PTR_CTE_PTR(NODE_STATE(ksCurThread), tcbReply);
 
     /* Get dest caller slot */
-    cte_t *callerSlot = TCB_PTR_CTE_PTR(dest, tcbCaller);
+    callerSlot = TCB_PTR_CTE_PTR(dest, tcbCaller);
 
     /* Insert reply cap */
-    word_t replyCanGrant = thread_state_ptr_get_blockingIPCCanGrant(&dest->tcbState);;
+    replyCanGrant = thread_state_ptr_get_blockingIPCCanGrant(&dest->tcbState);
     cap_reply_cap_ptr_new_np(&callerSlot->cap, replyCanGrant, 0, TCB_REF(NODE_STATE(ksCurThread)));
     mdb_node_ptr_set_mdbPrev_np(&callerSlot->cteMDBNode, CTE_REF(replySlot));
     mdb_node_ptr_mset_mdbNext_mdbRevocable_mdbFirstBadged(&replySlot->cteMDBNode, CTE_REF(callerSlot), 1, 1);

@@ -1600,4 +1600,8 @@ void invept(ept_pml4e_t *ept_pml4)
     }
 }
 
-#endif
+#else /* !CONFIG_VTX */
+
+typedef int vcpu_c_translation_unit_is_not_empty;
+
+#endif /* CONFIG_VTX */

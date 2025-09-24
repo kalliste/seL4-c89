@@ -153,4 +153,8 @@ exception_t handle_SysBenchmarkResetAllThreadsUtilisation(void)
 
 #endif /* CONFIG_DEBUG_BUILD */
 #endif /* CONFIG_BENCHMARK_TRACK_UTILISATION */
+#else /* !CONFIG_ENABLE_BENCHMARKS */
+
+typedef int benchmark_c_translation_unit_is_not_empty;
+
 #endif /* CONFIG_ENABLE_BENCHMARKS */
