@@ -88,7 +88,6 @@ KERNEL_SOURCES=(
   "src/plat/pc99/machine/ioapic.c"
   "src/plat/pc99/machine/pic.c"
   "src/plat/pc99/machine/pit.c"
-  "src/smp/ipi.c"
   "src/smp/lock.c"
   "src/string.c"
   "src/util.c"
