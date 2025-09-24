@@ -88,6 +88,13 @@ memory walkers, C99-only compound literals and loop initialisers, late
 declarations (e.g. the `cpuid_007h_edx_t` temporary), and the need to refer to
 the `_start` symbol via an explicit declaration.
 
+Reworking the boot-time helpers to hoist their temporaries, replace the
+compound literals with named regions, and declare the kernel entry point
+explicitly lets `boot_sys.c` build cleanly under strict C90. The replay build
+now advances into `arch/x86/kernel/cmdline.c`, where the pedantic warning set
+reports that `parse_opt` and `parse_uint16_array` are both left unused when the
+command-line parsing tables compile away.
+
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
    machine shims still emit `ULL` and `LL` constants that trigger
@@ -229,15 +236,17 @@ the `_start` symbol via an explicit declaration.
   - [x] Hoist the boot-info bookkeeping locals, replace the designated
         initialiser used for `extra_bi_region`, and avoid declaration-after-
         statement warnings throughout `init_sys_state` and `init_cpu`.
-- [ ] Continue the boot-time cleanup by bringing `boot_sys.c` in line with
+- [x] Continue the boot-time cleanup by bringing `boot_sys.c` in line with
   strict C90:
-  - [ ] Compare the multiboot memory walkers against like-signed counters so
+  - [x] Compare the multiboot memory walkers against like-signed counters so
         the pedantic build accepts the loops.
-  - [ ] Replace the compound literals in the memory map helpers with explicit
+  - [x] Replace the compound literals in the memory map helpers with explicit
         temporaries and hoist the late declarations (e.g. the
         `cpuid_007h_edx_t` and multiboot mmap length locals).
-  - [ ] Rewrite the multiboot2 iterators without C99-style `for`
+  - [x] Rewrite the multiboot2 iterators without C99-style `for`
         initialisers and provide an explicit declaration for `_start` before
         it is referenced.
+- [ ] Silence the strict C90 warnings in `arch/x86/kernel/cmdline.c` so the
+  pedantic build no longer reports the unused command-line parsing helpers.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.
