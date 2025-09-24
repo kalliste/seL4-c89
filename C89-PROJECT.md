@@ -131,10 +131,12 @@ the executable statements lets `doReplyTransfer` and `schedule` satisfy C90's
 declaration rules, so the pedantic build now runs until the next blocker.
 
 Guarding `switchFpuOwner`'s CPU argument with a `(void)` cast when SMP support
-is absent lets the strict build progress into `src/machine/registerset.c`. The
-pedantic warning set now rejects the designated initialisers that expand from
-the syscall and exception message tables, so rewriting those arrays without
-bracket designators is the next compilation blocker.
+is absent lets the strict build progress into `src/machine/registerset.c`.
+Rewriting the syscall and exception message tables without designated
+initialisers clears that blocker, allowing the pedantic C90 build to reach
+`src/model/statedata.c`. The current failure reports stray semicolons from the
+`SMP_STATE_DEFINE` and `compile_assert` shims once SMP support is compiled out,
+so the node-state declarations need to be tidied next.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -265,9 +267,12 @@ bracket designators is the next compilation blocker.
 - [x] Provide a benign definition in the x86 benchmarking stubs so the strict
   build no longer rejects the empty translation unit emitted by
   `src/arch/x86/benchmark/benchmark.c`.
-- [ ] Rewrite the syscall and exception message tables in
+- [x] Rewrite the syscall and exception message tables in
   `src/machine/registerset.c` so they avoid the designated initialisers that
   pedantic C90 rejects.
+- [ ] Tidy the node-state declarations in `src/model/statedata.c` so the
+  pedantic C90 build no longer flags stray semicolons when the SMP shims
+  compile away.
 - [ ] Provide a benign definition in the x86 EPT stubs so the strict build no
   longer rejects the empty translation unit emitted by
   `src/arch/x86/kernel/ept.c` when VT-d is disabled.
