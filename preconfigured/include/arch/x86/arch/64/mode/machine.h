@@ -79,6 +79,8 @@ static inline paddr_t getCurrentUserVSpaceRoot(void)
 
 static inline void setCurrentCR3(cr3_t cr3, word_t preserve_translation)
 {
+    word_t cr3_word;
+
 #ifdef CONFIG_KERNEL_SKIM_WINDOW
     /* we should only ever be enabling the kernel window, as the bulk of the
      * cr3 loading when using the SKIM window will happen on kernel entry/exit
@@ -87,7 +89,7 @@ static inline void setCurrentCR3(cr3_t cr3, word_t preserve_translation)
 #else
     MODE_NODE_STATE(x64KSCurrentCR3) = cr3;
 #endif
-    word_t cr3_word = cr3.words[0];
+    cr3_word = cr3.words[0];
     if (config_set(CONFIG_SUPPORT_PCID)) {
         if (preserve_translation) {
             cr3_word |= BIT(63);
@@ -196,6 +198,7 @@ static inline void invalidateLocalPCID(word_t type, void *vaddr, asid_t asid)
 
 static inline void invalidateLocalTranslationSingle(vptr_t vptr)
 {
+    (void)vptr;
     /* As this may be used to invalidate global mappings by the kernel,
      * and as its only used in boot code, we can just invalidate
      * absolutely everything form the tlb */
@@ -284,6 +287,9 @@ static inline word_t x86_read_fs_base_impl(void)
 
 static inline void x86_save_fsgs_base(tcb_t *thread, cpu_id_t cpu)
 {
+    word_t cur_fs_base;
+    word_t cur_gs_base;
+
     /*
      * Store the FS and GS base registers.
      *
@@ -299,9 +305,9 @@ static inline void x86_save_fsgs_base(tcb_t *thread, cpu_id_t cpu)
         return;
     }
 #endif
-    word_t cur_fs_base = x86_read_fs_base(cpu);
+    cur_fs_base = x86_read_fs_base(cpu);
     setRegister(thread, FS_BASE, cur_fs_base);
-    word_t cur_gs_base = x86_read_gs_base(cpu);
+    cur_gs_base = x86_read_gs_base(cpu);
     setRegister(thread, GS_BASE, cur_gs_base);
 }
 

@@ -22,7 +22,10 @@ static inline word_t readTPIDR_EL2(void)
 
 #else
 
-static inline void writeTPIDR_EL2(word_t reg) {}
+static inline void writeTPIDR_EL2(word_t reg)
+{
+    (void)reg;
+}
 static inline word_t readTPIDR_EL2(void)
 {
     return 0;
@@ -31,7 +34,22 @@ static inline word_t readTPIDR_EL2(void)
 #endif /* End of CONFIG_ARM_HYPERVISOR_SUPPORT */
 
 /* used in other files without guards */
-static inline void setCurrentPDPL2(paddr_t pa) {}
-static inline void invalidateHypTLB(void) {}
-static inline void writeContextIDPL2(word_t pd_val) {}
-static inline void writeContextIDAndPD(word_t id, word_t pd_val) {}
+static inline void setCurrentPDPL2(paddr_t pa)
+{
+    (void)pa;
+}
+
+static inline void invalidateHypTLB(void)
+{
+}
+
+static inline void writeContextIDPL2(word_t pd_val)
+{
+    (void)pd_val;
+}
+
+static inline void writeContextIDAndPD(word_t id, word_t pd_val)
+{
+    (void)id;
+    (void)pd_val;
+}

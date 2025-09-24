@@ -33,11 +33,10 @@ resulting compiler diagnostics.
 - **Outcome**: The build now clears the earlier enum-related pedantic errors,
   the node-state fallout, and the PC99 interrupt helper issues. The strict C90
   run currently stops on the packed-structure assertions for the GDT/IDT pointer
-  and ACPI RSDP, unused-parameter diagnostics across the interrupt stubs (e.g.
-  `handleReservedIRQ`, the APIC helpers, and the FS/GS base accessors),
-  declaration-after-statement violations in the FS/GS save/restore helpers and
-  CR3 routines, and the inline assembly that still subscripts temporaries in the
-  translation invalidation paths.
+  and ACPI RSDP and the inline assembly that still subscripts temporaries in the
+  translation invalidation paths. The previous unused-parameter and declaration
+  ordering diagnostics in the interrupt helpers have been addressed by adding
+  explicit `(void)` casts and hoisting the local declarations.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -54,12 +53,14 @@ resulting compiler diagnostics.
    `__VA_ARGS__`, triggering strict C90 diagnostics. They now funnel through
    helper functions that keep the logging behaviour while remaining valid in
    C89 mode.
-3. **Modern C layout rules**: Several functions declare variables mid-block,
-   causing "mixed declarations and code" errors with C90.
-   - *Potential remedies*: hoist declarations to the top of the scope.
-4. **Unused parameter clean-ups**: Architecture stubs rely on the compiler to
-   discard unused parameters via attributes; once those attributes collapse
-   under C89, the warnings become hard errors.
+3. **Modern C layout rules** *(resolved)*: Several functions declared variables
+   mid-block, causing "mixed declarations and code" errors with C90. We hoisted
+   the locals in the interrupt and FS/GS helpers, and will continue to watch for
+   any remaining mixed declarations in later passes.
+4. **Unused parameter clean-ups** *(resolved)*: Architecture stubs rely on the
+   compiler to discard unused parameters via attributes; once those attributes
+   collapse under C89, the warnings become hard errors. We now cast the unused
+   arguments to `(void)` in the affected helpers so the strict build stays quiet.
    - *Potential remedies*: cast parameters to `(void)` or reintroduce
      conditional attribute shims that keep the compiler quiet.
 5. **Control-flow expectations**: Several helpers need explicit returns under
@@ -111,7 +112,7 @@ resulting compiler diagnostics.
     `include/machine.h` with explicit temporaries to satisfy C90.
   - [x] normalise the `NODE_STATE_*` macros so they do not expand to stray
     semicolons.
-  - [ ] Add `(void)` casts or other shims for the numerous unused parameters
+  - [x] Add `(void)` casts or other shims for the numerous unused parameters
     (e.g. the FS/GS base accessors, APIC helpers, and IRQ stubs) and reorder
     declarations that appear after executable statements in the interrupt and
     machine helpers.

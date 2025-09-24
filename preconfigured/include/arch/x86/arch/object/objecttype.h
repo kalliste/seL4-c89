@@ -43,6 +43,7 @@ void Arch_postCapDeletion(cap_t cap);
  */
 static inline CONST bool_t Arch_isIRQControlDescendant(cap_t cap)
 {
+    (void)cap;
     return false;
 }
 
@@ -51,5 +52,8 @@ static inline CONST bool_t Arch_isIRQControlDescendant(cap_t cap)
  */
 static inline CONST bool_t Arch_isMDBParentOf(cap_t cap_a, cap_t cap_b, bool_t firstBadged)
 {
+    (void)cap_a;
+    (void)cap_b;
+    (void)firstBadged;
     return true;
 }
