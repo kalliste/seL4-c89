@@ -51,9 +51,7 @@ resulting compiler diagnostics.
   The latest run also surfaced that the x86 register-set consistency checks were
   still written in the old `compile_assert(name, expr);` style. Dropping the
   trailing statement terminators lets the pedantic C90 build accept the
-  generated wrappers and carry on to the next failure in
-  `src/arch/x86/64/model/smp.c`, where the strict warnings now flag the empty
-  translation unit emitted when SMP support is disabled.
+  generated wrappers and carry on to the next failure.
 
   Providing a benign typedef in `smp.c` lets the pedantic build progress into
   the mode-specific object helpers. The strict warning set now reports that
@@ -70,9 +68,7 @@ resulting compiler diagnostics.
   `Arch_setMRs_fault` both dropped parameters on the floor and lacked explicit
   return statements once the attribute shims collapsed. Casting the unused
   arguments to `(void)` and adding explicit return values lets the pedantic C90
-  build move past the fault wrappers and into the benchmark stubs, where the
-  generated translation unit for `src/arch/x86/benchmark/benchmark.c` now
-  reduces to an empty file and is rejected under `-Wpedantic`.
+  build move past the fault wrappers.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86

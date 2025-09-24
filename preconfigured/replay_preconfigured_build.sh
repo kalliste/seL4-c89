@@ -34,7 +34,6 @@ KERNEL_SOURCES=(
   "src/arch/x86/64/object/objecttype.c"
   "src/arch/x86/64/smp/ipi.c"
   "src/arch/x86/api/faults.c"
-  "src/arch/x86/benchmark/benchmark.c"
   "src/arch/x86/c_traps.c"
   "src/arch/x86/idle.c"
   "src/arch/x86/kernel/apic.c"
