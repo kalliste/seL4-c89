@@ -24,6 +24,8 @@ void apic_ack_active_interrupt(void);
 
 static inline void handleReservedIRQ(irq_t irq)
 {
+    (void)irq;
+
 #ifdef CONFIG_IOMMU
     if (irq == irq_iommu) {
         vtd_handle_fault();
@@ -47,9 +49,11 @@ static inline void receivePendingIRQ(void)
 
 static inline interrupt_t servicePendingIRQ(void)
 {
+    interrupt_t ret;
+
     assert(ARCH_NODE_STATE(x86KScurInterrupt) == int_invalid);
     assert(ARCH_NODE_STATE(x86KSPendingInterrupt) != int_invalid);
-    interrupt_t ret = ARCH_NODE_STATE(x86KSPendingInterrupt);
+    ret = ARCH_NODE_STATE(x86KSPendingInterrupt);
     ARCH_NODE_STATE(x86KSPendingInterrupt) = int_invalid;
     return ret;
 }
@@ -108,7 +112,7 @@ static inline void handleSpuriousIRQ(void)
     /* do nothing */
 }
 
-static void inline updateIRQState(irq_t irq, x86_irq_state_t state)
+static inline void updateIRQState(irq_t irq, x86_irq_state_t state)
 {
     assert(irq <= maxIRQ);
     x86KSIRQState[irq] = state;
@@ -116,7 +120,7 @@ static void inline updateIRQState(irq_t irq, x86_irq_state_t state)
 
 static inline void maskInterrupt(bool_t disable, irq_t irq)
 {
-    if (irq >= irq_isa_min && irq <= irq_isa_max) {
+    if (irq <= irq_isa_max) {
         if (config_set(CONFIG_IRQ_PIC)) {
             pic_mask_irq(disable, irq);
         } else {
