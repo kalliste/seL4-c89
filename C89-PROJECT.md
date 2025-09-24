@@ -42,9 +42,7 @@ resulting compiler diagnostics.
   parameters unused and fell off the end without returning, and the generated
   cap accessor for the mapped ASID still needed an explicit return path. Those
   shims now hoist their declarations, cast their unused arguments, and return
-  explicit errors, allowing the pedantic build to reach the next blocker: the
-  generated `capdl_wrapper.c` translation unit triggers `-Wpedantic` because it
-  compiles down to an empty source file.
+  explicit errors, allowing the pedantic build to reach the next blocker.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86

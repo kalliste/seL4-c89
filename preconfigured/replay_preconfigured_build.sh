@@ -28,7 +28,6 @@ KERNEL_SOURCES=(
   "src/arch/x86/64/kernel/elf.c"
   "src/arch/x86/64/kernel/thread.c"
   "src/arch/x86/64/kernel/vspace.c"
-  "src/arch/x86/64/machine/capdl.c"
   "src/arch/x86/64/machine/registerset.c"
   "src/arch/x86/64/model/smp.c"
   "src/arch/x86/64/model/statedata.c"
@@ -154,6 +153,7 @@ cat "$ROOT_DIR"/preconfigured/tools/generate_kernel_wrappers_output.txt
 
 WRAPPER_OBJECTS=()
 for source in "${KERNEL_SOURCES[@]}"; do
+    echo "COMPILE ${source}"
     wrapper="${source%.c}_wrapper.c"
     obj="CMakeFiles/kernel.elf.dir/${wrapper}.obj"
     dep="${obj}.d"
@@ -162,7 +162,7 @@ for source in "${KERNEL_SOURCES[@]}"; do
     WRAPPER_OBJECTS+=("$obj")
 done
 
-printf '%s\n' "${WRAPPER_OBJECTS[@]}" > kernel_wrapper_objects.list
+# printf '%s\n' "${WRAPPER_OBJECTS[@]}" > kernel_wrapper_objects.list
 $CC --sysroot="$ROOT_DIR"/preconfigured/X64_verified  "${COMMON_GCC_ARGS[@]}" -I"$ROOT_DIR"/preconfigured/X64_verified/libsel4/autoconf -I"$ROOT_DIR"/preconfigured/X64_verified/libsel4/gen_config -m64 $CFLAGS -E -P -MD -MT libsel4/CMakeFiles/libsel4_sel4_arch_types_gen_pbf_temp_lib.dir/libsel4_sel4_arch_types_gen_pbf_temp.c.obj -MF libsel4/CMakeFiles/libsel4_sel4_arch_types_gen_pbf_temp_lib.dir/libsel4_sel4_arch_types_gen_pbf_temp.c.obj.d -o libsel4/CMakeFiles/libsel4_sel4_arch_types_gen_pbf_temp_lib.dir/libsel4_sel4_arch_types_gen_pbf_temp.c.obj -c "$ROOT_DIR"/preconfigured/X64_verified/libsel4/libsel4_sel4_arch_types_gen_pbf_temp.c
 # Kernel syscall header is checked in; header generation skipped
 $CC --sysroot="$ROOT_DIR"/preconfigured/X64_verified  "${COMMON_GCC_ARGS[@]}" -m64 $CFLAGS -E -CC -I"$ROOT_DIR"/preconfigured/X64_verified/generated_prune -MD -MT CMakeFiles/kernel_all_pp_prune_wrapper_temp_lib.dir/kernel_all_pp_prune_wrapper_temp.c.obj -MF CMakeFiles/kernel_all_pp_prune_wrapper_temp_lib.dir/kernel_all_pp_prune_wrapper_temp.c.obj.d -o CMakeFiles/kernel_all_pp_prune_wrapper_temp_lib.dir/kernel_all_pp_prune_wrapper_temp.c.obj -c "$ROOT_DIR"/preconfigured/X64_verified/kernel_all_pp_prune_wrapper_temp.c
