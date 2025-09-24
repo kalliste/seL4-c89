@@ -30,13 +30,17 @@ resulting compiler diagnostics.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
-- **Outcome**: The build now clears the earlier enum-related pedantic errors,
-  the node-state fallout, and the PC99 interrupt helper issues. The strict C90
-  run currently stops on the packed-structure assertions for the GDT/IDT pointer
-  and ACPI RSDP and the inline assembly that still subscripts temporaries in the
-  translation invalidation paths. The previous unused-parameter and declaration
-  ordering diagnostics in the interrupt helpers have been addressed by adding
-  explicit `(void)` casts and hoisting the local declarations.
+- **Outcome**: The latest replay confirms that the wrappers remain up to date
+  and that all of the earlier enum, node-state, and interrupt helper issues are
+  still resolved. The strict C90 run now halts on two fronts:
+  1. The packed-structure assertions for the GDT/IDT pointer shim and the ACPI
+     RSDP fail because the packing attributes collapse under C89, producing
+     negative-array diagnostics.
+  2. The translation invalidation helpers continue to subscript the temporary
+     returned by `makeCR3(...)`, triggering the "subscripting non-lvalue array"
+     pedantic error in the inline assembly.
+  No additional warnings surfaced in this pass, so the remaining blockers are
+  confined to these packing guarantees and the inline assembly temporaries.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -99,7 +103,7 @@ resulting compiler diagnostics.
 - [x] Tidy the libsel4 size/enumeration assertion macros so that
   `SEL4_SIZE_SANITY`, `SEL4_FORCE_LONG_ENUM`, and related helpers no longer
   emit pedantic diagnostics or trailing commas in strict C90 mode.
-- Catalogue the new diagnostics from the latest strict build run and plan the
+- Catalogue the diagnostics from the latest strict build run and plan the
   follow-up fixes:
   - [x] scrub trailing commas from kernel enumerations (`sel4/objecttype.h`,
     machine register sets, generated syscall tables).
@@ -107,7 +111,8 @@ resulting compiler diagnostics.
     surfaced by the latest build (e.g. `X86_MappingVSpace`, `irqInvalid`, and
     the `thread_control_update` flags).
   - [ ] revisit the packing assertions in the PC99 ACPI/GDT helpers now that the
-    attribute shims collapse under C90.
+    attribute shims collapse under C90, so the compile-time size checks no
+    longer fail under pedantic mode.
   - [x] replace compound literals and designated initialisers in
     `include/machine.h` with explicit temporaries to satisfy C90.
   - [x] normalise the `NODE_STATE_*` macros so they do not expand to stray
@@ -119,9 +124,9 @@ resulting compiler diagnostics.
 - [x] Rework the PC99 interrupt helpers so that the generated statements avoid
   declaration-after-statement issues, inline-specifier ordering problems,
   always-true comparisons, and variadic macro misuse under strict C90.
-- Adjust the CR3 and translation invalidation helpers so that inline assembly
-  operates on named temporaries instead of subscripting non-lvalue temporaries
-  under pedantic C90.
+- Adjust the CR3 and translation invalidation helpers so that the inline
+  assembly operates on named temporaries instead of subscripting the temporary
+  returned by `makeCR3(...)`, avoiding the pedantic C90 error.
 - [x] Make `setMRs_lookup_failure` return explicitly so the strict warnings stop
   flagging it as falling off the end.
 - Audit architecture helpers for unused parameters and modern inline idioms
