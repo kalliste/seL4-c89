@@ -69,7 +69,6 @@ KERNEL_SOURCES=(
   "src/kernel/faulthandler.c"
   "src/kernel/stack.c"
   "src/kernel/thread.c"
-  "src/machine/capdl.c"
   "src/machine/fpu.c"
   "src/machine/io.c"
   "src/machine/registerset.c"

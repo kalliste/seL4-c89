@@ -128,9 +128,7 @@ fault argument becomes unused once the attribute shims collapse.
 Casting that parameter to `(void)` quiets the stub and allows the strict build
 to progress into `src/kernel/thread.c`. Hoisting the reply-path locals out of
 the executable statements lets `doReplyTransfer` and `schedule` satisfy C90's
-declaration rules, so the pedantic build now runs until the generated capDL
-wrapper halts it with an "empty translation unit" error when no objects are
-present.
+declaration rules, so the pedantic build now runs until the next blocker.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
