@@ -95,6 +95,12 @@ now advances into `arch/x86/kernel/cmdline.c`, where the pedantic warning set
 reports that `parse_opt` and `parse_uint16_array` are both left unused when the
 command-line parsing tables compile away.
 
+Guarding those helpers behind the same `CONFIG_PRINTING`/`CONFIG_DEBUG_BUILD`
+predicates that reference them clears the pedantic warnings and lets the
+strict build continue. The next blocker appears in
+`arch/x86/kernel/ept.c`, where the generated wrapper collapses to an empty
+translation unit when VT-d support is disabled.
+
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
    machine shims still emit `ULL` and `LL` constants that trigger
@@ -224,6 +230,9 @@ command-line parsing tables compile away.
 - [ ] Provide a benign definition in the x86 benchmarking stubs so the strict
   build no longer rejects the empty translation unit emitted by
   `src/arch/x86/benchmark/benchmark.c`.
+- [ ] Provide a benign definition in the x86 EPT stubs so the strict build no
+  longer rejects the empty translation unit emitted by
+  `src/arch/x86/kernel/ept.c` when VT-d is disabled.
 - [ ] Teach the generated capDL wrapper sources to emit a benign definition
         when no kernel objects are present so the strict build no longer flags
         the empty translation unit under `-Wpedantic`.
@@ -246,7 +255,7 @@ command-line parsing tables compile away.
   - [x] Rewrite the multiboot2 iterators without C99-style `for`
         initialisers and provide an explicit declaration for `_start` before
         it is referenced.
-- [ ] Silence the strict C90 warnings in `arch/x86/kernel/cmdline.c` so the
+- [x] Silence the strict C90 warnings in `arch/x86/kernel/cmdline.c` so the
   pedantic build no longer reports the unused command-line parsing helpers.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.

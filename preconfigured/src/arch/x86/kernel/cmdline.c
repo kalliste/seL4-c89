@@ -29,6 +29,7 @@ static int is_space(char c)
     return c <= ' ';
 }
 
+#if defined(CONFIG_PRINTING) || defined(CONFIG_DEBUG_BUILD)
 static int UNUSED parse_opt(const char *cmdline, const char *opt, char *value, int bufsize)
 {
     int len = -1;
@@ -58,6 +59,7 @@ static int UNUSED parse_opt(const char *cmdline, const char *opt, char *value, i
 
     return len;
 }
+#endif
 
 static int parse_bool(const char *cmdline, const char *opt)
 {
@@ -79,6 +81,7 @@ static int parse_bool(const char *cmdline, const char *opt)
     }
 }
 
+#if defined(CONFIG_PRINTING) || defined(CONFIG_DEBUG_BUILD)
 static void UNUSED parse_uint16_array(char *str, uint16_t *array, int array_size)
 {
     char *last;
@@ -102,6 +105,7 @@ static void UNUSED parse_uint16_array(char *str, uint16_t *array, int array_size
         i++;
     }
 }
+#endif
 
 void cmdline_parse(const char *cmdline, cmdline_opt_t *cmdline_opt)
 {
