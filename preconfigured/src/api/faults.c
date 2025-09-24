@@ -69,6 +69,8 @@ setMRs_lookup_failure(tcb_t *receiver, word_t *receiveIPCBuffer,
     default:
         fail("Invalid lookup failure");
     }
+
+    return i;
 }
 
 static inline void copyMRsFaultReply(tcb_t *sender, tcb_t *receiver, MessageID_t id, word_t length)

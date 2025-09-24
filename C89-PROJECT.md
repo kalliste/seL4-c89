@@ -23,20 +23,19 @@ resulting compiler diagnostics.
       emit pedantic diagnostics under strict C90.
     - [x] Replace the compound literal helpers in `machine.h` with explicit
       temporaries.
-    - [ ] Replace the remaining anonymous variadic logging helpers with
+    - [x] Replace the remaining anonymous variadic logging helpers with
       explicit C89-compatible shims.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
 - **Outcome**: The build now clears the earlier enum-related pedantic errors and
-  the node-state macro fallout, but it still stops in the shared headers.
-  Strict C90 mode rejects the remaining variadic logging shims, the
-  packed-structure assertions, several unused-parameter stubs (including the
-  FS/GS base accessors), declaration-after-statement violations in the
-  interrupt helpers, inline specifier ordering in the PC99 IRQ helpers, the
-  always-true comparison in `maskInterrupt`, the inline assembly that
-  subscripts temporaries, and the lingering missing return in
-  `setMRs_lookup_failure`.
+  the node-state macro fallout. Replacing the variadic logging shims and fixing
+  `setMRs_lookup_failure` removed those diagnostics, but the strict C90 build
+  still stops in the shared headers. The current blockers are the packed-structure
+  assertions, several unused-parameter stubs (including the FS/GS base
+  accessors), declaration-after-statement violations in the interrupt helpers,
+  inline specifier ordering in the PC99 IRQ helpers, the always-true comparison
+  in `maskInterrupt`, and the inline assembly that subscripts temporaries.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -48,11 +47,11 @@ resulting compiler diagnostics.
      `unsigned long` arithmetic, or provide custom constructors that avoid
      `long long` suffixes when C99 is unavailable, and teach the code
      generators to use them.
-2. **Preprocessor usage assumes variadic macros**: The stubbed logging macros
-   (`printf(...)`, `userError(...)`, etc.) still rely on anonymous
-   `__VA_ARGS__`, triggering strict C90 diagnostics.
-   - *Potential remedies*: provide explicit helper functions or fixed-argument
-     shims that preserve the current behaviour without anonymous varargs.
+2. **Preprocessor usage assumes variadic macros** *(resolved)*: The stubbed
+   logging macros (`printf(...)`, `userError(...)`, etc.) relied on anonymous
+   `__VA_ARGS__`, triggering strict C90 diagnostics. They now funnel through
+   helper functions that keep the logging behaviour while remaining valid in
+   C89 mode.
 3. **Modern C layout rules**: Several functions declare variables mid-block,
    causing "mixed declarations and code" errors with C90.
    - *Potential remedies*: hoist declarations to the top of the scope.
@@ -61,9 +60,9 @@ resulting compiler diagnostics.
    under C89, the warnings become hard errors.
    - *Potential remedies*: cast parameters to `(void)` or reintroduce
      conditional attribute shims that keep the compiler quiet.
-5. **Control-flow expectations**: A few helper functions (e.g.
-   `setMRs_lookup_failure`) still fall off the end without an explicit return
-   statement under the stricter warning set.
+5. **Control-flow expectations**: Several helpers need explicit returns under
+   the stricter warning set. `setMRs_lookup_failure` is now patched, but we
+   should continue to watch for similar cases as the audit proceeds.
    - *Potential remedies*: add explicit returns or refactor the control flow so
      that the compiler can prove a value is always produced.
 6. **Kernel/libsel4 type duplication** *(resolved)*: both the kernel headers
@@ -114,15 +113,13 @@ resulting compiler diagnostics.
     the FS/GS base accessors, APIC helpers, and IRQ stubs) and reorder
     declarations that appear after executable statements in the interrupt and
     machine helpers.
-- Replace the remaining anonymous variadic macros used for debugging/logging
-  (`printf`, `userError`, etc.) with helpers that are valid in C89.
 - Rework the PC99 interrupt helpers so that the generated statements avoid
   declaration-after-statement issues, inline-specifier ordering problems,
   always-true comparisons, and variadic macro misuse under strict C90.
 - Adjust the CR3 and translation invalidation helpers so that inline assembly
   operates on named temporaries instead of subscripting non-lvalue temporaries
   under pedantic C90.
-- Make `setMRs_lookup_failure` return explicitly so the strict warnings stop
+- [x] Make `setMRs_lookup_failure` return explicitly so the strict warnings stop
   flagging it as falling off the end.
 - Audit architecture helpers for unused parameters and modern inline idioms
   (e.g. `static inline` placement) that now surface as errors.
