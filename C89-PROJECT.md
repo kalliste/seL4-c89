@@ -39,6 +39,10 @@ resulting compiler diagnostics.
     explicit C89-compatible shims.
   - [x] Rework the PC99 interrupt helpers to hoist declarations, normalise
     inline specifiers, and tighten their predicate logic for C90.
+  - [x] Rewrite the kernel boot-time reservation helpers so they avoid
+    compound literals, loop initialisers, and late declarations under C90.
+  - [ ] Quieten the double-fault handler's unused parameters in
+    `src/kernel/faulthandler.c` for the pedantic build.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
@@ -111,6 +115,15 @@ register values in named temporaries clears the pedantic errors and lets the
 strict build progress into `arch/x86/machine/breakpoint.c`. Providing a benign
 typedef when the hardware debug API is disabled keeps that translation unit
 non-empty, so the pedantic build now advances to the next blocker.
+
+Rewriting the kernel boot-time region helpers to use explicit temporaries and
+top-of-scope declarations removes the C99-only constructs that previously broke
+`src/kernel/boot.c` under C90. The boot-time reservation logic now builds the
+slot and address ranges manually, keeps loop indices declared outside their
+headers, and zeroes structures via assignments instead of compound literals.
+With those fixes applied the pedantic build moves on to `src/kernel/faulthandler.c`,
+where `handleDoubleFault` now triggers the next failure because its first
+fault argument becomes unused once the attribute shims collapse.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
