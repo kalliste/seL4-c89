@@ -333,8 +333,85 @@ exception_t handleInterruptEntry(void)
     return EXCEPTION_NONE;
 }
 
+static inline bool_t mcsBudgetProceed(void)
+{
+#ifdef CONFIG_KERNEL_MCS
+    updateTimestamp();
+    return checkBudgetRestart();
+#else
+    return true;
+#endif
+}
+
+static inline bool_t handleSetTLSBaseSyscall(word_t w, exception_t *status)
+{
+#ifdef CONFIG_SET_TLS_BASE_SELF
+    if (w == SysSetTLSBase)
+    {
+        word_t tls_base = getRegister(NODE_STATE(ksCurThread), capRegister);
+        /*
+         * This updates the real register as opposed to the thread state
+         * value. For many architectures, the TLS variables only get
+         * updated on a thread switch.
+         */
+        *status = Arch_setTLSRegister(tls_base);
+        return true;
+    }
+#endif
+    (void)w;
+    (void)status;
+    return false;
+}
+
+static inline bool_t handleBenchmarkSyscall(word_t w, exception_t *status)
+{
+#ifdef CONFIG_ENABLE_BENCHMARKS
+    switch (w) {
+    case SysBenchmarkFlushCaches:
+        *status = handle_SysBenchmarkFlushCaches();
+        return true;
+    case SysBenchmarkResetLog:
+        *status = handle_SysBenchmarkResetLog();
+        return true;
+    case SysBenchmarkFinalizeLog:
+        *status = handle_SysBenchmarkFinalizeLog();
+        return true;
+#ifdef CONFIG_KERNEL_LOG_BUFFER
+    case SysBenchmarkSetLogBuffer:
+        *status = handle_SysBenchmarkSetLogBuffer();
+        return true;
+#endif /* CONFIG_KERNEL_LOG_BUFFER */
+#ifdef CONFIG_BENCHMARK_TRACK_UTILISATION
+    case SysBenchmarkGetThreadUtilisation:
+        *status = handle_SysBenchmarkGetThreadUtilisation();
+        return true;
+    case SysBenchmarkResetThreadUtilisation:
+        *status = handle_SysBenchmarkResetThreadUtilisation();
+        return true;
+#ifdef CONFIG_DEBUG_BUILD
+    case SysBenchmarkDumpAllThreadsUtilisation:
+        *status = handle_SysBenchmarkDumpAllThreadsUtilisation();
+        return true;
+    case SysBenchmarkResetAllThreadsUtilisation:
+        *status = handle_SysBenchmarkResetAllThreadsUtilisation();
+        return true;
+#endif /* CONFIG_DEBUG_BUILD */
+#endif /* CONFIG_BENCHMARK_TRACK_UTILISATION */
+    case SysBenchmarkNullSyscall:
+        *status = EXCEPTION_NONE;
+        return true;
+    default:
+        break; /* syscall is not for benchmarking */
+    }
+#endif /* CONFIG_ENABLE_BENCHMARKS */
+    (void)w;
+    (void)status;
+    return false;
+}
+
 exception_t handleUnknownSyscall(word_t w)
 {
+    exception_t status;
 #ifdef CONFIG_PRINTING
     if (w == SysDebugPutChar) {
         kernel_putchar(getRegister(NODE_STATE(ksCurThread), capRegister));
@@ -438,54 +515,17 @@ exception_t handleUnknownSyscall(word_t w)
         return EXCEPTION_NONE;
     }
 #endif
+    if (handleBenchmarkSyscall(w, &status)) {
+        return status;
+    }
 
-#ifdef CONFIG_ENABLE_BENCHMARKS
-    switch (w) {
-    case SysBenchmarkFlushCaches:
-        return handle_SysBenchmarkFlushCaches();
-    case SysBenchmarkResetLog:
-        return handle_SysBenchmarkResetLog();
-    case SysBenchmarkFinalizeLog:
-        return handle_SysBenchmarkFinalizeLog();
-#ifdef CONFIG_KERNEL_LOG_BUFFER
-    case SysBenchmarkSetLogBuffer:
-        return handle_SysBenchmarkSetLogBuffer();
-#endif /* CONFIG_KERNEL_LOG_BUFFER */
-#ifdef CONFIG_BENCHMARK_TRACK_UTILISATION
-    case SysBenchmarkGetThreadUtilisation:
-        return handle_SysBenchmarkGetThreadUtilisation();
-    case SysBenchmarkResetThreadUtilisation:
-        return handle_SysBenchmarkResetThreadUtilisation();
-#ifdef CONFIG_DEBUG_BUILD
-    case SysBenchmarkDumpAllThreadsUtilisation:
-        return handle_SysBenchmarkDumpAllThreadsUtilisation();
-    case SysBenchmarkResetAllThreadsUtilisation:
-        return handle_SysBenchmarkResetAllThreadsUtilisation();
-#endif /* CONFIG_DEBUG_BUILD */
-#endif /* CONFIG_BENCHMARK_TRACK_UTILISATION */
-    case SysBenchmarkNullSyscall:
-        return EXCEPTION_NONE;
-    default:
-        break; /* syscall is not for benchmarking */
-    } /* end switch(w) */
-#endif /* CONFIG_ENABLE_BENCHMARKS */
-
-    MCS_DO_IF_BUDGET({
-#ifdef CONFIG_SET_TLS_BASE_SELF
-        if (w == SysSetTLSBase)
-        {
-            word_t tls_base = getRegister(NODE_STATE(ksCurThread), capRegister);
-            /*
-             * This updates the real register as opposed to the thread state
-             * value. For many architectures, the TLS variables only get
-             * updated on a thread switch.
-             */
-            return Arch_setTLSRegister(tls_base);
+    if (mcsBudgetProceed()) {
+        if (handleSetTLSBaseSyscall(w, &status)) {
+            return status;
         }
-#endif
         current_fault = seL4_Fault_UnknownSyscall_new(w);
         handleFault(NODE_STATE(ksCurThread));
-    })
+    }
 
     schedule();
     activateThread();
@@ -778,124 +818,134 @@ static void handleYield(void)
 #endif
 }
 
+static void handleSyscallBody(syscall_t syscall, exception_t *ret, irq_t *irq)
+{
+    switch (syscall)
+    {
+    case SysSend:
+        *ret = handleInvocation(false, true, false, false, getRegister(NODE_STATE(ksCurThread), capRegister));
+        if (unlikely(*ret != EXCEPTION_NONE)) {
+            mcsPreemptionPoint();
+            *irq = getActiveIRQ();
+            if (IRQT_TO_IRQ(*irq) != IRQT_TO_IRQ(irqInvalid)) {
+                handleInterrupt(*irq);
+            }
+        }
+
+        break;
+
+    case SysNBSend:
+        *ret = handleInvocation(false, false, false, false, getRegister(NODE_STATE(ksCurThread), capRegister));
+        if (unlikely(*ret != EXCEPTION_NONE)) {
+            mcsPreemptionPoint();
+            *irq = getActiveIRQ();
+            if (IRQT_TO_IRQ(*irq) != IRQT_TO_IRQ(irqInvalid)) {
+                handleInterrupt(*irq);
+            }
+        }
+        break;
+
+    case SysCall:
+        *ret = handleInvocation(true, true, true, false, getRegister(NODE_STATE(ksCurThread), capRegister));
+        if (unlikely(*ret != EXCEPTION_NONE)) {
+            mcsPreemptionPoint();
+            *irq = getActiveIRQ();
+            if (IRQT_TO_IRQ(*irq) != IRQT_TO_IRQ(irqInvalid)) {
+                handleInterrupt(*irq);
+            }
+        }
+        break;
+
+    case SysRecv:
+        handleRecv(true, true);
+        break;
+#ifndef CONFIG_KERNEL_MCS
+    case SysReply:
+        handleReply();
+        break;
+
+    case SysReplyRecv:
+        handleReply();
+        handleRecv(true, true);
+        break;
+
+#else /* CONFIG_KERNEL_MCS */
+    case SysWait:
+        handleRecv(true, false);
+        break;
+
+    case SysNBWait:
+        handleRecv(false, false);
+        break;
+    case SysReplyRecv: {
+        cptr_t reply = getRegister(NODE_STATE(ksCurThread), replyRegister);
+        *ret = handleInvocation(false, false, true, true, reply);
+        /* reply cannot error and is not preemptible */
+        assert(*ret == EXCEPTION_NONE);
+        handleRecv(true, true);
+        break;
+    }
+
+    case SysNBSendRecv: {
+        cptr_t dest = getNBSendRecvDest();
+        *ret = handleInvocation(false, false, true, true, dest);
+        if (unlikely(*ret != EXCEPTION_NONE)) {
+            mcsPreemptionPoint();
+            *irq = getActiveIRQ();
+            if (IRQT_TO_IRQ(*irq) != IRQT_TO_IRQ(irqInvalid)) {
+                handleInterrupt(*irq);
+            }
+            break;
+        }
+        handleRecv(true, true);
+        break;
+    }
+
+    case SysNBSendWait:
+        *ret = handleInvocation(false, false, true, true, getRegister(NODE_STATE(ksCurThread), replyRegister));
+        if (unlikely(*ret != EXCEPTION_NONE)) {
+            mcsPreemptionPoint();
+            *irq = getActiveIRQ();
+            if (IRQT_TO_IRQ(*irq) != IRQT_TO_IRQ(irqInvalid)) {
+                handleInterrupt(*irq);
+            }
+            break;
+        }
+        handleRecv(true, false);
+        break;
+#endif
+    case SysNBRecv:
+        handleRecv(false, true);
+        break;
+
+    case SysYield:
+        handleYield();
+        break;
+
+    default:
+        fail("Invalid syscall");
+    }
+}
+
 exception_t handleSyscall(syscall_t syscall)
 {
     exception_t ret;
     irq_t irq;
-    MCS_DO_IF_BUDGET({
-        switch (syscall)
-        {
-        case SysSend:
-            ret = handleInvocation(false, true, false, false, getRegister(NODE_STATE(ksCurThread), capRegister));
-            if (unlikely(ret != EXCEPTION_NONE)) {
-                mcsPreemptionPoint();
-                irq = getActiveIRQ();
-                if (IRQT_TO_IRQ(irq) != IRQT_TO_IRQ(irqInvalid)) {
-                    handleInterrupt(irq);
-                }
-            }
 
-            break;
-
-        case SysNBSend:
-            ret = handleInvocation(false, false, false, false, getRegister(NODE_STATE(ksCurThread), capRegister));
-            if (unlikely(ret != EXCEPTION_NONE)) {
-                mcsPreemptionPoint();
-                irq = getActiveIRQ();
-                if (IRQT_TO_IRQ(irq) != IRQT_TO_IRQ(irqInvalid)) {
-                    handleInterrupt(irq);
-                }
-            }
-            break;
-
-        case SysCall:
-            ret = handleInvocation(true, true, true, false, getRegister(NODE_STATE(ksCurThread), capRegister));
-            if (unlikely(ret != EXCEPTION_NONE)) {
-                mcsPreemptionPoint();
-                irq = getActiveIRQ();
-                if (IRQT_TO_IRQ(irq) != IRQT_TO_IRQ(irqInvalid)) {
-                    handleInterrupt(irq);
-                }
-            }
-            break;
-
-        case SysRecv:
-            handleRecv(true, true);
-            break;
-#ifndef CONFIG_KERNEL_MCS
-        case SysReply:
-            handleReply();
-            break;
-
-        case SysReplyRecv:
-            handleReply();
-            handleRecv(true, true);
-            break;
-
-#else /* CONFIG_KERNEL_MCS */
-        case SysWait:
-            handleRecv(true, false);
-            break;
-
-        case SysNBWait:
-            handleRecv(false, false);
-            break;
-        case SysReplyRecv: {
-            cptr_t reply = getRegister(NODE_STATE(ksCurThread), replyRegister);
-            ret = handleInvocation(false, false, true, true, reply);
-            /* reply cannot error and is not preemptible */
-            assert(ret == EXCEPTION_NONE);
-            handleRecv(true, true);
-            break;
-        }
-
-        case SysNBSendRecv: {
-            cptr_t dest = getNBSendRecvDest();
-            ret = handleInvocation(false, false, true, true, dest);
-            if (unlikely(ret != EXCEPTION_NONE)) {
-                mcsPreemptionPoint();
-                irq = getActiveIRQ();
-                if (IRQT_TO_IRQ(irq) != IRQT_TO_IRQ(irqInvalid)) {
-                    handleInterrupt(irq);
-                }
-                break;
-            }
-            handleRecv(true, true);
-            break;
-        }
-
-        case SysNBSendWait:
-            ret = handleInvocation(false, false, true, true, getRegister(NODE_STATE(ksCurThread), replyRegister));
-            if (unlikely(ret != EXCEPTION_NONE)) {
-                mcsPreemptionPoint();
-                irq = getActiveIRQ();
-                if (IRQT_TO_IRQ(irq) != IRQT_TO_IRQ(irqInvalid)) {
-                    handleInterrupt(irq);
-                }
-                break;
-            }
-            handleRecv(true, false);
-            break;
-#endif
-        case SysNBRecv:
-            handleRecv(false, true);
-            break;
-
-        case SysYield:
-            handleYield();
-            break;
-
-        default:
-            fail("Invalid syscall");
-        }
-
-    })
+    ret = EXCEPTION_NONE;
+    irq = IRQT_TO_IRQ(irqInvalid);
+    if (mcsBudgetProceed()) {
+        handleSyscallBody(syscall, &ret, &irq);
+    }
 
     schedule();
     activateThread();
 
     return EXCEPTION_NONE;
 }
+
+
+
 #line 1 "/workspace/seL4-c89/preconfigured/src/arch/x86/64/c_traps.c"
 /*
  * Copyright 2020, Data61, CSIRO (ABN 41 687 119 230)

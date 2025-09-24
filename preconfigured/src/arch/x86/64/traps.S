@@ -147,11 +147,15 @@
 #define INT_HANDLE_COMMON_EXCEPT(number,except) _expand_except_(except)(number)
 #define _expand_except_(except) EXPAND_EXCEPT_##except
 
-#define INT_HANDLER_COMMON(number,error_code,except) \
+#define PUSH_ERROR_CODE_NONE
+#define PUSH_ERROR_CODE_FAKE \
+    pushq $0x0;                                   \
+
+#define INT_HANDLER_COMMON(number,error_code_action,except) \
 .global int_##number;                               \
 .type   int_##number, %function;                    \
 int_##number:                                       \
-    error_code;                                     \
+    error_code_action                               \
     /* Check CPL */                                 \
     testq   $3, 16(%rsp);                           \
     jz      1f;                                     \
@@ -167,8 +171,10 @@ int_##number:                                       \
     INT_HANDLE_COMMON_EXCEPT(number,except);        \
 .size   int_##number, . - int_##number;
 
-#define INT_HANDLER_WITH_ERR_CODE(number,except) INT_HANDLER_COMMON(number,,except)
-#define INT_HANDLER_WITHOUT_ERR_CODE(number,except) INT_HANDLER_COMMON(number,pushq $0x0,except)
+#define INT_HANDLER_WITH_ERR_CODE(number,except) \
+    INT_HANDLER_COMMON(number,PUSH_ERROR_CODE_NONE,except)
+#define INT_HANDLER_WITHOUT_ERR_CODE(number,except) \
+    INT_HANDLER_COMMON(number,PUSH_ERROR_CODE_FAKE,except)
 
 .section .text, "ax"
 .code64

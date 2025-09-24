@@ -17,6 +17,9 @@ resulting compiler diagnostics.
   - [x] Route the generated capability tables and x86 helpers through the new
     portable constant macros.
   - [ ] Address the remaining diagnostics reported by the strict build.
+  - [ ] Resolve the `R_X86_64_32` relocation truncation errors in
+    `src/arch/x86/64/head.S` by adjusting how the boot page tables are
+    referenced during the pedantic build.
   - [x] Replace the configuration helpers in `util.h` that relied on
     anonymous variadic macros.
   - [x] Tidy the libsel4 size/enumeration assertion macros so they no longer
@@ -27,6 +30,11 @@ resulting compiler diagnostics.
     returning explicit values for the pedantic C90 build.
   - [x] Compare the syscall slowpath bounds against signed temporaries so the
     pedantic build accepts `c_traps.c`.
+  - [x] Route the MCS budget checks in `src/api/syscall.c` through dedicated
+    helpers so the pedantic build no longer sees directives embedded in macro
+    arguments.
+  - [x] Rewrite the x86 trap handler macros so they no longer rely on empty
+    macro arguments under pedantic C90.
   - [x] Keep the C89 inline compatibility shims visible in `machine/io.h`
     when printing is disabled.
   - [x] Rewrite the APIC initialisation to use named temporaries instead of
@@ -46,7 +54,22 @@ resulting compiler diagnostics.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
-- **Outcome**: The libsel4 enumerations now carry an explicit
+- **Outcome**: Reworking the syscall slowpath to gate the TLS and budget logic
+  through dedicated helpers removes the pedantic complaints about directives
+  living inside macro arguments. Routing the x86 trap macros through explicit
+  `PUSH_ERROR_CODE_*` helpers clears the empty-argument warnings, so the strict
+  build now runs through the trap assembly and halts during final linking: the
+  linker reports a series of `R_X86_64_32` relocations in
+  `src/arch/x86/64/head.S` that reference the `boot_pml4` and `boot_pdpt`
+  symbols defined in the wrapped C sources.
+
+  The new relocation failures suggest we need to revisit how the boot-time
+  assembly materialises the paging structures when building with the stricter
+  flags. Adjusting the relocation mode or loading those addresses through
+  temporaries should unblock the pedantic build so we can continue cataloguing
+  any remaining C90 incompatibilities.
+
+  The libsel4 enumerations now carry an explicit
   `__mode__(__word__)` attribute instead of depending on `__extension__`, the
   multiboot2 tag list no longer ends with a trailing comma, and the SKIM window
   mapper hoists its declarations and iterates with like-signed indices. The TLB
@@ -311,6 +334,8 @@ warnings in `src/plat/pc99/machine/ioapic.c`
 - [ ] Provide a benign definition in the x86 EPT stubs so the strict build no
   longer rejects the empty translation unit emitted by
   `src/arch/x86/kernel/ept.c` when VT-d is disabled.
+- [ ] Adjust the x86 trap macros in `src/arch/x86/64/traps.S` so their helper
+  invocations remain valid under pedantic C90.
 - [ ] Teach the generated capDL wrapper sources to emit a benign definition
         when no kernel objects are present so the strict build no longer flags
         the empty translation unit under `-Wpedantic` (now triggered by
