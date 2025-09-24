@@ -1160,14 +1160,15 @@ static exception_t decodeX64PageDirectoryInvocation(
     word_t *buffer
 )
 {
-    word_t              vaddr;
-    vm_attributes_t     vm_attr;
-    cap_t               vspaceCap;
-    vspace_root_t      *vspace;
-    pdpte_t             pdpte;
-    paddr_t             paddr;
-    asid_t              asid;
+    word_t               vaddr;
+    vm_attributes_t      vm_attr;
+    cap_t                vspaceCap;
+    vspace_root_t       *vspace;
+    pdpte_t              pdpte;
+    paddr_t              paddr;
+    asid_t               asid;
     lookupPDPTSlot_ret_t pdptSlot;
+    findVSpaceForASID_ret_t find_ret;
 
     if (label == X86PageDirectoryUnmap) {
         if (!isFinalCapability(cte)) {
@@ -1221,8 +1222,6 @@ static exception_t decodeX64PageDirectoryInvocation(
 
         return EXCEPTION_SYSCALL_ERROR;
     }
-
-    findVSpaceForASID_ret_t find_ret;
 
     find_ret = findVSpaceForASID(asid);
     if (find_ret.status != EXCEPTION_NONE) {
@@ -1331,6 +1330,7 @@ static exception_t decodeX64PDPTInvocation(
     pml4e_t                 pml4e;
     paddr_t                 paddr;
     asid_t                  asid;
+    findVSpaceForASID_ret_t find_ret;
 
     if (label == X86PDPTUnmap) {
         if (!isFinalCapability(cte)) {
@@ -1386,8 +1386,6 @@ static exception_t decodeX64PDPTInvocation(
         return EXCEPTION_SYSCALL_ERROR;
     }
 
-    findVSpaceForASID_ret_t find_ret;
-
     find_ret = findVSpaceForASID(asid);
     if (find_ret.status != EXCEPTION_NONE) {
         current_syscall_error.type = seL4_FailedLookup;
@@ -1432,6 +1430,9 @@ exception_t decodeX86ModeMMUInvocation(
     word_t *buffer
 )
 {
+    (void)cptr;
+    (void)call;
+
     switch (cap_get_capType(cap)) {
 
     case cap_pml4_cap:
@@ -1447,6 +1448,8 @@ exception_t decodeX86ModeMMUInvocation(
     default:
         fail("Invalid arch cap type");
     }
+
+    return EXCEPTION_SYSCALL_ERROR;
 }
 
 bool_t modeUnmapPage(vm_page_size_t page_size, vspace_root_t *vroot, vptr_t vaddr, void *pptr)
@@ -1548,6 +1551,7 @@ exception_t decodeX86ModeMapPage(word_t label, vm_page_size_t page_size, cte_t *
         }
     }
     fail("Invalid Page type");
+    return EXCEPTION_SYSCALL_ERROR;
 }
 
 #ifdef CONFIG_PRINTING

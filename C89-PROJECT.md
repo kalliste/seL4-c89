@@ -36,11 +36,15 @@ resulting compiler diagnostics.
   mapper hoists its declarations and iterates with like-signed indices. The TLB
   invalidation wrappers now cast their unused parameters, the boot-time x86
   mappers avoid compound literals, and the CR3 helpers compare against named
-  temporaries. The strict build consequently presses on to the remaining
-  blockers in the virtual memory code: several decode helpers declare locals
-  after executable statements, the MMU invocation path leaves a handful of
-  parameters unused and falls off the end without returning, and the generated
-  cap accessor for the mapped ASID still needs an explicit return path.
+  temporaries. The strict build consequently pressed on to the remaining
+  blockers in the virtual memory code: several decode helpers declared locals
+  after executable statements, the MMU invocation path left a handful of
+  parameters unused and fell off the end without returning, and the generated
+  cap accessor for the mapped ASID still needed an explicit return path. Those
+  shims now hoist their declarations, cast their unused arguments, and return
+  explicit errors, allowing the pedantic build to reach the next blocker: the
+  generated `capdl_wrapper.c` translation unit triggers `-Wpedantic` because it
+  compiles down to an empty source file.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -155,8 +159,11 @@ resulting compiler diagnostics.
         slot region initialiser) so they satisfy pedantic C90.
   - [x] Adjust the CR3 comparison helpers and boot-time mapping routines to
         operate on named temporaries instead of subscripting compound literals.
-  - [ ] Audit the x86 decode and mode-specific cap helpers to provide explicit
+  - [x] Audit the x86 decode and mode-specific cap helpers to provide explicit
         returns and `(void)` casts for unused parameters now that the attribute
         shims collapse under C90.
+  - [ ] Teach the generated capDL wrapper sources to emit a benign definition
+        when no kernel objects are present so the strict build no longer flags
+        the empty translation unit under `-Wpedantic`.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.
