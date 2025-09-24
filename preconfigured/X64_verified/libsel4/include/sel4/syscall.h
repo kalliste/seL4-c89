@@ -15,7 +15,7 @@
 #include <sel4/config.h>
 #include <sel4/macros.h>
 
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
        seL4_SysCall = -1,
        seL4_SysReplyRecv = -2,
        seL4_SysSend = -3,
@@ -66,4 +66,5 @@ LIBSEL4_ENUM_EXT typedef enum {
        seL4_SysSetTLSBase = -29,
 #endif /* defined(CONFIG_SET_TLS_BASE_SELF) */
     SEL4_FORCE_LONG_ENUM(seL4_Syscall_ID)
-} seL4_Syscall_ID;
+} seL4_Syscall_ID SEL4_ENUM_ATTR(__mode__(__word__));
+

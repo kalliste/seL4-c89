@@ -49,6 +49,6 @@ enum multiboot2_tags {
     MULTIBOOT2_TAG_MEMORY  = 6,
     MULTIBOOT2_TAG_FB      = 8,
     MULTIBOOT2_TAG_ACPI_1  = 14,
-    MULTIBOOT2_TAG_ACPI_2  = 15,
+    MULTIBOOT2_TAG_ACPI_2  = 15
 };
 

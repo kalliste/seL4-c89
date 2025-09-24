@@ -60,8 +60,9 @@ typedef struct seL4_UserContext_ {
     seL4_Word tp;
 } seL4_UserContext;
 
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_RISCV_ExecuteNever = 0x1,
     seL4_RISCV_Default_VMAttributes = 0,
     SEL4_FORCE_LONG_ENUM(seL4_RISCV_VMAttributes)
-} seL4_RISCV_VMAttributes;
+} seL4_RISCV_VMAttributes SEL4_ENUM_ATTR(__mode__(__word__));
+

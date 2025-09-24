@@ -72,16 +72,17 @@ SEL4_SIZE_SANITY(seL4_PDPTEntryBits, seL4_PDPTIndexBits, seL4_PDPTBits);
 SEL4_SIZE_SANITY(seL4_PML4EntryBits, seL4_PML4IndexBits, seL4_PML4Bits);
 SEL4_SIZE_SANITY(seL4_WordSizeBits, seL4_ASIDPoolIndexBits, seL4_ASIDPoolBits);
 
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_VMFault_IP,
     seL4_VMFault_Addr,
     seL4_VMFault_PrefetchFault,
     seL4_VMFault_FSR,
     seL4_VMFault_Length,
     SEL4_FORCE_LONG_ENUM(seL4_VMFault_Msg)
-} seL4_VMFault_Msg;
+} seL4_VMFault_Msg SEL4_ENUM_ATTR(__mode__(__word__));
 
-LIBSEL4_ENUM_EXT typedef enum {
+
+typedef enum {
     seL4_UnknownSyscall_RAX,
     seL4_UnknownSyscall_RBX,
     seL4_UnknownSyscall_RCX,
@@ -103,9 +104,10 @@ LIBSEL4_ENUM_EXT typedef enum {
     seL4_UnknownSyscall_Syscall,
     seL4_UnknownSyscall_Length,
     SEL4_FORCE_LONG_ENUM(seL4_UnknownSyscall_Msg)
-} seL4_UnknownSyscall_Msg;
+} seL4_UnknownSyscall_Msg SEL4_ENUM_ATTR(__mode__(__word__));
 
-LIBSEL4_ENUM_EXT typedef enum {
+
+typedef enum {
     seL4_UserException_FaultIP,
     seL4_UserException_SP,
     seL4_UserException_FLAGS,
@@ -113,17 +115,19 @@ LIBSEL4_ENUM_EXT typedef enum {
     seL4_UserException_Code,
     seL4_UserException_Length,
     SEL4_FORCE_LONG_ENUM(seL4_UserException_Msg)
-} seL4_UserException_Msg;
+} seL4_UserException_Msg SEL4_ENUM_ATTR(__mode__(__word__));
+
 
 #ifdef CONFIG_KERNEL_MCS
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_Timeout_Data,
     seL4_Timeout_Consumed,
     seL4_Timeout_Length,
     SEL4_FORCE_LONG_ENUM(seL4_Timeout_Msg)
-} seL4_Timeout_Msg;
+} seL4_Timeout_Msg SEL4_ENUM_ATTR(__mode__(__word__));
 
-LIBSEL4_ENUM_EXT typedef enum {
+
+typedef enum {
     seL4_TimeoutReply_FaultIP,
     seL4_TimeoutReply_RSP,
     seL4_TimeoutReply_FLAGS,
@@ -145,7 +149,8 @@ LIBSEL4_ENUM_EXT typedef enum {
     seL4_TimeoutReply_TLS_BASE,
     seL4_TimeoutReply_Length,
     SEL4_FORCE_LONG_ENUM(seL4_TimeoutReply_Msg)
-} seL4_TimeoutReply_Msg;
+} seL4_TimeoutReply_Msg SEL4_ENUM_ATTR(__mode__(__word__));
+
 #endif
 #endif /* __ASSEMBLER__ */
 #define seL4_FastMessageRegisters 4

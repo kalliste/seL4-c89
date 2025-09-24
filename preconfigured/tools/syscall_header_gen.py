@@ -91,7 +91,7 @@ LIBSEL4_HEADER_TEMPLATE = """/*
 #include <sel4/config.h>
 #include <sel4/macros.h>
 
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
 {%- for condition, list in enum %}
    {%- if condition | length > 0 %}
 #if {{condition}}
@@ -104,7 +104,7 @@ LIBSEL4_ENUM_EXT typedef enum {
    {%- endif %}
 {%- endfor %}
     SEL4_FORCE_LONG_ENUM(seL4_Syscall_ID)
-} seL4_Syscall_ID;
+} seL4_Syscall_ID SEL4_ENUM_ATTR(__mode__(__word__));
 
 """
 

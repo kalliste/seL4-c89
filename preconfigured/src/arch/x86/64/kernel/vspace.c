@@ -261,6 +261,11 @@ BOOT_CODE bool_t map_kernel_window(
 #ifdef CONFIG_KERNEL_SKIM_WINDOW
 BOOT_CODE bool_t map_skim_window(vptr_t skim_start, vptr_t skim_end)
 {
+    uint64_t paddr;
+    word_t pd_start;
+    word_t pd_end;
+    word_t index;
+
     /* place the PDPT into the PML4 */
     x64KSSKIMPML4[GET_PML4_INDEX(PPTR_BASE)] = pml4e_new(
                                                    0, /* xd */
@@ -286,21 +291,23 @@ BOOT_CODE bool_t map_skim_window(vptr_t skim_start, vptr_t skim_end)
     /* map the skim portion into the PD. we expect it to be 2M aligned */
     assert((skim_start % BIT(seL4_LargePageBits)) == 0);
     assert((skim_end % BIT(seL4_LargePageBits)) == 0);
-    uint64_t paddr = kpptr_to_paddr((void *)skim_start);
-    for (int i = GET_PD_INDEX(skim_start); i < GET_PD_INDEX(skim_end); i++) {
-        x64KSSKIMPD[i] = pde_pde_large_new(
-                             0, /* xd */
-                             paddr,
-                             0, /* pat */
-                             KERNEL_IS_GLOBAL(), /* global */
-                             0, /* dirty */
-                             0, /* accessed */
-                             0, /* cache_disabled */
-                             0, /* write_through */
-                             0, /* super_user */
-                             1, /* read_write */
-                             1  /* present */
-                         );
+    paddr = kpptr_to_paddr((void *)skim_start);
+    pd_start = GET_PD_INDEX(skim_start);
+    pd_end = GET_PD_INDEX(skim_end);
+    for (index = pd_start; index < pd_end; index++) {
+        x64KSSKIMPD[index] = pde_pde_large_new(
+                                  0, /* xd */
+                                  paddr,
+                                  0, /* pat */
+                                  KERNEL_IS_GLOBAL(), /* global */
+                                  0, /* dirty */
+                                  0, /* accessed */
+                                  0, /* cache_disabled */
+                                  0, /* write_through */
+                                  0, /* super_user */
+                                  1, /* read_write */
+                                  1  /* present */
+                              );
         paddr += BIT(seL4_LargePageBits);
     }
     return true;

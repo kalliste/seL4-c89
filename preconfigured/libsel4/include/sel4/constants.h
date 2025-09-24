@@ -13,32 +13,35 @@
 
 #ifdef CONFIG_HARDWARE_DEBUG_API
 /* API arg values for breakpoint API, "type" arguments. */
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_DataBreakpoint = 0,
     seL4_InstructionBreakpoint,
     seL4_SingleStep,
     seL4_SoftwareBreakRequest,
     SEL4_FORCE_LONG_ENUM(seL4_BreakpointType)
-} seL4_BreakpointType;
+} seL4_BreakpointType SEL4_ENUM_ATTR(__mode__(__word__));
+
 
 /* API arg values for breakpoint API, "access" arguments. */
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_BreakOnRead = 0,
     seL4_BreakOnWrite,
     seL4_BreakOnReadWrite,
     seL4_MaxBreakpointAccess,
     SEL4_FORCE_LONG_ENUM(seL4_BreakpointAccess)
-} seL4_BreakpointAccess;
+} seL4_BreakpointAccess SEL4_ENUM_ATTR(__mode__(__word__));
+
 
 /* Format of a debug-exception message. */
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_DebugException_FaultIP,
     seL4_DebugException_ExceptionReason,
     seL4_DebugException_TriggerAddress,
     seL4_DebugException_BreakpointNumber,
     seL4_DebugException_Length,
     SEL4_FORCE_LONG_ENUM(seL4_DebugException_Msg)
-} seL4_DebugException_Msg;
+} seL4_DebugException_Msg SEL4_ENUM_ATTR(__mode__(__word__));
+
 #endif
 
 enum priorityConstants {
@@ -60,17 +63,18 @@ enum seL4_MsgLimits {
 /* seL4_CapRights_t defined in shared_types_*.bf */
 #define seL4_CapRightsBits 4
 
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_NoFailure = 0,
     seL4_InvalidRoot,
     seL4_MissingCapability,
     seL4_DepthMismatch,
     seL4_GuardMismatch,
     SEL4_FORCE_LONG_ENUM(seL4_LookupFailureType)
-} seL4_LookupFailureType;
+} seL4_LookupFailureType SEL4_ENUM_ATTR(__mode__(__word__));
+
 
 /* Flags to be used with seL4_TCB_Set_Flags */
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_TCBFlag_NoFlag = 0x0,
     seL4_TCBFlag_fpuDisabled = 0x1,
 
@@ -79,7 +83,8 @@ LIBSEL4_ENUM_EXT typedef enum {
 #ifdef CONFIG_HAVE_FPU
                         | seL4_TCBFlag_fpuDisabled
 #endif
-} seL4_TCBFlag;
+} seL4_TCBFlag SEL4_ENUM_ATTR(__mode__(__word__));
+
 
 #endif /* !__ASSEMBLER__ */
 
@@ -111,11 +116,12 @@ static inline seL4_Word seL4_MaxExtraRefills(seL4_Word size)
 }
 
 /* Flags to be used with seL4_SchedControl_ConfigureFlags */
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_SchedContext_NoFlag = 0x0,
     seL4_SchedContext_Sporadic = 0x1,
     SEL4_FORCE_LONG_ENUM(seL4_SchedContextFlag)
-} seL4_SchedContextFlag;
+} seL4_SchedContextFlag SEL4_ENUM_ATTR(__mode__(__word__));
+
 
 #endif /* !__ASSEMBLER__ */
 #endif /* CONFIG_KERNEL_MCS */

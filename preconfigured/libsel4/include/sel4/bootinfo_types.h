@@ -86,7 +86,7 @@ typedef struct seL4_BootInfo {
 
 SEL4_COMPILE_ASSERT(
     invalid_seL4_BootInfoFrameSize,
-    sizeof(seL4_BootInfo) <= seL4_BootInfoFrameSize)
+    sizeof(seL4_BootInfo) <= seL4_BootInfoFrameSize);
 
 /* If seL4_BootInfo.extraLen > 0, this indicate the presence of additional boot
  * information chunks starting at the offset seL4_BootInfoFrameSize. Userland
@@ -98,7 +98,7 @@ SEL4_COMPILE_ASSERT(
  * to describe the chunk. All IDs share a global namespace to ensure uniqueness.
  */
 
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     SEL4_BOOTINFO_HEADER_PADDING            = 0,
     SEL4_BOOTINFO_HEADER_X86_VBE            = 1,
     SEL4_BOOTINFO_HEADER_X86_MBMMAP         = 2,
@@ -109,7 +109,8 @@ LIBSEL4_ENUM_EXT typedef enum {
     /* Add more IDs here, the two elements below must always be at the end. */
     SEL4_BOOTINFO_HEADER_NUM,
     SEL4_FORCE_LONG_ENUM(seL4_BootInfoID)
-} seL4_BootInfoID;
+} seL4_BootInfoID SEL4_ENUM_ATTR(__mode__(__word__));
+
 
 /* Common header for all additional bootinfo chunks to describe the chunk. */
 typedef struct seL4_BootInfoHeader {

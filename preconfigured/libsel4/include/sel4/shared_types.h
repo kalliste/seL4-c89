@@ -21,7 +21,7 @@ typedef struct seL4_IPCBuffer_ {
     seL4_Word receiveDepth;
 } seL4_IPCBuffer SEL4_ALIGN_ATTR(sizeof(struct seL4_IPCBuffer_));
 
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_CapFault_IP,
     seL4_CapFault_Addr,
     seL4_CapFault_InRecvPhase,
@@ -31,7 +31,8 @@ LIBSEL4_ENUM_EXT typedef enum {
     seL4_CapFault_GuardMismatch_GuardFound = seL4_CapFault_DepthMismatch_BitsFound,
     seL4_CapFault_GuardMismatch_BitsFound,
     SEL4_FORCE_LONG_ENUM(seL4_CapFault_Msg)
-} seL4_CapFault_Msg;
+} seL4_CapFault_Msg SEL4_ENUM_ATTR(__mode__(__word__));
+
 
 #define seL4_ReadWrite     seL4_CapRights_new(0, 0, 1, 1)
 #define seL4_AllRights     seL4_CapRights_new(1, 1, 1, 1)
