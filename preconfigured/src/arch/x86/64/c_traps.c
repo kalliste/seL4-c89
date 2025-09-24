@@ -207,6 +207,15 @@ static void NORETURN restore_vmx(tcb_t *cur_thread, vcpu_t *vcpu)
 
 void VISIBLE NORETURN restore_user_context(void)
 {
+    tcb_t *cur_thread;
+    word_t *irqstack;
+#ifdef CONFIG_VTX
+    vcpu_t *vcpu;
+#endif
+#if defined(ENABLE_SMP_SUPPORT) && defined(CONFIG_KERNEL_SKIM_WINDOW)
+    word_t user_cr3;
+#endif
+
     c_exit_hook();
 
     NODE_UNLOCK_IF_HELD;
@@ -229,10 +238,10 @@ void VISIBLE NORETURN restore_user_context(void)
         UNREACHABLE();
     }
 
-    tcb_t *cur_thread = NODE_STATE(ksCurThread);
-    word_t *irqstack = x64KSIRQStack[CURRENT_CPU_INDEX()];
+    cur_thread = NODE_STATE(ksCurThread);
+    irqstack = x64KSIRQStack[CURRENT_CPU_INDEX()];
 #ifdef CONFIG_VTX
-    vcpu_t *vcpu = cur_thread->tcbArch.tcbVCPU;
+    vcpu = cur_thread->tcbArch.tcbVCPU;
     if (thread_state_ptr_get_tsType(&cur_thread->tcbState) == ThreadState_RunningVM) {
         vcpu_fpu_to_guest(cur_thread, vcpu);
         restore_vmx(cur_thread, vcpu);
@@ -247,7 +256,7 @@ void VISIBLE NORETURN restore_user_context(void)
 
 #ifdef ENABLE_SMP_SUPPORT
 #ifdef CONFIG_KERNEL_SKIM_WINDOW
-    word_t user_cr3 = MODE_NODE_STATE(x64KSCurrentUserCR3);
+    user_cr3 = MODE_NODE_STATE(x64KSCurrentUserCR3);
 #endif /* CONFIG_KERNEL_SKIM_WINDOW */
     swapgs();
 #endif /* ENABLE_SMP_SUPPORT */
@@ -259,7 +268,7 @@ void VISIBLE NORETURN restore_user_context(void)
     /* Check if we are returning from a syscall/sysenter or from an interrupt */
     /* There is a special case where if we would be returning from a sysenter, */
     /* but are current singlestepping, do a full return like an interrupt */
-    if (likely(cur_thread->tcbArch.tcbContext.registers[Error] == -1) &&
+    if (likely(cur_thread->tcbArch.tcbContext.registers[Error] == (word_t)-1) &&
         (!config_set(CONFIG_SYSENTER) || !config_set(CONFIG_HARDWARE_DEBUG_API)
          || ((cur_thread->tcbArch.tcbContext.registers[FLAGS] & FLAGS_TF) == 0))) {
         if (config_set(CONFIG_KERNEL_SKIM_WINDOW)) {
@@ -466,10 +475,12 @@ void VISIBLE NORETURN restore_user_context(void)
 void VISIBLE NORETURN c_x64_handle_interrupt(int irq, int syscall);
 void VISIBLE NORETURN c_x64_handle_interrupt(int irq, int syscall)
 {
+    word_t *irq_stack;
+
     if (config_set(CONFIG_KERNEL_X86_IBRS_BASIC)) {
         x86_enable_ibrs();
     }
-    word_t *irq_stack = x64KSIRQStack[CURRENT_CPU_INDEX()];
+    irq_stack = x64KSIRQStack[CURRENT_CPU_INDEX()];
     setRegister(NODE_STATE(ksCurThread), Error, irq_stack[0]);
     /* In the case of an interrupt the NextIP and the FaultIP should be the same value,
      * i.e. the address of the instruction the CPU was about to execute before the

@@ -60,6 +60,7 @@ void Arch_switchToIdleThread(void)
 
 void Arch_activateIdleThread(tcb_t *tcb)
 {
+    (void)tcb;
     /* Don't need to do anything */
 }
 

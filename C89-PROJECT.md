@@ -30,12 +30,16 @@ resulting compiler diagnostics.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
-- **Outcome**: The wrappers remain up to date and the translation invalidation
-  helpers now assemble cleanly under strict C90. The syscall handlers no longer
-  embed conditional compilation inside the budget macros, so the strict build
-  now stops in `src/api/syscall.c` solely because `handleInvocation` declares
-  `cptr` after executable statements, triggering the "mixed declarations and
-  code" error that C90 treats as fatal.
+- **Outcome**: The wrappers remain up to date and the trap helpers now hoist
+  their temporaries, allowing the strict build to progress well past the syscall
+  path. The current blockers sit in the x86 virtual memory code and libsel4
+  headers: `LIBSEL4_ENUM_EXT` still expands to `__extension__`, the multiboot2
+  tag enumeration ends with a trailing comma, and the SKIM window routines rely
+  on C99-style loop declarations and compare signed indices against unsigned
+  bounds. The TLB invalidation shims now trip unused-parameter warnings, the new
+  CR3 accessor subscripts a temporary, and several boot and decode helpers rely
+  on compound literals or fall off the end without an explicit return once the
+  attribute shims collapse.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -53,18 +57,21 @@ resulting compiler diagnostics.
    helper functions that keep the logging behaviour while remaining valid in
    C89 mode.
 3. **Modern C layout rules** *(progress)*: Several functions declared variables
-   mid-block, causing "mixed declarations and code" errors with C90. We hoisted
-   the locals in the interrupt and FS/GS helpers, but the latest build shows
-   `handleInvocation` still needs the same treatment.
-4. **Unused parameter clean-ups** *(resolved)*: Architecture stubs rely on the
+   mid-block, causing "mixed declarations and code" errors with C90. The
+   interrupt paths and syscall handlers now hoist their locals, but the SKIM
+   window mappers and the page-table decode helpers still mix declarations and
+   rely on C99-style loop initialisers.
+4. **Unused parameter clean-ups** *(progress)*: Architecture stubs rely on the
    compiler to discard unused parameters via attributes; once those attributes
-   collapse under C89, the warnings become hard errors. We now cast the unused
-   arguments to `(void)` in the affected helpers so the strict build stays quiet.
+   collapse under C89, the warnings become hard errors. Most helpers now cast
+   their unused arguments to `(void)`, but the TLB invalidation shims introduced
+   for the SKIM window still need attention.
    - *Potential remedies*: cast parameters to `(void)` or reintroduce
      conditional attribute shims that keep the compiler quiet.
-5. **Control-flow expectations**: Several helpers need explicit returns under
-   the stricter warning set. `setMRs_lookup_failure` is now patched, but we
-   should continue to watch for similar cases as the audit proceeds.
+5. **Control-flow expectations** *(progress)*: Several helpers need explicit
+   returns under the stricter warning set. `setMRs_lookup_failure` is now
+   patched, but the mode-specific cap helpers and X86 decode routines still fall
+   off the end once the attribute shims collapse.
    - *Potential remedies*: add explicit returns or refactor the control flow so
      that the compiler can prove a value is always produced.
 6. **Kernel/libsel4 type duplication** *(resolved)*: both the kernel headers
@@ -75,11 +82,9 @@ resulting compiler diagnostics.
 7. **Enumeration and macro hygiene** *(progress)*: the latest pass reworked the
    libsel4 compile-time helpers (`SEL4_SIZE_SANITY`, `SEL4_FORCE_LONG_ENUM`,
    etc.) so they expand cleanly under strict C90 without trailing commas or
-   pedantic diagnostics. We have now scrubbed the remaining enums that the
-   previous build complained about (`X86_MappingVSpace`, the PC99 IRQ tables,
-   and the thread control update flags). The outstanding pedantic fallout now
-   centres on the stubbed logging wrappers and related macro shims; the
-   `NODE_STATE_*` helpers now expand cleanly under strict C90.
+   pedantic diagnostics. The remaining blockers now live in the bootinfo and
+   multiboot headers where `LIBSEL4_ENUM_EXT` still expands to `__extension__`
+   and the multiboot2 tag enumeration keeps a trailing comma.
 8. **Structure packing guarantees**: strict mode exposes that the ACPI RSDP
    assertions rely on packing attributes that collapse under C89, causing the
    compile-time size check to fail.
@@ -129,7 +134,7 @@ resulting compiler diagnostics.
   build:
   - [x] Rework `handleUnknownSyscall`/`handleSyscall` so the capability logging
         macros no longer wrap `#ifdef` directives inside their argument lists.
-  - [ ] Hoist the `cptr` declaration in `handleInvocation` above the existing
+  - [x] Hoist the `cptr` declaration in `handleInvocation` above the existing
         statements so the function satisfies C90's declaration rules.
 - [x] Make `setMRs_lookup_failure` return explicitly so the strict warnings stop
   flagging it as falling off the end.
@@ -137,5 +142,17 @@ resulting compiler diagnostics.
   (e.g. `static inline` placement) that now surface as errors.
 - Make the shared libsel4 macros and enum definitions pedantic-friendly so that
   the generated headers compile cleanly under C90.
+- Tackle the new diagnostics exposed by the latest strict build run:
+  - [ ] Replace `LIBSEL4_ENUM_EXT` with a pedantic-friendly shim and scrub the
+        remaining trailing commas from the multiboot2 tag enumeration.
+  - [ ] Rework the SKIM window mapping helpers so they hoist declarations,
+        avoid C99 `for`-loop initialisers, and compare like-signed values.
+  - [ ] Cast the unused parameters in the x86 TLB invalidation wrappers and
+        related boot helpers so the pedantic build stays quiet.
+  - [ ] Adjust the CR3 comparison helpers and boot-time mapping routines to
+        operate on named temporaries instead of subscripting compound literals.
+  - [ ] Audit the x86 decode and mode-specific cap helpers to provide explicit
+        returns and `(void)` casts for unused parameters now that the attribute
+        shims collapse under C90.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.
