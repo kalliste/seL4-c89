@@ -604,6 +604,7 @@ static inline bool_t CONST capRemovable(cap_t cap, cte_t *slot)
     }
     default:
         fail("finaliseCap should only return Zombie or NullCap");
+        return false;
     }
 }
 
@@ -729,7 +730,7 @@ void cteDeleteOne(cte_t *slot)
     word_t cap_type = cap_get_capType(slot->cap);
     if (cap_type != cap_null_cap) {
         bool_t final;
-        finaliseCap_ret_t fc_ret UNUSED;
+        finaliseCap_ret_t fc_ret;
 
         /** GHOSTUPD: "(gs_get_assn cteDeleteOne_'proc \<acute>ghost'state = (-1)
             \<or> gs_get_assn cteDeleteOne_'proc \<acute>ghost'state = \<acute>cap_type, id)" */
@@ -739,6 +740,7 @@ void cteDeleteOne(cte_t *slot)
         /* Haskell error: "cteDeleteOne: cap should be removable" */
         assert(capRemovable(fc_ret.remainder, slot) &&
                cap_get_capType(fc_ret.cleanupInfo) == cap_null_cap);
+        (void)fc_ret;
         emptySlot(slot, cap_null_cap_new());
     }
 }
