@@ -76,9 +76,16 @@ void *VISIBLE memcpy(void *ptr_dst, const void *ptr_src, unsigned long n)
 int PURE strncmp(const char *s1, const char *s2, int n)
 {
     word_t i;
+    word_t limit;
     int diff;
 
-    for (i = 0; i < n; i++) {
+    if (n <= 0) {
+        return 0;
+    }
+
+    limit = (word_t)n;
+
+    for (i = 0; i < limit; i++) {
         diff = ((unsigned char *)s1)[i] - ((unsigned char *)s2)[i];
         if (diff != 0 || s1[i] == '\0') {
             return diff;
@@ -209,36 +216,41 @@ static UNUSED CONST inline unsigned clz32(uint32_t x)
     /* The `if (1)` blocks make it easier to reason by chunks in the proofs. */
     if (1) {
         /* iteration 4 */
+        unsigned bits;
         mask >>= (1 << 4); /* 0x0000ffff */
-        unsigned bits = ((unsigned)(mask < x)) << 4; /* [0, 16] */
+        bits = ((unsigned)(mask < x)) << 4; /* [0, 16] */
         x >>= bits; /* <= 0x0000ffff */
         count -= bits; /* [16, 32] */
     }
     if (1) {
         /* iteration 3 */
+        unsigned bits;
         mask >>= (1 << 3); /* 0x000000ff */
-        unsigned bits = ((unsigned)(mask < x)) << 3; /* [0, 8] */
+        bits = ((unsigned)(mask < x)) << 3; /* [0, 8] */
         x >>= bits; /* <= 0x000000ff */
         count -= bits; /* [8, 16, 24, 32] */
     }
     if (1) {
         /* iteration 2 */
+        unsigned bits;
         mask >>= (1 << 2); /* 0x0000000f */
-        unsigned bits = ((unsigned)(mask < x)) << 2; /* [0, 4] */
+        bits = ((unsigned)(mask < x)) << 2; /* [0, 4] */
         x >>= bits; /* <= 0x0000000f */
         count -= bits; /* [4, 8, 12, ..., 32] */
     }
     if (1) {
         /* iteration 1 */
+        unsigned bits;
         mask >>= (1 << 1); /* 0x00000003 */
-        unsigned bits = ((unsigned)(mask < x)) << 1; /* [0, 2] */
+        bits = ((unsigned)(mask < x)) << 1; /* [0, 2] */
         x >>= bits; /* <= 0x00000003 */
         count -= bits; /* [2, 4, 6, ..., 32] */
     }
     if (1) {
         /* iteration 0 */
+        unsigned bits;
         mask >>= (1 << 0); /* 0x00000001 */
-        unsigned bits = ((unsigned)(mask < x)) << 0; /* [0, 1] */
+        bits = ((unsigned)(mask < x)) << 0; /* [0, 1] */
         x >>= bits; /* <= 0x00000001 */
         count -= bits; /* [1, 2, 3, ..., 32] */
     }
@@ -260,43 +272,49 @@ static UNUSED CONST inline unsigned clz64(uint64_t x)
     /* developed for clz32. */
     if (1) {
         /* iteration 5 */
+        unsigned bits;
         mask >>= (1 << 5); /* 0x00000000ffffffff */
-        unsigned bits = ((unsigned)(mask < x)) << 5; /* [0, 32] */
+        bits = ((unsigned)(mask < x)) << 5; /* [0, 32] */
         x >>= bits; /* <= 0x00000000ffffffff */
         count -= bits; /* [32, 64] */
     }
     if (1) {
         /* iteration 4 */
+        unsigned bits;
         mask >>= (1 << 4); /* 0x000000000000ffff */
-        unsigned bits = ((unsigned)(mask < x)) << 4; /* [0, 16] */
+        bits = ((unsigned)(mask < x)) << 4; /* [0, 16] */
         x >>= bits; /* <= 0x000000000000ffff */
         count -= bits; /* [16, 32, 48, 64] */
     }
     if (1) {
         /* iteration 3 */
+        unsigned bits;
         mask >>= (1 << 3); /* 0x00000000000000ff */
-        unsigned bits = ((unsigned)(mask < x)) << 3; /* [0, 8] */
+        bits = ((unsigned)(mask < x)) << 3; /* [0, 8] */
         x >>= bits; /* <= 0x00000000000000ff */
         count -= bits; /* [8, 16, 24, ..., 64] */
     }
     if (1) {
         /* iteration 2 */
+        unsigned bits;
         mask >>= (1 << 2); /* 0x000000000000000f */
-        unsigned bits = ((unsigned)(mask < x)) << 2; /* [0, 4] */
+        bits = ((unsigned)(mask < x)) << 2; /* [0, 4] */
         x >>= bits; /* <= 0x000000000000000f */
         count -= bits; /* [4, 8, 12, ..., 64] */
     }
     if (1) {
         /* iteration 1 */
+        unsigned bits;
         mask >>= (1 << 1); /* 0x0000000000000003 */
-        unsigned bits = ((unsigned)(mask < x)) << 1; /* [0, 2] */
+        bits = ((unsigned)(mask < x)) << 1; /* [0, 2] */
         x >>= bits; /* <= 0x0000000000000003 */
         count -= bits; /* [2, 4, 6, ..., 64] */
     }
     if (1) {
         /* iteration 0 */
+        unsigned bits;
         mask >>= (1 << 0); /* 0x0000000000000001 */
-        unsigned bits = ((unsigned)(mask < x)) << 0; /* [0, 1] */
+        bits = ((unsigned)(mask < x)) << 0; /* [0, 1] */
         x >>= bits; /* <= 0x0000000000000001 */
         count -= bits; /* [1, 2, 3, ..., 64] */
     }
@@ -331,36 +349,41 @@ static UNUSED CONST inline unsigned ctz32(uint32_t x)
 
     if (1) {
         /* iteration 4 */
+        unsigned bits;
         mask >>= (1 << 4); /* 0x0000ffff */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 4; /* [0, 16] */
+        bits = ((unsigned)((x & mask) == 0)) << 4; /* [0, 16] */
         x >>= bits; /* xi != 0 --> x & 0x0000ffff != 0 */
         count += bits; /* if xi != 0 then [0, 16] else 17 */
     }
     if (1) {
         /* iteration 3 */
+        unsigned bits;
         mask >>= (1 << 3); /* 0x000000ff */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 3; /* [0, 8] */
+        bits = ((unsigned)((x & mask) == 0)) << 3; /* [0, 8] */
         x >>= bits; /* xi != 0 --> x & 0x000000ff != 0 */
         count += bits; /* if xi != 0 then [0, 8, 16, 24] else 25 */
     }
     if (1) {
         /* iteration 2 */
+        unsigned bits;
         mask >>= (1 << 2); /* 0x0000000f */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 2; /* [0, 4] */
+        bits = ((unsigned)((x & mask) == 0)) << 2; /* [0, 4] */
         x >>= bits; /* xi != 0 --> x & 0x0000000f != 0 */
         count += bits; /* if xi != 0 then [0, 4, 8, ..., 28] else 29 */
     }
     if (1) {
         /* iteration 1 */
+        unsigned bits;
         mask >>= (1 << 1); /* 0x00000003 */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 1; /* [0, 2] */
+        bits = ((unsigned)((x & mask) == 0)) << 1; /* [0, 2] */
         x >>= bits; /* xi != 0 --> x & 0x00000003 != 0 */
         count += bits; /* if xi != 0 then [0, 2, 4, ..., 30] else 31 */
     }
     if (1) {
         /* iteration 0 */
+        unsigned bits;
         mask >>= (1 << 0); /* 0x00000001 */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 0; /* [0, 1] */
+        bits = ((unsigned)((x & mask) == 0)) << 0; /* [0, 1] */
         x >>= bits; /* xi != 0 --> x & 0x00000001 != 0 */
         count += bits; /* if xi != 0 then [0, 1, 2, ..., 31] else 32 */
     }
@@ -375,43 +398,49 @@ static UNUSED CONST inline unsigned ctz64(uint64_t x)
 
     if (1) {
         /* iteration 5 */
+        unsigned bits;
         mask >>= (1 << 5); /* 0x00000000ffffffff */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 5; /* [0, 32] */
+        bits = ((unsigned)((x & mask) == 0)) << 5; /* [0, 32] */
         x >>= bits; /* xi != 0 --> x & 0x00000000ffffffff != 0 */
         count += bits; /* if xi != 0 then [0, 32] else 33 */
     }
     if (1) {
         /* iteration 4 */
+        unsigned bits;
         mask >>= (1 << 4); /* 0x000000000000ffff */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 4; /* [0, 16] */
+        bits = ((unsigned)((x & mask) == 0)) << 4; /* [0, 16] */
         x >>= bits; /* xi != 0 --> x & 0x000000000000ffff != 0 */
         count += bits; /* if xi != 0 then [0, 16, 32, 48] else 49 */
     }
     if (1) {
         /* iteration 3 */
+        unsigned bits;
         mask >>= (1 << 3); /* 0x00000000000000ff */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 3; /* [0, 8] */
+        bits = ((unsigned)((x & mask) == 0)) << 3; /* [0, 8] */
         x >>= bits; /* xi != 0 --> x & 0x00000000000000ff != 0 */
         count += bits; /* if xi != 0 then [0, 8, 16, ..., 56] else 57 */
     }
     if (1) {
         /* iteration 2 */
+        unsigned bits;
         mask >>= (1 << 2); /* 0x000000000000000f */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 2; /* [0, 4] */
+        bits = ((unsigned)((x & mask) == 0)) << 2; /* [0, 4] */
         x >>= bits; /* xi != 0 --> x & 0x000000000000000f != 0 */
         count += bits; /* if xi != 0 then [0, 4, 8, ..., 60] else 61 */
     }
     if (1) {
         /* iteration 1 */
+        unsigned bits;
         mask >>= (1 << 1); /* 0x0000000000000003 */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 1; /* [0, 2] */
+        bits = ((unsigned)((x & mask) == 0)) << 1; /* [0, 2] */
         x >>= bits; /* xi != 0 --> x & 0x0000000000000003 != 0 */
         count += bits; /* if xi != 0 then [0, 2, 4, ..., 62] else 63 */
     }
     if (1) {
         /* iteration 0 */
+        unsigned bits;
         mask >>= (1 << 0); /* 0x0000000000000001 */
-        unsigned bits = ((unsigned)((x & mask) == 0)) << 0; /* [0, 1] */
+        bits = ((unsigned)((x & mask) == 0)) << 0; /* [0, 1] */
         x >>= bits; /* xi != 0 --> x & 0x0000000000000001 != 0 */
         count += bits; /* if xi != 0 then [0, 1, 2, ..., 63] else 64 */
     }
