@@ -675,4 +675,8 @@ void Arch_initBreakpointContext(user_breakpoint_state_t *uds)
                    | X86_DEBUG_BP3_ENABLE_BIT);
 }
 
-#endif
+#else /* !CONFIG_HARDWARE_DEBUG_API */
+
+typedef int breakpoint_c_translation_unit_is_not_empty;
+
+#endif /* CONFIG_HARDWARE_DEBUG_API */
