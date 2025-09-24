@@ -1060,6 +1060,8 @@ lookupPDSlot_ret_t lookupPDSlot(vspace_root_t *pml4, vptr_t vptr)
 
 static void flushPD(vspace_root_t *vspace, word_t vptr, pde_t *pd, asid_t asid)
 {
+    (void)vptr;
+    (void)pd;
     /* clearing the entire PCID vs flushing the virtual addresses
      * one by one using invplg.
      * choose the easy way, invalidate the PCID
@@ -1070,6 +1072,8 @@ static void flushPD(vspace_root_t *vspace, word_t vptr, pde_t *pd, asid_t asid)
 
 static void flushPDPT(vspace_root_t *vspace, word_t vptr, pdpte_t *pdpt, asid_t asid)
 {
+    (void)vptr;
+    (void)pdpt;
     /* similar here */
     invalidateASID(vspace, asid, SMP_TERNARY(tlb_bitmap_get(vspace), 0));
     return;

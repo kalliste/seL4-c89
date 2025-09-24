@@ -11,18 +11,21 @@
 
 static inline void invalidateTLBEntry(vptr_t vptr, word_t mask)
 {
+    (void)mask;
     invalidateLocalTLBEntry(vptr);
     SMP_COND_STATEMENT(doRemoteInvalidateTLBEntry(vptr, mask));
 }
 
 static inline void invalidatePageStructureCache(word_t mask)
 {
+    (void)mask;
     invalidateLocalPageStructureCache();
     SMP_COND_STATEMENT(doRemoteInvalidatePageStructureCache(mask));
 }
 
 static inline void invalidateTLB(word_t mask)
 {
+    (void)mask;
     invalidateLocalTLB();
     SMP_COND_STATEMENT(doRemoteInvalidateTLB(mask));
 }

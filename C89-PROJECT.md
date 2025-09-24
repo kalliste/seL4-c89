@@ -33,13 +33,13 @@ resulting compiler diagnostics.
 - **Outcome**: The libsel4 enumerations now carry an explicit
   `__mode__(__word__)` attribute instead of depending on `__extension__`, the
   multiboot2 tag list no longer ends with a trailing comma, and the SKIM window
-  mapper hoists its declarations and iterates with like-signed indices. The
-  strict build consequently advances into the x86 virtual memory code before
-  failing on the next wave of issues: the TLB invalidation wrappers and paging
-  helpers still need `(void)` casts for unused parameters, the CR3 comparison
-  relies on subscripting a temporary, several boot-time mappers use compound
-  literals, and a handful of decode helpers fall off the end without explicit
-  returns once the attribute shims collapse.
+  mapper hoists its declarations and iterates with like-signed indices. The TLB
+  invalidation wrappers now cast their unused parameters, so the strict build
+  consequently advances into the x86 virtual memory code before failing on the
+  next wave of issues: the CR3 comparison still subscripts a temporary, several
+  boot-time mappers lean on compound literals or leave parameters unused, and a
+  handful of decode helpers fall off the end without explicit returns once the
+  attribute shims collapse.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -64,8 +64,8 @@ resulting compiler diagnostics.
 4. **Unused parameter clean-ups** *(progress)*: Architecture stubs rely on the
    compiler to discard unused parameters via attributes; once those attributes
    collapse under C89, the warnings become hard errors. Most helpers now cast
-   their unused arguments to `(void)`, but the TLB invalidation shims introduced
-   for the SKIM window still need attention.
+   their unused arguments to `(void)`, but the boot-time paging helpers and
+   decode shims surfaced by the latest build still need the same treatment.
    - *Potential remedies*: cast parameters to `(void)` or reintroduce
      conditional attribute shims that keep the compiler quiet.
 5. **Control-flow expectations** *(progress)*: Several helpers need explicit
@@ -147,8 +147,11 @@ resulting compiler diagnostics.
         remaining trailing commas from the multiboot2 tag enumeration.
   - [x] Rework the SKIM window mapping helpers so they hoist declarations,
         avoid C99 `for`-loop initialisers, and compare like-signed values.
-  - [ ] Cast the unused parameters in the x86 TLB invalidation wrappers and
+  - [x] Cast the unused parameters in the x86 TLB invalidation wrappers and
         related boot helpers so the pedantic build stays quiet.
+  - [ ] Hoist declarations and add `(void)` casts in the x86 boot-time paging
+        helpers (`map_temp_boot_page`, `create_mapped_it_frame_cap`, and the
+        slot region initialiser) so they satisfy pedantic C90.
   - [ ] Adjust the CR3 comparison helpers and boot-time mapping routines to
         operate on named temporaries instead of subscripting compound literals.
   - [ ] Audit the x86 decode and mode-specific cap helpers to provide explicit

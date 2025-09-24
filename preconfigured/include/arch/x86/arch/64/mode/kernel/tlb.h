@@ -18,6 +18,7 @@
  */
 static inline void invalidateLocalASID(vspace_root_t *vspace, asid_t asid)
 {
+    (void)vspace;
     invalidateLocalPCID(INVPCID_TYPE_SINGLE, (void *)0, asid);
 #ifdef ENABLE_SMP_SUPPORT
     if (pptr_to_paddr(vspace) != getCurrentUserVSpaceRoot()) {
@@ -28,12 +29,14 @@ static inline void invalidateLocalASID(vspace_root_t *vspace, asid_t asid)
 
 static inline void invalidatePCID(word_t type, void *vaddr, asid_t asid, word_t mask)
 {
+    (void)mask;
     invalidateLocalPCID(type, vaddr, asid);
     SMP_COND_STATEMENT(doRemoteInvalidatePCID(type, vaddr, asid, mask));
 }
 
 static inline void invalidateASID(vspace_root_t *vspace, asid_t asid, word_t mask)
 {
+    (void)mask;
     invalidateLocalASID(vspace, asid);
     SMP_COND_STATEMENT(doRemoteInvalidateASID(vspace, asid, mask));
 }
