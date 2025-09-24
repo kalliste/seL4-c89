@@ -39,6 +39,16 @@ deriveCap_ret_t Mode_deriveCap(cte_t *slot, cap_t cap)
 {
     deriveCap_ret_t ret;
 
+    /* The strict C90 build collapses the attribute shims that normally mark
+     * these parameters as intentionally unused. Hoist explicit casts so the
+     * pedantic warnings do not escalate to errors when the architecture cases
+     * fall through at compile time.
+     */
+    (void)slot;
+
+    ret.cap = cap_null_cap_new();
+    ret.status = EXCEPTION_SYSCALL_ERROR;
+
     switch (cap_get_capType(cap)) {
     case cap_pml4_cap:
         if (cap_pml4_cap_get_capPML4IsMapped(cap)) {
@@ -72,7 +82,10 @@ deriveCap_ret_t Mode_deriveCap(cte_t *slot, cap_t cap)
 
     default:
         fail("Invalid arch cap type");
+        break;
     }
+
+    return ret;
 }
 
 finaliseCap_ret_t Mode_finaliseCap(cap_t cap, bool_t final)
@@ -180,6 +193,8 @@ word_t Mode_getObjectSize(word_t t)
 
 cap_t Mode_createObject(object_t t, void *regionBase, word_t userSize, bool_t deviceMemory)
 {
+    (void)userSize;
+
     switch (t) {
 
     case seL4_X86_4K:
@@ -313,6 +328,8 @@ cap_t Mode_createObject(object_t t, void *regionBase, word_t userSize, bool_t de
          */
         fail("Arch_createObject got an API type or invalid object type");
     }
+
+    return cap_null_cap_new();
 }
 
 exception_t Mode_decodeInvocation(

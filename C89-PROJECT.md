@@ -21,6 +21,10 @@ resulting compiler diagnostics.
       anonymous variadic macros.
     - [x] Tidy the libsel4 size/enumeration assertion macros so they no longer
       emit pedantic diagnostics under strict C90.
+    - [x] Give the mode-specific cap helpers and page-size queries explicit
+      return paths now that the attribute shims collapse under C89.
+    - [ ] Silence the x86 fault stubs by casting their unused parameters and
+      returning explicit values for the pedantic C90 build.
   - [x] Replace the compound literal helpers in `machine.h` with explicit
     temporaries.
   - [x] Replace the remaining anonymous variadic logging helpers with
@@ -59,6 +63,13 @@ resulting compiler diagnostics.
   `include/arch/x86/arch/machine/hardware.h` similarly lacks a return once the
   large-page branches are preprocessed away.
 
+  Casting the unused mode parameters to `(void)` and giving each helper an
+  explicit return path satisfies the pedantic warnings, allowing the strict
+  build to continue into the x86 fault shims. The remaining blockers now live
+  in `src/arch/x86/api/faults.c`, where `Arch_handleFaultReply` and
+  `Arch_setMRs_fault` both drop parameters on the floor and lack explicit
+  return statements once the attribute shims collapse.
+
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
    machine shims still emit `ULL` and `LL` constants that trigger
@@ -82,14 +93,14 @@ resulting compiler diagnostics.
 4. **Unused parameter clean-ups** *(progress)*: Architecture stubs rely on the
    compiler to discard unused parameters via attributes; once those attributes
    collapse under C89, the warnings become hard errors. Most helpers now cast
-   their unused arguments to `(void)`, but the boot-time paging helpers and
-   decode shims surfaced by the latest build still need the same treatment.
+   their unused arguments to `(void)`, but the x86 fault reply/setMR stubs still
+   need the same treatment.
    - *Potential remedies*: cast parameters to `(void)` or reintroduce
      conditional attribute shims that keep the compiler quiet.
 5. **Control-flow expectations** *(progress)*: Several helpers need explicit
-   returns under the stricter warning set. `setMRs_lookup_failure` is now
-   patched, but the mode-specific cap helpers and X86 decode routines still fall
-   off the end once the attribute shims collapse.
+   returns under the stricter warning set. `setMRs_lookup_failure` and the
+   mode-specific cap helpers now return explicit values, but the x86 fault
+   wrappers still fall off the end once the attribute shims collapse.
    - *Potential remedies*: add explicit returns or refactor the control flow so
      that the compiler can prove a value is always produced.
 6. **Kernel/libsel4 type duplication** *(resolved)*: both the kernel headers
@@ -178,11 +189,13 @@ resulting compiler diagnostics.
   - [x] Provide a benign definition in `src/arch/x86/64/model/smp.c` so the
         pedantic build no longer rejects the empty translation unit when SMP is
         disabled.
-  - [ ] Ensure the x86 mode object helpers (`Mode_deriveCap`, `Mode_createObject`)
-        cast their unused parameters and return explicit caps when the
-        architecture-specific cases compile away.
-  - [ ] Add a fallback return path to `pageBitsForSize` so the helper remains
-        well-defined once the large-page cases are disabled.
+    - [x] Ensure the x86 mode object helpers (`Mode_deriveCap`, `Mode_createObject`)
+          cast their unused parameters and return explicit caps when the
+          architecture-specific cases compile away.
+    - [x] Add a fallback return path to `pageBitsForSize` so the helper remains
+          well-defined once the large-page cases are disabled.
+    - [ ] Silence the x86 fault reply/setMR stubs so they cast unused arguments
+          and return explicit results under pedantic C90.
 - [ ] Teach the generated capDL wrapper sources to emit a benign definition
         when no kernel objects are present so the strict build no longer flags
         the empty translation unit under `-Wpedantic`.
