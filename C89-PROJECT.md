@@ -62,11 +62,13 @@ resulting compiler diagnostics.
    pedantic C90 the duplicate definitions were treated as hard errors. We now
    gate the typedef blocks behind a shared `SEL4_BASIC_TYPES_DEFINED` marker so
    only the first header included in a translation unit defines the aliases.
-7. **Enumeration and macro hygiene**: verification-oriented macros such as
-   `SEL4_SIZE_SANITY` and `SEL4_FORCE_LONG_ENUM` expand to trailing semicolons,
-   large enumerator values, and dangling commas. GCC accepts these under
-   GNU99 but rejects them in strict C90 mode, so we need to rework the macros
-   to emit conforming constructs.
+7. **Enumeration and macro hygiene** *(partially resolved)*: the latest pass
+   reworked the libsel4 compile-time helpers (`SEL4_SIZE_SANITY`,
+   `SEL4_FORCE_LONG_ENUM`, etc.) so they expand cleanly under strict C90
+   without trailing commas or pedantic diagnostics. The kernel-facing enums
+   still contain dangling commas (`objecttype.h`, machine register indices,
+   generated syscall IDs), so the clean-up needs to continue beyond the
+   libsel4 headers.
 8. **Structure packing guarantees**: strict mode exposes that the ACPI RSDP
    assertions rely on packing attributes that collapse under C89, causing the
    compile-time size check to fail.
@@ -82,9 +84,22 @@ resulting compiler diagnostics.
         `SEL4_BASIC_TYPES_DEFINED` guard.
   - [x] Replace the configuration helpers in `util.h` that rely on anonymous
         variadic macros with C89-compatible shims.
-- Tidy the libsel4 size/enumeration assertion macros so that
+- [x] Tidy the libsel4 size/enumeration assertion macros so that
   `SEL4_SIZE_SANITY`, `SEL4_FORCE_LONG_ENUM`, and related helpers no longer
   emit pedantic diagnostics or trailing commas in strict C90 mode.
+- Catalogue the new diagnostics from the latest strict build run and plan the
+  follow-up fixes:
+  - scrub trailing commas from kernel enumerations (`sel4/objecttype.h`,
+    machine register sets, generated syscall tables).
+  - revisit the packing assertions in the PC99 ACPI/GDT helpers now that the
+    attribute shims collapse under C90.
+  - replace compound literals and designated initialisers in
+    `include/machine.h` with explicit temporaries to satisfy C90.
+  - normalise the `NODE_STATE_*` macros so they do not expand to stray
+    semicolons.
+  - add `(void)` casts or other shims for the numerous unused parameters and
+    reorder declarations that appear after executable statements in the
+    interrupt and machine helpers.
 - Replace the remaining anonymous variadic macros used for debugging/logging
   (`printf`, `userError`, etc.) with helpers that are valid in C89.
 - Rework the PC99 interrupt helpers so that the generated statements avoid

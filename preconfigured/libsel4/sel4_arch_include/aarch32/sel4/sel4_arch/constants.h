@@ -12,7 +12,7 @@
 #ifndef __ASSEMBLER__
 
 /* format of an unknown syscall message */
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
     seL4_UnknownSyscall_R0,
     seL4_UnknownSyscall_R1,
     seL4_UnknownSyscall_R2,
@@ -28,11 +28,11 @@ typedef enum {
     seL4_UnknownSyscall_Syscall,
     /* length of an unknown syscall message */
     seL4_UnknownSyscall_Length,
-    SEL4_FORCE_LONG_ENUM(seL4_UnknownSyscall_Msg),
+    SEL4_FORCE_LONG_ENUM(seL4_UnknownSyscall_Msg)
 } seL4_UnknownSyscall_Msg;
 
 /* format of a user exception message */
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
     seL4_UserException_FaultIP,
     seL4_UserException_SP,
     seL4_UserException_CPSR,
@@ -40,38 +40,38 @@ typedef enum {
     seL4_UserException_Code,
     /* length of a user exception */
     seL4_UserException_Length,
-    SEL4_FORCE_LONG_ENUM(seL4_UserException_Msg),
+    SEL4_FORCE_LONG_ENUM(seL4_UserException_Msg)
 } seL4_UserException_Msg;
 
 /* format of a vm fault message */
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
     seL4_VMFault_IP,
     seL4_VMFault_Addr,
     seL4_VMFault_PrefetchFault,
     seL4_VMFault_FSR,
     seL4_VMFault_Length,
-    SEL4_FORCE_LONG_ENUM(seL4_VMFault_Msg),
+    SEL4_FORCE_LONG_ENUM(seL4_VMFault_Msg)
 } seL4_VMFault_Msg;
 
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
     seL4_VGICMaintenance_IDX,
     seL4_VGICMaintenance_Length,
-    SEL4_FORCE_LONG_ENUM(seL4_VGICMaintenance_Msg),
+    SEL4_FORCE_LONG_ENUM(seL4_VGICMaintenance_Msg)
 } seL4_VGICMaintenance_Msg;
 
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
     seL4_VPPIEvent_IRQ,
     seL4_VPPIEvent_Length,
-    SEL4_FORCE_LONG_ENUM(seL4_VPPIEvent_Msg),
+    SEL4_FORCE_LONG_ENUM(seL4_VPPIEvent_Msg)
 } seL4_VPPIEvent_Msg;
 
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
     seL4_VCPUFault_HSR,
     seL4_VCPUFault_Length,
-    SEL4_FORCE_LONG_ENUM(seL4_VCPUFault_Msg),
+    SEL4_FORCE_LONG_ENUM(seL4_VCPUFault_Msg)
 } seL4_VCPUFault_Msg;
 
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
     seL4_VCPUReg_SCTLR = 0,
     seL4_VCPURegSaveRange_start, /* begin vcpu save/restore reg range */
     seL4_VCPUReg_ACTLR = seL4_VCPURegSaveRange_start,
@@ -119,11 +119,11 @@ typedef enum {
     seL4_VCPUReg_CNTVOFFlow,
     seL4_VCPUReg_CNTKCTL,
     seL4_VCPUReg_Num,
-    SEL4_FORCE_LONG_ENUM(seL4_VCPUReg),
+    SEL4_FORCE_LONG_ENUM(seL4_VCPUReg)
 } seL4_VCPUReg;
 
 #ifdef CONFIG_KERNEL_MCS
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
     seL4_Timeout_Data,
     /* consumed is 64 bits */
     seL4_Timeout_Consumed_HighBits,
@@ -132,7 +132,7 @@ typedef enum {
     SEL4_FORCE_LONG_ENUM(seL4_Timeout_Msg)
 } seL4_Timeout_Msg;
 
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
     seL4_TimeoutReply_FaultIP,
     seL4_TimeoutReply_SP,
     seL4_TimeoutReply_CPSR,

@@ -89,8 +89,9 @@ LIBSEL4_HEADER_TEMPLATE = """/*
 #pragma once
 
 #include <sel4/config.h>
+#include <sel4/macros.h>
 
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
 {%- for condition, list in enum %}
    {%- if condition | length > 0 %}
 #if {{condition}}

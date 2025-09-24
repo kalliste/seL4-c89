@@ -98,7 +98,7 @@ SEL4_COMPILE_ASSERT(
  * to describe the chunk. All IDs share a global namespace to ensure uniqueness.
  */
 
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
     SEL4_BOOTINFO_HEADER_PADDING            = 0,
     SEL4_BOOTINFO_HEADER_X86_VBE            = 1,
     SEL4_BOOTINFO_HEADER_X86_MBMMAP         = 2,

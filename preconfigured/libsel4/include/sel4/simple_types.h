@@ -29,7 +29,7 @@
 #define seL4_integer_size_assert(_type_, _size_) \
     SEL4_COMPILE_ASSERT( \
         sizeof_##_type_##_is_##_size_##_byte, \
-        sizeof(_type_) == _size_ )
+        sizeof(_type_) == _size_ );
 
 
 /* C99 defines that this is at least 8-bit */
@@ -150,11 +150,11 @@ typedef seL4_Word seL4_CPtr;
 
 SEL4_COMPILE_ASSERT(
     seL4_WordSizeBits_matches,
-    sizeof(seL4_Word) == (1u << seL4_WordSizeBits))
+    sizeof(seL4_Word) == (1u << seL4_WordSizeBits));
 
 SEL4_COMPILE_ASSERT(
     seL4_WordBits_matches,
-    8 * sizeof(seL4_Word) == seL4_WordBits)
+    8 * sizeof(seL4_Word) == seL4_WordBits);
 
 #ifndef SEL4_BASIC_TYPES_DEFINED
 #define SEL4_BASIC_TYPES_DEFINED 1
