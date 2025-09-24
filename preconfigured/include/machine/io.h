@@ -108,22 +108,35 @@ static inline SEL4_PRINTF_ATTR(3, 4) int snprintf(
 
 #else /* not CONFIG_PRINTING */
 
-/* The verification runs on the output of the preprocessing stage of a release
- * build configuration, CONFIG_PRINTING is not enabled there. We remove all
- * calls to printf() completely from the code base, because neither printf() nor
- * the usage of a variable argument list is supported by the verification
- * toolchain. It would just reject the code if it encounters any unsupported
- * things.
- */
-#define printf(...)             ((void)(0))
+static inline void kernel_putchar(char c)
+{
+    (void)c;
+}
 
-/* Seems there is no need to define out these functions, they are use by code
- * that is active with CONFIG_PRINTING only.
- *
- *   #define kernel_putchar(...)     ((void)(0))
- *   #define putchar(...)            ((void)(0))
- *   #define puts(...)               ((void)(0))
- *   #define snprintf(...)           ((void)(0))
- */
+static inline void putchar(char c)
+{
+    (void)c;
+}
+
+static inline int puts(const char *str)
+{
+    (void)str;
+    return 0;
+}
+
+static inline SEL4_PRINTF_ATTR(1, 2) int printf(const char *format, ...)
+{
+    (void)format;
+    return 0;
+}
+
+static inline SEL4_PRINTF_ATTR(3, 4) int snprintf(char *buf, word_t size,
+                                                 const char *format, ...)
+{
+    (void)buf;
+    (void)size;
+    (void)format;
+    return 0;
+}
 
 #endif /* [not] CONFIG_PRINTING */

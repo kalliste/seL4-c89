@@ -9,6 +9,7 @@
 #include <config.h>
 #include <stdint.h>
 #include <util.h>
+#include <stdarg.h>
 #include <sel4/simple_types.h>
 #include <sel4/shared_types_gen.h>
 #include <arch/api/types.h>
@@ -123,28 +124,87 @@ static inline word_t CONST wordFromMessageInfo(seL4_MessageInfo_t mi)
 #ifdef CONFIG_KERNEL_INVOCATION_REPORT_ERROR_IPC
 extern struct debug_syscall_error current_debug_error;
 
-#define out_error(...) \
-    snprintf((char *)current_debug_error.errorMessage, \
-            DEBUG_MESSAGE_MAXLEN * sizeof(word_t), __VA_ARGS__);
+static inline int out_error_vformat(const char *format, va_list args)
+{
+    return impl_ksnvprintf((char *)current_debug_error.errorMessage,
+                           DEBUG_MESSAGE_MAXLEN * sizeof(word_t),
+                           format, args);
+}
 #else
-#define out_error printf
+static inline int out_error_vformat(const char *format, va_list args)
+{
+    return impl_kvprintf(format, args);
+}
 #endif
 
-/*
- * Print to serial a message helping userspace programmers to determine why the
- * kernel is not performing their requested operation.
- */
-#define userError(M, ...) \
-    do {                                                                       \
-        out_error(ANSI_BOLD "<<" ANSI_GREEN "seL4(CPU %" SEL4_PRIu_word ")"    \
-                ANSI_BOLD " [%s/%d T%p \"%s\" @%lx]: " M ">>" ANSI_RESET "\n", \
-                CURRENT_CPU_INDEX(),                                           \
-                __func__, __LINE__, NODE_STATE(ksCurThread),                   \
-                THREAD_NAME,                                                   \
-                (word_t)getRestartPC(NODE_STATE(ksCurThread)),                 \
-                ## __VA_ARGS__);                                               \
-    } while (0)
+static inline SEL4_PRINTF_ATTR(1, 2) int out_error(const char *format, ...)
+{
+    va_list args;
+    int ret;
+
+    va_start(args, format);
+    ret = out_error_vformat(format, args);
+    va_end(args);
+
+    return ret;
+}
+
+struct seL4_user_error_context {
+    const char *function;
+    unsigned int line;
+};
+
+static struct seL4_user_error_context seL4_user_error_context = {"", 0};
+
+static inline void userError_set_context(const char *function, unsigned int line)
+{
+    seL4_user_error_context.function = function;
+    seL4_user_error_context.line = line;
+}
+
+static inline void userError_vemit(const char *message, va_list args)
+{
+    char formatted_message[DEBUG_MESSAGE_MAXLEN * sizeof(word_t)];
+    int length;
+
+    length = impl_ksnvprintf(formatted_message,
+                             DEBUG_MESSAGE_MAXLEN * sizeof(word_t),
+                             message,
+                             args);
+    if (length < 0) {
+        formatted_message[0] = '\0';
+    } else if ((word_t)length >= DEBUG_MESSAGE_MAXLEN * sizeof(word_t)) {
+        formatted_message[DEBUG_MESSAGE_MAXLEN * sizeof(word_t) - 1] = '\0';
+    }
+
+    out_error(ANSI_BOLD "<<" ANSI_GREEN "seL4(CPU %" SEL4_PRIu_word ")"
+              ANSI_BOLD " [%s/%u T%p \"%s\" @%lx]: %s>>" ANSI_RESET "\n",
+              CURRENT_CPU_INDEX(),
+              seL4_user_error_context.function,
+              seL4_user_error_context.line,
+              NODE_STATE(ksCurThread),
+              THREAD_NAME,
+              (word_t)getRestartPC(NODE_STATE(ksCurThread)),
+              formatted_message);
+}
+
+static inline SEL4_PRINTF_ATTR(1, 2) void userError_emit(const char *message, ...)
+{
+    va_list args;
+
+    va_start(args, message);
+    userError_vemit(message, args);
+    va_end(args);
+}
+
+#define userError \
+    (userError_set_context(__func__, (unsigned int)__LINE__), userError_emit)
 #else /* !CONFIG_PRINTING */
-#define userError(...)
+static inline void userError_emit(const char *message, ...)
+{
+    (void)message;
+}
+
+#define userError userError_emit
 #endif
 
