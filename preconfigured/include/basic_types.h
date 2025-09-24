@@ -78,12 +78,15 @@ typedef struct v_region {
  * any other type (similar to a char pointer) */
 typedef word_t SEL4_MAY_ALIAS_ATTR word_t_may_alias;
 
+#ifndef SEL4_BASIC_TYPES_DEFINED
 /* for libsel4 headers that the kernel shares */
 typedef uint8_t seL4_Uint8;
 typedef uint16_t seL4_Uint16;
 typedef uint32_t seL4_Uint32;
 typedef word_t seL4_Word;
 typedef cptr_t seL4_CPtr;
+#define SEL4_BASIC_TYPES_DEFINED 1
+#endif
 typedef node_id_t seL4_NodeId;
 typedef paddr_t seL4_PAddr;
 typedef dom_t seL4_Domain;

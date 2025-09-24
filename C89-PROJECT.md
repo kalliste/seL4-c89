@@ -51,10 +51,11 @@ resulting compiler diagnostics.
    statement under the stricter warning set.
    - *Potential remedies*: add explicit returns or refactor the control flow so
      that the compiler can prove a value is always produced.
-6. **Kernel/libsel4 type duplication**: both the kernel headers and
-   `libsel4` publish typedefs for the fundamental seL4 types. Under pedantic
-   C90 the duplicate definitions are treated as hard errors, so we need a
-   single canonical provider.
+6. **Kernel/libsel4 type duplication** *(resolved)*: both the kernel headers
+   and `libsel4` published typedefs for the fundamental seL4 types. Under
+   pedantic C90 the duplicate definitions were treated as hard errors. We now
+   gate the typedef blocks behind a shared `SEL4_BASIC_TYPES_DEFINED` marker so
+   only the first header included in a translation unit defines the aliases.
 7. **Enumeration and macro hygiene**: verification-oriented macros such as
    `SEL4_SIZE_SANITY` and `SEL4_FORCE_LONG_ENUM` expand to trailing semicolons,
    large enumerator values, and dangling commas. GCC accepts these under
@@ -70,8 +71,11 @@ resulting compiler diagnostics.
   - [x] Drop the C++-style comments emitted in the generated wrapper sources.
   - [x] Provide C89-friendly definitions for the 64-bit typedefs and helpers in
         `stdint.h`/`util.h` so they no longer rely on `long long`.
-  - Resolve the duplicated seL4 basic types between `simple_types.h` and the
-    shared kernel headers.
+  - [x] Resolve the duplicated seL4 basic types between `simple_types.h` and
+        the shared kernel headers by coordinating on a shared
+        `SEL4_BASIC_TYPES_DEFINED` guard.
+  - [ ] Replace the configuration helpers in `util.h` that rely on anonymous
+        variadic macros with C89-compatible shims.
 - Rework the PC99 interrupt helpers so that the generated statements avoid
   declaration-after-statement issues and variadic macro misuse under strict C90.
 - Audit architecture helpers for unused parameters and modern inline idioms
