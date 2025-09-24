@@ -157,6 +157,13 @@ helpers. Dropping the trailing comma from the DMAR enumerator list and hoisting
 the LAPIC frequency measurement temporaries satisfy the C90 rules in
 `acpi.c` and `hardware.c`, allowing the replay build to reach the next blocker.
 
+Replacing the IOAPIC initialisation diagnostic to use a literal function name
+and casting the unused configuration parameters to `(void)` quells the pedantic
+warnings in `src/plat/pc99/machine/ioapic.c`. With those changes the strict
+build runs through the platform sources until it stops in
+`preconfigured/X64_verified/src/smp/ipi_wrapper.c`, where the pedantic warning
+set now rejects the empty translation unit emitted by the generated wrapper.
+
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
    machine shims still emit `ULL` and `LL` constants that trigger
@@ -265,6 +272,8 @@ the LAPIC frequency measurement temporaries satisfy the C90 rules in
         avoid C99 `for`-loop initialisers, and compare like-signed values.
   - [x] Cast the unused parameters in the x86 TLB invalidation wrappers and
         related boot helpers so the pedantic build stays quiet.
+- [x] Silence the IOAPIC initialisation helpers by avoiding `__func__` and
+  casting their unused parameters so they satisfy pedantic C90.
 - [x] Hoist declarations and add `(void)` casts in the x86 boot-time paging
         helpers (`map_temp_boot_page`, `create_mapped_it_frame_cap`, and the
         slot region initialiser) so they satisfy pedantic C90.
@@ -286,6 +295,9 @@ the LAPIC frequency measurement temporaries satisfy the C90 rules in
 - [x] Provide a benign definition in the x86 benchmarking stubs so the strict
   build no longer rejects the empty translation unit emitted by
   `src/arch/x86/benchmark/benchmark.c`.
+- [ ] Provide a benign definition in the generated SMP IPI wrapper so the
+  strict build no longer rejects the empty translation unit emitted by
+  `preconfigured/X64_verified/src/smp/ipi_wrapper.c`.
 - [x] Rewrite the syscall and exception message tables in
   `src/machine/registerset.c` so they avoid the designated initialisers that
   pedantic C90 rejects.

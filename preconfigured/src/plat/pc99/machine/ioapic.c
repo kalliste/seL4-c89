@@ -78,9 +78,9 @@ static void single_ioapic_init(word_t ioapic, cpu_id_t delivery_cpu)
      * return a max value of 239, which means a max nirqs value of IOAPIC_IRQ_LINES.
      */
     if (nirqs > IOAPIC_IRQ_LINES) {
-        userError("%s: ioapic %lu has %u IRQs,\n"
+        userError("single_ioapic_init: ioapic %lu has %u IRQs,\n"
                   "which is greater than the max handled (%u)\n",
-                  __func__, ioapic, nirqs, IOAPIC_IRQ_LINES);
+                  ioapic, nirqs, IOAPIC_IRQ_LINES);
         halt();
     }
 
@@ -106,6 +106,7 @@ static  cpu_id_t ioapic_target_cpu = 0;
 void ioapic_init(uint32_t num_nodes, cpu_id_t *cpu_list, uint32_t num_ioapic)
 {
     uint32_t ioapic;
+    (void)num_nodes;
     num_ioapics = num_ioapic;
     ioapic_target_cpu = cpu_list[0];
 
@@ -137,6 +138,7 @@ void ioapic_mask(bool_t mask, uint32_t ioapic, uint32_t pin)
 exception_t ioapic_decode_map_pin_to_vector(word_t ioapic, word_t pin, word_t level,
                                             word_t polarity, word_t vector)
 {
+    (void)vector;
     if (num_ioapics == 0) {
         userError("System has no IOAPICs");
         current_syscall_error.type = seL4_IllegalOperation;
