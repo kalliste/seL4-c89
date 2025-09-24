@@ -138,14 +138,15 @@ BOOT_CODE bool_t map_kernel_window_devices(pte_t *pt, uint32_t num_ioapic, paddr
     paddr_t phys;
     pte_t pte;
     unsigned int i;
+    p_region_t region;
     /* map kernel devices: APIC */
     phys = apic_get_base_paddr();
     if (!phys) {
         return false;
     }
-    if (!reserve_region((p_region_t) {
-    phys, phys + 0x1000
-})) {
+    region.start = phys;
+    region.end = phys + 0x1000;
+    if (!reserve_region(region)) {
         return false;
     }
     pte = x86_make_device_pte(phys);
@@ -155,9 +156,9 @@ BOOT_CODE bool_t map_kernel_window_devices(pte_t *pt, uint32_t num_ioapic, paddr
     idx++;
     for (i = 0; i < num_ioapic; i++) {
         phys = ioapic_paddrs[i];
-        if (!reserve_region((p_region_t) {
-        phys, phys + 0x1000
-    })) {
+        region.start = phys;
+        region.end = phys + 0x1000;
+        if (!reserve_region(region)) {
             return false;
         }
         pte = x86_make_device_pte(phys);
@@ -179,9 +180,9 @@ BOOT_CODE bool_t map_kernel_window_devices(pte_t *pt, uint32_t num_ioapic, paddr
     /* map kernel devices: IOMMUs */
     for (i = 0; i < num_drhu; i++) {
         phys = (paddr_t)drhu_list[i];
-        if (!reserve_region((p_region_t) {
-        phys, phys + 0x1000
-    })) {
+        region.start = phys;
+        region.end = phys + 0x1000;
+        if (!reserve_region(region)) {
             return false;
         }
         pte = x86_make_device_pte(phys);

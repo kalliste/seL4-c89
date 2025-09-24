@@ -21,13 +21,14 @@
 
 BOOT_CODE bool_t platAddDevices(void)
 {
+    p_region_t region;
     /* remove the MSI region as poking at this is undefined and may allow for
      * the user to generate arbitrary MSI interrupts. Only need to consider
      * this if it would actually be in the user device region */
     if (CONFIG_PADDR_USER_DEVICE_TOP > 0xFFFFFFF8) {
-        if (!reserve_region((p_region_t) {
-        (word_t)0xFFFFFFF8, (word_t)0xFFFFFFF8 + 8
-        })) {
+        region.start = (paddr_t)0xFFFFFFF8;
+        region.end = (paddr_t)0xFFFFFFF8 + 8;
+        if (!reserve_region(region)) {
             return false;
         }
     }

@@ -1544,6 +1544,8 @@ void restoreVMCS(void)
 {
     tcb_t *cur_thread = NODE_STATE(ksCurThread);
     vcpu_t *expected_vmcs = cur_thread->tcbArch.tcbVCPU;
+    cr3_t current_cr3;
+    word_t current_cr3_word;
 
     /* Check that the right VMCS is active and current. */
     if (ARCH_NODE_STATE(x86KSCurrentVCPU) != expected_vmcs) {
@@ -1551,9 +1553,11 @@ void restoreVMCS(void)
     }
 
 #ifndef CONFIG_KERNEL_SKIM_WINDOW
-    if (getCurrentCR3().words[0] != expected_vmcs->last_host_cr3) {
-        expected_vmcs->last_host_cr3 = getCurrentCR3().words[0];
-        vmwrite(VMX_HOST_CR3, getCurrentCR3().words[0]);
+    current_cr3 = getCurrentCR3();
+    current_cr3_word = current_cr3.words[0];
+    if (current_cr3_word != expected_vmcs->last_host_cr3) {
+        expected_vmcs->last_host_cr3 = current_cr3_word;
+        vmwrite(VMX_HOST_CR3, current_cr3_word);
     }
 #endif
     if (expected_vmcs->vpid == VPID_INVALID) {
