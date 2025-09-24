@@ -22,4 +22,6 @@ BOOT_CODE void mode_init_tls(cpu_id_t cpu_index)
     swapgs();
 }
 
+#else
+typedef int smp_translation_unit_is_not_empty;
 #endif /* ENABLE_SMP_SUPPORT */
