@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <compiler.h>
+
 #define PASTE(a, b) a ## b
 #define _STRINGIFY(a) #a
 #define STRINGIFY(a) _STRINGIFY(a)
@@ -69,31 +71,31 @@
 
 #ifndef __ASSEMBLER__
 
-#define PACKED       __attribute__((packed))
-#define NORETURN     __attribute__((__noreturn__))
-#define CONST        __attribute__((__const__))
-#define PURE         __attribute__((__pure__))
-#define ALIGN(n)     __attribute__((__aligned__(n)))
-#define FASTCALL     __attribute__((fastcall))
+#define PACKED       SEL4_PACKED_ATTR
+#define NORETURN     SEL4_NORETURN_ATTR
+#define CONST        SEL4_CONST_ATTR
+#define PURE         SEL4_PURE_ATTR
+#define ALIGN(n)     SEL4_ALIGN_ATTR(n)
+#define FASTCALL     SEL4_FASTCALL_ATTR
 #ifdef __clang__
 #define VISIBLE      /* nothing */
 #else
-#define VISIBLE      __attribute__((externally_visible))
+#define VISIBLE      SEL4_EXTERNALLY_VISIBLE_ATTR
 #endif
-#define NO_INLINE    __attribute__((noinline))
-#define FORCE_INLINE __attribute__((always_inline))
-#define SECTION(sec) __attribute__((__section__(sec)))
-#define UNUSED       __attribute__((unused))
-#define USED         __attribute__((used))
+#define NO_INLINE    SEL4_ATTR((noinline))
+#define FORCE_INLINE SEL4_FORCE_INLINE
+#define SECTION(sec) SEL4_SECTION_ATTR(sec)
+#define UNUSED       SEL4_UNUSED_ATTR
+#define USED         SEL4_USED_ATTR
 #ifdef __clang__
 #define FORCE_O2     /* nothing */
 #else
-#define FORCE_O2     __attribute__((optimize("O2")))
+#define FORCE_O2     SEL4_OPTIMIZE_ATTR("O2")
 #endif
 /** MODIFIES: */
 void __builtin_unreachable(void);
 #define UNREACHABLE()  __builtin_unreachable()
-#define MAY_ALIAS    __attribute__((may_alias))
+#define MAY_ALIAS    SEL4_MAY_ALIAS_ATTR
 
 #define OFFSETOF(type, member)   __builtin_offsetof(type, member)
 

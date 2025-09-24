@@ -128,7 +128,7 @@ typedef struct rdmsr_safe_result rdmsr_safe_result_t;
 typedef struct gdt_idt_ptr {
     uint16_t limit;
     word_t base;
-} __attribute__((packed)) gdt_idt_ptr_t;
+} PACKED gdt_idt_ptr_t;
 
 enum vm_rights {
     VMKernelOnly = 1,

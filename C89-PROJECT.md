@@ -11,6 +11,8 @@ resulting compiler diagnostics.
   `-std=c90 -pedantic -Wall -Wextra` (keeping the original CFLAGS commented).
 - [x] Run the replay build to capture the resulting diagnostics.
 - [ ] Update the source tree to resolve the new C90 compilation issues.
+  - [x] Introduce compatibility shims for inline and attribute annotations.
+  - [ ] Address the remaining diagnostics reported by the strict build.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
@@ -18,36 +20,36 @@ resulting compiler diagnostics.
   header sources due to strict C90 semantics.
 
 ### Key Diagnostic Themes
-1. **`inline` keyword unavailable**: Hundreds of functions declared with
-   `static inline` now emit "unknown type name 'inline'" or related parsing
-   errors. This cascades into additional errors such as missing typedefs and
-   unresolved identifiers because the compiler stops parsing the affected
-   declarations.
-   - *Potential remedies*: provide a portability shim (e.g. define
-     `#define inline __inline__` or introduce a project-local `INLINE`
-     macro), or refactor headers so that the affected helpers are guarded by a
-     compiler feature check.
-2. **Attribute macros rejected by `-pedantic`**: Macros such as `CONST` expand to
-   GNU attributes. With `-pedantic` the compiler reports "attribute ignored"
-   warnings which escalate to errors via `-Werror`.
-   - *Potential remedies*: conditionally define these macros to empty for strict
-     C90 builds, or adjust `-Werror` usage while porting.
-3. **Implicit-int / missing type specifier fallout**: Because `inline` is not
-   recognized, the compiler falls back to implicit `int`, triggering
-   `-Werror=implicit-int`, and the declarations following these keywords are
-   skipped, leading to missing-type diagnostics for `word_t`, `bool_t`, etc.
-   - *Potential remedies*: once the `inline` keyword is handled, these cascaded
-     errors should disappear. Additional typedefs may need explicit forward
-     declarations to satisfy C89 rules.
-4. **`control reaches end of non-void function`**: Certain inline assembly
-   helpers (e.g. `read_cr3`) rely on compiler extensions and now trigger return
-   warnings under `-pedantic`/`-Wextra`.
-   - *Potential remedies*: rewrite these helpers using standard-compliant
-     idioms or add explicit `return` statements where appropriate.
+1. **C99 integer literals**: Generated capability helpers emit `ULL` and `LL`
+   constants that trigger `-Werror=long-long` under strict C90.
+   - *Potential remedies*: route these constants through macros that expand to
+     `unsigned long` arithmetic, or provide custom constructors that avoid
+     `long long` suffixes when C99 is unavailable.
+2. **Preprocessor usage assumes variadic macros**: The PC99 interrupt helpers
+   expand `config_set(...)` in contexts that result in empty `__VA_ARGS__`,
+   provoking "requires at least one argument" diagnostics.
+   - *Potential remedies*: restructure the macros/helpers to avoid empty
+     expansions or introduce wrappers that are C89-safe.
+3. **Modern C layout rules**: Several functions declare variables mid-block,
+   causing "mixed declarations and code" errors with C90.
+   - *Potential remedies*: hoist declarations to the top of the scope.
+4. **Unused parameter clean-ups**: Architecture stubs rely on the compiler to
+   discard unused parameters via attributes; once those attributes collapse
+   under C89, the warnings become hard errors.
+   - *Potential remedies*: cast parameters to `(void)` or reintroduce
+     conditional attribute shims that keep the compiler quiet.
+5. **Control-flow expectations**: A few helper functions (e.g.
+   `setMRs_lookup_failure`) still fall off the end without an explicit return
+   statement under the stricter warning set.
+   - *Potential remedies*: add explicit returns or refactor the control flow so
+     that the compiler can prove a value is always produced.
 
 ## Next Steps
-- Introduce compatibility macros for `inline` and attribute annotations when
-  compiling in C89 mode.
-- Re-run the build to confirm which diagnostics remain once parsing succeeds.
-- Iterate on remaining incompatibilities (e.g. assembly helpers, bool/true/false
-  replacements) as part of the broader port.
+- Replace C99-only `long long` literals with portable helpers or constant
+  constructors that satisfy C89.
+- Rework the PC99 interrupt helpers so that the generated statements avoid
+  declaration-after-statement issues and variadic macro misuse under strict C90.
+- Audit architecture helpers for unused parameters and modern inline idioms
+  (e.g. `static inline` placement) that now surface as errors.
+- Continue iterating on the remaining compilation blockers (assembly helpers,
+  missing returns, etc.) surfaced by the latest build.

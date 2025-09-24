@@ -5,6 +5,8 @@
  */
 
 #pragma once
+
+#include <sel4/compiler.h>
 typedef enum api_object {
     seL4_UntypedObject,
     seL4_TCBObject,
@@ -18,7 +20,7 @@ typedef enum api_object {
     seL4_NonArchObjectTypeCount,
 } seL4_ObjectType;
 
-__attribute__((deprecated("use seL4_NotificationObject"))) static const seL4_ObjectType seL4_AsyncEndpointObject =
+SEL4_ATTR((deprecated("use seL4_NotificationObject"))) static const seL4_ObjectType seL4_AsyncEndpointObject =
     seL4_NotificationObject;
 
 typedef seL4_Word api_object_t;
