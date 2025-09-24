@@ -159,11 +159,8 @@ the LAPIC frequency measurement temporaries satisfy the C90 rules in
 
 Replacing the IOAPIC initialisation diagnostic to use a literal function name
 and casting the unused configuration parameters to `(void)` quells the pedantic
-warnings in `src/plat/pc99/machine/ioapic.c`. With those changes—and the new
-util/default-domain fixes—the strict build runs through the platform sources
-until it stops in `preconfigured/X64_verified/src/smp/ipi_wrapper.c`, where the
-pedantic warning set still rejects the empty translation unit emitted by the
-generated wrapper.
+warnings in `src/plat/pc99/machine/ioapic.c`
+
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
