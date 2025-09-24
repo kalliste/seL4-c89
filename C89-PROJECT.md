@@ -106,7 +106,10 @@ explicit return paths for the VM fault and accessors resolves the C90-specific
 diagnostics in that translation unit. The replay build consequently advances to
 `arch/x86/kernel/xapic.c`, where the pedantic warning set now complains about
 subscripting the temporary compound literals returned by the LAPIC register
-constructors when sending IPIs.
+constructors when sending IPIs. Reworking those helpers to materialise the
+register values in named temporaries clears the pedantic errors and lets the
+strict build progress into `arch/x86/machine/breakpoint.c`, which now fails the
+build as an empty translation unit under `-Werror=pedantic`.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -264,8 +267,11 @@ constructors when sending IPIs.
         it is referenced.
 - [x] Silence the strict C90 warnings in `arch/x86/kernel/cmdline.c` so the
   pedantic build no longer reports the unused command-line parsing helpers.
-- [ ] Rework the LAPIC IPI helpers in `src/arch/x86/kernel/xapic.c` so they
+- [x] Rework the LAPIC IPI helpers in `src/arch/x86/kernel/xapic.c` so they
   populate named temporaries instead of subscripting compound literals, letting
   the pedantic C90 build proceed past the new blocker.
+- [ ] Provide a benign definition in the x86 breakpoint stubs so the strict build
+  no longer rejects the empty translation unit emitted by
+  `src/arch/x86/machine/breakpoint.c`.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.
