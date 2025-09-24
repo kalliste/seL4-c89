@@ -9,7 +9,7 @@
 #include <smp/lock.h>
 
 #ifdef ENABLE_SMP_SUPPORT
-compile_assert(BKL_not_padded, sizeof(big_kernel_lock) % EXCL_RES_GRANULE_SIZE == 0);
+compile_assert(BKL_not_padded, sizeof(big_kernel_lock) % EXCL_RES_GRANULE_SIZE == 0)
 
 clh_lock_t big_kernel_lock;
 

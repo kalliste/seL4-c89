@@ -134,9 +134,11 @@ Guarding `switchFpuOwner`'s CPU argument with a `(void)` cast when SMP support
 is absent lets the strict build progress into `src/machine/registerset.c`.
 Rewriting the syscall and exception message tables without designated
 initialisers clears that blocker, allowing the pedantic C90 build to reach
-`src/model/statedata.c`. The current failure reports stray semicolons from the
-`SMP_STATE_DEFINE` and `compile_assert` shims once SMP support is compiled out,
-so the node-state declarations need to be tidied next.
+`src/model/statedata.c`. Cleaning up the SMP shims and compile-time assertions
+lets the strict build advance into `src/object/cnode.c`, where
+`cteDeleteOne` now leaves its `fc_ret` temporary unused and
+`capRemovable` still falls off the end without returning a value when the
+arch-specific cases collapse under C90.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -270,7 +272,7 @@ so the node-state declarations need to be tidied next.
 - [x] Rewrite the syscall and exception message tables in
   `src/machine/registerset.c` so they avoid the designated initialisers that
   pedantic C90 rejects.
-- [ ] Tidy the node-state declarations in `src/model/statedata.c` so the
+- [x] Tidy the node-state declarations in `src/model/statedata.c` so the
   pedantic C90 build no longer flags stray semicolons when the SMP shims
   compile away.
 - [ ] Provide a benign definition in the x86 EPT stubs so the strict build no
@@ -318,5 +320,11 @@ so the node-state declarations need to be tidied next.
 - [x] Hoist the reply-path locals in `src/kernel/thread.c`
   (`doReplyTransfer`, `schedule`) so they no longer mix declarations with
   statements under C90.
+- [ ] Adjust the `src/object/cnode.c` helpers uncovered by the latest strict
+  build run so they satisfy pedantic C90:
+  - [ ] Consume or drop the unused `fc_ret` temporary in `cteDeleteOne` once
+        the cap finalisation collapses.
+  - [ ] Give `capRemovable` an explicit return path when the architecture
+        special-cases compile away.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.

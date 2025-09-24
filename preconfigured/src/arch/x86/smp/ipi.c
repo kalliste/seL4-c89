@@ -60,7 +60,7 @@ void handleRemoteCall(IpiRemoteCall_t call, word_t arg0, word_t arg1, word_t arg
 }
 
 /* make sure all cpu IDs for number of core fit in bitwise word */
-compile_assert(invalid_number_of_supported_nodes, CONFIG_MAX_NUM_NODES <= wordBits);
+compile_assert(invalid_number_of_supported_nodes, CONFIG_MAX_NUM_NODES <= wordBits)
 
 #ifdef CONFIG_USE_LOGICAL_IDS
 static void x86_ipi_send_mask(interrupt_t ipi, word_t mask, bool_t isBlocking)
