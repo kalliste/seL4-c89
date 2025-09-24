@@ -21,21 +21,23 @@ resulting compiler diagnostics.
       anonymous variadic macros.
     - [x] Tidy the libsel4 size/enumeration assertion macros so they no longer
       emit pedantic diagnostics under strict C90.
-    - [x] Replace the compound literal helpers in `machine.h` with explicit
-      temporaries.
-    - [x] Replace the remaining anonymous variadic logging helpers with
-      explicit C89-compatible shims.
+  - [x] Replace the compound literal helpers in `machine.h` with explicit
+    temporaries.
+  - [x] Replace the remaining anonymous variadic logging helpers with
+    explicit C89-compatible shims.
+  - [x] Rework the PC99 interrupt helpers to hoist declarations, normalise
+    inline specifiers, and tighten their predicate logic for C90.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
-- **Outcome**: The build now clears the earlier enum-related pedantic errors and
-  the node-state macro fallout. Replacing the variadic logging shims and fixing
-  `setMRs_lookup_failure` removed those diagnostics, but the strict C90 build
-  still stops in the shared headers. The current blockers are the packed-structure
-  assertions, several unused-parameter stubs (including the FS/GS base
-  accessors), declaration-after-statement violations in the interrupt helpers,
-  inline specifier ordering in the PC99 IRQ helpers, the always-true comparison
-  in `maskInterrupt`, and the inline assembly that subscripts temporaries.
+- **Outcome**: The build now clears the earlier enum-related pedantic errors,
+  the node-state fallout, and the PC99 interrupt helper issues. The strict C90
+  run currently stops on the packed-structure assertions for the GDT/IDT pointer
+  and ACPI RSDP, unused-parameter diagnostics across the interrupt stubs (e.g.
+  `handleReservedIRQ`, the APIC helpers, and the FS/GS base accessors),
+  declaration-after-statement violations in the FS/GS save/restore helpers and
+  CR3 routines, and the inline assembly that still subscripts temporaries in the
+  translation invalidation paths.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -109,11 +111,11 @@ resulting compiler diagnostics.
     `include/machine.h` with explicit temporaries to satisfy C90.
   - [x] normalise the `NODE_STATE_*` macros so they do not expand to stray
     semicolons.
-  - add `(void)` casts or other shims for the numerous unused parameters (e.g.
-    the FS/GS base accessors, APIC helpers, and IRQ stubs) and reorder
+  - [ ] Add `(void)` casts or other shims for the numerous unused parameters
+    (e.g. the FS/GS base accessors, APIC helpers, and IRQ stubs) and reorder
     declarations that appear after executable statements in the interrupt and
     machine helpers.
-- Rework the PC99 interrupt helpers so that the generated statements avoid
+- [x] Rework the PC99 interrupt helpers so that the generated statements avoid
   declaration-after-statement issues, inline-specifier ordering problems,
   always-true comparisons, and variadic macro misuse under strict C90.
 - Adjust the CR3 and translation invalidation helpers so that inline assembly
