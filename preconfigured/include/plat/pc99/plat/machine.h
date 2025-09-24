@@ -60,7 +60,7 @@ typedef enum _platform_irq_t {
     /* This is explicitly 255, instead of -1 like on some other platforms, to ensure
      * that comparisons between an irq_t (a uint8_t) and irqInvalid (some kind of signed int)
      * are well defined and behave as expected */
-    irqInvalid                  = 255,
+    irqInvalid                  = 255
 } platform_irq_t;
 
 #define KERNEL_TIMER_IRQ irq_timer
