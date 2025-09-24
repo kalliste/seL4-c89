@@ -71,16 +71,17 @@ SEL4_SIZE_SANITY(seL4_WordSizeBits, seL4_ASIDPoolIndexBits, seL4_ASIDPoolBits);
 
 #ifndef __ASSEMBLER__
 /* format of a vm fault message */
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_VMFault_IP,
     seL4_VMFault_Addr,
     seL4_VMFault_PrefetchFault,
     seL4_VMFault_FSR,
     seL4_VMFault_Length,
     SEL4_FORCE_LONG_ENUM(seL4_VMFault_Msg)
-} seL4_VMFault_Msg;
+} seL4_VMFault_Msg SEL4_ENUM_ATTR(__mode__(__word__));
 
-LIBSEL4_ENUM_EXT typedef enum {
+
+typedef enum {
     seL4_UnknownSyscall_EAX,
     seL4_UnknownSyscall_EBX,
     seL4_UnknownSyscall_ECX,
@@ -94,9 +95,10 @@ LIBSEL4_ENUM_EXT typedef enum {
     seL4_UnknownSyscall_Syscall,
     seL4_UnknownSyscall_Length,
     SEL4_FORCE_LONG_ENUM(seL4_UnknownSyscall_Msg)
-} seL4_UnknownSyscall_Msg;
+} seL4_UnknownSyscall_Msg SEL4_ENUM_ATTR(__mode__(__word__));
 
-LIBSEL4_ENUM_EXT typedef enum {
+
+typedef enum {
     seL4_UserException_FaultIP,
     seL4_UserException_SP,
     seL4_UserException_FLAGS,
@@ -104,19 +106,21 @@ LIBSEL4_ENUM_EXT typedef enum {
     seL4_UserException_Code,
     seL4_UserException_Length,
     SEL4_FORCE_LONG_ENUM(seL4_UserException_Msg)
-} seL4_UserException_Msg;
+} seL4_UserException_Msg SEL4_ENUM_ATTR(__mode__(__word__));
+
 
 #ifdef CONFIG_KERNEL_MCS
-LIBSEL4_ENUM_EXT typedef enum {
+typedef enum {
     seL4_Timeout_Data,
     /* consumed is 64 bits */
     seL4_Timeout_Consumed_HighBits,
     seL4_Timeout_Consumed_LowBits,
     seL4_Timeout_Length,
     SEL4_FORCE_LONG_ENUM(seL4_Timeout_Msg)
-} seL4_Timeout_Msg;
+} seL4_Timeout_Msg SEL4_ENUM_ATTR(__mode__(__word__));
 
-LIBSEL4_ENUM_EXT typedef enum {
+
+typedef enum {
     seL4_TimeoutReply_FaultIP,
     seL4_TimeoutReply_SP,
     seL4_TimeoutReply_FLAGS,
@@ -131,7 +135,8 @@ LIBSEL4_ENUM_EXT typedef enum {
     seL4_TimeoutReply_GS_BASE,
     seL4_TimeoutReply_Length,
     SEL4_FORCE_LONG_ENUM(seL4_TimeoutReply_Msg)
-} seL4_TimeoutReply_Msg;
+} seL4_TimeoutReply_Msg SEL4_ENUM_ATTR(__mode__(__word__));
+
 #endif
 #endif /* __ASSEMBLER__ */
 #ifdef CONFIG_KERNEL_MCS

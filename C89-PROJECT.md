@@ -30,16 +30,16 @@ resulting compiler diagnostics.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
-- **Outcome**: The wrappers remain up to date and the trap helpers now hoist
-  their temporaries, allowing the strict build to progress well past the syscall
-  path. The current blockers sit in the x86 virtual memory code and libsel4
-  headers: `LIBSEL4_ENUM_EXT` still expands to `__extension__`, the multiboot2
-  tag enumeration ends with a trailing comma, and the SKIM window routines rely
-  on C99-style loop declarations and compare signed indices against unsigned
-  bounds. The TLB invalidation shims now trip unused-parameter warnings, the new
-  CR3 accessor subscripts a temporary, and several boot and decode helpers rely
-  on compound literals or fall off the end without an explicit return once the
-  attribute shims collapse.
+- **Outcome**: The libsel4 enumerations now carry an explicit
+  `__mode__(__word__)` attribute instead of depending on `__extension__`, the
+  multiboot2 tag list no longer ends with a trailing comma, and the SKIM window
+  mapper hoists its declarations and iterates with like-signed indices. The
+  strict build consequently advances into the x86 virtual memory code before
+  failing on the next wave of issues: the TLB invalidation wrappers and paging
+  helpers still need `(void)` casts for unused parameters, the CR3 comparison
+  relies on subscripting a temporary, several boot-time mappers use compound
+  literals, and a handful of decode helpers fall off the end without explicit
+  returns once the attribute shims collapse.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -143,9 +143,9 @@ resulting compiler diagnostics.
 - Make the shared libsel4 macros and enum definitions pedantic-friendly so that
   the generated headers compile cleanly under C90.
 - Tackle the new diagnostics exposed by the latest strict build run:
-  - [ ] Replace `LIBSEL4_ENUM_EXT` with a pedantic-friendly shim and scrub the
+  - [x] Replace `LIBSEL4_ENUM_EXT` with a pedantic-friendly shim and scrub the
         remaining trailing commas from the multiboot2 tag enumeration.
-  - [ ] Rework the SKIM window mapping helpers so they hoist declarations,
+  - [x] Rework the SKIM window mapping helpers so they hoist declarations,
         avoid C99 `for`-loop initialisers, and compare like-signed values.
   - [ ] Cast the unused parameters in the x86 TLB invalidation wrappers and
         related boot helpers so the pedantic build stays quiet.

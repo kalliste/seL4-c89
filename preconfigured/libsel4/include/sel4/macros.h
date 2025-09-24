@@ -53,13 +53,6 @@
 #define LIBSEL4_WEAK            SEL4_WEAK_ATTR
 #define LIBSEL4_NOINLINE        SEL4_ATTR((noinline))
 
-#if defined(__GNUC__) || defined(__clang__)
-#define LIBSEL4_ENUM_EXT        __extension__
-#else
-#define LIBSEL4_ENUM_EXT
-#endif
-
-
 #ifdef CONFIG_LIB_SEL4_INLINE_INVOCATIONS
 
 #define LIBSEL4_INLINE          static inline
@@ -97,6 +90,6 @@
  * the same size as a 'long'.
  */
 #define SEL4_FORCE_LONG_ENUM(type) \
-    _enum_pad_ ## type = ((long)((~0ul) >> 1))
+    _enum_pad_ ## type = 0
 
 #define LIBSEL4_BIT(n)  (1ul<<(n))

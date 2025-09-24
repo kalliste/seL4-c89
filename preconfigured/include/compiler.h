@@ -29,9 +29,19 @@
 #endif
 #endif
 
+#if defined(__GNUC__) || defined(__clang__)
+#define SEL4_GNUC_EXTENSION __extension__
+#define SEL4_ENUM_ATTR(attr) __attribute__((attr))
+#else
+#define SEL4_GNUC_EXTENSION
+#define SEL4_ENUM_ATTR(attr)
+#endif
+
 #if SEL4_C89_COMPAT
+#define SEL4_EXTENSION
 #define SEL4_ATTR(attrs)
 #else
+#define SEL4_EXTENSION SEL4_GNUC_EXTENSION
 #define SEL4_ATTR(attrs) __attribute__ attrs
 #endif
 
