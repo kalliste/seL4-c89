@@ -418,7 +418,9 @@ cap_t CONST updateCapData(bool_t preserve, word_t newData, cap_t cap)
 
     case cap_cnode_cap: {
         word_t guard, guardSize;
-        seL4_CNode_CapData_t w = { .words = { newData } };
+        seL4_CNode_CapData_t w;
+
+        w.words[0] = newData;
 
         guardSize = seL4_CNode_CapData_get_guardSize(w);
 
@@ -505,6 +507,7 @@ cap_t CONST maskCapRights(seL4_CapRights_t cap_rights, cap_t cap)
 
     default:
         fail("Invalid cap type"); /* Sentinel for invalid enums */
+        return cap;
     }
 }
 
@@ -592,6 +595,7 @@ cap_t createObject(object_t t, void *regionBase, word_t userSize, bool_t deviceM
 
     default:
         fail("Invalid object type");
+        return cap_null_cap_new();
     }
 }
 
@@ -607,6 +611,7 @@ void createNewObjects(object_t t, cte_t *parent,
     /* ghost check that we're visiting less bytes than the max object size */
     objectSize = getObjectSize(t, userSize);
     totalObjectSize = destLength << objectSize;
+    totalObjectSize += 0;
     /** GHOSTUPD: "(gs_get_assn cap_get_capSizeBits_'proc \<acute>ghost'state = 0
         \<or> \<acute>totalObjectSize <= gs_get_assn cap_get_capSizeBits_'proc \<acute>ghost'state, id)" */
 
@@ -782,6 +787,7 @@ exception_t decodeInvocation(word_t invLabel, word_t length,
 #endif
     default:
         fail("Invalid cap type");
+        return EXCEPTION_SYSCALL_ERROR;
     }
 }
 

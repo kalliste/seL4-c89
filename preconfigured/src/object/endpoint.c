@@ -57,6 +57,9 @@ void sendIPC(bool_t blocking, bool_t do_call, word_t badge,
     case EPState_Recv: {
         tcb_queue_t queue;
         tcb_t *dest;
+#ifndef CONFIG_KERNEL_MCS
+        bool_t replyCanGrant;
+#endif
 
         /* Get the head of the endpoint queue. */
         queue = ep_ptr_get_queue(epptr);
@@ -102,7 +105,7 @@ void sendIPC(bool_t blocking, bool_t do_call, word_t badge,
         }
         possibleSwitchTo(dest);
 #else
-        bool_t replyCanGrant = thread_state_ptr_get_blockingIPCCanGrant(&dest->tcbState);;
+        replyCanGrant = thread_state_ptr_get_blockingIPCCanGrant(&dest->tcbState);
 
         setThreadState(dest, ThreadState_Running);
         possibleSwitchTo(dest);

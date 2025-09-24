@@ -142,9 +142,13 @@ arch-specific cases collapse under C90.
 
 Consuming the `cteDeleteOne` finalisation result and giving `capRemovable`
 an explicit default return lets the pedantic build progress into
-`src/object/endpoint.c`. The next blocker lives in `sendIPC`, which still
-declares `replyCanGrant` after executable statements once the capability
-checks are reduced, triggering the C90 mixed-declaration warning.
+`src/object/endpoint.c`. Hoisting the `sendIPC` reply capability flag, rewriting
+the generic object helpers to avoid designated initialisers and missing returns,
+and untangling the `tcb.c` scheduling shims from their mixed declarations keeps
+those translation units pedantic-friendly. The strict build now advances to
+`src/object/untyped.c`, where the ternary that picks the object mask changes
+signedness mid-expression, the invocation wrapper's `call` parameter becomes
+unused, and the reset path still compares unlike-signed counters.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -332,8 +336,11 @@ checks are reduced, triggering the C90 mixed-declaration warning.
         the cap finalisation collapses.
   - [x] Give `capRemovable` an explicit return path when the architecture
         special-cases compile away.
-- [ ] Hoist the `replyCanGrant` declaration in `src/object/endpoint.c`'s
+- [x] Hoist the `replyCanGrant` declaration in `src/object/endpoint.c`'s
   `sendIPC` helper so it no longer mixes declarations with statements under
   strict C90.
+- [ ] Resolve the strict C90 diagnostics in `src/object/untyped.c` exposed by
+  the latest build run (unused invocation parameters, unlike-signed comparisons,
+  and the ternary mask constructor that flips signedness mid-expression).
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.
