@@ -34,12 +34,14 @@ resulting compiler diagnostics.
   `__mode__(__word__)` attribute instead of depending on `__extension__`, the
   multiboot2 tag list no longer ends with a trailing comma, and the SKIM window
   mapper hoists its declarations and iterates with like-signed indices. The TLB
-  invalidation wrappers now cast their unused parameters, so the strict build
-  consequently advances into the x86 virtual memory code before failing on the
-  next wave of issues: the CR3 comparison still subscripts a temporary, several
-  boot-time mappers lean on compound literals or leave parameters unused, and a
-  handful of decode helpers fall off the end without explicit returns once the
-  attribute shims collapse.
+  invalidation wrappers now cast their unused parameters, and the boot-time x86
+  mappers have been rewritten to hoist their declarations and avoid compound
+  literals. The strict build consequently presses on to the remaining blockers
+  in the virtual memory code: the CR3 comparison still subscripts a temporary,
+  several decode helpers declare locals after executable statements, the MMU
+  invocation path leaves a handful of parameters unused and falls off the end
+  without returning, and the generated cap accessor for the mapped ASID still
+  needs an explicit return path.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -149,7 +151,7 @@ resulting compiler diagnostics.
         avoid C99 `for`-loop initialisers, and compare like-signed values.
   - [x] Cast the unused parameters in the x86 TLB invalidation wrappers and
         related boot helpers so the pedantic build stays quiet.
-  - [ ] Hoist declarations and add `(void)` casts in the x86 boot-time paging
+- [x] Hoist declarations and add `(void)` casts in the x86 boot-time paging
         helpers (`map_temp_boot_page`, `create_mapped_it_frame_cap`, and the
         slot region initialiser) so they satisfy pedantic C90.
   - [ ] Adjust the CR3 comparison helpers and boot-time mapping routines to
