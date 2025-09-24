@@ -13,8 +13,9 @@
 #pragma once
 
 #include <sel4/config.h>
+#include <sel4/macros.h>
 
-typedef enum {
+LIBSEL4_ENUM_EXT typedef enum {
        seL4_SysCall = -1,
        seL4_SysReplyRecv = -2,
        seL4_SysSend = -3,
