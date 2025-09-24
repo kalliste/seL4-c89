@@ -35,6 +35,8 @@
 #define NODE_STATE_BEGIN(_name)
 #define NODE_STATE_GLUE3_IMPL(_a, _b, _c)       _a##_b##_c
 #define NODE_STATE_GLUE3(_a, _b, _c)            NODE_STATE_GLUE3_IMPL(_a, _b, _c)
+#define NODE_STATE_GLUE2_IMPL(_a, _b)           _a##_b
+#define NODE_STATE_GLUE2(_a, _b)                NODE_STATE_GLUE2_IMPL(_a, _b)
 #define NODE_STATE_END(_name)                                                       \
     struct NODE_STATE_GLUE3(node_state_end_dummy_, _name, __LINE__) {               \
         unsigned int node_state_end_dummy_field;                                    \
@@ -46,7 +48,8 @@
 /* UP states are declared as VISIBLE so that they are accessible in assembly */
 #define NODE_STATE_DECLARE(_type, _state)       extern _type _state VISIBLE
 
-#define SMP_STATE_DEFINE(_name, _state)
+#define SMP_STATE_DUMMY_NAME(_line)             NODE_STATE_GLUE3(node_state_smp_dummy_, _line, _line)
+#define SMP_STATE_DEFINE(_name, _state)         extern unsigned int SMP_STATE_DUMMY_NAME(__LINE__)
 #define UP_STATE_DEFINE(_type, _state)          _type _state
 
 #define SMP_COND_STATEMENT(_st)

@@ -13620,7 +13620,7 @@ void handleRemoteCall(IpiRemoteCall_t call, word_t arg0, word_t arg1, word_t arg
 }
 
 /* make sure all cpu IDs for number of core fit in bitwise word */
-compile_assert(invalid_number_of_supported_nodes, CONFIG_MAX_NUM_NODES <= wordBits);
+compile_assert(invalid_number_of_supported_nodes, CONFIG_MAX_NUM_NODES <= wordBits)
 
 #ifdef CONFIG_USE_LOGICAL_IDS
 static void x86_ipi_send_mask(interrupt_t ipi, word_t mask, bool_t isBlocking)
@@ -15132,14 +15132,14 @@ BOOT_CODE static void create_rootserver_objects(pptr_t start, v_region_t it_v_re
     /* at this point we are up to creating 4k objects - which is the min size of
      * extra_bi so this is the last chance to allocate it */
     maybe_alloc_extra_bi(seL4_PageBits, extra_bi_size_bits);
-    compile_assert(invalid_seL4_ASIDPoolBits, seL4_ASIDPoolBits == seL4_PageBits);
+    compile_assert(invalid_seL4_ASIDPoolBits, seL4_ASIDPoolBits == seL4_PageBits)
     rootserver.asid_pool = alloc_rootserver_obj(seL4_ASIDPoolBits, 1);
     rootserver.ipc_buf = alloc_rootserver_obj(seL4_PageBits, 1);
     /* The boot info size must be at least one page. Due to the hard-coded order
      * of allocations used in the current implementation here, it can't be any
      * bigger.
      */
-    compile_assert(invalid_seL4_BootInfoFrameBits, seL4_BootInfoFrameBits == seL4_PageBits);
+    compile_assert(invalid_seL4_BootInfoFrameBits, seL4_BootInfoFrameBits == seL4_PageBits)
     rootserver.boot_info = alloc_rootserver_obj(seL4_BootInfoFrameBits, 1);
 
     /* TCBs on aarch32 can be larger than page tables in certain configs */
@@ -18520,7 +18520,7 @@ irq_state_t intStateIRQTable[INT_STATE_ARRAY_SIZE];
 /* CNode containing interrupt handler endpoints - like all seL4 objects, this CNode needs to be
  * of a size that is a power of 2 and aligned to its size. */
 cte_t intStateIRQNode[BIT(IRQ_CNODE_SLOT_BITS)] ALIGN(BIT(IRQ_CNODE_SLOT_BITS + seL4_SlotBits));
-compile_assert(irqCNodeSize, sizeof(intStateIRQNode) >= ((INT_STATE_ARRAY_SIZE) *sizeof(cte_t)));
+compile_assert(irqCNodeSize, sizeof(intStateIRQNode) >= ((INT_STATE_ARRAY_SIZE) *sizeof(cte_t)))
 
 /* Currently active domain */
 dom_t ksCurDomain;
@@ -26007,7 +26007,7 @@ exception_t handle_SysDebugSendIPI(void)
 #include <smp/lock.h>
 
 #ifdef ENABLE_SMP_SUPPORT
-compile_assert(BKL_not_padded, sizeof(big_kernel_lock) % EXCL_RES_GRANULE_SIZE == 0);
+compile_assert(BKL_not_padded, sizeof(big_kernel_lock) % EXCL_RES_GRANULE_SIZE == 0)
 
 clh_lock_t big_kernel_lock;
 
@@ -26239,9 +26239,9 @@ long PURE str_to_long(const char *str)
 /* binary. */
 
 /* Check some assumptions made by the clzl, clzll, ctzl functions: */
-compile_assert(clz_ulong_32_or_64, sizeof(unsigned long) == 4 || sizeof(unsigned long) == 8);
-compile_assert(clz_ullong_64, sizeof(unsigned long long) == 8);
-compile_assert(clz_word_size, sizeof(unsigned long) * 8 == CONFIG_WORD_SIZE);
+compile_assert(clz_ulong_32_or_64, sizeof(unsigned long) == 4 || sizeof(unsigned long) == 8)
+compile_assert(clz_ullong_64, sizeof(unsigned long long) == 8)
+compile_assert(clz_word_size, sizeof(unsigned long) * 8 == CONFIG_WORD_SIZE)
 
 /* Count leading zeros. */
 /* This implementation contains no branches. If the architecture provides an */

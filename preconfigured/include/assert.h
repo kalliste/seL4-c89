@@ -59,11 +59,16 @@ void _assert_fail(
  * unverified_compile_assert() exists, because some compile asserts contain
  * expressions that the C parser cannot handle, too.
  */
+#define COMPILE_ASSERT_GLUE_IMPL(_a, _b) _a##_b
+#define COMPILE_ASSERT_GLUE(_a, _b) COMPILE_ASSERT_GLUE_IMPL(_a, _b)
+#define COMPILE_ASSERT_UNIQUE(name, line) COMPILE_ASSERT_GLUE(__assert_failed_##name##_, line)
+
 #ifdef CONFIG_VERIFICATION_BUILD
 #define compile_assert(name, expr) \
-        typedef int __assert_failed_##name[(expr) ? 1 : -1] UNUSED;
+    extern char COMPILE_ASSERT_UNIQUE(name, __LINE__)[(expr) ? 1 : -1];
 #define unverified_compile_assert(name, expr)
 #else /* not CONFIG_VERIFICATION_BUILD */
-#define compile_assert(name, expr) _Static_assert(expr, #name);
+#define compile_assert(name, expr) \
+    extern char COMPILE_ASSERT_UNIQUE(name, __LINE__)[(expr) ? 1 : -1];
 #define unverified_compile_assert(name, expr) compile_assert(name, expr)
 #endif /* [not] CONFIG_VERIFICATION_BUILD */
