@@ -51,6 +51,14 @@ resulting compiler diagnostics.
   `src/arch/x86/64/model/smp.c`, where the strict warnings now flag the empty
   translation unit emitted when SMP support is disabled.
 
+  Providing a benign typedef in `smp.c` lets the pedantic build progress into
+  the mode-specific object helpers. The strict warning set now reports that
+  `Mode_deriveCap` and `Mode_createObject` both leave parameters unused and fall
+  off the end without returning a value when their architecture-specific cases
+  collapse. The shared `pageBitsForSize` helper in
+  `include/arch/x86/arch/machine/hardware.h` similarly lacks a return once the
+  large-page branches are preprocessed away.
+
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
    machine shims still emit `ULL` and `LL` constants that trigger
@@ -167,9 +175,14 @@ resulting compiler diagnostics.
   - [x] Audit the x86 decode and mode-specific cap helpers to provide explicit
         returns and `(void)` casts for unused parameters now that the attribute
         shims collapse under C90.
-  - [ ] Provide a benign definition in `src/arch/x86/64/model/smp.c` so the
+  - [x] Provide a benign definition in `src/arch/x86/64/model/smp.c` so the
         pedantic build no longer rejects the empty translation unit when SMP is
         disabled.
+  - [ ] Ensure the x86 mode object helpers (`Mode_deriveCap`, `Mode_createObject`)
+        cast their unused parameters and return explicit caps when the
+        architecture-specific cases compile away.
+  - [ ] Add a fallback return path to `pageBitsForSize` so the helper remains
+        well-defined once the large-page cases are disabled.
 - [ ] Teach the generated capDL wrapper sources to emit a benign definition
         when no kernel objects are present so the strict build no longer flags
         the empty translation unit under `-Wpedantic`.
