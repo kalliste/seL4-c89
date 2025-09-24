@@ -41,7 +41,7 @@ resulting compiler diagnostics.
     inline specifiers, and tighten their predicate logic for C90.
   - [x] Rewrite the kernel boot-time reservation helpers so they avoid
     compound literals, loop initialisers, and late declarations under C90.
-  - [ ] Quieten the double-fault handler's unused parameters in
+  - [x] Quieten the double-fault handler's unused parameters in
     `src/kernel/faulthandler.c` for the pedantic build.
 
 ## Build Attempt Summary
@@ -122,8 +122,15 @@ top-of-scope declarations removes the C99-only constructs that previously broke
 slot and address ranges manually, keeps loop indices declared outside their
 headers, and zeroes structures via assignments instead of compound literals.
 With those fixes applied the pedantic build moves on to `src/kernel/faulthandler.c`,
-where `handleDoubleFault` now triggers the next failure because its first
+where `handleDoubleFault` previously triggered the next failure because its first
 fault argument becomes unused once the attribute shims collapse.
+
+Casting that parameter to `(void)` quiets the stub and allows the strict build
+to progress into `src/kernel/thread.c`. The current blocker lives in
+`doReplyTransfer`, which now declares the `fault_type` and `restart`
+temporaries after executable statements, and `schedule`, where the `fastfail`
+flag is introduced mid-block. Both need their locals hoisted to satisfy C90's
+declaration rules.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -295,5 +302,8 @@ fault argument becomes unused once the attribute shims collapse.
 - [x] Provide a benign definition in the x86 breakpoint stubs so the strict build
   no longer rejects the empty translation unit emitted by
   `src/arch/x86/machine/breakpoint.c`.
+- [ ] Hoist the reply-path locals in `src/kernel/thread.c`
+  (`doReplyTransfer`, `schedule`) so they no longer mix declarations with
+  statements under C90.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.

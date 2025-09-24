@@ -148,6 +148,9 @@ void handleNoFaultHandler(tcb_t *tptr)
 void handleDoubleFault(tcb_t *tptr, seL4_Fault_t ex1)
 #endif
 {
+#ifndef CONFIG_PRINTING
+    (void)ex1;
+#endif
 #ifdef CONFIG_PRINTING
 #ifdef CONFIG_KERNEL_MCS
     printf("Found thread has no fault handler while trying to handle:\n");
