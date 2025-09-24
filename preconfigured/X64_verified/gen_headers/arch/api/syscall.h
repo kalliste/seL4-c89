@@ -39,47 +39,47 @@ enum syscall {
     SysRecv = -5,
     SysReply = -6,
     SysYield = -7,
-    SysNBRecv = -8,
+    SysNBRecv = -8
 #if defined(CONFIG_PRINTING)
-    SysDebugPutChar = -9,
-    SysDebugDumpScheduler = -10,
+    , SysDebugPutChar = -9
+    , SysDebugDumpScheduler = -10
 #endif /* defined(CONFIG_PRINTING) */
 #if defined(CONFIG_DEBUG_BUILD)
-    SysDebugHalt = -11,
-    SysDebugCapIdentify = -12,
-    SysDebugSnapshot = -13,
-    SysDebugNameThread = -14,
+    , SysDebugHalt = -11
+    , SysDebugCapIdentify = -12
+    , SysDebugSnapshot = -13
+    , SysDebugNameThread = -14
 #endif /* defined(CONFIG_DEBUG_BUILD) */
 #if defined(CONFIG_DEBUG_BUILD)
-    SysDebugSendIPI = -15,
+    , SysDebugSendIPI = -15
 #endif /* defined(CONFIG_DEBUG_BUILD) */
 #if defined(CONFIG_DANGEROUS_CODE_INJECTION)
-    SysDebugRun = -16,
+    , SysDebugRun = -16
 #endif /* defined(CONFIG_DANGEROUS_CODE_INJECTION) */
 #if defined(CONFIG_ENABLE_BENCHMARKS)
-    SysBenchmarkFlushCaches = -17,
-    SysBenchmarkResetLog = -18,
-    SysBenchmarkFinalizeLog = -19,
-    SysBenchmarkSetLogBuffer = -20,
-    SysBenchmarkNullSyscall = -21,
+    , SysBenchmarkFlushCaches = -17
+    , SysBenchmarkResetLog = -18
+    , SysBenchmarkFinalizeLog = -19
+    , SysBenchmarkSetLogBuffer = -20
+    , SysBenchmarkNullSyscall = -21
 #endif /* defined(CONFIG_ENABLE_BENCHMARKS) */
 #if defined(CONFIG_BENCHMARK_TRACK_UTILISATION)
-    SysBenchmarkGetThreadUtilisation = -22,
-    SysBenchmarkResetThreadUtilisation = -23,
+    , SysBenchmarkGetThreadUtilisation = -22
+    , SysBenchmarkResetThreadUtilisation = -23
 #endif /* defined(CONFIG_BENCHMARK_TRACK_UTILISATION) */
 #if (defined(CONFIG_DEBUG_BUILD) && defined(CONFIG_BENCHMARK_TRACK_UTILISATION))
-    SysBenchmarkDumpAllThreadsUtilisation = -24,
-    SysBenchmarkResetAllThreadsUtilisation = -25,
+    , SysBenchmarkDumpAllThreadsUtilisation = -24
+    , SysBenchmarkResetAllThreadsUtilisation = -25
 #endif /* (defined(CONFIG_DEBUG_BUILD) && defined(CONFIG_BENCHMARK_TRACK_UTILISATION)) */
 #if defined(CONFIG_KERNEL_X86_DANGEROUS_MSR)
-    SysX86DangerousWRMSR = -26,
-    SysX86DangerousRDMSR = -27,
+    , SysX86DangerousWRMSR = -26
+    , SysX86DangerousRDMSR = -27
 #endif /* defined(CONFIG_KERNEL_X86_DANGEROUS_MSR) */
 #if defined(CONFIG_VTX)
-    SysVMEnter = -28,
+    , SysVMEnter = -28
 #endif /* defined(CONFIG_VTX) */
 #if defined(CONFIG_SET_TLS_BASE_SELF)
-    SysSetTLSBase = -29,
+    , SysSetTLSBase = -29
 #endif /* defined(CONFIG_SET_TLS_BASE_SELF) */
 };
 typedef word_t syscall_t;

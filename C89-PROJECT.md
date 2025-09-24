@@ -65,10 +65,12 @@ resulting compiler diagnostics.
 7. **Enumeration and macro hygiene** *(partially resolved)*: the latest pass
    reworked the libsel4 compile-time helpers (`SEL4_SIZE_SANITY`,
    `SEL4_FORCE_LONG_ENUM`, etc.) so they expand cleanly under strict C90
-   without trailing commas or pedantic diagnostics. The kernel-facing enums
-   still contain dangling commas (`objecttype.h`, machine register indices,
-   generated syscall IDs), so the clean-up needs to continue beyond the
-   libsel4 headers.
+   without trailing commas or pedantic diagnostics. We have now scrubbed the
+   obvious kernel-facing enums in `sel4/objecttype.h`, the various machine
+   register sets, and the generated syscall tables; however, the follow-up
+   build still reports dangling commas in other architecture helpers (e.g.
+   `arch/machine/hardware.h`, the PC99 IRQ tables, and the TCB update flags),
+   so the clean-up needs to continue beyond the initial touch points.
 8. **Structure packing guarantees**: strict mode exposes that the ACPI RSDP
    assertions rely on packing attributes that collapse under C89, causing the
    compile-time size check to fail.
@@ -89,8 +91,11 @@ resulting compiler diagnostics.
   emit pedantic diagnostics or trailing commas in strict C90 mode.
 - Catalogue the new diagnostics from the latest strict build run and plan the
   follow-up fixes:
-  - scrub trailing commas from kernel enumerations (`sel4/objecttype.h`,
+  - [x] scrub trailing commas from kernel enumerations (`sel4/objecttype.h`,
     machine register sets, generated syscall tables).
+  - extend the enumeration cleanup to the remaining pedantic offenders surfaced
+    by the latest build (e.g. `X86_MappingVSpace`, `irqInvalid`, and the
+    `thread_control_update` flags).
   - revisit the packing assertions in the PC99 ACPI/GDT helpers now that the
     attribute shims collapse under C90.
   - replace compound literals and designated initialisers in
