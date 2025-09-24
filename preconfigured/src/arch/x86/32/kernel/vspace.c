@@ -335,13 +335,14 @@ BOOT_CODE void *map_temp_boot_page(void *entry, uint32_t large_pages)
     void *replacement_vaddr;
     unsigned int i;
     unsigned int offset_in_page;
+    unsigned int pg_offset;
 
     unsigned int phys_pg_start = (unsigned int)(entry) & ~MASK(LARGE_PAGE_BITS);
     unsigned int virt_pd_start = (PPTR_BASE >> LARGE_PAGE_BITS) - large_pages;
     unsigned int virt_pg_start = PPTR_BASE - (large_pages << LARGE_PAGE_BITS);
 
     for (i = 0; i < large_pages; i++) {
-        unsigned int pg_offset = i << LARGE_PAGE_BITS; /* num pages since start * page size */
+        pg_offset = i << LARGE_PAGE_BITS; /* num pages since start * page size */
 
         *(get_boot_pd() + virt_pd_start + i) = pde_pde_large_new(
                                                    phys_pg_start + pg_offset, /* physical address */
@@ -436,10 +437,12 @@ BOOT_CODE cap_t create_it_address_space(cap_t root_cnode_cap, v_region_t it_v_re
     vptr_t     vptr;
     seL4_SlotPos slot_pos_before;
     seL4_SlotPos slot_pos_after;
+    cap_t      pd_cap;
+    seL4_SlotRegion slot_region;
 
     slot_pos_before = ndks_boot.slot_pos_cur;
     copyGlobalMappings((vspace_root_t *)rootserver.vspace);
-    cap_t pd_cap = create_it_page_directory_cap(cap_null_cap_new(), rootserver.vspace, 0, IT_ASID);
+    pd_cap = create_it_page_directory_cap(cap_null_cap_new(), rootserver.vspace, 0, IT_ASID);
     write_slot(SLOT_PTR(pptr_of_cap(root_cnode_cap), seL4_CapInitThreadVSpace), pd_cap);
     vspace_cap = pd_cap;
 
@@ -456,9 +459,9 @@ BOOT_CODE cap_t create_it_address_space(cap_t root_cnode_cap, v_region_t it_v_re
     }
 
     slot_pos_after = ndks_boot.slot_pos_cur;
-    ndks_boot.bi_frame->userImagePaging = (seL4_SlotRegion) {
-        slot_pos_before, slot_pos_after
-    };
+    slot_region.start = slot_pos_before;
+    slot_region.end = slot_pos_after;
+    ndks_boot.bi_frame->userImagePaging = slot_region;
 
     return vspace_cap;
 }
@@ -496,6 +499,8 @@ BOOT_CODE cap_t create_mapped_it_frame_cap(cap_t vspace_cap, pptr_t pptr, vptr_t
                                            bool_t executable UNUSED)
 {
     cap_t cap = create_it_frame_cap(pptr, vptr, asid, use_large, X86_MappingVSpace);
+
+    (void)executable;
     map_it_frame_cap(vspace_cap, cap);
     return cap;
 }

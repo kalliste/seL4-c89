@@ -641,6 +641,7 @@ BOOT_CODE void *map_temp_boot_page(void *entry, uint32_t large_pages)
      * collide with the kernel window. Here we just assert that the table is
      * in fact in the lower 4GiB region (which is already 1-to-1 mapped) and
      * continue */
+    (void)large_pages;
     assert((word_t)entry < BIT(32));
     return entry;
 }
@@ -702,6 +703,7 @@ BOOT_CODE cap_t create_it_address_space(cap_t root_cnode_cap, v_region_t it_v_re
     vptr_t     vptr;
     seL4_SlotPos slot_pos_before;
     seL4_SlotPos slot_pos_after;
+    seL4_SlotRegion slot_region;
 
     slot_pos_before = ndks_boot.slot_pos_cur;
     copyGlobalMappings(PML4_PTR(rootserver.vspace));
@@ -748,9 +750,9 @@ BOOT_CODE cap_t create_it_address_space(cap_t root_cnode_cap, v_region_t it_v_re
     }
 
     slot_pos_after = ndks_boot.slot_pos_cur;
-    ndks_boot.bi_frame->userImagePaging = (seL4_SlotRegion) {
-        slot_pos_before, slot_pos_after
-    };
+    slot_region.start = slot_pos_before;
+    slot_region.end = slot_pos_after;
+    ndks_boot.bi_frame->userImagePaging = slot_region;
     return vspace_cap;
 }
 
@@ -799,6 +801,8 @@ BOOT_CODE cap_t create_mapped_it_frame_cap(cap_t vspace_cap, pptr_t pptr, vptr_t
                                            bool_t executable UNUSED)
 {
     cap_t cap = create_it_frame_cap(pptr, vptr, asid, use_large, X86_MappingVSpace);
+
+    (void)executable;
     map_it_frame_cap(vspace_cap, cap);
     return cap;
 }
