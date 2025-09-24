@@ -99,6 +99,7 @@ void VISIBLE NORETURN c_handle_interrupt(int irq, int syscall)
 
 void NORETURN slowpath(syscall_t syscall)
 {
+    sword_t signed_syscall = (sword_t)syscall;
 
 #ifdef CONFIG_VTX
     if (syscall == SysVMEnter && NODE_STATE(ksCurThread)->tcbArch.tcbVCPU) {
@@ -118,7 +119,7 @@ void NORETURN slowpath(syscall_t syscall)
     }
 #endif
     /* check for undefined syscall */
-    if (unlikely(syscall < SYSCALL_MIN || syscall > SYSCALL_MAX)) {
+    if (unlikely(signed_syscall < (sword_t)SYSCALL_MIN || signed_syscall > (sword_t)SYSCALL_MAX)) {
 #ifdef TRACK_KERNEL_ENTRIES
         ksKernelEntry.path = Entry_UnknownSyscall;
         /* ksKernelEntry.word word is already set to syscall */
