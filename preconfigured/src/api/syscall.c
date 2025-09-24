@@ -276,12 +276,15 @@ static exception_t handleInvocation(bool_t isCall, bool_t isBlocking)
     exception_t status;
     word_t length;
     tcb_t *thread;
+#ifndef CONFIG_KERNEL_MCS
+    cptr_t cptr;
+#endif
 
     thread = NODE_STATE(ksCurThread);
 
     info = messageInfoFromWord(getRegister(thread, msgInfoRegister));
 #ifndef CONFIG_KERNEL_MCS
-    cptr_t cptr = getRegister(thread, capRegister);
+    cptr = getRegister(thread, capRegister);
 #endif
 
     /* faulting section */
