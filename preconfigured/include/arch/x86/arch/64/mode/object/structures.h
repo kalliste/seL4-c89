@@ -136,6 +136,8 @@ static inline asid_t PURE cap_get_capMappedASID(cap_t cap)
     default:
         fail("Invalid arch cap type");
     }
+
+    return asidInvalid;
 }
 
 static inline word_t CONST cap_get_modeCapSizeBits(cap_t cap)
