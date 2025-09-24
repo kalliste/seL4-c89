@@ -31,13 +31,11 @@ resulting compiler diagnostics.
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
 - **Outcome**: The wrappers remain up to date and the translation invalidation
-  helpers now assemble cleanly under strict C90. The build now stops in
-  `src/api/syscall.c` on two fronts:
-  1. `handleUnknownSyscall` and `handleSyscall` still wrap preprocessor
-     directives inside macro arguments, which pedantic mode rejects as
-     non-portable.
-  2. `handleInvocation` declares `cptr` after executable statements, triggering
-     the "mixed declarations and code" error that C90 treats as fatal.
+  helpers now assemble cleanly under strict C90. The syscall handlers no longer
+  embed conditional compilation inside the budget macros, so the strict build
+  now stops in `src/api/syscall.c` solely because `handleInvocation` declares
+  `cptr` after executable statements, triggering the "mixed declarations and
+  code" error that C90 treats as fatal.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -85,10 +83,9 @@ resulting compiler diagnostics.
 8. **Structure packing guarantees**: strict mode exposes that the ACPI RSDP
    assertions rely on packing attributes that collapse under C89, causing the
    compile-time size check to fail.
-9. **Preprocessor directives in macro arguments**: the syscall handlers still
-   embed `#ifdef`/`#endif` pairs inside capability logging macros. Pedantic C90
-   rejects these directives as non-portable, so the macros need to be reshaped
-   to keep conditional compilation outside the argument list.
+9. **Preprocessor directives in macro arguments** *(resolved)*: the syscall
+   handlers no longer embed `#ifdef`/`#endif` pairs inside the budget macros, so
+   the strict build progresses past those call sites.
 
 ## Next Steps
 - Replace the remaining C99 constructs uncovered by the latest strict build
@@ -130,7 +127,7 @@ resulting compiler diagnostics.
   returned by `makeCR3(...)`, avoiding the pedantic C90 error.
 - Address the syscall preprocessor and layout issues surfaced by the latest
   build:
-  - [ ] Rework `handleUnknownSyscall`/`handleSyscall` so the capability logging
+  - [x] Rework `handleUnknownSyscall`/`handleSyscall` so the capability logging
         macros no longer wrap `#ifdef` directives inside their argument lists.
   - [ ] Hoist the `cptr` declaration in `handleInvocation` above the existing
         statements so the function satisfies C90's declaration rules.
