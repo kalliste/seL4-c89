@@ -34,6 +34,9 @@ void switchFpuOwner(tcb_t *new_owner, word_t cpu)
     } else
 #endif /* ENABLE_SMP_SUPPORT */
     {
+#ifndef ENABLE_SMP_SUPPORT
+        (void)cpu;
+#endif
         switchLocalFpuOwner(new_owner);
     }
 }
