@@ -141,8 +141,11 @@ BOOT_CODE void enablePMCUser(void)
 BOOT_CODE bool_t init_ibrs(void)
 {
     cpuid_007h_edx_t edx;
+    bool_t support_ibrs;
+    bool_t enhanced_ibrs;
+
     edx.words[0] = x86_cpuid_edx(0x7, 0);
-    bool_t support_ibrs = cpuid_007h_edx_get_ibrs_ibpb(edx);
+    support_ibrs = cpuid_007h_edx_get_ibrs_ibpb(edx);
     if ((config_set(CONFIG_KERNEL_X86_IBRS_BASIC) || config_set(CONFIG_KERNEL_X86_IBRS_STIBP)) && !support_ibrs) {
         printf("IBRS not supported by CPU\n");
         return false;
@@ -157,7 +160,7 @@ BOOT_CODE bool_t init_ibrs(void)
         return false;
     }
     /* check for enhanced IBRS */
-    bool_t enhanced_ibrs = false;
+    enhanced_ibrs = false;
     if (cpuid_007h_edx_get_ia32_arch_cap_msr(edx)) {
         ia32_arch_capabilities_msr_t cap_msr;
         cap_msr.words[0] = x86_rdmsr(IA32_ARCH_CAPABILITIES_MSR);

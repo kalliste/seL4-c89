@@ -140,6 +140,10 @@ deriveCap_ret_t Arch_deriveCap(cte_t *slot, cap_t cap)
 
 cap_t CONST Arch_updateCapData(bool_t preserve, word_t data, cap_t cap)
 {
+#ifndef CONFIG_IOMMU
+    (void)preserve;
+    (void)data;
+#endif
     /* Avoid a switch statement with just a 'default' case as the C parser does not like this */
 #ifdef CONFIG_IOMMU
     switch (cap_get_capType(cap)) {

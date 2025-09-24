@@ -504,4 +504,8 @@ exception_t decodeX86IOSpaceInvocation(word_t invLabel, cap_t cap)
     return EXCEPTION_SYSCALL_ERROR;
 }
 
+#else /* !CONFIG_IOMMU */
+
+typedef int iospace_c_translation_unit_is_not_empty;
+
 #endif /* CONFIG_IOMMU */

@@ -33,8 +33,10 @@ UP_STATE_DEFINE(word_t, x86KSGPExceptReturnTo);
 
 /* ==== read-only kernel state (only written during bootstrapping) ==== */
 
+#ifdef ENABLE_SMP_SUPPORT
 /* Defines a translation of cpu ids from an index of our actual CPUs */
 SMP_STATE_DEFINE(cpu_id_mapping_t, cpu_mapping);
+#endif
 
 /* CPU Cache Line Size */
 uint32_t x86KScacheLineSizeBits;

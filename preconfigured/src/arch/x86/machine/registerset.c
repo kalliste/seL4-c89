@@ -33,6 +33,7 @@ void Arch_initContext(user_context_t *context)
 
 word_t sanitiseRegister(register_t reg, word_t v, bool_t archInfo)
 {
+    (void)archInfo;
     /* First perform any mode specific sanitization */
     v = Mode_sanitiseRegister(reg, v);
     if (reg == FLAGS) {

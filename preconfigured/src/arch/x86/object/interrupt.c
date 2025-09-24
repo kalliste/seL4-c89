@@ -39,8 +39,13 @@ void Arch_irqStateInit(void)
  */
 exception_t Arch_checkIRQ(word_t irq_w)
 {
-    if (config_set(CONFIG_IRQ_PIC) && irq_w >= irq_isa_min && irq_w <= irq_isa_max) {
-        return EXCEPTION_NONE;
+    if (config_set(CONFIG_IRQ_PIC)) {
+        sword_t irq_signed;
+
+        irq_signed = (sword_t)irq_w;
+        if (irq_signed >= (sword_t)irq_isa_min && irq_signed <= (sword_t)irq_isa_max) {
+            return EXCEPTION_NONE;
+        }
     }
     if (config_set(CONFIG_IRQ_IOAPIC)) {
         userError("IRQControl: Illegal operation");
@@ -188,4 +193,6 @@ exception_t Arch_decodeIRQControlInvocation(word_t invLabel, word_t length, cte_
         /* the check at the start of this function should guarantee we do not get here */
         fail("IRQControl: Illegal operation");
     }
+
+    return EXCEPTION_SYSCALL_ERROR;
 }
