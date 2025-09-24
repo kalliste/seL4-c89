@@ -97,9 +97,7 @@ command-line parsing tables compile away.
 
 Guarding those helpers behind the same `CONFIG_PRINTING`/`CONFIG_DEBUG_BUILD`
 predicates that reference them clears the pedantic warnings and lets the
-strict build continue. The next blocker appears in
-`arch/x86/kernel/ept.c`, where the generated wrapper collapses to an empty
-translation unit when VT-d support is disabled.
+strict build continue to the next blocker.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86

@@ -40,7 +40,6 @@ KERNEL_SOURCES=(
   "src/arch/x86/kernel/boot.c"
   "src/arch/x86/kernel/boot_sys.c"
   "src/arch/x86/kernel/cmdline.c"
-  "src/arch/x86/kernel/ept.c"
   "src/arch/x86/kernel/smp_sys.c"
   "src/arch/x86/kernel/thread.c"
   "src/arch/x86/kernel/vspace.c"
