@@ -60,7 +60,7 @@ FILE_RCSID("@(#)$File: cdf.c,v 1.123 2022/09/24 20:30:13 christos Exp $")
 #endif
 
 #ifndef SIZE_T_MAX
-#define SIZE_T_MAX CAST(size_t, ~0ULL)
+#define SIZE_T_MAX (~CAST(size_t, 0))
 #endif
 
 #include "cdf.h"
@@ -1527,7 +1527,7 @@ cdf_dump_property_info(const cdf_property_info_t *info, size_t count)
 			break;
 		case CDF_FILETIME:
 			tp = info[i].pi_tp;
-			if (tp < 1000000000000000LL) {
+			if (tp < CDF_FILETIME_THRESHOLD) {
 				cdf_print_elapsed_time(buf, sizeof(buf), tp);
 				(void)fprintf(stderr, "timestamp %s\n", buf);
 			} else {

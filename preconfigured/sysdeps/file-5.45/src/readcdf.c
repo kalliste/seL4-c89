@@ -76,7 +76,7 @@ static const struct cv {
 	const char *mime;
 } clsid2mime[] = {
 	{
-		{ 0x00000000000c1084ULL, 0x46000000000000c0ULL  },
+		{ FILE_UINT64_CONST(0x00000000, 0x000c1084), FILE_UINT64_CONST(0x46000000, 0x000000c0)  },
 		"x-msi",
 	},
 	{	{ 0,			 0			},
@@ -84,7 +84,7 @@ static const struct cv {
 	},
 }, clsid2desc[] = {
 	{
-		{ 0x00000000000c1084ULL, 0x46000000000000c0ULL  },
+		{ FILE_UINT64_CONST(0x00000000, 0x000c1084), FILE_UINT64_CONST(0x46000000, 0x000000c0)  },
 		"MSI Installer",
 	},
 	{	{ 0,			 0			},
@@ -227,7 +227,7 @@ cdf_file_property_info(struct magic_set *ms, const cdf_property_info_t *info,
 			tp = info[i].pi_tp;
 			if (tp != 0) {
 				char tbuf[64];
-				if (tp < 1000000000000000LL) {
+				if (tp < CDF_FILETIME_THRESHOLD) {
 					cdf_print_elapsed_time(tbuf,
 					    sizeof(tbuf), tp);
 					if (NOTMIME(ms) && file_printf(ms,

@@ -188,7 +188,8 @@ main(int argc, char *argv[])
 {
 	struct timespec ts;
 	char buf[25];
-	static const cdf_timestamp_t tst = 0x01A5E403C2D59C00ULL;
+	static const cdf_timestamp_t tst =
+	    FILE_INT64_CONST(0x01A5E403, 0xC2D59C00);
 	static const char *ref = "Sat Apr 23 01:30:00 1977";
 	char *p, *q;
 

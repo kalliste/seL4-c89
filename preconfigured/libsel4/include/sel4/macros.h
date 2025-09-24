@@ -63,6 +63,6 @@
  * the same size as a 'long'.
  */
 #define SEL4_FORCE_LONG_ENUM(type) \
-    _enum_pad_ ## type = ((1ULL << ((sizeof(long)*8) - 1)) - 1)
+    _enum_pad_ ## type = ((long)((~0ul) >> 1))
 
 #define LIBSEL4_BIT(n)  (1ul<<(n))
