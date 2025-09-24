@@ -140,6 +140,12 @@ lets the strict build advance into `src/object/cnode.c`, where
 `capRemovable` still falls off the end without returning a value when the
 arch-specific cases collapse under C90.
 
+Consuming the `cteDeleteOne` finalisation result and giving `capRemovable`
+an explicit default return lets the pedantic build progress into
+`src/object/endpoint.c`. The next blocker lives in `sendIPC`, which still
+declares `replyCanGrant` after executable statements once the capability
+checks are reduced, triggering the C90 mixed-declaration warning.
+
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
    machine shims still emit `ULL` and `LL` constants that trigger
@@ -320,11 +326,14 @@ arch-specific cases collapse under C90.
 - [x] Hoist the reply-path locals in `src/kernel/thread.c`
   (`doReplyTransfer`, `schedule`) so they no longer mix declarations with
   statements under C90.
-- [ ] Adjust the `src/object/cnode.c` helpers uncovered by the latest strict
+- [x] Adjust the `src/object/cnode.c` helpers uncovered by the latest strict
   build run so they satisfy pedantic C90:
-  - [ ] Consume or drop the unused `fc_ret` temporary in `cteDeleteOne` once
+  - [x] Consume or drop the unused `fc_ret` temporary in `cteDeleteOne` once
         the cap finalisation collapses.
-  - [ ] Give `capRemovable` an explicit return path when the architecture
+  - [x] Give `capRemovable` an explicit return path when the architecture
         special-cases compile away.
+- [ ] Hoist the `replyCanGrant` declaration in `src/object/endpoint.c`'s
+  `sendIPC` helper so it no longer mixes declarations with statements under
+  strict C90.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.
