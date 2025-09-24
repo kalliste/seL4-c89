@@ -124,18 +124,16 @@ static inline int wrap_config_set(int x)
 }
 
 /* Evaluate a CMake configuration setting at compile-time. */
-#define config_set(macro) wrap_config_set(_is_set_(macro))
-#define _macrotest_1 ,
-#define _is_set_(value) _is_set__(_macrotest_##value)
-#define _is_set__(comma) _is_set___(comma 1, 0)
-#define _is_set___(_, v, ...) v
+#define _config_option_to_string(option) STRINGIFY(option)
+#define _config_option_is_set(option_string) \
+    ((sizeof(option_string) == sizeof("1")) && ((option_string)[0] == '1'))
+#define _config_is_set(option) _config_option_is_set(_config_option_to_string(option))
+#define config_set(macro) wrap_config_set(_config_is_set(macro))
 
 /* Check the existence of a configuration setting, returning one value if it
  * exists and a different one if it does not */
-#define config_ternary(macro, true, false) _config_ternary(macro, true, false)
-#define _config_ternary(value, true, false) _config_ternary_(_macrotest_##value, true, false)
-#define _config_ternary_(comma, true, false) _config_ternary__(comma true, false)
-#define _config_ternary__(_, v, ...) v
+#define config_ternary(macro, true_value, false_value) \
+    (config_set(macro) ? (true_value) : (false_value))
 
 /** MODIFIES:
     FNSPEC

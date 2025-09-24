@@ -17,6 +17,12 @@ resulting compiler diagnostics.
   - [x] Route the generated capability tables and x86 helpers through the new
     portable constant macros.
   - [ ] Address the remaining diagnostics reported by the strict build.
+    - [x] Replace the configuration helpers in `util.h` that relied on
+      anonymous variadic macros.
+    - [ ] Tidy the libsel4 size/enumeration assertion macros so they no longer
+      emit pedantic diagnostics under strict C90.
+    - [ ] Replace the remaining anonymous variadic logging helpers with
+      explicit C89-compatible shims.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
@@ -33,11 +39,11 @@ resulting compiler diagnostics.
      `unsigned long` arithmetic, or provide custom constructors that avoid
      `long long` suffixes when C99 is unavailable, and teach the code
      generators to use them.
-2. **Preprocessor usage assumes variadic macros**: The PC99 interrupt helpers
-   expand `config_set(...)` in contexts that result in empty `__VA_ARGS__`,
-   provoking "requires at least one argument" diagnostics.
-   - *Potential remedies*: restructure the macros/helpers to avoid empty
-     expansions or introduce wrappers that are C89-safe.
+2. **Preprocessor usage assumes variadic macros**: The stubbed logging macros
+   (`printf(...)`, `userError(...)`, etc.) still rely on anonymous
+   `__VA_ARGS__`, triggering strict C90 diagnostics.
+   - *Potential remedies*: provide explicit helper functions or fixed-argument
+     shims that preserve the current behaviour without anonymous varargs.
 3. **Modern C layout rules**: Several functions declare variables mid-block,
    causing "mixed declarations and code" errors with C90.
    - *Potential remedies*: hoist declarations to the top of the scope.
@@ -74,8 +80,13 @@ resulting compiler diagnostics.
   - [x] Resolve the duplicated seL4 basic types between `simple_types.h` and
         the shared kernel headers by coordinating on a shared
         `SEL4_BASIC_TYPES_DEFINED` guard.
-  - [ ] Replace the configuration helpers in `util.h` that rely on anonymous
+  - [x] Replace the configuration helpers in `util.h` that rely on anonymous
         variadic macros with C89-compatible shims.
+- Tidy the libsel4 size/enumeration assertion macros so that
+  `SEL4_SIZE_SANITY`, `SEL4_FORCE_LONG_ENUM`, and related helpers no longer
+  emit pedantic diagnostics or trailing commas in strict C90 mode.
+- Replace the remaining anonymous variadic macros used for debugging/logging
+  (`printf`, `userError`, etc.) with helpers that are valid in C89.
 - Rework the PC99 interrupt helpers so that the generated statements avoid
   declaration-after-statement issues and variadic macro misuse under strict C90.
 - Audit architecture helpers for unused parameters and modern inline idioms
