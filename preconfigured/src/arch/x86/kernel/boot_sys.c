@@ -40,10 +40,8 @@ extern char boot_stack_top[1];
 extern char ki_skim_start[1];
 extern char ki_skim_end[1];
 
-#ifdef CONFIG_PRINTING
 /* kernel entry point */
 extern char _start[1];
-#endif
 
 /* constants */
 
@@ -61,7 +59,7 @@ cmdline_opt_t cmdline_opt;
 
 BOOT_CODE static paddr_t find_load_paddr(paddr_t min_paddr, word_t image_size)
 {
-    int i;
+    word_t i;
 
     for (i = 0; i < boot_state.mem_p_regs.count; i++) {
         paddr_t start = MAX(min_paddr, boot_state.mem_p_regs.list[i].start);
@@ -222,6 +220,7 @@ static BOOT_CODE bool_t add_mem_p_regs(p_region_t reg)
 static BOOT_CODE bool_t parse_mem_map(uint32_t mmap_length, uint32_t mmap_addr)
 {
     multiboot_mmap_t *mmap = (multiboot_mmap_t *)((word_t)mmap_addr);
+    p_region_t region;
     printf("Parsing GRUB physical memory map\n");
 
     while ((word_t)mmap < (word_t)(mmap_addr + mmap_length)) {
@@ -233,10 +232,10 @@ static BOOT_CODE bool_t parse_mem_map(uint32_t mmap_length, uint32_t mmap_addr)
         } else {
             printf("\tPhysical Memory Region from %lx size %lx type %d\n", (long)mem_start, (long)mem_length, type);
             if (type == MULTIBOOT_MMAP_USEABLE_TYPE && mem_start >= HIGHMEM_PADDR && mem_length >= BIT(PAGE_BITS)) {
+                region.start = ROUND_UP(mem_start, PAGE_BITS);
+                region.end = ROUND_DOWN(mem_start + mem_length, PAGE_BITS);
 
-                if (!add_mem_p_regs((p_region_t) {
-                ROUND_UP(mem_start, PAGE_BITS), ROUND_DOWN(mem_start + mem_length, PAGE_BITS),
-                })) {
+                if (!add_mem_p_regs(region)) {
                     return false;
                 }
             }
@@ -340,6 +339,7 @@ static BOOT_CODE bool_t try_boot_sys(void)
     paddr_t mods_end_paddr = boot_state.mods_end_paddr;
     p_region_t ui_p_regs;
     paddr_t load_paddr;
+    cpuid_007h_edx_t edx;
 
     boot_state.ki_p_reg = get_p_reg_kernel_img();
 
@@ -355,7 +355,6 @@ static BOOT_CODE bool_t try_boot_sys(void)
         printf("Warning: Your kernel was not compiled for the current microarchitecture.\n");
     }
 
-    cpuid_007h_edx_t edx;
     edx.words[0] = x86_cpuid_edx(0x7, 0);
     /* see if we can definitively say whether or not we need the skim window by
      * checking whether the CPU is vulnerable to rogue data cache loads (rdcl) */
@@ -512,6 +511,7 @@ static BOOT_CODE bool_t try_boot_sys_mbi1(
 )
 {
     word_t i;
+    uint32_t multiboot_mmap_length = 0;
     multiboot_module_t *modules = (multiboot_module_t *)(word_t)mbi->part1.mod_list;
 
     cmdline_parse((const char *)(word_t)mbi->part1.cmdline, &cmdline_opt);
@@ -561,7 +561,7 @@ static BOOT_CODE bool_t try_boot_sys_mbi1(
         if (!parse_mem_map(mbi->part2.mmap_length, mbi->part2.mmap_addr)) {
             return false;
         }
-        uint32_t multiboot_mmap_length = mbi->part2.mmap_length;
+        multiboot_mmap_length = mbi->part2.mmap_length;
         if (multiboot_mmap_length > (SEL4_MULTIBOOT_MAX_MMAP_ENTRIES * sizeof(seL4_X86_mb_mmap_t))) {
             printf("Warning: Multiboot has reported more memory map entries, %zd, "
                    "than the max amount that will be passed in the bootinfo, %d. "
@@ -613,6 +613,10 @@ static BOOT_CODE bool_t try_boot_sys_mbi2(
     int mod_count                  = 0;
     multiboot2_tag_t const *tag   = (multiboot2_tag_t *)(mbi2 + 1);
     multiboot2_tag_t const *tag_e = (multiboot2_tag_t *)((word_t)mbi2 + mbi2->total_size);
+    multiboot2_memory_t const *s;
+    multiboot2_memory_t const *e;
+    multiboot2_memory_t const *m;
+    p_region_t region;
 
     /* initialize the memory. We track two kinds of memory regions. Physical memory
      * that we will use for the kernel, and physical memory regions that we must
@@ -661,10 +665,11 @@ static BOOT_CODE bool_t try_boot_sys_mbi2(
                 boot_state.mods_end_paddr = module->end;
             }
         } else if (tag->type == MULTIBOOT2_TAG_MEMORY) {
-            multiboot2_memory_t const *s = (multiboot2_memory_t *)(behind_tag + 8);
-            multiboot2_memory_t const *e = (multiboot2_memory_t *)((word_t)tag + tag->size);
+            s = (multiboot2_memory_t const *)(behind_tag + 8);
+            e = (multiboot2_memory_t const *)((word_t)tag + tag->size);
 
-            for (multiboot2_memory_t const *m = s; m < e; m++) {
+            m = s;
+            while (m < e) {
                 if (!m->addr) {
                     boot_state.mem_lower = m->size;
                 }
@@ -675,11 +680,14 @@ static BOOT_CODE bool_t try_boot_sys_mbi2(
                 }
 
                 if (m->type == MULTIBOOT_MMAP_USEABLE_TYPE && m->addr >= HIGHMEM_PADDR) {
-                    if (!add_mem_p_regs((p_region_t) {
-                    m->addr, m->addr + m->size
-                }))
-                    return false;
+                    region.start = m->addr;
+                    region.end = m->addr + m->size;
+                    if (!add_mem_p_regs(region)) {
+                        return false;
+                    }
                 }
+
+                m++;
             }
         } else if (tag->type == MULTIBOOT2_TAG_FB) {
             multiboot2_fb_t const *fb = (multiboot2_fb_t const *)behind_tag;
