@@ -8,6 +8,8 @@
 
 /* this file is shared between the kernel and libsel4 */
 
+#include <sel4/compiler.h>
+
 typedef struct seL4_IPCBuffer_ {
     seL4_MessageInfo_t tag;
     seL4_Word msg[seL4_MsgMaxLength];
@@ -16,7 +18,7 @@ typedef struct seL4_IPCBuffer_ {
     seL4_CPtr receiveCNode;
     seL4_CPtr receiveIndex;
     seL4_Word receiveDepth;
-} seL4_IPCBuffer __attribute__((__aligned__(sizeof(struct seL4_IPCBuffer_))));
+} seL4_IPCBuffer SEL4_ALIGN_ATTR(sizeof(struct seL4_IPCBuffer_));
 
 typedef enum {
     seL4_CapFault_IP,

@@ -7,22 +7,23 @@
 #pragma once
 
 #include <sel4/config.h>
+#include <sel4/compiler.h>
 
 #ifndef CONST
-#define CONST   __attribute__((__const__))
+#define CONST   SEL4_CONST_ATTR
 #endif
 
 #ifndef PURE
-#define PURE    __attribute__((__pure__))
+#define PURE    SEL4_PURE_ATTR
 #endif
 
-#define SEL4_PACKED             __attribute__((packed))
-#define SEL4_DEPRECATED(x)      __attribute__((deprecated(x)))
+#define SEL4_PACKED             SEL4_PACKED_ATTR
+#define SEL4_DEPRECATED(x)      SEL4_ATTR((deprecated(x)))
 #define SEL4_DEPRECATE_MACRO(x) _Pragma("deprecated") x
 
-#define LIBSEL4_UNUSED          __attribute__((unused))
-#define LIBSEL4_WEAK            __attribute__((weak))
-#define LIBSEL4_NOINLINE        __attribute__((noinline))
+#define LIBSEL4_UNUSED          SEL4_UNUSED_ATTR
+#define LIBSEL4_WEAK            SEL4_WEAK_ATTR
+#define LIBSEL4_NOINLINE        SEL4_ATTR((noinline))
 
 
 #ifdef CONFIG_LIB_SEL4_INLINE_INVOCATIONS

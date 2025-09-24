@@ -17,6 +17,7 @@ unsigned char kernel_getDebugChar(void);
 #ifdef CONFIG_PRINTING
 
 #include <arch/types.h>
+#include <compiler.h>
 #include <stdarg.h>
 
 /* the actual output function */
@@ -78,7 +79,7 @@ static inline int puts(
 /* There should only be a kprintf() that all kernel code must use for printing,
  * but for convenience we provide a printf() here.
  */
-static inline __attribute__((format(printf, 1, 2))) int printf(
+static inline SEL4_PRINTF_ATTR(1, 2) int printf(
     const char *format,
     ...)
 {
@@ -92,7 +93,7 @@ static inline __attribute__((format(printf, 1, 2))) int printf(
 /* Provide the standard snprintf() for write formatted data into a buffer, which
  * can then be printed or stored.
  */
-static inline __attribute__((format(printf, 3, 4))) int snprintf(
+static inline SEL4_PRINTF_ATTR(3, 4) int snprintf(
     char *buf,
     word_t size,
     const char *format,

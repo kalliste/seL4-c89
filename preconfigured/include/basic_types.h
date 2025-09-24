@@ -7,6 +7,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <compiler.h>
 #include <arch/types.h>
 
 /* arch/types.h is supposed to define word_t and _seL4_word_fmt */
@@ -75,7 +76,7 @@ typedef struct v_region {
 
 /* equivalent to a word_t except that we tell the compiler that we may alias with
  * any other type (similar to a char pointer) */
-typedef word_t __attribute__((__may_alias__)) word_t_may_alias;
+typedef word_t SEL4_MAY_ALIAS_ATTR word_t_may_alias;
 
 /* for libsel4 headers that the kernel shares */
 typedef uint8_t seL4_Uint8;

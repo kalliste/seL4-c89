@@ -15,7 +15,7 @@
  * always eliminates the function prologue by declaring the
  * idle_thread with the naked attribute.
  */
-__attribute__((naked)) NORETURN void idle_thread(void)
+SEL4_NAKED_ATTR NORETURN void idle_thread(void)
 {
     /* We cannot use for-loop or while-loop here because they may
      * involve stack manipulations (the compiler will not allow
