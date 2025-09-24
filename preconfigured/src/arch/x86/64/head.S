@@ -22,7 +22,16 @@
  * continuing. */
 
 #include <config.h>
+#include <util.h>
+#include <hardware.h>
+#include <compiler.h>
 #include <machine/assembler.h>
+
+#if SEL4_C89_COMPAT
+#define BOOT_TABLE_REF(sym) sym - KERNEL_ELF_BASE_OFFSET
+#else
+#define BOOT_TABLE_REF(sym) sym
+#endif
 
 #define IA32_EFER_MSR 0xC0000080
 #define IA32_APIC_BASE_MSR 0x01B
@@ -76,7 +85,7 @@ BEGIN_FUNC(setup_pml4)
     andl $0x7fffffff, %eax
     movl %eax, %cr0
 
-    movl $boot_pml4, %edi
+    movl $BOOT_TABLE_REF(boot_pml4), %edi
     movl $0x0, %edx
     movl $1024, %ecx
 1:
@@ -84,15 +93,15 @@ BEGIN_FUNC(setup_pml4)
     addl $4, %edi
     loop 1b
 
-    movl $boot_pdpt, %edi
+    movl $BOOT_TABLE_REF(boot_pdpt), %edi
     movl $1024, %ecx
 1:
     movl %edx, (%edi)
     addl $4, %edi
     loop 1b
 
-    movl $boot_pml4, %edi
-    movl $boot_pdpt, %ecx
+    movl $BOOT_TABLE_REF(boot_pml4), %edi
+    movl $BOOT_TABLE_REF(boot_pdpt), %ecx
     orl  $0x7, %ecx
     movl %ecx, (%edi)
     movl %ecx, 0x800(%edi)
@@ -100,7 +109,7 @@ BEGIN_FUNC(setup_pml4)
 
     movl $_boot_pd, %ecx
     orl  $0x7, %ecx
-    movl $boot_pdpt, %edi
+    movl $BOOT_TABLE_REF(boot_pdpt), %edi
     movl %ecx, (%edi)
     movl %ecx, 4080(%edi)
     addl $0x1000, %ecx
@@ -220,7 +229,7 @@ BEGIN_FUNC(enable_x64_mode)
     call invpcid_check
 #endif
     /* Put base pointer in cr3. */
-    movl $boot_pml4, %eax
+    movl $BOOT_TABLE_REF(boot_pml4), %eax
     movl %eax, %cr3
     /* Set PAE (bit 5), as this is required before switching to long mode. */
     movl %cr4, %eax
