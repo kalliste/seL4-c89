@@ -159,10 +159,11 @@ the LAPIC frequency measurement temporaries satisfy the C90 rules in
 
 Replacing the IOAPIC initialisation diagnostic to use a literal function name
 and casting the unused configuration parameters to `(void)` quells the pedantic
-warnings in `src/plat/pc99/machine/ioapic.c`. With those changes the strict
-build runs through the platform sources until it stops in
-`preconfigured/X64_verified/src/smp/ipi_wrapper.c`, where the pedantic warning
-set now rejects the empty translation unit emitted by the generated wrapper.
+warnings in `src/plat/pc99/machine/ioapic.c`. With those changes—and the new
+util/default-domain fixes—the strict build runs through the platform sources
+until it stops in `preconfigured/X64_verified/src/smp/ipi_wrapper.c`, where the
+pedantic warning set still rejects the empty translation unit emitted by the
+generated wrapper.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -298,6 +299,12 @@ set now rejects the empty translation unit emitted by the generated wrapper.
 - [ ] Provide a benign definition in the generated SMP IPI wrapper so the
   strict build no longer rejects the empty translation unit emitted by
   `preconfigured/X64_verified/src/smp/ipi_wrapper.c`.
+- [x] Teach `src/util.c`'s string and bit-twiddling helpers to compare against
+  like-signed bounds and declare their temporaries at the top of each block so
+  the strict C90 build accepts the translation unit.
+- [x] Replace the designated initialiser in `src/config/default_domain.c` with
+  an ordered initializer so the pedantic build accepts the default domain
+  schedule under C90.
 - [x] Rewrite the syscall and exception message tables in
   `src/machine/registerset.c` so they avoid the designated initialisers that
   pedantic C90 rejects.
