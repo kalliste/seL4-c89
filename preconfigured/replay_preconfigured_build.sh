@@ -46,7 +46,6 @@ KERNEL_SOURCES=(
   "src/arch/x86/kernel/x2apic.c"
   "src/arch/x86/kernel/xapic.c"
   "src/arch/x86/machine/breakpoint.c"
-  "src/arch/x86/machine/capdl.c"
   "src/arch/x86/machine/cpu_identification.c"
   "src/arch/x86/machine/fpu.c"
   "src/arch/x86/machine/hardware.c"

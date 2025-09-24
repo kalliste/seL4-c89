@@ -110,8 +110,7 @@ constructors when sending IPIs. Reworking those helpers to materialise the
 register values in named temporaries clears the pedantic errors and lets the
 strict build progress into `arch/x86/machine/breakpoint.c`. Providing a benign
 typedef when the hardware debug API is disabled keeps that translation unit
-non-empty, so the pedantic build now advances to `arch/x86/machine/capdl.c`,
-where the generated wrapper fails for the same reason.
+non-empty, so the pedantic build now advances to the next blocker.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
