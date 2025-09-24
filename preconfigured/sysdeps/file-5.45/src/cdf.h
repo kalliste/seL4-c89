@@ -58,7 +58,7 @@ typedef int32_t cdf_secid_t;
 
 typedef struct {
 	uint64_t	h_magic;
-#define CDF_MAGIC	0xE11AB1A1E011CFD0LL
+#define CDF_MAGIC	FILE_UINT64_CONST(0xE11AB1A1, 0xE011CFD0)
 	uint64_t	h_uuid[2];
 	uint16_t	h_revision;
 	uint16_t	h_version;
@@ -88,6 +88,7 @@ typedef int32_t cdf_dirid_t;
 typedef int64_t cdf_timestamp_t;
 #define CDF_BASE_YEAR	1601
 #define CDF_TIME_PREC	10000000
+#define CDF_FILETIME_THRESHOLD	FILE_UINT64_CONST(0x38d7e, 0xa4c68000)
 
 typedef struct {
 	uint16_t	d_name[32];

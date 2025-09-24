@@ -123,6 +123,12 @@
 #define __arraycount(a) (sizeof(a) / sizeof(a[0]))
 #endif
 
+#define FILE_UINT64_CONST(hi, lo) \
+    ((((uint64_t)(uint32_t)(hi)) << 32) | (uint64_t)(uint32_t)(lo))
+
+#define FILE_INT64_CONST(hi, lo) \
+    ((int64_t)FILE_UINT64_CONST(hi, lo))
+
 #ifndef __GNUC_PREREQ__
 #ifdef __GNUC__
 #define	__GNUC_PREREQ__(x, y)						\
@@ -163,7 +169,8 @@
  * to be running on a system with a 32 bit time_t, then it is even less.
  */
 #define	MAX_CTIME \
-    CAST(time_t, sizeof(time_t) > 4 ? 0x3afff487cfULL : 0x7fffffffULL)
+    CAST(time_t, sizeof(time_t) > 4 ? \
+        FILE_UINT64_CONST(0x3a, 0xfff487cf) : FILE_UINT64_CONST(0x0, 0x7fffffff))
 
 #define FILE_BADSIZE CAST(size_t, ~0ul)
 #define MAXDESC	64		/* max len of text description/MIME type */
