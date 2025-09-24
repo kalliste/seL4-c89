@@ -156,9 +156,6 @@ like-signed bound lets the pedantic build continue into the PC99 platform
 helpers. Dropping the trailing comma from the DMAR enumerator list and hoisting
 the LAPIC frequency measurement temporaries satisfy the C90 rules in
 `acpi.c` and `hardware.c`, allowing the replay build to reach the next blocker.
-The strict configuration now stops in `intel-vtd_wrapper.c`, where the generated
-wrapper collapses to an empty translation unit and triggers the pedantic
-diagnostic that C90 forbids empty files.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86

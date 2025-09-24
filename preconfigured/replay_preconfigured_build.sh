@@ -84,7 +84,6 @@ KERNEL_SOURCES=(
   "src/object/untyped.c"
   "src/plat/pc99/machine/acpi.c"
   "src/plat/pc99/machine/hardware.c"
-  "src/plat/pc99/machine/intel-vtd.c"
   "src/plat/pc99/machine/io.c"
   "src/plat/pc99/machine/ioapic.c"
   "src/plat/pc99/machine/pic.c"
