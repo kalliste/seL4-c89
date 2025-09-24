@@ -17,20 +17,22 @@ resulting compiler diagnostics.
   - [x] Route the generated capability tables and x86 helpers through the new
     portable constant macros.
   - [ ] Address the remaining diagnostics reported by the strict build.
-    - [x] Replace the configuration helpers in `util.h` that relied on
-      anonymous variadic macros.
-    - [x] Tidy the libsel4 size/enumeration assertion macros so they no longer
-      emit pedantic diagnostics under strict C90.
-    - [x] Give the mode-specific cap helpers and page-size queries explicit
-      return paths now that the attribute shims collapse under C89.
-    - [x] Silence the x86 fault stubs by casting their unused parameters and
-      returning explicit values for the pedantic C90 build.
-    - [x] Compare the syscall slowpath bounds against signed temporaries so the
-      pedantic build accepts `c_traps.c`.
-    - [x] Keep the C89 inline compatibility shims visible in `machine/io.h`
-      when printing is disabled.
-    - [x] Rewrite the APIC initialisation to use named temporaries instead of
-      subscripting compound literals.
+  - [x] Replace the configuration helpers in `util.h` that relied on
+    anonymous variadic macros.
+  - [x] Tidy the libsel4 size/enumeration assertion macros so they no longer
+    emit pedantic diagnostics under strict C90.
+  - [x] Give the mode-specific cap helpers and page-size queries explicit
+    return paths now that the attribute shims collapse under C89.
+  - [x] Silence the x86 fault stubs by casting their unused parameters and
+    returning explicit values for the pedantic C90 build.
+  - [x] Compare the syscall slowpath bounds against signed temporaries so the
+    pedantic build accepts `c_traps.c`.
+  - [x] Keep the C89 inline compatibility shims visible in `machine/io.h`
+    when printing is disabled.
+  - [x] Rewrite the APIC initialisation to use named temporaries instead of
+    subscripting compound literals.
+  - [x] Hoist the x86 virtual memory helpers so they declare locals at the top
+    of each block and return explicit values under the pedantic C90 build.
   - [x] Replace the compound literal helpers in `machine.h` with explicit
     temporaries.
   - [x] Replace the remaining anonymous variadic logging helpers with
@@ -98,6 +100,13 @@ command-line parsing tables compile away.
 Guarding those helpers behind the same `CONFIG_PRINTING`/`CONFIG_DEBUG_BUILD`
 predicates that reference them clears the pedantic warnings and lets the
 strict build continue to the next blocker.
+
+Hoisting the declarations throughout `arch/x86/kernel/vspace.c` and adding
+explicit return paths for the VM fault and accessors resolves the C90-specific
+diagnostics in that translation unit. The replay build consequently advances to
+`arch/x86/kernel/xapic.c`, where the pedantic warning set now complains about
+subscripting the temporary compound literals returned by the LAPIC register
+constructors when sending IPIs.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -255,5 +264,8 @@ strict build continue to the next blocker.
         it is referenced.
 - [x] Silence the strict C90 warnings in `arch/x86/kernel/cmdline.c` so the
   pedantic build no longer reports the unused command-line parsing helpers.
+- [ ] Rework the LAPIC IPI helpers in `src/arch/x86/kernel/xapic.c` so they
+  populate named temporaries instead of subscripting compound literals, letting
+  the pedantic C90 build proceed past the new blocker.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.
