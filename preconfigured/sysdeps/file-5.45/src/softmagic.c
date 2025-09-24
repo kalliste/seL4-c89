@@ -475,7 +475,7 @@ flush:
 		if (*found_match) {
 			if ((ms->flags & MAGIC_CONTINUE) == 0)
 				return *returnval;
-			// So that we print a separator
+			/* So that we print a separator */
 			*printed_something = 0;
 			*firstline = 0;
 		}
@@ -1461,7 +1461,7 @@ do_ops(struct magic_set *ms, struct magic *m, uint32_t *rv, intmax_t lhs,
     intmax_t off)
 {
 	intmax_t offset;
-	// On purpose not INTMAX_MAX
+	/* On purpose not INTMAX_MAX */
 	if (lhs >= UINT_MAX || lhs <= INT_MIN ||
 	    off >= UINT_MAX || off <= INT_MIN) {
 		if ((ms->flags & MAGIC_DEBUG) != 0)
@@ -1528,7 +1528,7 @@ msetoffset(struct magic_set *ms, struct magic *m, struct buffer *bb,
 		if (buffer_fill(b) == -1)
 			return -1;
 		if (o != 0) {
-			// Not yet!
+			/* Not yet! */
 			file_magerror(ms, "non zero offset %" SIZE_T_FORMAT
 			    "u at level %u", o, cont_level);
 			return -1;
@@ -1541,7 +1541,7 @@ msetoffset(struct magic_set *ms, struct magic *m, struct buffer *bb,
 		offset = m->offset;
 		if (cont_level == 0) {
 normal:
-			// XXX: Pass real fd, then who frees bb?
+			/* XXX: Pass real fd, then who frees bb? */
 			buffer_init(bb, -1, NULL, b->fbuf, b->flen);
 			ms->offset = offset;
 			ms->eoffset = 0;

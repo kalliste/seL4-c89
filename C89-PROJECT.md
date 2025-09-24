@@ -51,18 +51,32 @@ resulting compiler diagnostics.
    statement under the stricter warning set.
    - *Potential remedies*: add explicit returns or refactor the control flow so
      that the compiler can prove a value is always produced.
+6. **Kernel/libsel4 type duplication**: both the kernel headers and
+   `libsel4` publish typedefs for the fundamental seL4 types. Under pedantic
+   C90 the duplicate definitions are treated as hard errors, so we need a
+   single canonical provider.
+7. **Enumeration and macro hygiene**: verification-oriented macros such as
+   `SEL4_SIZE_SANITY` and `SEL4_FORCE_LONG_ENUM` expand to trailing semicolons,
+   large enumerator values, and dangling commas. GCC accepts these under
+   GNU99 but rejects them in strict C90 mode, so we need to rework the macros
+   to emit conforming constructs.
+8. **Structure packing guarantees**: strict mode exposes that the ACPI RSDP
+   assertions rely on packing attributes that collapse under C89, causing the
+   compile-time size check to fail.
 
 ## Next Steps
 - Replace the remaining C99 constructs uncovered by the latest strict build
   run:
-  - Drop the C++-style comments emitted in the generated wrapper sources.
-  - Provide C89-friendly definitions for the 64-bit typedefs and helpers in
-    `stdint.h`/`util.h` so they no longer rely on `long long`.
+  - [x] Drop the C++-style comments emitted in the generated wrapper sources.
+  - [x] Provide C89-friendly definitions for the 64-bit typedefs and helpers in
+        `stdint.h`/`util.h` so they no longer rely on `long long`.
   - Resolve the duplicated seL4 basic types between `simple_types.h` and the
     shared kernel headers.
 - Rework the PC99 interrupt helpers so that the generated statements avoid
   declaration-after-statement issues and variadic macro misuse under strict C90.
 - Audit architecture helpers for unused parameters and modern inline idioms
   (e.g. `static inline` placement) that now surface as errors.
+- Make the shared libsel4 macros and enum definitions pedantic-friendly so that
+  the generated headers compile cleanly under C90.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.

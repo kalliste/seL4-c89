@@ -295,50 +295,50 @@ LOOKS(extended, t != T && t != I && t != X)
  * ubuf must be big enough!
  */
 
-// from: https://golang.org/src/unicode/utf8/utf8.go
+/* from: https://golang.org/src/unicode/utf8/utf8.go */
 
-#define	XX 0xF1 // invalid: size 1
-#define	AS 0xF0 // ASCII: size 1
-#define	S1 0x02 // accept 0, size 2
-#define	S2 0x13 // accept 1, size 3
-#define	S3 0x03 // accept 0, size 3
-#define	S4 0x23 // accept 2, size 3
-#define	S5 0x34 // accept 3, size 4
-#define	S6 0x04 // accept 0, size 4
-#define	S7 0x44 // accept 4, size 4
+#define	XX 0xF1 /* invalid: size 1 */
+#define	AS 0xF0 /* ASCII: size 1 */
+#define	S1 0x02 /* accept 0, size 2 */
+#define	S2 0x13 /* accept 1, size 3 */
+#define	S3 0x03 /* accept 0, size 3 */
+#define	S4 0x23 /* accept 2, size 3 */
+#define	S5 0x34 /* accept 3, size 4 */
+#define	S6 0x04 /* accept 0, size 4 */
+#define	S7 0x44 /* accept 4, size 4 */
 
 #define LOCB 0x80
 #define HICB 0xBF
 
-// first is information about the first byte in a UTF-8 sequence.
+/* first is information about the first byte in a UTF-8 sequence. */
 static const uint8_t first[] = {
-    //   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
-    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, // 0x00-0x0F
-    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, // 0x10-0x1F
-    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, // 0x20-0x2F
-    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, // 0x30-0x3F
-    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, // 0x40-0x4F
-    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, // 0x50-0x5F
-    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, // 0x60-0x6F
-    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, // 0x70-0x7F
-    //   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
-    XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, // 0x80-0x8F
-    XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, // 0x90-0x9F
-    XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, // 0xA0-0xAF
-    XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, // 0xB0-0xBF
-    XX, XX, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, // 0xC0-0xCF
-    S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, // 0xD0-0xDF
-    S2, S3, S3, S3, S3, S3, S3, S3, S3, S3, S3, S3, S3, S4, S3, S3, // 0xE0-0xEF
-    S5, S6, S6, S6, S7, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, // 0xF0-0xFF
+    /*   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F */
+    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, /* 0x00-0x0F */
+    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, /* 0x10-0x1F */
+    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, /* 0x20-0x2F */
+    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, /* 0x30-0x3F */
+    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, /* 0x40-0x4F */
+    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, /* 0x50-0x5F */
+    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, /* 0x60-0x6F */
+    AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, AS, /* 0x70-0x7F */
+    /*   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F */
+    XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, /* 0x80-0x8F */
+    XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, /* 0x90-0x9F */
+    XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, /* 0xA0-0xAF */
+    XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, /* 0xB0-0xBF */
+    XX, XX, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, /* 0xC0-0xCF */
+    S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, S1, /* 0xD0-0xDF */
+    S2, S3, S3, S3, S3, S3, S3, S3, S3, S3, S3, S3, S3, S4, S3, S3, /* 0xE0-0xEF */
+    S5, S6, S6, S6, S7, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, XX, /* 0xF0-0xFF */
 };
 
-// acceptRange gives the range of valid values for the second byte in a UTF-8
-// sequence.
+/* acceptRange gives the range of valid values for the second byte in a UTF-8 */
+/* sequence. */
 struct accept_range {
-	uint8_t lo; // lowest value for second byte.
-	uint8_t hi; // highest value for second byte.
+	uint8_t lo; /* lowest value for second byte. */
+	uint8_t hi; /* highest value for second byte. */
 } accept_ranges[16] = {
-// acceptRanges has size 16 to avoid bounds checks in the code that uses it.
+/* acceptRanges has size 16 to avoid bounds checks in the code that uses it. */
 	{ LOCB, HICB },
 	{ 0xA0, HICB },
 	{ LOCB, 0x9F },
@@ -614,7 +614,7 @@ file_private unsigned char ebcdic_to_ascii[] = {
  * The following EBCDIC-to-ASCII table may relate more closely to reality,
  * or at least to modern reality.  It comes from
  *
- *   http://ftp.s390.ibm.com/products/oe/bpxqp9.html
+ *   http:/* ftp.s390.ibm.com/products/oe/bpxqp9.html */
  *
  * and maps the characters of EBCDIC code page 1047 (the code used for
  * Unix-derived software on IBM's 390 systems) to the corresponding

@@ -1,5 +1,5 @@
-// Generated aggregator used for kernel_all_copy.c.
-// Maintains compatibility with preconfigured build tooling.
+/* Generated aggregator used for kernel_all_copy.c. */
+/* Maintains compatibility with preconfigured build tooling. */
 
 #include "../src/api/faults.c"
 #include "../src/api/syscall.c"

@@ -27,9 +27,9 @@
  * DER (Distinguished Encoding Rules) Parser
  *
  * Sources:
- * https://en.wikipedia.org/wiki/X.690
- * http://fm4dd.com/openssl/certexamples.htm
- * http://blog.engelke.com/2014/10/17/parsing-ber-and-der-encoded-asn-1-objects/
+ * https:/* en.wikipedia.org/wiki/X.690 */
+ * http:/* fm4dd.com/openssl/certexamples.htm */
+ * http:/* blog.engelke.com/2014/10/17/parsing-ber-and-der-encoded-asn-1-objects/ */
  */
 #ifndef TEST_DER
 #include "file.h"
@@ -414,8 +414,8 @@ printdata(size_t level, const void *v, size_t x, size_t l)
 		uint8_t c = getclass(p[x]);
 		uint8_t t = gettype(p[x]);
 		ox = x;
-//		if (x != 0)
-//		printf("%.2x %.2x %.2x\n", p[x - 1], p[x], p[x + 1]);
+/* 		if (x != 0) */
+/* 		printf("%.2x %.2x %.2x\n", p[x - 1], p[x], p[x + 1]); */
 		uint32_t tag = gettag(p, &x, ep - p + x);
 		if (p + x >= ep)
 			break;

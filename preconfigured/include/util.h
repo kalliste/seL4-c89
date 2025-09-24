@@ -42,7 +42,7 @@
 #define ULL_CONST(x) PASTE(x, ul)
 #else
 #define UL_CONST(x) PASTE(x, ul)
-#define ULL_CONST(x) PASTE(x, llu)
+#define ULL_CONST(x) PASTE(x, ul)
 #endif
 #define NULL ((void *)0)
 
@@ -57,21 +57,15 @@
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
-/* Time constants are defined to use the 'unsigned long long'. Rationale is,
- * that the C rules define the calculation result is determined by largest type
- * involved. Enforcing the largest possible type C provides avoids pitfalls with
- * 32-bit overflows when values are getting quite large. Keep in mind that even
- * 2^32 milli-seconds roll over within 50 days, which is an uptime that embedded
- * systems will reach easily and it resembles not even two months in a calendar
- * calculation. In addition, using the largest integer type C currently defines
- * enforces that all calculations results need a cast back to a 32-bit type
- * explicitly. This might feel annoying, but practically it makes code more
- * robust and enforces thinking about potential overflows.
- * Note that at this stage of the includes, we do not have defined the type
- * uint64_t yet, so we can't use any definitions around it, but have to stick to
- * plain C types. Neither moving the time constant definitions behind the
- * uint64_t type definitions nor including the header with the uint64_t
- * definitions here is currently a feasible option.
+/* Time constants are defined to use the widest unsigned integer type available
+ * via the portable constructors above. This avoids 32-bit overflows when values
+ * are large. Keep in mind that even 2^32 milliseconds roll over within 50 days,
+ * which is an uptime that embedded systems will reach easily and it resembles
+ * not even two months in a calendar calculation. In addition, forcing callers
+ * to cast results back to narrower types makes the code more robust and helps
+ * to reason about potential overflows. Note that at this stage of the includes
+ * we cannot rely on stdint.h, so we stick to plain C types here and defer to
+ * the macros above for width selection.
  */
 #define MS_IN_S     ULL_CONST(1000)
 #define US_IN_MS    ULL_CONST(1000)
@@ -229,13 +223,13 @@ CONST clzl(unsigned long x)
     \<lbrace> \<acute>ret__longlong = of_nat (word_clz (x___unsigned_longlong_' s)) \<rbrace>"
 */
 #endif
-static inline long long
-CONST clzll(unsigned long long x)
+static inline long
+CONST clzll(uint64_t x)
 {
 #ifdef CONFIG_CLZ_NO_BUILTIN
     return __clzdi2(x);
 #else
-    return __builtin_clzll(x);
+    return __builtin_clzl(x);
 #endif
 }
 
@@ -291,8 +285,8 @@ CONST ctzl(unsigned long x)
     \<lbrace> \<acute>ret__longlong = of_nat (word_ctz (x___unsigned_longlong_' s)) \<rbrace>"
 */
 #endif
-static inline long long
-CONST ctzll(unsigned long long x)
+static inline long
+CONST ctzll(uint64_t x)
 {
 #ifdef CONFIG_CTZ_NO_BUILTIN
 /* See comments on ctzl. */
@@ -300,13 +294,13 @@ CONST ctzll(unsigned long long x)
     return __ctzdi2(x);
 #else
     if (unlikely(x == 0)) {
-        return 8 * sizeof(unsigned long long);
+        return 8 * sizeof(uint64_t);
     }
     /* See comments on ctzl. */
-    return 8 * sizeof(unsigned long long) - 1 - __builtin_clzll(x & -x);
+    return 8 * sizeof(uint64_t) - 1 - __builtin_clzl(x & -x);
 #endif
 #else
-    return __builtin_ctzll(x);
+    return __builtin_ctzl(x);
 #endif
 }
 

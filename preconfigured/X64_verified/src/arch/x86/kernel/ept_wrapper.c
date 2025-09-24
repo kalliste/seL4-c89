@@ -1,4 +1,4 @@
-// Generated wrapper to provide a standalone translation unit.
-// Source: src/arch/x86/kernel/ept.c
+/* Generated wrapper to provide a standalone translation unit. */
+/* Source: src/arch/x86/kernel/ept.c */
 
 #include "../../../../../src/arch/x86/kernel/ept.c"

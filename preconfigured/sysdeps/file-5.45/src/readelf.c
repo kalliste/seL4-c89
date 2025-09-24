@@ -1543,7 +1543,7 @@ doshn(struct magic_set *ms, int clazz, int swap, int fd, off_t off, int num,
 						return -1;
 					    break;
 					}
-					// gnu attributes
+					/* gnu attributes */
 #endif
 					break;
 				}
@@ -1741,7 +1741,7 @@ dophn_exec(struct magic_set *ms, int clazz, int swap, int fd, off_t off,
 		case PT_DYNAMIC:
 			dynamic = 1;
 			offset = 0;
-			// Let DF_1 determine if we are PIE or not.
+			/* Let DF_1 determine if we are PIE or not. */
 			ms->mode &= ~0111;
 			for (;;) {
 				if (offset >= CAST(size_t, bufsize))
