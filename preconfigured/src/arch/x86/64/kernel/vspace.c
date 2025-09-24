@@ -1434,6 +1434,7 @@ exception_t decodeX86ModeMMUInvocation(
 
     default:
         fail("Invalid arch cap type");
+        return EXCEPTION_SYSCALL_ERROR;
     }
 }
 
@@ -1536,6 +1537,7 @@ exception_t decodeX86ModeMapPage(word_t label, vm_page_size_t page_size, cte_t *
         }
     }
     fail("Invalid Page type");
+    return EXCEPTION_SYSCALL_ERROR;
 }
 
 #ifdef CONFIG_PRINTING

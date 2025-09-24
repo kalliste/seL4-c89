@@ -378,6 +378,7 @@ exception_t decodeX86EPTInvocation(
         return decodeX86EPTPTInvocation(invLabel, length, cte, cap, buffer);
     default:
         fail("Invalid cap type");
+        return EXCEPTION_SYSCALL_ERROR;
     }
 }
 

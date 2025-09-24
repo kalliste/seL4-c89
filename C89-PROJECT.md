@@ -39,7 +39,12 @@ resulting compiler diagnostics.
   helpers still need `(void)` casts for unused parameters, the CR3 comparison
   relies on subscripting a temporary, several boot-time mappers use compound
   literals, and a handful of decode helpers fall off the end without explicit
-  returns once the attribute shims collapse.
+  returns once the attribute shims collapse. With the decode helpers patched,
+  the latest strict build now trips on the outstanding TLB invalidation shims
+  (missing `(void)` casts), the CR3 comparison that still subscripts a
+  temporary, the boot paging helpers that retain compound literals or unused
+  parameters, and the generated `cap_get_capMappedASID` accessor that lacks an
+  explicit return value on all paths.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -151,7 +156,7 @@ resulting compiler diagnostics.
         related boot helpers so the pedantic build stays quiet.
   - [ ] Adjust the CR3 comparison helpers and boot-time mapping routines to
         operate on named temporaries instead of subscripting compound literals.
-  - [ ] Audit the x86 decode and mode-specific cap helpers to provide explicit
+  - [x] Audit the x86 decode and mode-specific cap helpers to provide explicit
         returns and `(void)` casts for unused parameters now that the attribute
         shims collapse under C90.
 - Continue iterating on the remaining compilation blockers (assembly helpers,

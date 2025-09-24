@@ -621,6 +621,8 @@ void setVMRoot(tcb_t *tcb)
 void hwASIDInvalidate(asid_t asid, vspace_root_t *vspace)
 {
     /* 32-bit does not have PCID */
+    (void)asid;
+    (void)vspace;
     return;
 }
 
@@ -640,12 +642,17 @@ exception_t decodeX86ModeMMUInvocation(
 
     default:
         fail("Invalid arch cap type");
+        return EXCEPTION_SYSCALL_ERROR;
     }
 }
 
 
 bool_t modeUnmapPage(vm_page_size_t page_size, vspace_root_t *vroot, vptr_t vaddr, void *pptr)
 {
+    (void)page_size;
+    (void)vroot;
+    (void)vaddr;
+    (void)pptr;
     fail("Invalid page type");
     return false;
 }
@@ -653,7 +660,17 @@ bool_t modeUnmapPage(vm_page_size_t page_size, vspace_root_t *vroot, vptr_t vadd
 exception_t decodeX86ModeMapPage(word_t invLabel, vm_page_size_t page_size, cte_t *cte, cap_t cap,
                                  vspace_root_t *vroot, vptr_t vaddr, paddr_t paddr, vm_rights_t vm_rights, vm_attributes_t vm_attr)
 {
+    (void)invLabel;
+    (void)page_size;
+    (void)cte;
+    (void)cap;
+    (void)vroot;
+    (void)vaddr;
+    (void)paddr;
+    (void)vm_rights;
+    (void)vm_attr;
     fail("Invalid Page type");
+    return EXCEPTION_SYSCALL_ERROR;
 }
 
 #ifdef CONFIG_KERNEL_LOG_BUFFER

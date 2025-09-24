@@ -39,6 +39,8 @@ deriveCap_ret_t Mode_deriveCap(cte_t *slot, cap_t cap)
 {
     deriveCap_ret_t ret;
 
+    (void)slot;
+
     switch (cap_get_capType(cap)) {
     case cap_pml4_cap:
         if (cap_pml4_cap_get_capPML4IsMapped(cap)) {
@@ -72,6 +74,9 @@ deriveCap_ret_t Mode_deriveCap(cte_t *slot, cap_t cap)
 
     default:
         fail("Invalid arch cap type");
+        ret.cap = cap_null_cap_new();
+        ret.status = EXCEPTION_SYSCALL_ERROR;
+        return ret;
     }
 }
 
@@ -180,6 +185,8 @@ word_t Mode_getObjectSize(word_t t)
 
 cap_t Mode_createObject(object_t t, void *regionBase, word_t userSize, bool_t deviceMemory)
 {
+    (void)userSize;
+
     switch (t) {
 
     case seL4_X86_4K:
@@ -312,6 +319,7 @@ cap_t Mode_createObject(object_t t, void *regionBase, word_t userSize, bool_t de
          * passed (which is impossible in haskell).
          */
         fail("Arch_createObject got an API type or invalid object type");
+        return cap_null_cap_new();
     }
 }
 
