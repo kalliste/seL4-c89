@@ -23,14 +23,17 @@ static exception_t performPageGetAddress(void *vbase_ptr, bool_t call)
 {
     /* Get the physical address of this frame. */
     paddr_t capFBasePtr;
+    tcb_t *thread;
+    word_t *ipcBuffer;
+    unsigned int length;
+
     capFBasePtr = addrFromPPtr(vbase_ptr);
 
-    tcb_t *thread;
     thread = NODE_STATE(ksCurThread);
     if (call) {
-        word_t *ipcBuffer = lookupIPCBuffer(true, thread);
+        ipcBuffer = lookupIPCBuffer(true, thread);
         setRegister(thread, badgeRegister, 0);
-        unsigned int length = setMR(thread, ipcBuffer, 0, capFBasePtr);
+        length = setMR(thread, ipcBuffer, 0, capFBasePtr);
         setRegister(thread, msgInfoRegister, wordFromMessageInfo(
                         seL4_MessageInfo_new(0, 0, 0, length)));
     }
@@ -44,7 +47,9 @@ void deleteASIDPool(asid_t asid_base, asid_pool_t *pool)
     assert(IS_ALIGNED(asid_base, asidLowBits));
 
     if (x86KSASIDTable[asid_base >> asidLowBits] == pool) {
-        for (unsigned int offset = 0; offset < BIT(asidLowBits); offset++) {
+        unsigned int offset;
+
+        for (offset = 0; offset < BIT(asidLowBits); offset++) {
             asid_map_t asid_map = pool->array[offset];
             if (asid_map_get_type(asid_map) == asid_map_asid_map_vspace) {
                 vspace_root_t *vspace = (vspace_root_t *)asid_map_asid_map_vspace_get_vspace_root(asid_map);
@@ -485,6 +490,8 @@ BOOT_CODE static void init_idt(idt_entry_t *idt)
 BOOT_CODE bool_t init_vm_state(void)
 {
     word_t cacheLineSize;
+    void *tss_ptr;
+
     x86KScacheLineSizeBits = getCacheLineSizeBits();
     if (!x86KScacheLineSizeBits) {
         return false;
@@ -501,7 +508,7 @@ BOOT_CODE bool_t init_vm_state(void)
      * Work around -Waddress-of-packed-member. TSS is the first thing
      * in the struct and so it's safe to take its address.
      */
-    void *tss_ptr = &x86KSGlobalState[CURRENT_CPU_INDEX()].x86KStss.tss;
+    tss_ptr = &x86KSGlobalState[CURRENT_CPU_INDEX()].x86KStss.tss;
     init_tss(tss_ptr);
     init_gdt(x86KSGlobalState[CURRENT_CPU_INDEX()].x86KSgdt, tss_ptr);
     init_idt(x86KSGlobalState[CURRENT_CPU_INDEX()].x86KSidt);
@@ -589,6 +596,8 @@ exception_t handleVMFault(tcb_t *thread, vm_fault_type_t vm_faultType)
     default:
         fail("Invalid VM fault type");
     }
+
+    return EXCEPTION_FAULT;
 }
 
 uint32_t CONST WritableFromVMRights(vm_rights_t vm_rights)
@@ -604,6 +613,8 @@ uint32_t CONST WritableFromVMRights(vm_rights_t vm_rights)
     default:
         fail("Invalid VM rights");
     }
+
+    return 0;
 }
 
 uint32_t CONST SuperUserFromVMRights(vm_rights_t vm_rights)
@@ -619,6 +630,8 @@ uint32_t CONST SuperUserFromVMRights(vm_rights_t vm_rights)
     default:
         fail("Invalid VM rights");
     }
+
+    return 0;
 }
 
 lookupPTSlot_ret_t lookupPTSlot(vspace_root_t *vspace, vptr_t vptr)
