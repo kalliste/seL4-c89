@@ -24,6 +24,7 @@
 #include <plat/machine/intel-vtd.h>
 
 #define MAX_RESERVED 1
+#define VBE_MODE_INVALID ((seL4_Uint32)(-1))
 BOOT_BSS static region_t reserved[MAX_RESERVED];
 
 /* functions exactly corresponding to abstract specification */
@@ -31,8 +32,10 @@ BOOT_BSS static region_t reserved[MAX_RESERVED];
 BOOT_CODE static void init_irqs(cap_t root_cnode_cap)
 {
     irq_t i;
+    sword_t signed_i;
 
     for (i = 0; i <= maxIRQ; i++) {
+        signed_i = (sword_t)i;
         if (i == irq_timer) {
             setIRQState(IRQTimer, i);
 #ifdef ENABLE_SMP_SUPPORT
@@ -46,7 +49,7 @@ BOOT_CODE static void init_irqs(cap_t root_cnode_cap)
         } else if (i == 2 && config_set(CONFIG_IRQ_PIC)) {
             /* cascaded legacy PIC */
             setIRQState(IRQReserved, i);
-        } else if (i >= irq_isa_min && i <= irq_isa_max) {
+        } else if (signed_i >= irq_isa_min && signed_i <= irq_isa_max) {
             if (config_set(CONFIG_IRQ_PIC)) {
                 setIRQState(IRQInactive, i);
             } else {
@@ -109,13 +112,21 @@ BOOT_CODE bool_t init_sys_state(
     uint32_t      tsc_freq;
     create_frames_of_region_ret_t create_frames_ret;
     create_frames_of_region_ret_t extra_bi_ret;
+    region_t      ui_reg             = paddr_to_pptr_reg(ui_info.p_reg);
+    v_region_t    ui_v_reg;
+    v_region_t    it_v_reg;
+    word_t        mb_mmap_size;
+    word_t        extra_bi_size_bits;
+    region_t      extra_bi_region;
+    seL4_BootInfoHeader padding_header;
+    tcb_t        *initial;
 
-    /* convert from physical addresses to kernel pptrs */
-    region_t ui_reg             = paddr_to_pptr_reg(ui_info.p_reg);
-
-    /* convert from physical addresses to userland vptrs */
-    v_region_t ui_v_reg;
-    v_region_t it_v_reg;
+    (void)drhu_list;
+#ifndef CONFIG_IOMMU
+    (void)cpu_id;
+    (void)num_drhu;
+    (void)rmrr_list;
+#endif
     ui_v_reg.start = ui_info.p_reg.start - ui_info.pv_offset;
     ui_v_reg.end   = ui_info.p_reg.end   - ui_info.pv_offset;
 
@@ -123,7 +134,7 @@ BOOT_CODE bool_t init_sys_state(
     bi_frame_vptr = ipcbuf_vptr + BIT(PAGE_BITS);
     extra_bi_frame_vptr = bi_frame_vptr + BIT(seL4_BootInfoFrameBits);
 
-    if (vbe->vbeMode != -1) {
+    if (vbe->vbeMode != VBE_MODE_INVALID) {
         extra_bi_size += sizeof(seL4_X86_BootInfo_VBE);
     }
     if (acpi_rsdp) {
@@ -133,12 +144,12 @@ BOOT_CODE bool_t init_sys_state(
         extra_bi_size += sizeof(seL4_BootInfoHeader) + sizeof(*fb_info);
     }
 
-    word_t mb_mmap_size = sizeof(seL4_X86_BootInfo_mmap_t);
+    mb_mmap_size = sizeof(seL4_X86_BootInfo_mmap_t);
     extra_bi_size += mb_mmap_size;
 
     /* room for tsc frequency */
     extra_bi_size += sizeof(seL4_BootInfoHeader) + 4;
-    word_t extra_bi_size_bits = calculate_extra_bi_size_bits(extra_bi_size);
+    extra_bi_size_bits = calculate_extra_bi_size_bits(extra_bi_size);
 
     /* The region of the initial thread is the user image + ipcbuf and boot info */
     it_v_reg.start = ui_v_reg.start;
@@ -174,13 +185,11 @@ BOOT_CODE bool_t init_sys_state(
 
     /* populate the bootinfo frame */
     populate_bi_frame(0, ksNumCPUs, ipcbuf_vptr, extra_bi_size);
-    region_t extra_bi_region = {
-        .start = rootserver.extra_bi,
-        .end = rootserver.extra_bi + (extra_bi_size_bits > 0 ? BIT(extra_bi_size_bits) : 0)
-    };
+    extra_bi_region.start = rootserver.extra_bi;
+    extra_bi_region.end = rootserver.extra_bi + (extra_bi_size_bits > 0 ? BIT(extra_bi_size_bits) : 0);
 
     /* populate vbe info block */
-    if (vbe->vbeMode != -1) {
+    if (vbe->vbeMode != VBE_MODE_INVALID) {
         vbe->header.id = SEL4_BOOTINFO_HEADER_X86_VBE;
         vbe->header.len = sizeof(seL4_X86_BootInfo_VBE);
         memcpy((void *)(rootserver.extra_bi + extra_bi_offset), vbe, sizeof(seL4_X86_BootInfo_VBE));
@@ -227,7 +236,6 @@ BOOT_CODE bool_t init_sys_state(
     }
 
     /* provide a chunk for any leftover padding in the extended boot info */
-    seL4_BootInfoHeader padding_header;
     padding_header.id = SEL4_BOOTINFO_HEADER_PADDING;
     padding_header.len = (extra_bi_region.end - extra_bi_region.start) - extra_bi_offset;
     *(seL4_BootInfoHeader *)(extra_bi_region.start + extra_bi_offset) = padding_header;
@@ -306,12 +314,12 @@ BOOT_CODE bool_t init_sys_state(
     loadFpuState(NODE_STATE(ksIdleThread));
 
     /* create the initial thread */
-    tcb_t *initial = create_initial_thread(root_cnode_cap,
-                                           it_vspace_cap,
-                                           ui_info.v_entry,
-                                           bi_frame_vptr,
-                                           ipcbuf_vptr,
-                                           ipcbuf_cap);
+    initial = create_initial_thread(root_cnode_cap,
+                                    it_vspace_cap,
+                                    ui_info.v_entry,
+                                    bi_frame_vptr,
+                                    ipcbuf_vptr,
+                                    ipcbuf_cap);
     if (initial == NULL) {
         return false;
     }
@@ -349,6 +357,8 @@ BOOT_CODE bool_t init_cpu(
     bool_t   mask_legacy_irqs
 )
 {
+    cpuid_007h_ebx_t ebx_007;
+
     /* initialise virtual-memory-related data structures */
     if (!init_vm_state()) {
         return false;
@@ -376,7 +386,6 @@ BOOT_CODE bool_t init_cpu(
     write_cr0(read_cr0() | CR0_WRITE_PROTECT);
 
     /* check for SMAP and SMEP and enable */
-    cpuid_007h_ebx_t ebx_007;
     ebx_007.words[0] = x86_cpuid_ebx(0x7, 0);
     if (cpuid_007h_ebx_get_smap(ebx_007)) {
         /* if we have user stack trace enabled or dangerous code injection then we cannot

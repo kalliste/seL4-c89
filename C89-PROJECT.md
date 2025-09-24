@@ -76,15 +76,17 @@ resulting compiler diagnostics.
   arguments to `(void)` and adding explicit return values lets the pedantic C90
   build move past the fault wrappers.
 
-  Reworking the syscall slowpath to compare against signed bounds eliminates
-  the pedantic sign-compare errors in `c_traps.c`. Hoisting the inline helpers
-  in `machine/io.h` out of the printing configuration keeps the compatibility
-  macros visible in C90 mode, and the APIC initialisation now materialises the
-  register values in named temporaries rather than subscripting compound
-  literals. With those fixes in place the strict build advances into the x86
-  boot code, which still fails due to a mix of signed/unsigned comparisons,
-  designated initialisers that rely on C99 syntax, unused parameters, and
-  declarations that appear after executable statements.
+Reworking the syscall slowpath to compare against signed bounds eliminates
+the pedantic sign-compare errors in `c_traps.c`. Hoisting the inline helpers
+in `machine/io.h` out of the printing configuration keeps the compatibility
+macros visible in C90 mode, and the APIC initialisation now materialises the
+register values in named temporaries rather than subscripting compound
+literals. With those fixes in place—and the x86 boot initialisation now
+tidied for C90 compliance—the strict build progresses into `boot_sys.c`. The
+remaining blockers there centre on like-signed comparisons in the multiboot
+memory walkers, C99-only compound literals and loop initialisers, late
+declarations (e.g. the `cpuid_007h_edx_t` temporary), and the need to refer to
+the `_start` symbol via an explicit declaration.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -218,14 +220,24 @@ resulting compiler diagnostics.
 - [ ] Teach the generated capDL wrapper sources to emit a benign definition
         when no kernel objects are present so the strict build no longer flags
         the empty translation unit under `-Wpedantic`.
-- [ ] Tidy the x86 boot initialisation so it satisfies strict C90:
-  - [ ] Rework the IRQ range checks in `init_irqs` to avoid always-true
+- [x] Tidy the x86 boot initialisation so it satisfies strict C90:
+  - [x] Rework the IRQ range checks in `init_irqs` to avoid always-true
         unsigned comparisons.
-  - [ ] Compare the VBE mode fields against sentinel values using unsigned
+  - [x] Compare the VBE mode fields against sentinel values using unsigned
         arithmetic and consume the unused VT-d parameters when that support is
         disabled.
-  - [ ] Hoist the boot-info bookkeeping locals, replace the designated
+  - [x] Hoist the boot-info bookkeeping locals, replace the designated
         initialiser used for `extra_bi_region`, and avoid declaration-after-
         statement warnings throughout `init_sys_state` and `init_cpu`.
+- [ ] Continue the boot-time cleanup by bringing `boot_sys.c` in line with
+  strict C90:
+  - [ ] Compare the multiboot memory walkers against like-signed counters so
+        the pedantic build accepts the loops.
+  - [ ] Replace the compound literals in the memory map helpers with explicit
+        temporaries and hoist the late declarations (e.g. the
+        `cpuid_007h_edx_t` and multiboot mmap length locals).
+  - [ ] Rewrite the multiboot2 iterators without C99-style `for`
+        initialisers and provide an explicit declaration for `_start` before
+        it is referenced.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
   missing returns, etc.) surfaced by the latest build.
