@@ -35,7 +35,9 @@
 /* C99 defines that this is at least 8-bit */
 #define _seL4_int8_type             char
 typedef signed _seL4_int8_type      seL4_Int8;
+#ifndef SEL4_BASIC_TYPES_DEFINED
 typedef unsigned _seL4_int8_type    seL4_Uint8;
+#endif
 
 seL4_integer_size_assert(seL4_Int8, 1)
 seL4_integer_size_assert(seL4_Uint8, 1)
@@ -47,7 +49,9 @@ seL4_integer_size_assert(seL4_Uint8, 1)
  */
 #define _seL4_int16_type            short int
 typedef signed _seL4_int16_type     seL4_Int16;
+#ifndef SEL4_BASIC_TYPES_DEFINED
 typedef unsigned _seL4_int16_type   seL4_Uint16;
+#endif
 
 seL4_integer_size_assert(seL4_Int16, 2)
 seL4_integer_size_assert(seL4_Uint16, 2)
@@ -58,7 +62,9 @@ seL4_integer_size_assert(seL4_Uint16, 2)
  * systems, so 'int' is 32-bits. */
 #define _seL4_int32_type            int
 typedef signed _seL4_int32_type     seL4_Int32;
+#ifndef SEL4_BASIC_TYPES_DEFINED
 typedef unsigned _seL4_int32_type   seL4_Uint32;
+#endif
 
 seL4_integer_size_assert(seL4_Int32, 4)
 seL4_integer_size_assert(seL4_Uint32, 4)
@@ -112,11 +118,19 @@ typedef seL4_Int8   seL4_Bool;
 
 /* Define seL4_Word */
 #if defined(SEL4_WORD_IS_UINT32)
+#ifndef SEL4_BASIC_TYPES_DEFINED
 typedef seL4_Uint32 seL4_Word;
+#endif
+#ifndef _seL4_word_fmt
 #define _seL4_word_fmt /* empty */
+#endif
 #elif defined(SEL4_WORD_IS_UINT64)
+#ifndef SEL4_BASIC_TYPES_DEFINED
 typedef seL4_Uint64 seL4_Word;
+#endif
+#ifndef _seL4_word_fmt
 #define _seL4_word_fmt _seL4_int64_fmt
+#endif
 #else
 #error missing definition for SEL4_WORD type
 #endif
@@ -127,7 +141,9 @@ typedef seL4_Uint64 seL4_Word;
 #define SEL4_PRIx_word  _macro_str_concat(_seL4_word_fmt, x)
 #define SEL4_PRI_word   SEL4_PRIu_word
 
+#ifndef SEL4_BASIC_TYPES_DEFINED
 typedef seL4_Word seL4_CPtr;
+#endif
 
 /* sanity check that the seL4_Word matches the definitions of the constants */
 #include <sel4/sel4_arch/constants.h>
@@ -139,3 +155,7 @@ SEL4_COMPILE_ASSERT(
 SEL4_COMPILE_ASSERT(
     seL4_WordBits_matches,
     8 * sizeof(seL4_Word) == seL4_WordBits)
+
+#ifndef SEL4_BASIC_TYPES_DEFINED
+#define SEL4_BASIC_TYPES_DEFINED 1
+#endif
