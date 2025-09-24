@@ -58,6 +58,7 @@ static inline void addToBitmap(word_t cpu, word_t dom, word_t prio)
     word_t l1index;
     word_t l1index_inverted;
 
+    (void)cpu;
     l1index = prio_to_l1index(prio);
     l1index_inverted = invert_l1index(l1index);
 
@@ -74,6 +75,7 @@ static inline void removeFromBitmap(word_t cpu, word_t dom, word_t prio)
     word_t l1index;
     word_t l1index_inverted;
 
+    (void)cpu;
     l1index = prio_to_l1index(prio);
     l1index_inverted = invert_l1index(l1index);
     NODE_STATE_ON_CORE(ksReadyQueuesL2Bitmap[dom][l1index_inverted], cpu) &= ~BIT(prio & MASK(wordRadix));
@@ -370,6 +372,8 @@ void setupCallerCap(tcb_t *sender, tcb_t *receiver, bool_t canGrant)
     assert(cap_get_capType(callerCap) == cap_null_cap);
     cteInsert(cap_reply_cap_new(canGrant, false, TCB_REF(sender)),
               replySlot, callerSlot);
+    (void)masterCap;
+    (void)callerCap;
 }
 
 void deleteCallerCap(tcb_t *receiver)
@@ -812,9 +816,12 @@ static void invokeSetFlags(tcb_t *thread, word_t clear, word_t set, bool_t call)
     }
 #endif
     if (call) {
-        word_t *ipcBuffer = lookupIPCBuffer(true, cur_thread);
+        word_t *ipcBuffer;
+        unsigned int length;
+
+        ipcBuffer = lookupIPCBuffer(true, cur_thread);
         setRegister(cur_thread, badgeRegister, 0);
-        unsigned int length = setMR(cur_thread, ipcBuffer, 0, flags);
+        length = setMR(cur_thread, ipcBuffer, 0, flags);
         setRegister(cur_thread, msgInfoRegister, wordFromMessageInfo(
                         seL4_MessageInfo_new(0, 0, 0, length)));
     }
@@ -824,6 +831,8 @@ static void invokeSetFlags(tcb_t *thread, word_t clear, word_t set, bool_t call)
 static exception_t decodeSetFlags(cap_t cap, word_t length, bool_t call, word_t *buffer)
 {
     tcb_t *thread = TCB_PTR(cap_thread_cap_get_capTCBPtr(cap));
+    word_t clear;
+    word_t set;
 
     if (length < 2) {
         userError("TCB SetFlags: Truncated message.");
@@ -831,8 +840,8 @@ static exception_t decodeSetFlags(cap_t cap, word_t length, bool_t call, word_t 
         return EXCEPTION_SYSCALL_ERROR;
     }
 
-    word_t clear = getSyscallArg(0, buffer);
-    word_t set   = getSyscallArg(1, buffer);
+    clear = getSyscallArg(0, buffer);
+    set   = getSyscallArg(1, buffer);
 
     setThreadState(NODE_STATE(ksCurThread), ThreadState_Restart);
     invokeSetFlags(thread, clear, set, call);
@@ -1103,10 +1112,14 @@ exception_t decodeTCBConfigure(cap_t cap, word_t length, cte_t *slot, word_t *bu
     cap_t bufferCap, cRootCap, vRootCap;
     deriveCap_ret_t dc_ret;
     word_t cRootData, vRootData, bufferAddr;
+    exception_t e;
 #ifdef CONFIG_KERNEL_MCS
 #define TCBCONFIGURE_ARGS 3
 #else
 #define TCBCONFIGURE_ARGS 4
+#endif
+#ifndef CONFIG_KERNEL_MCS
+    cptr_t faultEP;
 #endif
     if (length < TCBCONFIGURE_ARGS || current_extra_caps.excaprefs[0] == NULL
         || current_extra_caps.excaprefs[1] == NULL
@@ -1121,7 +1134,7 @@ exception_t decodeTCBConfigure(cap_t cap, word_t length, cte_t *slot, word_t *bu
     vRootData     = getSyscallArg(1, buffer);
     bufferAddr    = getSyscallArg(2, buffer);
 #else
-    cptr_t faultEP       = getSyscallArg(0, buffer);
+    faultEP       = getSyscallArg(0, buffer);
     cRootData     = getSyscallArg(1, buffer);
     vRootData     = getSyscallArg(2, buffer);
     bufferAddr    = getSyscallArg(3, buffer);
@@ -1143,7 +1156,7 @@ exception_t decodeTCBConfigure(cap_t cap, word_t length, cte_t *slot, word_t *bu
         }
         bufferCap = dc_ret.cap;
 
-        exception_t e = checkValidIPCBuffer(bufferAddr, bufferCap);
+        e = checkValidIPCBuffer(bufferAddr, bufferCap);
         if (e != EXCEPTION_NONE) {
             return e;
         }
@@ -1215,14 +1228,19 @@ exception_t decodeTCBConfigure(cap_t cap, word_t length, cte_t *slot, word_t *bu
 
 exception_t decodeSetPriority(cap_t cap, word_t length, word_t *buffer)
 {
+    prio_t newPrio;
+    cap_t authCap;
+    tcb_t *authTCB;
+    exception_t status;
+
     if (length < 1 || current_extra_caps.excaprefs[0] == NULL) {
         userError("TCB SetPriority: Truncated message.");
         current_syscall_error.type = seL4_TruncatedMessage;
         return EXCEPTION_SYSCALL_ERROR;
     }
 
-    prio_t newPrio = getSyscallArg(0, buffer);
-    cap_t authCap = current_extra_caps.excaprefs[0]->cap;
+    newPrio = getSyscallArg(0, buffer);
+    authCap = current_extra_caps.excaprefs[0]->cap;
 
     if (cap_get_capType(authCap) != cap_thread_cap) {
         userError("Set priority: authority cap not a TCB.");
@@ -1231,8 +1249,8 @@ exception_t decodeSetPriority(cap_t cap, word_t length, word_t *buffer)
         return EXCEPTION_SYSCALL_ERROR;
     }
 
-    tcb_t *authTCB = TCB_PTR(cap_thread_cap_get_capTCBPtr(authCap));
-    exception_t status = checkPrio(newPrio, authTCB);
+    authTCB = TCB_PTR(cap_thread_cap_get_capTCBPtr(authCap));
+    status = checkPrio(newPrio, authTCB);
     if (status != EXCEPTION_NONE) {
         userError("TCB SetPriority: Requested priority %lu too high (max %lu).",
                   (unsigned long) newPrio, (unsigned long) authTCB->tcbMCP);
@@ -1259,14 +1277,19 @@ exception_t decodeSetPriority(cap_t cap, word_t length, word_t *buffer)
 
 exception_t decodeSetMCPriority(cap_t cap, word_t length, word_t *buffer)
 {
+    prio_t newMcp;
+    cap_t authCap;
+    tcb_t *authTCB;
+    exception_t status;
+
     if (length < 1 || current_extra_caps.excaprefs[0] == NULL) {
         userError("TCB SetMCPriority: Truncated message.");
         current_syscall_error.type = seL4_TruncatedMessage;
         return EXCEPTION_SYSCALL_ERROR;
     }
 
-    prio_t newMcp = getSyscallArg(0, buffer);
-    cap_t authCap = current_extra_caps.excaprefs[0]->cap;
+    newMcp = getSyscallArg(0, buffer);
+    authCap = current_extra_caps.excaprefs[0]->cap;
 
     if (cap_get_capType(authCap) != cap_thread_cap) {
         userError("TCB SetMCPriority: authority cap not a TCB.");
@@ -1275,8 +1298,8 @@ exception_t decodeSetMCPriority(cap_t cap, word_t length, word_t *buffer)
         return EXCEPTION_SYSCALL_ERROR;
     }
 
-    tcb_t *authTCB = TCB_PTR(cap_thread_cap_get_capTCBPtr(authCap));
-    exception_t status = checkPrio(newMcp, authTCB);
+    authTCB = TCB_PTR(cap_thread_cap_get_capTCBPtr(authCap));
+    status = checkPrio(newMcp, authTCB);
     if (status != EXCEPTION_NONE) {
         userError("TCB SetMCPriority: Requested maximum controlled priority %lu too high (max %lu).",
                   (unsigned long) newMcp, (unsigned long) authTCB->tcbMCP);
@@ -1339,6 +1362,19 @@ exception_t decodeSetSchedParams(cap_t cap, word_t length, cte_t *slot, word_t *
 exception_t decodeSetSchedParams(cap_t cap, word_t length, word_t *buffer)
 #endif
 {
+    prio_t newMcp;
+    prio_t newPrio;
+    cap_t authCap;
+    tcb_t *authTCB;
+    exception_t status;
+#ifdef CONFIG_KERNEL_MCS
+    cap_t scCap;
+    cte_t *fhSlot;
+    cap_t fhCap;
+    tcb_t *tcb;
+    sched_context_t *sc;
+    thread_control_flag_t update_flags;
+#endif
     if (length < 2 || current_extra_caps.excaprefs[0] == NULL
 #ifdef CONFIG_KERNEL_MCS
         || current_extra_caps.excaprefs[1] == NULL || current_extra_caps.excaprefs[2] == NULL
@@ -1349,13 +1385,13 @@ exception_t decodeSetSchedParams(cap_t cap, word_t length, word_t *buffer)
         return EXCEPTION_SYSCALL_ERROR;
     }
 
-    prio_t newMcp = getSyscallArg(0, buffer);
-    prio_t newPrio = getSyscallArg(1, buffer);
-    cap_t authCap = current_extra_caps.excaprefs[0]->cap;
+    newMcp = getSyscallArg(0, buffer);
+    newPrio = getSyscallArg(1, buffer);
+    authCap = current_extra_caps.excaprefs[0]->cap;
 #ifdef CONFIG_KERNEL_MCS
-    cap_t scCap   = current_extra_caps.excaprefs[1]->cap;
-    cte_t *fhSlot = current_extra_caps.excaprefs[2];
-    cap_t fhCap   = current_extra_caps.excaprefs[2]->cap;
+    scCap   = current_extra_caps.excaprefs[1]->cap;
+    fhSlot = current_extra_caps.excaprefs[2];
+    fhCap   = current_extra_caps.excaprefs[2]->cap;
 #endif
 
     if (cap_get_capType(authCap) != cap_thread_cap) {
@@ -1365,8 +1401,8 @@ exception_t decodeSetSchedParams(cap_t cap, word_t length, word_t *buffer)
         return EXCEPTION_SYSCALL_ERROR;
     }
 
-    tcb_t *authTCB = TCB_PTR(cap_thread_cap_get_capTCBPtr(authCap));
-    exception_t status = checkPrio(newMcp, authTCB);
+    authTCB = TCB_PTR(cap_thread_cap_get_capTCBPtr(authCap));
+    status = checkPrio(newMcp, authTCB);
     if (status != EXCEPTION_NONE) {
         userError("TCB SetSchedParams: Requested maximum controlled priority %lu too high (max %lu).",
                   (unsigned long) newMcp, (unsigned long) authTCB->tcbMCP);
@@ -1381,11 +1417,11 @@ exception_t decodeSetSchedParams(cap_t cap, word_t length, word_t *buffer)
     }
 
 #ifdef CONFIG_KERNEL_MCS
-    tcb_t *tcb = TCB_PTR(cap_thread_cap_get_capTCBPtr(cap));
-    sched_context_t *sc = NULL;
-    thread_control_flag_t update_flags = thread_control_sched_update_mcp |
-                                         thread_control_sched_update_priority |
-                                         thread_control_sched_update_fault;
+    tcb = TCB_PTR(cap_thread_cap_get_capTCBPtr(cap));
+    sc = NULL;
+    update_flags = thread_control_sched_update_mcp |
+                   thread_control_sched_update_priority |
+                   thread_control_sched_update_fault;
     switch (cap_get_capType(scCap)) {
     case cap_sched_context_cap:
         sc = SC_PTR(cap_sched_context_cap_get_capSCPtr(scCap));
@@ -1519,6 +1555,12 @@ exception_t decodeSetSpace(cap_t cap, word_t length, cte_t *slot, word_t *buffer
     cte_t *cRootSlot, *vRootSlot;
     cap_t cRootCap, vRootCap;
     deriveCap_ret_t dc_ret;
+#ifdef CONFIG_KERNEL_MCS
+    cte_t *fhSlot;
+    cap_t fhCap;
+#else
+    cptr_t faultEP;
+#endif
 
     if (length < DECODE_SET_SPACE_PARAMS || current_extra_caps.excaprefs[0] == NULL
         || current_extra_caps.excaprefs[1] == NULL
@@ -1535,14 +1577,14 @@ exception_t decodeSetSpace(cap_t cap, word_t length, cte_t *slot, word_t *buffer
     cRootData = getSyscallArg(0, buffer);
     vRootData = getSyscallArg(1, buffer);
 
-    cte_t *fhSlot     = current_extra_caps.excaprefs[0];
-    cap_t fhCap      = current_extra_caps.excaprefs[0]->cap;
+    fhSlot     = current_extra_caps.excaprefs[0];
+    fhCap      = current_extra_caps.excaprefs[0]->cap;
     cRootSlot  = current_extra_caps.excaprefs[1];
     cRootCap   = current_extra_caps.excaprefs[1]->cap;
     vRootSlot  = current_extra_caps.excaprefs[2];
     vRootCap   = current_extra_caps.excaprefs[2]->cap;
 #else
-    cptr_t faultEP   = getSyscallArg(0, buffer);
+    faultEP   = getSyscallArg(0, buffer);
     cRootData = getSyscallArg(1, buffer);
     vRootData = getSyscallArg(2, buffer);
 
@@ -2165,5 +2207,6 @@ word_t setMRs_syscall_error(tcb_t *thread, word_t *receiveIPCBuffer)
                      current_syscall_error.memoryLeft);
     default:
         fail("Invalid syscall error");
+        return 0;
     }
 }
