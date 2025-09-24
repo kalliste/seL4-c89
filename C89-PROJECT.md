@@ -32,15 +32,12 @@ resulting compiler diagnostics.
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
 - **Outcome**: The latest replay confirms that the wrappers remain up to date
   and that all of the earlier enum, node-state, and interrupt helper issues are
-  still resolved. The strict C90 run now halts on two fronts:
-  1. The packed-structure assertions for the GDT/IDT pointer shim and the ACPI
-     RSDP fail because the packing attributes collapse under C89, producing
-     negative-array diagnostics.
-  2. The translation invalidation helpers continue to subscript the temporary
+  still resolved. The strict C90 run now halts on one remaining front:
+  1. The translation invalidation helpers continue to subscript the temporary
      returned by `makeCR3(...)`, triggering the "subscripting non-lvalue array"
      pedantic error in the inline assembly.
   No additional warnings surfaced in this pass, so the remaining blockers are
-  confined to these packing guarantees and the inline assembly temporaries.
+  confined to the inline assembly temporaries.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -110,7 +107,7 @@ resulting compiler diagnostics.
   - [x] extend the enumeration cleanup to the remaining pedantic offenders
     surfaced by the latest build (e.g. `X86_MappingVSpace`, `irqInvalid`, and
     the `thread_control_update` flags).
-  - [ ] revisit the packing assertions in the PC99 ACPI/GDT helpers now that the
+  - [x] revisit the packing assertions in the PC99 ACPI/GDT helpers now that the
     attribute shims collapse under C90, so the compile-time size checks no
     longer fail under pedantic mode.
   - [x] replace compound literals and designated initialisers in

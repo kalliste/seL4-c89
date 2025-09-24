@@ -42,7 +42,11 @@
 #define SEL4_CONST_ATTR SEL4_ATTR((__const__))
 #define SEL4_PURE_ATTR SEL4_ATTR((__pure__))
 #define SEL4_ALIGN_ATTR(n) SEL4_ATTR((__aligned__(n)))
+#if SEL4_C89_COMPAT && (defined(__GNUC__) || defined(__clang__))
+#define SEL4_PACKED_ATTR __attribute__((packed))
+#else
 #define SEL4_PACKED_ATTR SEL4_ATTR((packed))
+#endif
 #define SEL4_SECTION_ATTR(sec) SEL4_ATTR((__section__(sec)))
 #define SEL4_UNUSED_ATTR SEL4_ATTR((unused))
 #define SEL4_USED_ATTR SEL4_ATTR((used))
