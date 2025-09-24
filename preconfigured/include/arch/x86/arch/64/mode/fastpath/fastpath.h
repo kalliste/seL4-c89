@@ -24,7 +24,7 @@
 
 static inline tcb_t *endpoint_ptr_get_epQueue_tail_fp(endpoint_t *ep_ptr)
 {
-    uint64_t ret = ep_ptr->words[0] & 0xfffffffffffcull;
+    uint64_t ret = ep_ptr->words[0] & ULL_CONST(0xfffffffffffc);
     return unlikely(ret) ? TCB_PTR(ret | PPTR_BASE) : NULL;
 }
 

@@ -1169,7 +1169,7 @@ seL4_X86_ASIDControl_MakePool(seL4_X86_ASIDControl _service, seL4_Untyped untype
 
 	/* Marshal and initialise parameters. */
 	mr0 = index;
-	mr1 = (depth & 0xffull);
+	mr1 = (depth & ULL_CONST(0xff));
 	mr2 = 0;
 	mr3 = 0;
 
@@ -1293,7 +1293,7 @@ seL4_X86_IOPortControl_Issue(seL4_X86_IOPortControl _service, seL4_Word first_po
 	mr0 = first_port;
 	mr1 = last_port;
 	mr2 = index;
-	mr3 = (depth & 0xffull);
+	mr3 = (depth & ULL_CONST(0xff));
 
 	/* Perform the call, passing in-register arguments directly. */
 	output_tag = seL4_CallWithMRs(_service, tag,
@@ -1345,7 +1345,7 @@ seL4_X86_IOPort_In8(seL4_X86_IOPort _service, seL4_Uint16 port)
 	seL4_Word mr3;
 
 	/* Marshal and initialise parameters. */
-	mr0 = (port & 0xffffull);
+	mr0 = (port & ULL_CONST(0xffff));
 	mr1 = 0;
 	mr2 = 0;
 	mr3 = 0;
@@ -1403,7 +1403,7 @@ seL4_X86_IOPort_In16(seL4_X86_IOPort _service, seL4_Uint16 port)
 	seL4_Word mr3;
 
 	/* Marshal and initialise parameters. */
-	mr0 = (port & 0xffffull);
+	mr0 = (port & ULL_CONST(0xffff));
 	mr1 = 0;
 	mr2 = 0;
 	mr3 = 0;
@@ -1461,7 +1461,7 @@ seL4_X86_IOPort_In32(seL4_X86_IOPort _service, seL4_Uint16 port)
 	seL4_Word mr3;
 
 	/* Marshal and initialise parameters. */
-	mr0 = (port & 0xffffull);
+	mr0 = (port & ULL_CONST(0xffff));
 	mr1 = 0;
 	mr2 = 0;
 	mr3 = 0;
@@ -1697,7 +1697,7 @@ seL4_IRQControl_GetIOAPIC(seL4_IRQControl _service, seL4_CNode root, seL4_Word i
 
 	/* Marshal and initialise parameters. */
 	mr0 = index;
-	mr1 = (depth & 0xffull);
+	mr1 = (depth & ULL_CONST(0xff));
 	mr2 = ioapic;
 	mr3 = pin;
 	seL4_SetMR(4, level);
@@ -1769,7 +1769,7 @@ seL4_IRQControl_GetMSI(seL4_IRQControl _service, seL4_CNode root, seL4_Word inde
 
 	/* Marshal and initialise parameters. */
 	mr0 = index;
-	mr1 = (depth & 0xffull);
+	mr1 = (depth & ULL_CONST(0xff));
 	mr2 = pci_bus;
 	mr3 = pci_dev;
 	seL4_SetMR(4, pci_func);
@@ -2702,7 +2702,7 @@ seL4_TCB_ReadRegisters(seL4_TCB _service, seL4_Bool suspend_source, seL4_Uint8 a
 	seL4_Word mr3;
 
 	/* Marshal and initialise parameters. */
-	mr0 = (suspend_source & 0x1ull) | ((arch_flags & 0xffull) << 8);
+	mr0 = (suspend_source & ULL_CONST(0x1)) | ((arch_flags & ULL_CONST(0xff)) << 8);
 	mr1 = count;
 	mr2 = 0;
 	mr3 = 0;
@@ -2779,7 +2779,7 @@ seL4_TCB_WriteRegisters(seL4_TCB _service, seL4_Bool resume_target, seL4_Uint8 a
 	seL4_Word mr3;
 
 	/* Marshal and initialise parameters. */
-	mr0 = (resume_target & 0x1ull) | ((arch_flags & 0xffull) << 8);
+	mr0 = (resume_target & ULL_CONST(0x1)) | ((arch_flags & ULL_CONST(0xff)) << 8);
 	mr1 = count;
 	mr2 = regs->rip;
 	mr3 = regs->rsp;
@@ -2859,7 +2859,7 @@ seL4_TCB_CopyRegisters(seL4_TCB _service, seL4_TCB source, seL4_Bool suspend_sou
 	seL4_SetCap(0, source);
 
 	/* Marshal and initialise parameters. */
-	mr0 = (suspend_source & 0x1ull) | ((resume_target & 0x1ull) << 1) | ((transfer_frame & 0x1ull) << 2) | ((transfer_integer & 0x1ull) << 3) | ((arch_flags & 0xffull) << 8);
+	mr0 = (suspend_source & ULL_CONST(0x1)) | ((resume_target & ULL_CONST(0x1)) << 1) | ((transfer_frame & ULL_CONST(0x1)) << 2) | ((transfer_integer & ULL_CONST(0x1)) << 3) | ((arch_flags & ULL_CONST(0xff)) << 8);
 	mr1 = 0;
 	mr2 = 0;
 	mr3 = 0;
@@ -3823,7 +3823,7 @@ seL4_TCB_SetBreakpoint(seL4_TCB _service, seL4_Uint16 bp_num, seL4_Word vaddr, s
 	seL4_Word mr3;
 
 	/* Marshal and initialise parameters. */
-	mr0 = (bp_num & 0xffffull);
+	mr0 = (bp_num & ULL_CONST(0xffff));
 	mr1 = vaddr;
 	mr2 = type;
 	mr3 = size;
@@ -3892,7 +3892,7 @@ seL4_TCB_GetBreakpoint(seL4_TCB _service, seL4_Uint16 bp_num)
 	seL4_Word mr3;
 
 	/* Marshal and initialise parameters. */
-	mr0 = (bp_num & 0xffffull);
+	mr0 = (bp_num & ULL_CONST(0xffff));
 	mr1 = 0;
 	mr2 = 0;
 	mr3 = 0;
@@ -3959,7 +3959,7 @@ seL4_TCB_UnsetBreakpoint(seL4_TCB _service, seL4_Uint16 bp_num)
 	seL4_Word mr3;
 
 	/* Marshal and initialise parameters. */
-	mr0 = (bp_num & 0xffffull);
+	mr0 = (bp_num & ULL_CONST(0xffff));
 	mr1 = 0;
 	mr2 = 0;
 	mr3 = 0;
@@ -4026,7 +4026,7 @@ seL4_TCB_ConfigureSingleStepping(seL4_TCB _service, seL4_Uint16 bp_num, seL4_Wor
 	seL4_Word mr3;
 
 	/* Marshal and initialise parameters. */
-	mr0 = (bp_num & 0xffffull);
+	mr0 = (bp_num & ULL_CONST(0xffff));
 	mr1 = num_instructions;
 	mr2 = 0;
 	mr3 = 0;
@@ -4198,7 +4198,7 @@ seL4_CNode_Revoke(seL4_CNode _service, seL4_Word index, seL4_Uint8 depth)
 
 	/* Marshal and initialise parameters. */
 	mr0 = index;
-	mr1 = (depth & 0xffull);
+	mr1 = (depth & ULL_CONST(0xff));
 	mr2 = 0;
 	mr3 = 0;
 
@@ -4253,7 +4253,7 @@ seL4_CNode_Delete(seL4_CNode _service, seL4_Word index, seL4_Uint8 depth)
 
 	/* Marshal and initialise parameters. */
 	mr0 = index;
-	mr1 = (depth & 0xffull);
+	mr1 = (depth & ULL_CONST(0xff));
 	mr2 = 0;
 	mr3 = 0;
 
@@ -4312,7 +4312,7 @@ seL4_CNode_CancelBadgedSends(seL4_CNode _service, seL4_Word index, seL4_Uint8 de
 
 	/* Marshal and initialise parameters. */
 	mr0 = index;
-	mr1 = (depth & 0xffull);
+	mr1 = (depth & ULL_CONST(0xff));
 	mr2 = 0;
 	mr3 = 0;
 
@@ -4379,9 +4379,9 @@ seL4_CNode_Copy(seL4_CNode _service, seL4_Word dest_index, seL4_Uint8 dest_depth
 
 	/* Marshal and initialise parameters. */
 	mr0 = dest_index;
-	mr1 = (dest_depth & 0xffull);
+	mr1 = (dest_depth & ULL_CONST(0xff));
 	mr2 = src_index;
-	mr3 = (src_depth & 0xffull);
+	mr3 = (src_depth & ULL_CONST(0xff));
 	seL4_SetMR(4, rights.words[0]);
 
 	/* Perform the call, passing in-register arguments directly. */
@@ -4449,9 +4449,9 @@ seL4_CNode_Mint(seL4_CNode _service, seL4_Word dest_index, seL4_Uint8 dest_depth
 
 	/* Marshal and initialise parameters. */
 	mr0 = dest_index;
-	mr1 = (dest_depth & 0xffull);
+	mr1 = (dest_depth & ULL_CONST(0xff));
 	mr2 = src_index;
-	mr3 = (src_depth & 0xffull);
+	mr3 = (src_depth & ULL_CONST(0xff));
 	seL4_SetMR(4, rights.words[0]);
 	seL4_SetMR(5, badge);
 
@@ -4515,9 +4515,9 @@ seL4_CNode_Move(seL4_CNode _service, seL4_Word dest_index, seL4_Uint8 dest_depth
 
 	/* Marshal and initialise parameters. */
 	mr0 = dest_index;
-	mr1 = (dest_depth & 0xffull);
+	mr1 = (dest_depth & ULL_CONST(0xff));
 	mr2 = src_index;
-	mr3 = (src_depth & 0xffull);
+	mr3 = (src_depth & ULL_CONST(0xff));
 
 	/* Perform the call, passing in-register arguments directly. */
 	output_tag = seL4_CallWithMRs(_service, tag,
@@ -4585,9 +4585,9 @@ seL4_CNode_Mutate(seL4_CNode _service, seL4_Word dest_index, seL4_Uint8 dest_dep
 
 	/* Marshal and initialise parameters. */
 	mr0 = dest_index;
-	mr1 = (dest_depth & 0xffull);
+	mr1 = (dest_depth & ULL_CONST(0xff));
 	mr2 = src_index;
-	mr3 = (src_depth & 0xffull);
+	mr3 = (src_depth & ULL_CONST(0xff));
 	seL4_SetMR(4, badge);
 
 	/* Perform the call, passing in-register arguments directly. */
@@ -4659,13 +4659,13 @@ seL4_CNode_Rotate(seL4_CNode _service, seL4_Word dest_index, seL4_Uint8 dest_dep
 
 	/* Marshal and initialise parameters. */
 	mr0 = dest_index;
-	mr1 = (dest_depth & 0xffull);
+	mr1 = (dest_depth & ULL_CONST(0xff));
 	mr2 = dest_badge;
 	mr3 = pivot_index;
-	seL4_SetMR(4, (pivot_depth & 0xffull));
+	seL4_SetMR(4, (pivot_depth & ULL_CONST(0xff)));
 	seL4_SetMR(5, pivot_badge);
 	seL4_SetMR(6, src_index);
-	seL4_SetMR(7, (src_depth & 0xffull));
+	seL4_SetMR(7, (src_depth & ULL_CONST(0xff)));
 
 	/* Perform the call, passing in-register arguments directly. */
 	output_tag = seL4_CallWithMRs(_service, tag,
@@ -4720,7 +4720,7 @@ seL4_CNode_SaveCaller(seL4_CNode _service, seL4_Word index, seL4_Uint8 depth)
 
 	/* Marshal and initialise parameters. */
 	mr0 = index;
-	mr1 = (depth & 0xffull);
+	mr1 = (depth & ULL_CONST(0xff));
 	mr2 = 0;
 	mr3 = 0;
 
@@ -4787,7 +4787,7 @@ seL4_IRQControl_Get(seL4_IRQControl _service, seL4_Word irq, seL4_CNode root, se
 	/* Marshal and initialise parameters. */
 	mr0 = irq;
 	mr1 = index;
-	mr2 = (depth & 0xffull);
+	mr2 = (depth & ULL_CONST(0xff));
 	mr3 = 0;
 
 	/* Perform the call, passing in-register arguments directly. */
@@ -5002,7 +5002,7 @@ seL4_DomainSet_Set(seL4_DomainSet _service, seL4_Uint8 domain, seL4_TCB thread)
 	seL4_SetCap(0, thread);
 
 	/* Marshal and initialise parameters. */
-	mr0 = (domain & 0xffull);
+	mr0 = (domain & ULL_CONST(0xff));
 	mr1 = 0;
 	mr2 = 0;
 	mr3 = 0;

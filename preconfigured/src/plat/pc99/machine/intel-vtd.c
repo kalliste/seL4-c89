@@ -150,7 +150,7 @@ void invalidate_context_cache(void)
         /* Program CIRG for Global Invalidation by setting bit 61 which
          * will be bit 29 in upper 32 bits of CCMD_REG
          */
-        ccmd = ((uint64_t)CONTEXT_GLOBAL_INVALIDATE << CIRG) | (1ull << ICC);
+        ccmd = ((uint64_t)CONTEXT_GLOBAL_INVALIDATE << CIRG) | (ULL_CONST(1) << ICC);
 
         /* Invalidate Context Cache */
         vtd_write64(i, CCMD_REG, ccmd);

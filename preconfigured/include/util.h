@@ -8,6 +8,10 @@
 
 #include <compiler.h>
 
+#ifndef __ASSEMBLER__
+#include <config.h>
+#endif
+
 #define PASTE(a, b) a ## b
 #define _STRINGIFY(a) #a
 #define STRINGIFY(a) _STRINGIFY(a)
@@ -21,6 +25,7 @@
  * this, as the suffix is only applied when the C compiler is used and dropped
  * when the assembler runs.
  */
+
 #define UL_CONST(x) x
 #define ULL_CONST(x) x
 #define NULL 0
@@ -32,8 +37,13 @@
  * printf() format specifiers, '%lu' is the only form that is supported. Thus
  * 'ul' is the preferred suffix to avoid confusion.
  */
+#if CONFIG_WORD_SIZE == 64
+#define UL_CONST(x) PASTE(x, ul)
+#define ULL_CONST(x) PASTE(x, ul)
+#else
 #define UL_CONST(x) PASTE(x, ul)
 #define ULL_CONST(x) PASTE(x, llu)
+#endif
 #define NULL ((void *)0)
 
 #endif /* [not] __ASSEMBLER__ */
