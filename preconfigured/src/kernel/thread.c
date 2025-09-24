@@ -134,13 +134,19 @@ void doReplyTransfer(tcb_t *sender, tcb_t *receiver, cte_t *slot, bool_t grant)
 #endif
 {
 #ifdef CONFIG_KERNEL_MCS
+    tcb_t *receiver;
+#endif
+    word_t fault_type;
+    bool_t restart;
+
+#ifdef CONFIG_KERNEL_MCS
     if (reply->replyTCB == NULL ||
         thread_state_get_tsType(reply->replyTCB->tcbState) != ThreadState_BlockedOnReply) {
         /* nothing to do */
         return;
     }
 
-    tcb_t *receiver = reply->replyTCB;
+    receiver = reply->replyTCB;
     reply_remove(reply, receiver);
     assert(thread_state_get_tsType(receiver->tcbState) == ThreadState_Inactive);
     assert(reply->replyTCB == NULL);
@@ -154,7 +160,7 @@ void doReplyTransfer(tcb_t *sender, tcb_t *receiver, cte_t *slot, bool_t grant)
            ThreadState_BlockedOnReply);
 #endif
 
-    word_t fault_type = seL4_Fault_get_seL4_FaultType(receiver->tcbFault);
+    fault_type = seL4_Fault_get_seL4_FaultType(receiver->tcbFault);
     if (likely(fault_type == seL4_Fault_NullFault)) {
         doIPCTransfer(sender, NULL, 0, grant, receiver);
 #ifdef CONFIG_KERNEL_MCS
@@ -170,7 +176,7 @@ void doReplyTransfer(tcb_t *sender, tcb_t *receiver, cte_t *slot, bool_t grant)
         /** GHOSTUPD: "(True, gs_set_assn cteDeleteOne_'proc (ucast cap_reply_cap))" */
         cteDeleteOne(slot);
 #endif
-        bool_t restart = handleFaultReply(receiver, sender);
+        restart = handleFaultReply(receiver, sender);
         receiver->tcbFault = seL4_Fault_NullFault_new();
         if (restart) {
             setThreadState(receiver, ThreadState_Restart);
@@ -390,13 +396,16 @@ void schedule(void)
         if (NODE_STATE(ksSchedulerAction) == SchedulerAction_ChooseNewThread) {
             scheduleChooseNewThread();
         } else {
-            tcb_t *candidate = NODE_STATE(ksSchedulerAction);
+            tcb_t *candidate;
+            bool_t fastfail;
+
+            candidate = NODE_STATE(ksSchedulerAction);
             assert(isSchedulable(candidate));
             /* Avoid checking bitmap when ksCurThread is higher prio, to
              * match fast path.
              * Don't look at ksCurThread prio when it's idle, to respect
              * information flow in non-fastpath cases. */
-            bool_t fastfail =
+            fastfail =
                 NODE_STATE(ksCurThread) == NODE_STATE(ksIdleThread)
                 || (candidate->tcbPriority < NODE_STATE(ksCurThread)->tcbPriority);
             if (fastfail &&

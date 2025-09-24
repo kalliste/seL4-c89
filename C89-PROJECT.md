@@ -126,11 +126,11 @@ where `handleDoubleFault` previously triggered the next failure because its firs
 fault argument becomes unused once the attribute shims collapse.
 
 Casting that parameter to `(void)` quiets the stub and allows the strict build
-to progress into `src/kernel/thread.c`. The current blocker lives in
-`doReplyTransfer`, which now declares the `fault_type` and `restart`
-temporaries after executable statements, and `schedule`, where the `fastfail`
-flag is introduced mid-block. Both need their locals hoisted to satisfy C90's
-declaration rules.
+to progress into `src/kernel/thread.c`. Hoisting the reply-path locals out of
+the executable statements lets `doReplyTransfer` and `schedule` satisfy C90's
+declaration rules, so the pedantic build now runs until the generated capDL
+wrapper halts it with an "empty translation unit" error when no objects are
+present.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -266,7 +266,8 @@ declaration rules.
   `src/arch/x86/kernel/ept.c` when VT-d is disabled.
 - [ ] Teach the generated capDL wrapper sources to emit a benign definition
         when no kernel objects are present so the strict build no longer flags
-        the empty translation unit under `-Wpedantic`.
+        the empty translation unit under `-Wpedantic` (now triggered by
+        `preconfigured/X64_verified/src/machine/capdl_wrapper.c`).
 - Tackle the kernel boot initialisation helpers surfaced by the latest strict
   build run:
   - [ ] Replace the compound literal helpers and designated initialisers in
@@ -302,7 +303,7 @@ declaration rules.
 - [x] Provide a benign definition in the x86 breakpoint stubs so the strict build
   no longer rejects the empty translation unit emitted by
   `src/arch/x86/machine/breakpoint.c`.
-- [ ] Hoist the reply-path locals in `src/kernel/thread.c`
+- [x] Hoist the reply-path locals in `src/kernel/thread.c`
   (`doReplyTransfer`, `schedule`) so they no longer mix declarations with
   statements under C90.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
