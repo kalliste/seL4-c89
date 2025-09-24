@@ -16,7 +16,7 @@ const register_t msgRegisters[] = {
 compile_assert(
     consistent_message_registers,
     sizeof(msgRegisters) / sizeof(msgRegisters[0]) == n_msgRegisters
-);
+)
 
 const register_t frameRegisters[] = {
     FaultIP, RSP, FLAGS, RAX, RBX, RCX, RDX, RSI, RDI, RBP,
@@ -25,7 +25,7 @@ const register_t frameRegisters[] = {
 compile_assert(
     consistent_frame_registers,
     sizeof(frameRegisters) / sizeof(frameRegisters[0]) == n_frameRegisters
-);
+)
 
 const register_t gpRegisters[] = {
     FS_BASE, GS_BASE
@@ -33,7 +33,7 @@ const register_t gpRegisters[] = {
 compile_assert(
     consistent_gp_registers,
     sizeof(gpRegisters) / sizeof(gpRegisters[0]) == n_gpRegisters
-);
+)
 
 void Mode_initContext(user_context_t *context)
 {
