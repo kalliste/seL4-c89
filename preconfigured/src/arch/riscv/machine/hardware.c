@@ -35,14 +35,14 @@ BOOT_CODE void map_kernel_devices(void)
      * NULL. Thus we can't use ARRAY_SIZE(kernel_device_frames) here directly,
      * but have to use NUM_KERNEL_DEVICE_FRAMES that is defined accordingly.
      */
+    p_region_t region;
     for (int i = 0; i < NUM_KERNEL_DEVICE_FRAMES; i++) {
         const kernel_frame_t *frame = &kernel_device_frames[i];
         map_kernel_frame(frame->paddr, frame->pptr, VMKernelOnly);
         if (!frame->userAvailable) {
-            reserve_region((p_region_t) {
-                .start = frame->paddr,
-                .end   = frame->paddr + BIT(seL4_LargePageBits)
-            });
+            region.start = frame->paddr;
+            region.end = frame->paddr + BIT(seL4_LargePageBits);
+            reserve_region(region);
         }
     }
 }
