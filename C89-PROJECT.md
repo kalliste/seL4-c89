@@ -58,16 +58,15 @@ resulting compiler diagnostics.
   through dedicated helpers removes the pedantic complaints about directives
   living inside macro arguments. Routing the x86 trap macros through explicit
   `PUSH_ERROR_CODE_*` helpers clears the empty-argument warnings, so the strict
-  build now runs through the trap assembly and halts during final linking: the
-  linker reports a series of `R_X86_64_32` relocations in
-  `src/arch/x86/64/head.S` that reference the `boot_pml4` and `boot_pdpt`
-  symbols defined in the wrapped C sources.
-
-  The new relocation failures suggest we need to revisit how the boot-time
-  assembly materialises the paging structures when building with the stricter
-  flags. Adjusting the relocation mode or loading those addresses through
-  temporaries should unblock the pedantic build so we can continue cataloguing
-  any remaining C90 incompatibilities.
+  build now runs through the trap assembly and previously halted during final
+  linking with a series of `R_X86_64_32` relocations in
+  `src/arch/x86/64/head.S`. Teaching the 32-bit boot stub to reference
+  `boot_pml4` and `boot_pdpt` via `KERNEL_ELF_BASE_OFFSET` whenever
+  `SEL4_C89_COMPAT` collapses the section attributes resolves those truncation
+  errors: the pedantic replay now links `kernel.elf` and continues compiling the
+  recorded wrapper sources without surfacing new diagnostics. The next round of
+  work can therefore focus on any remaining C90 clean-ups in the generated and
+  library code.
 
   The libsel4 enumerations now carry an explicit
   `__mode__(__word__)` attribute instead of depending on `__extension__`, the
