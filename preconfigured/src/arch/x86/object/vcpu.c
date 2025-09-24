@@ -480,7 +480,13 @@ void vcpu_init(vcpu_t *vcpu)
 #ifdef CONFIG_KERNEL_SKIM_WINDOW
     /* if we have a skim window then our host cr3 is a constant and is always the
      * the kernel address space, so we set it here instead of lazily in restoreVMCS */
-    vmwrite(VMX_HOST_CR3, makeCR3(kpptr_to_paddr(x64KSKernelPML4), 0).words[0]);
+    {
+        cr3_t host_cr3;
+        word_t host_cr3_word;
+        host_cr3 = makeCR3(kpptr_to_paddr(x64KSKernelPML4), 0);
+        host_cr3_word = host_cr3.words[0];
+        vmwrite(VMX_HOST_CR3, host_cr3_word);
+    }
 #endif /* CONFIG_KERNEL_SKIM_WINDOW */
 
     vmwrite(VMX_HOST_ES_SELECTOR, SEL_DS_0);

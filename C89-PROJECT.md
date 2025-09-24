@@ -30,14 +30,14 @@ resulting compiler diagnostics.
 
 ## Build Attempt Summary
 - **Command**: `./preconfigured/replay_preconfigured_build.sh`
-- **Outcome**: The latest replay confirms that the wrappers remain up to date
-  and that all of the earlier enum, node-state, and interrupt helper issues are
-  still resolved. The strict C90 run now halts on one remaining front:
-  1. The translation invalidation helpers continue to subscript the temporary
-     returned by `makeCR3(...)`, triggering the "subscripting non-lvalue array"
-     pedantic error in the inline assembly.
-  No additional warnings surfaced in this pass, so the remaining blockers are
-  confined to the inline assembly temporaries.
+- **Outcome**: The wrappers remain up to date and the translation invalidation
+  helpers now assemble cleanly under strict C90. The build now stops in
+  `src/api/syscall.c` on two fronts:
+  1. `handleUnknownSyscall` and `handleSyscall` still wrap preprocessor
+     directives inside macro arguments, which pedantic mode rejects as
+     non-portable.
+  2. `handleInvocation` declares `cptr` after executable statements, triggering
+     the "mixed declarations and code" error that C90 treats as fatal.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -54,10 +54,10 @@ resulting compiler diagnostics.
    `__VA_ARGS__`, triggering strict C90 diagnostics. They now funnel through
    helper functions that keep the logging behaviour while remaining valid in
    C89 mode.
-3. **Modern C layout rules** *(resolved)*: Several functions declared variables
+3. **Modern C layout rules** *(progress)*: Several functions declared variables
    mid-block, causing "mixed declarations and code" errors with C90. We hoisted
-   the locals in the interrupt and FS/GS helpers, and will continue to watch for
-   any remaining mixed declarations in later passes.
+   the locals in the interrupt and FS/GS helpers, but the latest build shows
+   `handleInvocation` still needs the same treatment.
 4. **Unused parameter clean-ups** *(resolved)*: Architecture stubs rely on the
    compiler to discard unused parameters via attributes; once those attributes
    collapse under C89, the warnings become hard errors. We now cast the unused
@@ -85,6 +85,10 @@ resulting compiler diagnostics.
 8. **Structure packing guarantees**: strict mode exposes that the ACPI RSDP
    assertions rely on packing attributes that collapse under C89, causing the
    compile-time size check to fail.
+9. **Preprocessor directives in macro arguments**: the syscall handlers still
+   embed `#ifdef`/`#endif` pairs inside capability logging macros. Pedantic C90
+   rejects these directives as non-portable, so the macros need to be reshaped
+   to keep conditional compilation outside the argument list.
 
 ## Next Steps
 - Replace the remaining C99 constructs uncovered by the latest strict build
@@ -121,9 +125,15 @@ resulting compiler diagnostics.
 - [x] Rework the PC99 interrupt helpers so that the generated statements avoid
   declaration-after-statement issues, inline-specifier ordering problems,
   always-true comparisons, and variadic macro misuse under strict C90.
-- Adjust the CR3 and translation invalidation helpers so that the inline
+- [x] Adjust the CR3 and translation invalidation helpers so that the inline
   assembly operates on named temporaries instead of subscripting the temporary
   returned by `makeCR3(...)`, avoiding the pedantic C90 error.
+- Address the syscall preprocessor and layout issues surfaced by the latest
+  build:
+  - [ ] Rework `handleUnknownSyscall`/`handleSyscall` so the capability logging
+        macros no longer wrap `#ifdef` directives inside their argument lists.
+  - [ ] Hoist the `cptr` declaration in `handleInvocation` above the existing
+        statements so the function satisfies C90's declaration rules.
 - [x] Make `setMRs_lookup_failure` return explicitly so the strict warnings stop
   flagging it as falling off the end.
 - Audit architecture helpers for unused parameters and modern inline idioms
