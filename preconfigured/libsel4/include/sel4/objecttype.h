@@ -17,7 +17,7 @@ typedef enum api_object {
     seL4_SchedContextObject,
     seL4_ReplyObject,
 #endif
-    seL4_NonArchObjectTypeCount,
+    seL4_NonArchObjectTypeCount
 } seL4_ObjectType;
 
 SEL4_ATTR((deprecated("use seL4_NotificationObject"))) static const seL4_ObjectType seL4_AsyncEndpointObject =

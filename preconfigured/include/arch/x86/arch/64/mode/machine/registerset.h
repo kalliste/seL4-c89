@@ -79,9 +79,9 @@ enum messageSizes {
     n_frameRegisters = 18,
     n_gpRegisters = 2,
     n_exceptionMessage = 3,
-    n_syscallMessage = 18,
+    n_syscallMessage = 18
 #ifdef CONFIG_KERNEL_MCS
-    n_timeoutMessage = 19,
+    , n_timeoutMessage = 19
 #endif
 };
 

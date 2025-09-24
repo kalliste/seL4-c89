@@ -14,9 +14,9 @@
 
 typedef enum {
     MessageID_Syscall,
-    MessageID_Exception,
+    MessageID_Exception
 #ifdef CONFIG_KERNEL_MCS
-    MessageID_TimeoutReply,
+    , MessageID_TimeoutReply
 #endif
 } MessageID_t;
 
