@@ -7,6 +7,8 @@
 #pragma once
 
 #include <config.h>
+#include <arch/types.h>
+#include <compiler.h>
 
 #ifdef CONFIG_DEBUG_BUILD
 /* io for dumping capdl */
@@ -16,8 +18,6 @@ unsigned char kernel_getDebugChar(void);
 
 #ifdef CONFIG_PRINTING
 
-#include <arch/types.h>
-#include <compiler.h>
 #include <stdarg.h>
 
 /* the actual output function */

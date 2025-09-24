@@ -46,6 +46,12 @@ BOOT_CODE bool_t apic_init(bool_t mask_legacy_irqs)
     apic_version_t apic_version;
     uint32_t num_lvt_entries;
     uint32_t apic_khz;
+    apic_svr_t apic_svr_value;
+    apic_lvt_t apic_lvt_value;
+    uint32_t timer_mode;
+#ifdef CONFIG_KERNEL_MCS
+    uint32_t cpuid;
+#endif
 
     if (!apic_enable()) {
         return false;
@@ -56,7 +62,7 @@ BOOT_CODE bool_t apic_init(bool_t mask_legacy_irqs)
     x86KStscMhz = tsc_init();
 
     /* can we use tsc deadline mode? */
-    uint32_t cpuid = x86_cpuid_ecx(0x1, 0x0);
+    cpuid = x86_cpuid_ecx(0x1, 0x0);
     if (!(cpuid & BIT(CPUID_TSC_DEADLINE_BIT))) {
         apic_khz = apic_measure_freq();
         x86KSapicRatio = div64((uint64_t)x86KStscMhz * ULL_CONST(1000), apic_khz);
@@ -98,65 +104,60 @@ BOOT_CODE bool_t apic_init(bool_t mask_legacy_irqs)
 #endif
 
     /* enable APIC using SVR register */
-    apic_write_reg(
-        APIC_SVR,
-        apic_svr_new(
-            0,           /* focus_processor_chk */
-            1,           /* enabled             */
-            int_spurious /* spurious_vector     */
-        ).words[0]
+    apic_svr_value = apic_svr_new(
+        0,           /* focus_processor_chk */
+        1,           /* enabled             */
+        int_spurious /* spurious_vector     */
     );
+    apic_write_reg(APIC_SVR, apic_svr_value.words[0]);
 
     /* mask/unmask LINT0 (used for legacy IRQ delivery) */
-    apic_write_reg(
-        APIC_LVT_LINT0,
-        apic_lvt_new(
-            0,                /* timer_mode      */
-            mask_legacy_irqs, /* masked          */
-            0,                /* trigger_mode    */
-            0,                /* remote_irr      */
-            0,                /* pin_polarity    */
-            0,                /* delivery_status */
-            7,                /* delivery_mode   */
-            0                 /* vector          */
-        ).words[0]
+    apic_lvt_value = apic_lvt_new(
+        0,                /* timer_mode      */
+        mask_legacy_irqs, /* masked          */
+        0,                /* trigger_mode    */
+        0,                /* remote_irr      */
+        0,                /* pin_polarity    */
+        0,                /* delivery_status */
+        7,                /* delivery_mode   */
+        0                 /* vector          */
     );
+    apic_write_reg(APIC_LVT_LINT0, apic_lvt_value.words[0]);
 
     /* mask LINT1 (used for NMI delivery) */
-    apic_write_reg(
-        APIC_LVT_LINT1,
-        apic_lvt_new(
-            0,  /* timer_mode      */
-            1,  /* masked          */
-            0,  /* trigger_mode    */
-            0,  /* remote_irr      */
-            0,  /* pin_polarity    */
-            0,  /* delivery_status */
-            0,  /* delivery_mode   */
-            0   /* vector          */
-        ).words[0]
+    apic_lvt_value = apic_lvt_new(
+        0,  /* timer_mode      */
+        1,  /* masked          */
+        0,  /* trigger_mode    */
+        0,  /* remote_irr      */
+        0,  /* pin_polarity    */
+        0,  /* delivery_status */
+        0,  /* delivery_mode   */
+        0   /* vector          */
     );
+    apic_write_reg(APIC_LVT_LINT1, apic_lvt_value.words[0]);
 
     /* initialise timer */
 #ifdef CONFIG_KERNEL_MCS
-    uint32_t timer_mode = x86KSapicRatio == 0 ? APIC_TIMER_MODE_TSC_DEADLINE :
-                          APIC_TIMER_MODE_ONE_SHOT;
+    if (x86KSapicRatio == 0) {
+        timer_mode = APIC_TIMER_MODE_TSC_DEADLINE;
+    } else {
+        timer_mode = APIC_TIMER_MODE_ONE_SHOT;
+    }
 #else
-    uint32_t timer_mode = 1;
+    timer_mode = 1;
 #endif
-    apic_write_reg(
-        APIC_LVT_TIMER,
-        apic_lvt_new(
-            timer_mode,
-            0,        /* masked          */
-            0,        /* trigger_mode    */
-            0,        /* remote_irr      */
-            0,        /* pin_polarity    */
-            0,        /* delivery_status */
-            0,        /* delivery_mode   */
-            int_timer /* vector          */
-        ).words[0]
+    apic_lvt_value = apic_lvt_new(
+        timer_mode,
+        0,        /* masked          */
+        0,        /* trigger_mode    */
+        0,        /* remote_irr      */
+        0,        /* pin_polarity    */
+        0,        /* delivery_status */
+        0,        /* delivery_mode   */
+        int_timer /* vector          */
     );
+    apic_write_reg(APIC_LVT_TIMER, apic_lvt_value.words[0]);
 
     /*
     printf("APIC: ID=0x%x\n", apic_read_reg(APIC_ID) >> 24);
