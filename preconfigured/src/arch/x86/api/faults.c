@@ -12,6 +12,9 @@
 
 bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType)
 {
+    (void)receiver;
+    (void)sender;
+
     switch (faultType) {
     case seL4_Fault_VMFault:
         return true;
@@ -19,6 +22,8 @@ bool_t Arch_handleFaultReply(tcb_t *receiver, tcb_t *sender, word_t faultType)
     default:
         fail("Invalid fault");
     }
+
+    return false;
 }
 
 word_t Arch_setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffer, word_t faultType)
@@ -36,6 +41,8 @@ word_t Arch_setMRs_fault(tcb_t *sender, tcb_t *receiver, word_t *receiveIPCBuffe
     default:
         fail("Invalid fault");
     }
+
+    return 0;
 }
 
 word_t handleKernelException(
