@@ -67,6 +67,8 @@ static inline word_t CONST pageBitsForSize(vm_page_size_t pagesize)
     default:
         fail("Invalid page size");
     }
+
+    return 0;
 }
 
 /* This function is a duplicate of pageBitsForSize, needed for calls that occur
@@ -89,6 +91,8 @@ static inline word_t CONST pageBitsForSize_phys(vm_page_size_t pagesize)
     default:
         fail("Invalid page size");
     }
+
+    return 0;
 }
 
 /* Returns the size of CPU's cacheline */
