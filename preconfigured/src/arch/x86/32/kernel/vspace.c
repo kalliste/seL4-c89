@@ -620,6 +620,8 @@ void setVMRoot(tcb_t *tcb)
 
 void hwASIDInvalidate(asid_t asid, vspace_root_t *vspace)
 {
+    (void)asid;
+    (void)vspace;
     /* 32-bit does not have PCID */
     return;
 }

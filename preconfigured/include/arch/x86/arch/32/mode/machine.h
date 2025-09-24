@@ -50,6 +50,8 @@ static inline void invalidateLocalPageStructureCache(void)
 
 static inline void invalidateLocalPageStructureCacheASID(paddr_t root, asid_t asid)
 {
+    (void)root;
+    (void)asid;
     /* ignore asid */
     invalidateLocalPageStructureCache();
 }
@@ -68,6 +70,7 @@ static inline void invalidateLocalTranslationSingle(vptr_t vptr)
 
 static inline void invalidateLocalTranslationSingleASID(vptr_t vptr, asid_t asid)
 {
+    (void)asid;
     /* no asid support in 32-bit, just invalidate TLB */
     invalidateLocalTLBEntry(vptr);
 }

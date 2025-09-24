@@ -176,6 +176,7 @@ static inline void invalidateLocalPCID(word_t type, void *vaddr, asid_t asid)
         desc.addr = (uint64_t)vaddr;
         asm volatile("invpcid %1, %0" :: "r"(type), "m"(desc));
     } else {
+        (void)asid;
         switch (type) {
         case INVPCID_TYPE_ADDR:
             asm volatile("invlpg (%[vptr])" :: [vptr] "r"(vaddr));
@@ -240,6 +241,8 @@ static inline void invalidateLocalPageStructureCacheASID(paddr_t root, asid_t as
             [old_cr3] "r"(old_cr3_word)
         );
     } else {
+        (void)root;
+        (void)asid;
         /* just invalidate the page structure cache as per normal, by
          * doing a dummy invalidation of a tlb entry */
         asm volatile("invlpg (%[vptr])" :: [vptr] "r"(0));

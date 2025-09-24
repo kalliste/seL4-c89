@@ -12,24 +12,28 @@
 
 static inline void invalidatePageStructureCacheASID(paddr_t root, asid_t asid, word_t mask)
 {
+    (void)mask;
     invalidateLocalPageStructureCacheASID(root, asid);
     SMP_COND_STATEMENT(doRemoteInvalidatePageStructureCacheASID(root, asid, mask));
 }
 
 static inline void invalidateTranslationSingle(vptr_t vptr, word_t mask)
 {
+    (void)mask;
     invalidateLocalTranslationSingle(vptr);
     SMP_COND_STATEMENT(doRemoteInvalidateTranslationSingle(vptr, mask));
 }
 
 static inline void invalidateTranslationSingleASID(vptr_t vptr, asid_t asid, word_t mask)
 {
+    (void)mask;
     invalidateLocalTranslationSingleASID(vptr, asid);
     SMP_COND_STATEMENT(doRemoteInvalidateTranslationSingleASID(vptr, asid, mask));
 }
 
 static inline void invalidateTranslationAll(word_t mask)
 {
+    (void)mask;
     invalidateLocalTranslationAll();
     SMP_COND_STATEMENT(doRemoteInvalidateTranslationAll(mask));
 }
