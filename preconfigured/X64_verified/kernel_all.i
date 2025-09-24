@@ -7698,18 +7698,22 @@ static inline void invalidateLocalPageStructureCacheASID(paddr_t root, asid_t as
 {
     if (wrap_config_set(1)) {
 
-        cr3_t cr3 = getCurrentCR3();
-
-
-
+        cr3_t cr3;
+        cr3_t new_cr3;
+        word_t new_cr3_word;
+        word_t old_cr3_word;
+        cr3 = getCurrentCR3();
+        new_cr3 = makeCR3(root, asid);
+        new_cr3_word = new_cr3.words[0];
+        old_cr3_word = cr3.words[0] | (1ul << (63));
 
 
         __asm__ volatile(
             "mov %[new_cr3], %%cr3\n"
             "mov %[old_cr3], %%cr3\n"
             ::
-            [new_cr3] "r"(makeCR3(root, asid).words[0]),
-            [old_cr3] "r"(cr3.words[0] | (1ul << (63)))
+            [new_cr3] "r"(new_cr3_word),
+            [old_cr3] "r"(old_cr3_word)
         );
     } else {
 
