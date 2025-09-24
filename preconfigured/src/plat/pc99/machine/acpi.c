@@ -41,7 +41,7 @@ compile_assert(acpi_dmar_header_packed, sizeof(acpi_dmar_header_t) == 4)
 enum acpi_table_dmar_struct_type {
     DMAR_DRHD = 0,
     DMAR_RMRR = 1,
-    DMAR_ATSR = 2,
+    DMAR_ATSR = 2
 };
 
 /* DMA Remapping Hardware unit Definition */

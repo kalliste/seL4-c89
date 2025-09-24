@@ -40,6 +40,9 @@ exception_t decodeUntypedInvocation(word_t invLabel, word_t length, cte_t *slot,
     word_t freeIndex;
     bool_t deviceMemory;
     bool_t reset;
+    word_t objectBytes;
+
+    (void)call;
 
     /* Ensure operation is valid. */
     if (invLabel != UntypedRetype) {
@@ -201,11 +204,17 @@ exception_t decodeUntypedInvocation(word_t invLabel, word_t length, cte_t *slot,
     untypedFreeBytes = BIT(cap_untyped_cap_get_capBlockSize(cap)) -
                        FREE_INDEX_TO_OFFSET(freeIndex);
 
+    if (objectSize >= wordBits) {
+        objectBytes = (word_t)-1;
+    } else {
+        objectBytes = BIT(objectSize);
+    }
+
     if ((untypedFreeBytes >> objectSize) < nodeWindow) {
         userError("Untyped Retype: Insufficient memory "
                   "(%lu * %lu bytes needed, %lu bytes available).",
                   (word_t)nodeWindow,
-                  (objectSize >= wordBits ? -1 : (1ul << objectSize)),
+                  objectBytes,
                   (word_t)(untypedFreeBytes));
         current_syscall_error.type = seL4_NotEnoughMemory;
         current_syscall_error.memoryLeft = untypedFreeBytes;
@@ -237,7 +246,7 @@ static exception_t resetUntypedCap(cte_t *srcSlot)
     cap_t prev_cap = srcSlot->cap;
     word_t block_size = cap_untyped_cap_get_capBlockSize(prev_cap);
     void *regionBase = WORD_PTR(cap_untyped_cap_get_capPtr(prev_cap));
-    int chunk = CONFIG_RESET_CHUNK_BITS;
+    unsigned int chunk = CONFIG_RESET_CHUNK_BITS;
     word_t offset = FREE_INDEX_TO_OFFSET(cap_untyped_cap_get_capFreeIndex(prev_cap));
     exception_t status;
     bool_t deviceMemory = cap_untyped_cap_get_capIsDevice(prev_cap);
@@ -251,7 +260,7 @@ static exception_t resetUntypedCap(cte_t *srcSlot)
     /** GHOSTUPD: "(True, gs_clear_region (ptr_val \<acute>regionBase)
         (unat \<acute>block_size))" */
 
-    if (deviceMemory || block_size < chunk) {
+    if (deviceMemory || block_size < (word_t)chunk) {
         if (! deviceMemory) {
             clearMemory(regionBase, block_size);
         }

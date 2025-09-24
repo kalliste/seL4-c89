@@ -150,6 +150,16 @@ those translation units pedantic-friendly. The strict build now advances to
 signedness mid-expression, the invocation wrapper's `call` parameter becomes
 unused, and the reset path still compares unlike-signed counters.
 
+Reworking the untyped invocation wrapper to cast its unused flag, compute the
+object-size diagnostic in a `word_t`, and compare the reset chunk size against a
+like-signed bound lets the pedantic build continue into the PC99 platform
+helpers. Dropping the trailing comma from the DMAR enumerator list and hoisting
+the LAPIC frequency measurement temporaries satisfy the C90 rules in
+`acpi.c` and `hardware.c`, allowing the replay build to reach the next blocker.
+The strict configuration now stops in `intel-vtd_wrapper.c`, where the generated
+wrapper collapses to an empty translation unit and triggers the pedantic
+diagnostic that C90 forbids empty files.
+
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
    machine shims still emit `ULL` and `LL` constants that trigger
