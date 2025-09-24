@@ -108,8 +108,10 @@ diagnostics in that translation unit. The replay build consequently advances to
 subscripting the temporary compound literals returned by the LAPIC register
 constructors when sending IPIs. Reworking those helpers to materialise the
 register values in named temporaries clears the pedantic errors and lets the
-strict build progress into `arch/x86/machine/breakpoint.c`, which now fails the
-build as an empty translation unit under `-Werror=pedantic`.
+strict build progress into `arch/x86/machine/breakpoint.c`. Providing a benign
+typedef when the hardware debug API is disabled keeps that translation unit
+non-empty, so the pedantic build now advances to `arch/x86/machine/capdl.c`,
+where the generated wrapper fails for the same reason.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -270,7 +272,7 @@ build as an empty translation unit under `-Werror=pedantic`.
 - [x] Rework the LAPIC IPI helpers in `src/arch/x86/kernel/xapic.c` so they
   populate named temporaries instead of subscripting compound literals, letting
   the pedantic C90 build proceed past the new blocker.
-- [ ] Provide a benign definition in the x86 breakpoint stubs so the strict build
+- [x] Provide a benign definition in the x86 breakpoint stubs so the strict build
   no longer rejects the empty translation unit emitted by
   `src/arch/x86/machine/breakpoint.c`.
 - Continue iterating on the remaining compilation blockers (assembly helpers,
