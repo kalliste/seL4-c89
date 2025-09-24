@@ -485,6 +485,9 @@ void setVMRoot(tcb_t *tcb)
     pml4e_t *pml4;
     findVSpaceForASID_ret_t find_ret;
     cr3_t cr3;
+    cr3_t current_cr3;
+    word_t current_cr3_word;
+    word_t new_cr3_word;
 
     threadRoot = TCB_PTR_CTE_PTR(tcb, tcbVTable)->cap;
 
@@ -502,7 +505,10 @@ void setVMRoot(tcb_t *tcb)
         return;
     }
     cr3 = makeCR3(pptr_to_paddr(pml4), asid);
-    if (getCurrentUserCR3().words[0] != cr3.words[0]) {
+    current_cr3 = getCurrentUserCR3();
+    current_cr3_word = current_cr3.words[0];
+    new_cr3_word = cr3.words[0];
+    if (current_cr3_word != new_cr3_word) {
         SMP_COND_STATEMENT(tlb_bitmap_set(pml4, getCurrentCPUIndex());)
         setCurrentUserCR3(cr3);
     }

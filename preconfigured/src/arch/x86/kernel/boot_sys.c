@@ -222,6 +222,7 @@ static BOOT_CODE bool_t add_mem_p_regs(p_region_t reg)
 static BOOT_CODE bool_t parse_mem_map(uint32_t mmap_length, uint32_t mmap_addr)
 {
     multiboot_mmap_t *mmap = (multiboot_mmap_t *)((word_t)mmap_addr);
+    p_region_t region;
     printf("Parsing GRUB physical memory map\n");
 
     while ((word_t)mmap < (word_t)(mmap_addr + mmap_length)) {
@@ -234,9 +235,9 @@ static BOOT_CODE bool_t parse_mem_map(uint32_t mmap_length, uint32_t mmap_addr)
             printf("\tPhysical Memory Region from %lx size %lx type %d\n", (long)mem_start, (long)mem_length, type);
             if (type == MULTIBOOT_MMAP_USEABLE_TYPE && mem_start >= HIGHMEM_PADDR && mem_length >= BIT(PAGE_BITS)) {
 
-                if (!add_mem_p_regs((p_region_t) {
-                ROUND_UP(mem_start, PAGE_BITS), ROUND_DOWN(mem_start + mem_length, PAGE_BITS),
-                })) {
+                region.start = ROUND_UP(mem_start, PAGE_BITS);
+                region.end = ROUND_DOWN(mem_start + mem_length, PAGE_BITS);
+                if (!add_mem_p_regs(region)) {
                     return false;
                 }
             }
@@ -613,6 +614,7 @@ static BOOT_CODE bool_t try_boot_sys_mbi2(
     int mod_count                  = 0;
     multiboot2_tag_t const *tag   = (multiboot2_tag_t *)(mbi2 + 1);
     multiboot2_tag_t const *tag_e = (multiboot2_tag_t *)((word_t)mbi2 + mbi2->total_size);
+    p_region_t region;
 
     /* initialize the memory. We track two kinds of memory regions. Physical memory
      * that we will use for the kernel, and physical memory regions that we must
@@ -675,10 +677,11 @@ static BOOT_CODE bool_t try_boot_sys_mbi2(
                 }
 
                 if (m->type == MULTIBOOT_MMAP_USEABLE_TYPE && m->addr >= HIGHMEM_PADDR) {
-                    if (!add_mem_p_regs((p_region_t) {
-                    m->addr, m->addr + m->size
-                }))
-                    return false;
+                    region.start = m->addr;
+                    region.end = m->addr + m->size;
+                    if (!add_mem_p_regs(region)) {
+                        return false;
+                    }
                 }
             }
         } else if (tag->type == MULTIBOOT2_TAG_FB) {
