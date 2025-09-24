@@ -37,9 +37,15 @@ resulting compiler diagnostics.
   strict build consequently advances into the x86 virtual memory code before
   failing on the next wave of issues: the TLB invalidation wrappers and paging
   helpers still need `(void)` casts for unused parameters, the CR3 comparison
-  relies on subscripting a temporary, several boot-time mappers use compound
-  literals, and a handful of decode helpers fall off the end without explicit
-  returns once the attribute shims collapse.
+  relied on subscripting a temporary, several boot-time mappers used compound
+  literals, and a handful of decode helpers fell off the end without explicit
+  returns once the attribute shims collapse. With the latest pass those CR3 and
+  boot-time helpers now operate on named temporaries, so the strict build
+  continues far enough to expose the remaining blockers: the x86 TLB
+  invalidation shims still need unused-parameter casts, the verified x86 vspace
+  sources rely on compound literals, mixed declarations, and unchecked returns,
+  and several generated decode helpers still fall off the end without producing
+  a value.
 
 ### Key Diagnostic Themes
 1. **C99 integer literals**: The generated capability helpers and several x86
@@ -149,8 +155,12 @@ resulting compiler diagnostics.
         avoid C99 `for`-loop initialisers, and compare like-signed values.
   - [ ] Cast the unused parameters in the x86 TLB invalidation wrappers and
         related boot helpers so the pedantic build stays quiet.
-  - [ ] Adjust the CR3 comparison helpers and boot-time mapping routines to
+  - [x] Adjust the CR3 comparison helpers and boot-time mapping routines to
         operate on named temporaries instead of subscripting compound literals.
+  - [ ] Rework the verified x86 vspace sources to eliminate compound literals,
+        cast unused parameters to `(void)`, hoist declarations above statements,
+        and provide explicit returns now that the strict build reaches those
+        translation units.
   - [ ] Audit the x86 decode and mode-specific cap helpers to provide explicit
         returns and `(void)` casts for unused parameters now that the attribute
         shims collapse under C90.

@@ -43,6 +43,11 @@ static inline cr3_t makeCR3(paddr_t addr, word_t pcid)
     return cr3_new(addr, config_set(CONFIG_SUPPORT_PCID) ? pcid : 0);
 }
 
+static inline word_t cr3_get_raw_word(cr3_t cr3)
+{
+    return cr3.words[0];
+}
+
 /* Address space control */
 static inline cr3_t getCurrentCR3(void)
 {

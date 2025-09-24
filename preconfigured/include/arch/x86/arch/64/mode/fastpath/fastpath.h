@@ -11,6 +11,7 @@
 #include <api/types.h>
 #include <api/syscall.h>
 #include <plat/machine/hardware.h>
+#include <mode/machine.h>
 #include <kernel/traps.h>
 #include <smp/lock.h>
 #include <model/statedata.h>
@@ -44,7 +45,11 @@ static inline void FORCE_INLINE switchToThread_fp(tcb_t *thread, vspace_root_t *
     /* the asid is the 12-bit PCID */
     asid_t asid = (asid_t)(stored_hw_asid.words[0] & 0xfff);
     cr3_t next_cr3 = makeCR3(new_vroot, asid);
-    if (likely(getCurrentUserCR3().words[0] != next_cr3.words[0])) {
+    cr3_t current_cr3 = getCurrentUserCR3();
+    word_t current_cr3_word = cr3_get_raw_word(current_cr3);
+    word_t next_cr3_word = cr3_get_raw_word(next_cr3);
+
+    if (likely(current_cr3_word != next_cr3_word)) {
         SMP_COND_STATEMENT(tlb_bitmap_set(vroot, getCurrentCPUIndex());)
         setCurrentUserCR3(next_cr3);
     }
