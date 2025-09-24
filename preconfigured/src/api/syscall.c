@@ -207,7 +207,10 @@ exception_t handleUnknownSyscall(word_t w)
     } /* end switch(w) */
 #endif /* CONFIG_ENABLE_BENCHMARKS */
 
-    MCS_DO_IF_BUDGET({
+#ifdef CONFIG_KERNEL_MCS
+    updateTimestamp();
+    if (likely(checkBudgetRestart())) {
+#endif
 #ifdef CONFIG_SET_TLS_BASE_SELF
         if (w == SysSetTLSBase)
         {
@@ -222,7 +225,9 @@ exception_t handleUnknownSyscall(word_t w)
 #endif
         current_fault = seL4_Fault_UnknownSyscall_new(w);
         handleFault(NODE_STATE(ksCurThread));
-    })
+#ifdef CONFIG_KERNEL_MCS
+    }
+#endif
 
     schedule();
     activateThread();
@@ -519,7 +524,10 @@ exception_t handleSyscall(syscall_t syscall)
 {
     exception_t ret;
     irq_t irq;
-    MCS_DO_IF_BUDGET({
+#ifdef CONFIG_KERNEL_MCS
+    updateTimestamp();
+    if (likely(checkBudgetRestart())) {
+#endif
         switch (syscall)
         {
         case SysSend:
@@ -625,8 +633,9 @@ exception_t handleSyscall(syscall_t syscall)
         default:
             fail("Invalid syscall");
         }
-
-    })
+#ifdef CONFIG_KERNEL_MCS
+    }
+#endif
 
     schedule();
     activateThread();
